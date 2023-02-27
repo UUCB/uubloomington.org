@@ -91,9 +91,15 @@
 
                 </span>
                 <span class="site-title">
-                    <h1>Unitarian Universalist Church</h1>
-                    <h2>of Bloomington, Indiana</h2>
-                    <h3>Seeking&nbsp;the&nbsp;Spirit&nbsp;|&nbsp;<wbr>Building&nbsp;Community&nbsp;|&nbsp;<wbr>Changing&nbsp;the&nbsp;World</h3>
+                    {% if settings.site_settings.SiteWideSettings.title %}
+                        <h1>{{ settings.site_settings.SiteWideSettings.title }}</h1>
+                    {% endif %}
+                    {% if settings.site_settings.SiteWideSettings.subtitle %}
+                        <h2>{{ settings.site_settings.SiteWideSettings.subtitle }}</h2>
+                    {% endif %}
+                    {% if settings.site_settings.SiteWideSettings.tagline %}
+                        <h3>{{ settings.site_settings.SiteWideSettings.tagline|safe }}</h3>
+                    {% endif %}
                 </span>
             </div>
         </header>
