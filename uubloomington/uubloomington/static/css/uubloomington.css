@@ -12,15 +12,29 @@
 body {
     background: #006b1b;
     align-content: center;
-    min-height: 100%;
-    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: grid;
+    grid-template-rows:
+        auto
+        auto
+        1fr
+        auto;
 }
 
 #content {
-    max-width: 10in;
+    max-width: 11in;
     width: 100%;
     margin: auto;
-    height: 100vh;
+    height: 100%;
+}
+
+footer {
+    width: 100%;
+    padding: 0 calc(calc(100% - 11in) / 2);
+    margin: auto;
+    background: #005000;
+    color: white;
 }
 
 .site-logo > svg {
