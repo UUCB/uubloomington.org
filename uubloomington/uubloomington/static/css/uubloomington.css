@@ -161,10 +161,16 @@ footer {
     width: 100%;
     height: auto;
     border-radius: 10px;
+    grid-area: stack;
+}
+
+.carousel-image {
+    grid-area: stack;
+    display: grid;
+    grid-template-areas: "stack";
 }
 
 .carousel-image + .carousel-image {
-    margin-left: -100%;
     width: 100%;
     opacity: 100;
     animation: 1s 1 normal fadein;
@@ -181,16 +187,21 @@ footer {
 
 .carousel-container {
     display: grid;
-    grid-template-columns: 100% 100%;
+    grid-template-areas: "stack";
     background: #006b1b;
     border-radius: 10px;
 }
 
 .carousel-header {
-    display: flex;
-    z-index: 1000;
-    background: #000000;
-    height: fit-content;
-    min-height: 70px;
-    fill: #ea1b10;
+    grid-area: stack;
+    background: #00000099;
+    height: 70px;
+    text-align: center;
+    color: white;
+    font-family: "League Spartan Variable";
+    font-variation-settings: "wght" 345;
+    font-size: min(30pt, 5vw);
+    line-height: 70px;
+    vertical-align: middle;
+    margin-top: 30px;
 }

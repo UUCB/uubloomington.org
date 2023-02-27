@@ -12,6 +12,8 @@
              width="{{ displayed_image.width }}"
              height="{{ displayed_image.height }}"
              src="{{ displayed_image.url }}">
-{#        <span class="carousel-header">Some Text</span>#}
+        {% if carousel_image.header %}
+            <span class="carousel-header">{{ carousel_image.header }}</span>
+        {% endif %}
     </div>
 </div>

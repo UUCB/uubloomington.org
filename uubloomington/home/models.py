@@ -22,7 +22,12 @@ class HomePageCarouselImages(Orderable):
         related_name="+",
     )
 
-    panels = [ImageChooserPanel("carousel_image")]
+    header = models.TextField(max_length=25, null=True, blank=True)
+
+    panels = [
+        ImageChooserPanel("carousel_image"),
+        FieldPanel('header'),
+    ]
 
     def prev_pk(self):
         return self.pk - 1
