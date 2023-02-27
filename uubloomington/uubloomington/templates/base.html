@@ -1,0 +1,115 @@
+{% load static wagtailcore_tags wagtailuserbar menu_tags %}
+{% wagtail_site as current_site %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>
+            {% block title %}
+            {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
+            {% endblock %}
+            {% block title_suffix %}
+            {% wagtail_site as current_site %}
+            {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
+            {% endblock %}
+        </title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        {# Force all links in the live preview panel to be opened in a new tab #}
+        {% if request.in_preview_panel %}
+        <base target="_blank">
+        {% endif %}
+
+        {# Global stylesheets #}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/uubloomington.css' %}">
+        <script src="{% static 'js/htmx.min.js' %}"></script>
+        <script src="{% static 'js/_hyperscript.min.js' %}"></script>
+        <style>
+
+        </style>
+
+        {% block extra_css %}
+        {# Override this in templates to add extra stylesheets #}
+        {% endblock %}
+    </head>
+
+    <body class="{% block body_class %}{% endblock %}">
+        <header>
+            <div class="header-left">
+                <span class="site-logo">
+                    <svg
+                       width="40.017456mm"
+                       height="33.156597mm"
+                       viewBox="0 0 40.017456 33.156597"
+                       version="1.1"
+                       id="svg5"
+                       inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+                       sodipodi:docname="chalice-logo-nofillstroke.svg"
+                       xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+                       xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+                       xmlns="http://www.w3.org/2000/svg"
+                       xmlns:svg="http://www.w3.org/2000/svg">
+                      <sodipodi:namedview
+                         id="namedview7"
+                         pagecolor="#ffffff"
+                         bordercolor="#666666"
+                         borderopacity="1.0"
+                         inkscape:pageshadow="2"
+                         inkscape:pageopacity="0.0"
+                         inkscape:pagecheckerboard="0"
+                         inkscape:document-units="mm"
+                         showgrid="false"
+                         fit-margin-top="0"
+                         fit-margin-left="0"
+                         fit-margin-right="0"
+                         fit-margin-bottom="0"
+                         inkscape:zoom="6.349676"
+                         inkscape:cx="75.043199"
+                         inkscape:cy="69.688595"
+                         inkscape:window-width="2560"
+                         inkscape:window-height="1367"
+                         inkscape:window-x="0"
+                         inkscape:window-y="0"
+                         inkscape:window-maximized="1"
+                         inkscape:current-layer="layer1" />
+                      <defs
+                         id="defs2"></defs>
+                      <g
+                         inkscape:label="Layer 1"
+                         inkscape:groupmode="layer"
+                         id="layer1"
+                         transform="translate(-83.743954,-120.96902)">
+                        <path
+                           style="stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                           d="m 102.03646,121.30306 c 0,0 -0.55212,3.53664 0.59378,5.52633 1.14589,1.98968 0.63544,4.82316 -0.94797,6.06281 0,0 12.61523,0.0104 21.69902,0.80212 0,0 0.56253,0.12501 0,0.58336 -0.56252,0.45836 -6.68784,4.10438 -21.50109,5.18777 v 10.97973 c 0,0 2.79237,0.18913 4.25016,0.44143 1.53215,0.26517 4.28705,2.475 -0.20625,3.02009 -1.09018,0.11785 -9.119199,0.11785 -10.680806,-0.0147 -1.561607,-0.13258 -3.565179,-1.11964 -1.708929,-2.50446 0,0 1.001786,-0.97236 5.612946,-0.8987 v -10.78393 c 0,0 -8.132142,0.79554 -11.505803,-1.91518 -3.373661,-2.71071 -3.756696,-4.97946 -3.756696,-4.97946 0,0 -0.147322,-0.55982 0.766071,-0.51563 0.913393,0.0442 4.979464,0.44197 14.732143,0.54509 0,0 -4.210116,-5.64522 2.653424,-11.53667 z"
+                           id="path78"
+                           sodipodi:nodetypes="csccsccscscc"></path>
+                      </g>
+                    </svg>
+
+                </span>
+                <span class="site-title">
+                    <h1>Unitarian Universalist Church</h1>
+                    <h2>of Bloomington, Indiana</h2>
+                    <h3>Seeking&nbsp;the&nbsp;Spirit&nbsp;|&nbsp;<wbr>Building&nbsp;Community&nbsp;|&nbsp;<wbr>Changing&nbsp;the&nbsp;World</h3>
+                </span>
+            </div>
+        </header>
+        {% main_menu %}
+        <div id="content">
+            {% wagtailuserbar %}
+            {% block content %}{% endblock %}
+            <footer>
+                <a>Contact Us</a>
+            </footer>
+        </div>
+        {# Global javascript #}
+        <script type="text/javascript" src="{% static 'js/uubloomington.js' %}"></script>
+
+        {% block extra_js %}
+        {# Override this in templates to add extra javascript #}
+        {% endblock %}
+    </body>
+</html>

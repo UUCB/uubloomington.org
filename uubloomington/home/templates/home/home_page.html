@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block extra_css %}
+
+{% endblock extra_css %}
+
+{% block content %}
+    <article>
+    <div class="home-header-container">
+        {% if page.carousel_images.first %}
+        {% include "home/carousel_image.html" with carousel_image=page.carousel_images.first %}
+        {% endif %}
+        {% include "uubloomington/upcoming_events.html" with upcoming_events=page.upcoming_events %}
+    </div>
+    {{ page.body|richtext }}
+    </article>
+{% endblock content %}

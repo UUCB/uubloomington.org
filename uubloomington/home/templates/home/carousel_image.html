@@ -1,0 +1,17 @@
+{% load wagtailimages_tags %}
+{% image carousel_image.carousel_image max-640x480 as displayed_image %}
+
+<div class="carousel-container">
+    <div class="carousel-image" id="carousel-image-{{ carousel_image.pk }}"
+         hx-trigger="load delay:10s"
+         hx-get="{% url 'next-carousel-image' carousel_image.pk %}"
+         hx-swap="afterend"
+         hx-select=".carousel-image"
+         _="on load wait 11s then remove <.carousel-image:not(:last-child)/>">
+        <img alt="{{ displayed_image.alt }}"
+             width="{{ displayed_image.width }}"
+             height="{{ displayed_image.height }}"
+             src="{{ displayed_image.url }}">
+{#        <span class="carousel-header">Some Text</span>#}
+    </div>
+</div>
