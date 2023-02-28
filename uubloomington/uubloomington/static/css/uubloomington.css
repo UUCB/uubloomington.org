@@ -69,29 +69,39 @@ header {
     width: 100%;
     margin: 0;
     background: #005000;
-}
-
-.nav > li {
-    list-style: none;
-    width: fit-content;
-    height: 100%;
-    padding: 10px;
-}
-
-.nav > li:hover {
-    background: #006b1b;
-}
-
-.nav > li.active {
-    background: #006b1b;
-}
-
-.nav > li > a {
     text-decoration: none;
     color: white;
     font-family: "League Spartan Variable";
     font-variation-settings: "wght" 400;
     font-size: larger;
+}
+
+.nav li {
+    list-style: none;
+    width: fit-content;
+    height: 100%;
+    padding: 10px;
+    position: relative;
+}
+
+.nav li:hover {
+    background: #006b1b;
+}
+
+.nav li.active {
+    background: #006b1b;
+}
+
+.nav a {
+    text-decoration: none;
+    color: white;
+}
+
+.subnav {
+    position: absolute;
+    background: #006b1b;
+    width: 100%;
+    z-index: 1000;
 }
 
 article {

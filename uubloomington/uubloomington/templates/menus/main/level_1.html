@@ -1,0 +1,16 @@
+{% load menu_tags %}
+
+<ul class="nav">
+    {% for item in menu_items %}
+        <li class="{{ item.active_class }}" _="on click toggle @hidden on <ul/> in me">
+            {% if item.has_children_in_menu %}
+                {{ item.text }}
+                {% sub_menu item %}
+            {% else %}
+                <a href="{{ item.href }}">
+                    {{ item.text }}
+                </a>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
