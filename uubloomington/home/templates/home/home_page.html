@@ -14,6 +14,11 @@
         {% if page.carousel_images.first %}
         {% include "home/carousel_image.html" with carousel_image=page.carousel_images.first %}
         {% endif %}
+        <div class="card">
+            <h2>This Sunday's Service</h2>
+        </div>
+    </div>
+    <div class="card">
         {% include "uubloomington/upcoming_events.html" with upcoming_events=page.upcoming_events %}
     </div>
     {{ page.body|richtext }}
