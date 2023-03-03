@@ -9,13 +9,10 @@
 {% endblock extra_css %}
 
 {% block content %}
+    {% with group=page.group_info %}
     <article>
-{#    <div class="home-header-container">#}
-{#        {% if page.carousel_images.first %}#}
-{#        {% include "home/carousel_image.html" with carousel_image=page.carousel_images.first %}#}
-{#        {% endif %}#}
-{#        {% include "uubloomington/upcoming_events.html" with upcoming_events=page.upcoming_events %}#}
-{#    </div>#}
-    {{ page.group_info.data.attributes.description|safe }}
+        <h2>{{ group.data.attributes.name|safe }}</h2>
+        {{ group.data.attributes.description|safe }}
     </article>
+    {% endwith %}
 {% endblock content %}
