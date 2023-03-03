@@ -13,7 +13,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 
 
 class GroupsHomePage(Page):
-    pass
+    body = RichTextField()
 
 class GroupPage(Page):
     planning_center_group_id = models.CharField(max_length=20)
