@@ -1,5 +1,5 @@
 {% load wagtailimages_tags %}
-{% image carousel_image.carousel_image max-640x480 as displayed_image %}
+{% image carousel_image.carousel_image fill-640x375 as displayed_image %}
 
 <div class="carousel-container">
     <div class="carousel-image" id="carousel-image-{{ carousel_image.pk }}"
