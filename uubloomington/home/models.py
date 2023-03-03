@@ -36,6 +36,7 @@ class HomePageCarouselImages(Orderable):
 class HomePage(Page):
     body = RichTextField(blank=True)
     # upcoming_events_offset = django_models.IntegerField(editable=False, null=True, blank=True)
+    parent_page_types = []
     content_panels = Page.content_panels + [
         FieldPanel('body'),
         MultiFieldPanel(
