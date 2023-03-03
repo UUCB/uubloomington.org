@@ -48,10 +48,28 @@ footer {
 header {
     background: white;
     padding: 20px calc(calc(100% - 10in) / 2);
+    display: flex;
 }
 
 .header-left {
     display: flex;
+}
+
+.header-right {
+    margin-right: 10px;
+    margin-left: auto;
+    font-family: "League Spartan Variable";
+    display: flex;
+    flex-direction: column;
+    font-variation-settings: "wght" 345;
+    text-align: right;
+}
+
+.announcement {
+    font-size: 1.8rem;
+    margin-top: auto;
+    margin-bottom: auto;
+    color: #505050;
 }
 
 .site-title {
@@ -126,15 +144,30 @@ article {
     height: fit-content;
 }
 
+@media screen and (max-width: 125ch) {
+    header {
+        flex-direction: column;
+        align-content: center;
+    }
+
+    .header-right,
+    .header-left {
+        margin: auto;
+    }
+
+    .header-right {
+        flex-direction: column-reverse;
+    }
+
+    .header-links {
+        align-self: center;
+    }
+}
+
 @media screen and (max-width: 8in) {
     .home-header-container {
         display: flex;
         flex-direction: column;
-    }
-
-    .events-container {
-        contain: none;
-        height: 400px;
     }
 
     .nav {
@@ -151,6 +184,10 @@ article {
     .nav li,
     .subnav li {
         width: 100%;
+    }
+
+    .site-title {
+        text-align: center;
     }
 
     .site-title > h1 {
@@ -171,6 +208,20 @@ article {
     }
     .header-left {
         flex-direction: column;
+    }
+
+    header {
+        flex-direction: column;
+        align-content: center;
+    }
+
+    .header-right {
+        margin-top: .5rem;
+        margin-right: auto;
+    }
+
+    .announcement {
+        font-size: 1.4rem;
     }
 }
 

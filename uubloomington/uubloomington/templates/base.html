@@ -102,6 +102,14 @@
                     {% endif %}
                 </span>
             </div>
+            <div class="header-right">
+                <span class="header-links">
+                    <a href="{{ settings.site_settings.SiteWideSettings.directions_url }}">Directions</a>&nbsp;|&nbsp;<a href="{{ settings.site_settings.SiteWideSettings.giving_url }}">Give</a>&nbsp;|&nbsp;<a href="/contact">Contact</a>
+                </span>
+                <span class="announcement">
+                    {{ settings.site_settings.SiteWideSettings.header_announcement }}
+                </span>
+            </div>
         </header>
         {% main_menu %}
         <div id="content">
