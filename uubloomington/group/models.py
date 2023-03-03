@@ -15,6 +15,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 class GroupsHomePage(Page):
     body = RichTextField()
 
+
 class GroupPage(Page):
     planning_center_group_id = models.CharField(max_length=20)
     content_panels = Page.content_panels + [
@@ -23,4 +24,5 @@ class GroupPage(Page):
 
     def group_info(self):
         planningcenter = pypco.PCO(settings.PLANNING_CENTER_APPLICATION_ID, settings.PLANNING_CENTER_SECRET)
-        return planningcenter.get(f'https://api.planningcenteronline.com/groups/v2/groups/{self.planning_center_group_id}')
+        group = planningcenter.get(f'https://api.planningcenteronline.com/groups/v2/groups/{self.planning_center_group_id}')
+        return group
