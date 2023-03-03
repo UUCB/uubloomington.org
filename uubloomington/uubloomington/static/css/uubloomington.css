@@ -152,6 +152,26 @@ article {
     .subnav li {
         width: 100%;
     }
+
+    .site-title > h1 {
+        font-size: 1.6rem;
+    }
+    .site-title > h2 {
+        font-size: 1.3rem;
+    }
+    .site-title > h3 {
+        font-size: 1rem;
+    }
+    .site-logo {
+        align-self: center;
+    }
+    .site-logo > svg {
+        width: 75px;
+        height: auto;
+    }
+    .header-left {
+        flex-direction: column;
+    }
 }
 
 /*.events-container {*/
