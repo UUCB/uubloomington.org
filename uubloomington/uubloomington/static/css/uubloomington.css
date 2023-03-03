@@ -154,52 +154,98 @@ article {
     }
 }
 
-.events-container {
-    contain: size;
-    background: #43b1b0;
-    padding: 10px;
-    overflow-y: scroll;
-}
+/*.events-container {*/
+/*    contain: size;*/
+/*    padding: 10px;*/
+/*}*/
 
-.events-container > ul {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
+/*.events-container > ul {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    gap: 10px;*/
+/*}*/
 
 .events-container li {
     list-style: none;
     display: flex;
     flex-direction: column;
+    gap: 0.13rem;
     width: 100%;
-    background: #259392;
-    padding: 10px;
     border-radius: 5px;
-    box-shadow: 0 0 3px black;
+}
+
+.events-container li > .event-info {
+    color: #303030;
+}
+
+.card {
+    font-family: "League Spartan Variable";
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: #e1e1c8;
+    border: 8px solid #006b1b;
+}
+
+.card h2 {
+    width: 100%;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+.card-action {
+    align-self: center;
+    margin-top: auto;
+    margin-bottom: calc(-1.5rem - 6px);
+    padding: 1rem;
+    border: 3px solid #006b1b;
+    background: beige;
+    text-decoration: none;
+    color: black;
+}
+
+.card-action:hover {
+    background: #006b1b;
+    color: white;
+}
+
+.card > .events-container {
+    padding: 0.75rem;
+}
+
+.card > .events-container ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
 }
 
 .event-title {
-
+    display: flex;
 }
 
-.event-title > a {
-    text-decoration: none;
-    color: black;
-    font-size: larger;
-    font-weight: bold;
+.event-title a {
+    margin-left: auto;
+    margin-right: 0.25rem;
 }
 
-.events-container > h2 {
-    margin-bottom: 10px;
-}
+/*.event-title > a {*/
+/*    text-decoration: none;*/
+/*    color: black;*/
+/*    font-size: larger;*/
+/*    font-weight: bold;*/
+/*}*/
 
-.events-container li:hover {
-    box-shadow: 0 0 3px inset black;
-}
+/*.events-container > h2 {*/
+/*    margin-bottom: 10px;*/
+/*}*/
 
-.events-container li:hover a {
-    text-decoration: underline;
-}
+/*.events-container li:hover {*/
+/*    box-shadow: 0 0 3px inset black;*/
+/*}*/
+
+/*.events-container li:hover a {*/
+/*    text-decoration: underline;*/
+/*}*/
 
 footer {
     height: 300px;
