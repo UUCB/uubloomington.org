@@ -139,9 +139,11 @@ article {
 
 .home-header-container {
     display: grid;
-    grid-template-columns: 60% 40%;
+    grid-template-columns: 60fr 40fr;
     width: 100%;
     height: fit-content;
+    gap: 0.6rem;
+    margin-bottom: 0.6rem;
 }
 
 @media screen and (max-width: 125ch) {
@@ -256,6 +258,7 @@ article {
     gap: 1rem;
     background: #e1e1c8;
     border: 8px solid #006b1b;
+    padding: 1rem;
 }
 
 .card h2 {
@@ -267,7 +270,7 @@ article {
 .card-action {
     align-self: center;
     margin-top: auto;
-    margin-bottom: calc(-1.5rem - 6px);
+    margin-bottom: calc(-2.5rem - 6px);
     padding: 1rem;
     border: 3px solid #006b1b;
     background: beige;
@@ -278,10 +281,6 @@ article {
 .card-action:hover {
     background: #006b1b;
     color: white;
-}
-
-.card > .events-container {
-    padding: 0.75rem;
 }
 
 .card > .events-container ul {
@@ -325,7 +324,7 @@ footer {
 .carousel-image img {
     width: 100%;
     height: auto;
-    border-radius: 10px;
+    /*border-radius: 10px;*/
     grid-area: stack;
 }
 
