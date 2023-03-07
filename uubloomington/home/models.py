@@ -33,6 +33,33 @@ class HomePageCarouselImages(Orderable):
         return self.pk - 1
 
 
+class HomePageCard(Orderable):
+    page = ParentalKey("home.HomePage", related_name="cards")
+    image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    title = models.CharField(max_length=20)
+    body = RichTextField(max_length=400)
+    action_url = models.CharField(max_length=1000)
+    action_text = models.CharField(max_length=20)
+
+    panels = [
+        FieldPanel('image'),
+        FieldPanel('title'),
+        FieldPanel('body'),
+        MultiFieldPanel([
+            FieldPanel('action_text'),
+            FieldPanel('action_url'),
+        ],
+        heading="Action"
+        )
+    ]
+
+
 class HomePage(Page):
     body = RichTextField(blank=True)
     # upcoming_events_offset = django_models.IntegerField(editable=False, null=True, blank=True)
@@ -42,6 +69,10 @@ class HomePage(Page):
         MultiFieldPanel(
             [InlinePanel("carousel_images", max_num=5, min_num=1, label="Image")],
             heading="Carousel Images",
+        ),
+        MultiFieldPanel(
+            [InlinePanel("cards", max_num=6, min_num=2, label="Card")],
+            heading="Cards"
         )
     ]
 

@@ -251,6 +251,12 @@ article {
     color: #303030;
 }
 
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(45ch, 1fr));
+    gap: 0.75rem
+}
+
 .card {
     font-family: "League Spartan Variable";
     display: flex;
@@ -259,6 +265,13 @@ article {
     background: #e1e1c8;
     border: 8px solid #006b1b;
     padding: 1rem;
+    margin-bottom: 2.25rem;
+}
+
+.card > img {
+    /*margin: -1rem -1rem -1rem -1rem;*/
+    width: 100%;
+    height: auto;
 }
 
 .card h2 {

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
 
 {% block body_class %}template-homepage{% endblock %}
 
@@ -18,6 +19,19 @@
             <h2>This Sunday's Service</h2>
         </div>
     </div>
+
+    {% if page.cards.first %}
+        <div class="card-container">
+            {% for card in page.cards.all %}
+                <div class="card">
+                    {% image card.image fill-640x375 %}
+                    <h2>{{ card.title }}</h2>
+                    {{ card.body|richtext }}
+                    <a class="card-action" href="{{ card.action_url }}">{{ card.action_text }}</a>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
     <div class="card">
         {% include "uubloomington/upcoming_events.html" with upcoming_events=page.upcoming_events %}
     </div>
