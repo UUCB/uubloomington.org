@@ -21,6 +21,7 @@ body {
         auto /*Navbar*/
         1fr /*Content*/
         auto; /*Footer*/
+    font-family: "League Spartan Variable";
 }
 
 h2 {
@@ -28,8 +29,12 @@ h2 {
     margin-bottom: 1rem;
 }
 
+li {
+    margin-bottom: 0.25rem;
+}
+
 #content {
-    max-width: 125ch;
+    max-width: 60rem;
     width: 100%;
     margin: auto;
     height: 100%;
@@ -149,20 +154,8 @@ article > ul {
     list-style-position: inside;
 }
 
-.home-header-container {
-    display: grid;
-    grid-template-columns: 60fr 40fr;
-    width: 100%;
-    height: fit-content;
-    gap: 0.6rem;
-    margin-bottom: 0.6rem;
-}
-
-.home-header-container > .card {
-    margin-bottom: 0;
-}
-
 @media screen and (max-width: 125ch) {
+    /*Responsive Header*/
     header {
         flex-direction: column;
         align-content: center;
@@ -180,14 +173,11 @@ article > ul {
     .header-links {
         align-self: center;
     }
+    /*End Responsive Header*/
 }
 
 @media screen and (max-width: 8in) {
-    .home-header-container {
-        display: flex;
-        flex-direction: column;
-    }
-
+    /*Responsive Navbar*/
     .nav {
         flex-direction: column;
         width: 100%;
@@ -203,7 +193,8 @@ article > ul {
     .subnav li {
         width: 100%;
     }
-
+    /*End Responsive Navbar*/
+    /*Responsive Header*/
     .site-title {
         text-align: center;
     }
@@ -241,6 +232,7 @@ article > ul {
     .announcement {
         font-size: 1.4rem;
     }
+    /*End Responsive Header*/
 }
 
 /*.events-container {*/
@@ -348,55 +340,6 @@ article > ul {
 
 footer {
     height: 300px;
-}
-
-.carousel-image img {
-    width: 100%;
-    height: auto;
-    /*border-radius: 10px;*/
-    grid-area: stack;
-}
-
-.carousel-image {
-    grid-area: stack;
-    display: grid;
-    grid-template-areas: "stack";
-}
-
-.carousel-image + .carousel-image {
-    width: 100%;
-    opacity: 100;
-    animation: 1s 1 normal fadein;
-}
-
-@keyframes fadein {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 100;
-    }
-}
-
-.carousel-container {
-    display: grid;
-    grid-template-areas: "stack";
-    background: #006b1b;
-    border-radius: 10px;
-}
-
-.carousel-header {
-    grid-area: stack;
-    background: #00000099;
-    height: 70px;
-    text-align: center;
-    color: white;
-    font-family: "League Spartan Variable";
-    font-variation-settings: "wght" 345;
-    font-size: min(30pt, 5vw);
-    line-height: 70px;
-    vertical-align: middle;
-    margin-top: 30px;
 }
 
 .sidebar {
