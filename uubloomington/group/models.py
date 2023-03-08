@@ -14,6 +14,10 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 
 class GroupsHomePage(Page):
     body = RichTextField()
+    parent_page_types = ['home.HomePage']
+    content_panels = Page.content_panels + [
+        FieldPanel('body')
+    ]
 
 
 class GroupPage(Page):

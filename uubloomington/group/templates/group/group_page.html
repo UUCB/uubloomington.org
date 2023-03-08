@@ -10,8 +10,23 @@
 
 {% block content %}
     {% with group=page.group_info %}
+    <div class="sidebar">
+        <ul>
+            <li>
+                <a href="{{ page.get_parent.url }}">{{ page.get_parent.title }}</a>
+                <ul>
+                    {% for page in page.get_parent.get_children %}
+                        <li>
+                            <a href="{{ page.specific.url }}">{{ page.specific.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        </ul>
+    </div>
     <article>
         <h2>{{ group.data.attributes.name|safe }}</h2>
+            <img src="{{ group.data.attributes.header_image.original }}" class="right">
         {{ group.data.attributes.description|safe }}
     </article>
     {% endwith %}
