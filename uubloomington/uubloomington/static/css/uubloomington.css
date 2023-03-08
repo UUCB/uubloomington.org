@@ -420,3 +420,26 @@ footer {
 .sidebar li {
     margin-bottom: 0.5rem;
 }
+
+/*Support Wagtail Rich Text image classes*/
+.left,
+.right {
+    max-width: 45%;
+    height: auto;
+}
+
+.left {
+    float: left;
+    margin: 0 0.75rem 0.75rem 0;
+}
+
+.right {
+    float: right;
+    margin: 0 0 0.75rem 0.75rem;
+}
+
+.full-width {
+    max-width: 100%;
+    align-self: center;
+}
+/*End Wagtail Rich Text image classes*/
