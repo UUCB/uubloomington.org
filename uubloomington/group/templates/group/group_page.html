@@ -9,7 +9,6 @@
 {% endblock extra_css %}
 
 {% block content %}
-    {% with group=page.group_info %}
     <div class="sidebar">
         <ul>
             <li>
@@ -24,10 +23,23 @@
             </li>
         </ul>
     </div>
-    <article>
-        <h2>{{ group.data.attributes.name|safe }}</h2>
-            <img src="{{ group.data.attributes.header_image.original }}" class="right">
-        {{ group.data.attributes.description|safe }}
-    </article>
-    {% endwith %}
+    <div class="content">
+        {% with group=page.group_info %}
+            <article>
+                <h2>{{ group.data.attributes.name|safe }}</h2>
+                    <img src="{{ group.data.attributes.header_image.original }}" class="right">
+                {{ group.data.attributes.description|safe }}
+            </article>
+        {% endwith %}
+        {% if page.show_posts %}
+            <hr>
+            {% for post in page.get_children %}
+                <div class="post less">
+                    <h3>{{ post.specific.title }}</h3>
+                    {{ post.specific.body|richtext }}
+                    <a class="showmore" href="{{ post.specific.url }}" _="on click toggle .less on closest <.post/> then halt">Show More</a>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
 {% endblock content %}

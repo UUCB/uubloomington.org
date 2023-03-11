@@ -22,8 +22,10 @@ class GroupsHomePage(Page):
 
 class GroupPage(Page):
     planning_center_group_id = models.CharField(max_length=20)
+    show_posts = models.BooleanField(default=True)
     content_panels = Page.content_panels + [
         FieldPanel('planning_center_group_id'),
+        FieldPanel('show_posts'),
     ]
 
     def group_info(self):

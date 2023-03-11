@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+        <div class="sidebar">
+        <ul>
+            <li>
+                <a href="{{ page.get_parent.url }}">{{ page.get_parent.title }}</a>
+                <ul>
+                    {% for page in page.get_parent.get_children %}
+                        <li>
+                            <a href="{{ page.specific.url }}">{{ page.specific.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <article>
+        {% image page.image max-800x600 %}
+        <h1>{{ page.title }}</h1>
+        {{ page.body|richtext }}
+    </article>
+
+{% endblock %}

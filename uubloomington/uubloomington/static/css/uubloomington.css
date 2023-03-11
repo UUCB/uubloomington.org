@@ -33,6 +33,33 @@ li {
     margin-bottom: 0.25rem;
 }
 
+a {
+    tab-index: 0;
+}
+
+/*Support Wagtail Rich Text image classes*/
+.left,
+.right {
+    max-width: 45%;
+    height: auto;
+}
+
+.left {
+    float: left;
+    margin: 0 0.75rem 0.75rem 0;
+}
+
+.right {
+    float: right;
+    margin: 0 0 0.75rem 0.75rem;
+}
+
+.full-width {
+    max-width: 100%;
+    align-self: center;
+}
+/*End Wagtail Rich Text image classes*/
+
 #content {
     max-width: 60rem;
     width: 100%;
@@ -146,15 +173,35 @@ header {
 
 article {
     width: 100%;
-    min-height: 100%;
-    padding: 10px;
+    padding: 0.75rem;
 }
 
 article > ul {
     list-style-position: inside;
 }
 
-@media screen and (max-width: 125ch) {
+.post {
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.post.less > p {
+    display: none;
+}
+
+.post.less > p:nth-of-type(1) {
+    display: unset;
+}
+
+hr {
+    width: 75%;
+    margin: 1rem auto 1rem auto;
+    border: 2px solid #006b1b;
+}
+
+@media screen and (max-width: 60rem) {
     /*Responsive Header*/
     header {
         flex-direction: column;
@@ -233,6 +280,32 @@ article > ul {
         font-size: 1.4rem;
     }
     /*End Responsive Header*/
+    /*Center all rich text images on mobile*/
+    .left,
+    .right,
+    .full-width {
+        float: unset;
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+        max-width: 100%;
+    }
+    /*End Center all rich text images on mobile*/
+    /*Move sidebar to bottom on mobile*/
+    #content {
+        grid-template-columns: unset;
+    }
+    #content > article {
+        order: -1;
+    }
+    .sidebar::before {
+        content: "";
+        border-top: 2px solid #006b1b;
+        width: 100%;
+        display: block;
+        margin-bottom: 0.75rem;
+    }
+    /*End Move sidebar to bottom on mobile*/
 }
 
 /*.events-container {*/
@@ -364,25 +437,3 @@ footer {
     margin-bottom: 0.5rem;
 }
 
-/*Support Wagtail Rich Text image classes*/
-.left,
-.right {
-    max-width: 45%;
-    height: auto;
-}
-
-.left {
-    float: left;
-    margin: 0 0.75rem 0.75rem 0;
-}
-
-.right {
-    float: right;
-    margin: 0 0 0.75rem 0.75rem;
-}
-
-.full-width {
-    max-width: 100%;
-    align-self: center;
-}
-/*End Wagtail Rich Text image classes*/
