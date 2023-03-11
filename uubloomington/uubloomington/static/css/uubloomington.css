@@ -124,7 +124,6 @@ header {
     display: flex;
     padding: 0 calc(calc(100% - 10in) / 2);
     align-items: start;
-    grid-gap: 0;
     width: 100%;
     margin: 0;
     background: #005000;
@@ -139,8 +138,18 @@ header {
     list-style: none;
     width: fit-content;
     height: 100%;
-    padding: 10px;
     position: relative;
+}
+
+.nav > li > ul {
+    display: none;
+}
+
+.nav > li.expand > ul {
+    display: unset;
+    position: absolute;
+    background: #005000;
+    z-index: 1000;
 }
 
 .nav li:hover {
@@ -148,7 +157,8 @@ header {
 }
 
 .nav li.ancestor,
-.nav li.active {
+.nav li.active,
+.nav li.expand {
     background: #006b1b;
 }
 
@@ -158,17 +168,7 @@ header {
     display: block;
     width: 100%;
     height: 100%;
-}
-
-.subnav a {
-    height: auto;
-}
-
-.subnav {
-    position: absolute;
-    background: #006b1b;
-    width: 100%;
-    z-index: 1000;
+    padding: 0.5rem;
 }
 
 article {
@@ -228,18 +228,43 @@ hr {
     .nav {
         flex-direction: column;
         width: 100%;
+        gap: 0;
     }
 
-    .subnav {
-        position: relative;
+    .nav li {
+        display: flex;
         flex-direction: column;
         width: 100%;
+        margin: 0;
+        background: #005000;
     }
 
-    .nav li,
-    .subnav li {
-        width: 100%;
+    .nav li.expand {
+        padding-bottom: 0.5rem;
     }
+
+    .nav > li.expand > ul {
+        display: flex;
+        flex-direction: column;
+        position: unset;
+    }
+
+    .nav li:hover {
+        background: unset;
+    }
+
+    .nav a {
+        width: 100%;
+        height: 100%;
+        padding: 0.5rem;
+    }
+
+    .nav li.active,
+    .nav li.expand,
+    .nav li.ancestor {
+        background: #006b1b;
+    }
+
     /*End Responsive Navbar*/
     /*Responsive Header*/
     .site-title {
