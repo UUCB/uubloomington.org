@@ -320,7 +320,8 @@ hr {
     #content {
         grid-template-columns: unset;
     }
-    #content > article {
+
+    #content .content {
         order: -1;
     }
     .sidebar::before {
