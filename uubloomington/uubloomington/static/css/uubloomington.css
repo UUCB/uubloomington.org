@@ -171,6 +171,10 @@ header {
     padding: 0.5rem;
 }
 
+.nav .menu-toggle {
+    display: none;
+}
+
 article {
     width: 100%;
     padding: 0.75rem;
@@ -249,6 +253,10 @@ hr {
         position: unset;
     }
 
+    .nav li > ul a {
+        margin-left: 1rem;
+    }
+
     .nav li:hover {
         background: unset;
     }
@@ -263,6 +271,15 @@ hr {
     .nav li.expand,
     .nav li.ancestor {
         background: #006b1b;
+    }
+
+    .nav .menu-toggle {
+        display: unset;
+        text-align: center;
+    }
+
+    .nav.closed li:not(.menu-toggle) {
+        display: none;
     }
 
     /*End Responsive Navbar*/
@@ -324,6 +341,7 @@ hr {
     #content .content {
         order: -1;
     }
+
     .sidebar::before {
         content: "";
         border-top: 2px solid #006b1b;

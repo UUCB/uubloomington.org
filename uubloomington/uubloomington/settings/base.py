@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "services",
     "site_settings",
     "search",
+    "django_feather",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.contrib.settings",

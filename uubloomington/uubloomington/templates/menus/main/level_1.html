@@ -1,6 +1,12 @@
 {% load menu_tags %}
+{% load icon %}
 
-<ul class="nav">
+<ul class="nav closed">
+    <li class="menu-toggle">
+        <a href="/" role="button" _="on click toggle .closed on closest <.nav/> then halt">
+            {% icon "menu" class="icon-white" height='20' width='20' %}
+        </a>
+    </li>
     {% for item in menu_items %}
         <li class="{{ item.active_class }}">
             {% if item.has_children_in_menu %}
