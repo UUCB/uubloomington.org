@@ -191,11 +191,13 @@ article > ul {
     gap: 0.75rem;
 }
 
-.post.less > p {
+.post.less > * {
     display: none;
 }
 
-.post.less > p:nth-of-type(1) {
+.post.less > p:nth-of-type(1),
+.post.less > h3.post-title,
+.post.less > .showmore {
     display: unset;
 }
 
