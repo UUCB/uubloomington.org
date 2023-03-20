@@ -1,0 +1,11 @@
+When making a post, the author selects which newsletters to publish to, and which issue to publish in
+This should be a dropdown of possible issues of newsletters accepting posts.
+
+
+Newsletter looks for posts whose publication has been requested, with specified pub date
+Newsletter pages will be a description of the newsletter and its function, with a mechanism to subscribe/unsubscribe
+
+Issues will be created for every publish date, managed by a recurrence.
+Does django-recurrence work with Wagtail?
+Issues can be proof-read at any time, to make sure expected content will be there
+
