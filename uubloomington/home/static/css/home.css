@@ -7,12 +7,19 @@
     grid-template-columns: 60fr 40fr;
     width: 100%;
     height: fit-content;
-    gap: 0.6rem;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.75rem;
 }
 
-.home-header-container > .card {
-    margin-bottom: 0;
+@media screen and (min-width: 8in) {
+    .home-header-container > .card {
+        margin-bottom: 0;
+        border-radius: 0 1rem 1rem 0;
+        border: none;
+    }
+
+    .home-header-container > .carousel-container {
+        border-radius: 1rem 0 0 1rem;
+    }
 }
 
 @media screen and (max-width: 8in) {
@@ -20,5 +27,6 @@
     .home-header-container {
         display: flex;
         flex-direction: column;
+        gap: 0.6rem;
     }
 }
