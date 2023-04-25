@@ -1,7 +1,7 @@
 from django.db import models
 from wagtail.models import Page
 from wagtail.fields import RichTextField
-from wagtail.admin.panels import FieldPanel
+from wagtail.admin.panels import FieldPanel, PageChooserPanel
 
 
 class Post(Page):
@@ -14,7 +14,20 @@ class Post(Page):
         related_name="+",
     )
 
+    publish_in_newsletter = models.ForeignKey(
+        "newsletter.Newsletter",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+"
+    )
+
+    intended_publication = models.DateField()
+
     content_panels = Page.content_panels + [
         FieldPanel('featured_image'),
         FieldPanel('body'),
+        PageChooserPanel('publish_in_newsletter', page_type='newsletter.Newsletter'),
+        FieldPanel('intended_publication'),
     ]
+

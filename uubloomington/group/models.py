@@ -9,8 +9,9 @@ from wagtail.models import Page, Orderable
 from wagtail.fields import RichTextField
 from django.db.models import CharField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.images.edit_handlers import ImageChooserPanel\
 
+from core.models import Post
 
 class GroupsHomePage(Page):
     body = RichTextField()
@@ -32,3 +33,6 @@ class GroupPage(Page):
         planningcenter = pypco.PCO(settings.PLANNING_CENTER_APPLICATION_ID, settings.PLANNING_CENTER_SECRET)
         group = planningcenter.get(f'https://api.planningcenteronline.com/groups/v2/groups/{self.planning_center_group_id}')
         return group
+
+    def get_posts(self):
+        return self.get_children().type(Post)

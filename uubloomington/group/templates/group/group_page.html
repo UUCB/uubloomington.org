@@ -33,7 +33,7 @@
         {% endwith %}
         {% if page.show_posts %}
             <hr>
-            {% for post in page.get_children %}
+            {% for post in page.get_posts %}
                 <div class="post less">
                     <h3 class="post-title">{{ post.specific.title }}</h3>
                     {{ post.specific.body|richtext }}
