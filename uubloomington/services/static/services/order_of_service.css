@@ -1,0 +1,28 @@
+
+@media screen { /* really, this will be the print layout eventually */
+    .program {
+        column-count: 2;
+        column-gap: 2rem;
+        height: 8.5in;
+        /*width: 11in;*/ /*Commented out size defs for testing*/
+        padding: 2rem;
+        border: 1px solid black;
+    }
+
+    .oos-element {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        break-inside: avoid;
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .oos-element > h4 {
+        text-transform: uppercase;
+    }
+
+    .oos-participants {
+        text-align: right;
+        grid-row: span 1;
+    }
+}
