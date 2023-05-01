@@ -14,7 +14,7 @@
     <article>
     <div class="home-header-container">
         {% if page.carousel_images.first %}
-        {% include "home/carousel_image.html" with carousel_image=page.carousel_images.first %}
+        {% include "home/carousel_image.html" with carousel_image=page.get_carousel_image %}
         {% endif %}
         <div class="card">
             <h2>This Sunday's Service</h2>

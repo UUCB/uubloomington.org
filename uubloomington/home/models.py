@@ -1,4 +1,5 @@
 import datetime
+import random
 
 import pypco
 from django.db import models
@@ -72,6 +73,9 @@ class HomePage(Page):
             heading="Cards"
         )
     ]
+
+    def get_carousel_image(self):
+        return random.choice(self.carousel_images.all())
 
     def upcoming_events(self):  # Generate some placeholder events for now. Eventually, this will somehow pull from PC
         return [
