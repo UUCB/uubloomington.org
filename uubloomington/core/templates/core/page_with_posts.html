@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+{% block content %}
+    <div class="sidebar">
+        <ul>
+            <li>
+                <a href="{{ page.get_parent.url }}">{{ page.get_parent.title }}</a>
+                <ul>
+                    {% for sibling_page in page.parent.get_children %}
+                        {% if sibling_page.live %}
+                            <li>
+                                <a href="{{ sibling_page.url }}">{{ sibling_page.title }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <article>
+            <h2>{{ page.title }}</h2>
+            {% image page.featured_image fill-375x400 class="right" %}
+            {{ page.body|richtext }}
+        </article>
+        {% if page.show_posts %}
+            <hr>
+            {% for post in page.get_posts %}
+                <div class="post less">
+                    <h3 class="post-title">{{ post.specific.title }}</h3>
+                    {{ post.specific.body|richtext }}
+                    <a class="showmore" href="{{ post.specific.url }}" _="on click toggle .less on closest <.post/> then halt">Show More</a>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

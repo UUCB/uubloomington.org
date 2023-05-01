@@ -31,3 +31,22 @@ class Post(Page):
         FieldPanel('intended_publication'),
     ]
 
+
+class PageWithPosts(Page):
+    body = RichTextField()
+    featured_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    show_posts = models.BooleanField(default=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('featured_image'),
+        FieldPanel('body'),
+        FieldPanel('show_posts'),
+    ]
+
+    subpage_types = ['core.Post']

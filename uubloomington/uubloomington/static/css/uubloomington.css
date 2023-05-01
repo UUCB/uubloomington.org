@@ -25,6 +25,10 @@ body {
     font-family: "League Spartan Variable";
 }
 
+img {
+    border-radius: 1rem;
+}
+
 h2 {
     font-family: "League Spartan Variable";
     margin-bottom: 1rem;
