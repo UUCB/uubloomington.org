@@ -1,4 +1,4 @@
-{% load static wagtailcore_tags wagtailuserbar menu_tags %}
+{% load static wagtailcore_tags wagtailuserbar menu_tags wagtailimages_tags %}
 {% wagtail_site as current_site %}
 
 <!DOCTYPE html>
@@ -117,7 +117,19 @@
             {% block content %}{% endblock %}
         </div>
         <footer>
-            <a>Contact Us</a>
+            <div class="minister-feature">
+                <h3>{{ settings.site_settings.FooterSettings.minister_feature_heading }}</h3>
+                <h4>{{ settings.site_settings.FooterSettings.minister_feature.title }}</h4>
+                <span _="on load remove <.minister-feature > span > :not(p:first-of-type):not(img):not(h3):not(h4)/>">
+                    {% image settings.site_settings.FooterSettings.minister_feature.featured_image fill-100x100 class="right" %}
+                    {{ settings.site_settings.FooterSettings.minister_feature.body|richtext }}
+                </span>
+
+                <a href="{{ settings.site_settings.FooterSettings.minister_feature.url }}">Read More</a>
+            </div>
+            <div class="footer-menu">
+                Footer Main Menu
+            </div>
         </footer>
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/uubloomington.js' %}"></script>

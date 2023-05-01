@@ -35,3 +35,22 @@ class SiteWideSettings(BaseGenericSetting):
             FieldPanel('livestream_url'),
         ], heading="Livestream URL")
     ]
+
+
+@register_setting
+class FooterSettings(BaseGenericSetting):
+    """Footer Content Settings"""
+    minister_feature_heading = models.CharField(max_length=50)
+    minister_feature = models.OneToOneField(
+        to='core.PageWithPosts',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+    )
+
+    panels = [
+        MultiFieldPanel([
+            FieldPanel('minister_feature_heading'),
+            FieldPanel('minister_feature'),
+        ], heading='Minister Feature')
+    ]

@@ -75,14 +75,6 @@ a {
     background: white;
 }
 
-footer {
-    width: 100%;
-    padding: 0 calc(calc(100% - 11in) / 2);
-    margin: auto;
-    background: #005000;
-    color: white;
-}
-
 .site-logo > svg {
     fill: #005000;
 }
@@ -474,9 +466,35 @@ hr {
 /*    text-decoration: underline;*/
 /*}*/
 
+/*Footer*/
 footer {
-    height: 300px;
+    max-width: var(--page-width);
+    /*padding: 0 calc(calc(100% - 11in) / 2);*/
+    height: 20rem;
+    padding: 1.5rem;
+    margin: auto;
+    background: #005000;
+    color: white;
+    display: grid;
+    grid-template-columns: 1.5fr repeat(4, 1fr);
+    gap: 1.5rem;
 }
+
+footer > div {
+    flex-grow: 1;
+}
+
+.minister-feature {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.minister-feature > span > :not(p:first-of-type):not(img) {
+    display: none;
+}
+
+/*End Footer*/
 
 .sidebar {
     padding: 0.75rem;
