@@ -88,12 +88,11 @@ class Participant(Orderable):
 
 
 class OrderOfService(Page):
-    service = models.ForeignKey(
+    service = models.OneToOneField(
         to=ServicePage,
         null=False,
         blank=False,
-        unique=True,
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
         related_name='order_of_service',
     )
     # back_page = RichTextField()
@@ -107,6 +106,7 @@ class OrderOfService(Page):
            ('multicolumn', OOSMultiColumnBlock()),
         ],
         null=True,
+        use_json_field=True,
     )
 
     parent_page_types = ['services.ServicePage']
