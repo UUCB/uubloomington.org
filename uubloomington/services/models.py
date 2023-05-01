@@ -110,6 +110,8 @@ class OrderOfService(Page):
     )
 
     parent_page_types = ['services.ServicePage']
+    subpage_types = []
+    max_count_per_parent = 1
 
     content_panels = Page.content_panels + [
         FieldPanel("program")
