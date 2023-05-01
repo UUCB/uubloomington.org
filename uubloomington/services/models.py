@@ -127,6 +127,7 @@ def create_matching_order_of_service(sender, instance, **kwargs):
             service=service,
             time=service.get_parent().specific.service_time,
             date=next_service_date,
+            live=False,
             # front_page=previous_order_of_service.front_page,
             # back_page=previous_order_of_service.back_page,
         )
