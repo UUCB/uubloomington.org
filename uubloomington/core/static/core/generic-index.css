@@ -1,0 +1,20 @@
+.index-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: #eeeeee;
+    border-radius: 1rem;
+}
+
+.index-list > li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 0.5rem;
+}
+
+.index-list > li > img {
+    grid-row: span 2;
+}

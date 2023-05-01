@@ -50,3 +50,19 @@ class PageWithPosts(Page):
     ]
 
     subpage_types = ['core.Post']
+
+
+class GenericIndexPage(Page):
+    body = RichTextField()
+    featured_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+
+    content_panels = Page.content_panels + [
+        FieldPanel('featured_image'),
+        FieldPanel('body'),
+    ]
