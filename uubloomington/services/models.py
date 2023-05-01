@@ -53,7 +53,7 @@ class ServicesHomePage(Page):
 class ServicePage(Page):
     body = RichTextField(blank=True, null=True)
     vimeo_link = models.CharField(max_length=100, blank=False, null=True, default=get_default_stream_url)
-    order_of_service_link = models.CharField(max_length=900, blank=True, null=True)
+    # order_of_service_link = models.CharField(max_length=900, blank=True, null=True)
 
     parent_page_types = ['ServicesHomePage']
 
@@ -64,7 +64,7 @@ class ServicePage(Page):
             heading="Participants"
         ),
         FieldPanel('vimeo_link'),
-        FieldPanel('order_of_service_link'),
+        # FieldPanel('order_of_service_link'),
     ]
 
 
