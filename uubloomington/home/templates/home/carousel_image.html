@@ -1,13 +1,14 @@
 {% load wagtailimages_tags %}
+{% load icon %}
 {% image carousel_image.carousel_image fill-640x375 as displayed_image %}
 
-<div class="carousel-container">
+<div class="carousel-container" _="on changeImage wait 1s then remove <.carousel-image:not(:last-of-type)/>">
     <div class="carousel-image" id="carousel-image-{{ carousel_image.pk }}"
-         hx-trigger="load delay:10s"
+         hx-trigger="changeImage"
          hx-get="{% url 'next-carousel-image' carousel_image.pk %}"
          hx-swap="afterend"
          hx-select=".carousel-image"
-         _="on load wait 11s then remove <.carousel-image:not(:last-child)/>">
+         >
         <img alt="{{ displayed_image.alt }}"
              width="{{ displayed_image.width }}"
              height="{{ displayed_image.height }}"
@@ -16,4 +17,8 @@
             <span class="carousel-header">{{ carousel_image.header }}</span>
         {% endif %}
     </div>
+    <span class="carousel-buttons" id="carousel-buttons" hx-swap-oob="true">
+        <button id="carousel-previous" _="on click set <.carousel-image/>'s @hx-get to '{% url 'previous-carousel-image' carousel_image.pk %}' then call htmx.process(document.body) then send changeImage to <.carousel-image/>">{% icon 'chevron-left' width='60' height='60' %}</button>
+        <button id="carousel-next" _="on click send changeImage to <.carousel-image/>">{% icon 'chevron-right' width='60' height='60' %}</button>
+    </span>
 </div>

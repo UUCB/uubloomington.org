@@ -47,3 +47,40 @@
     vertical-align: middle;
     margin-top: 30px;
 }
+
+.carousel-buttons {
+    grid-area: stack;
+    display: flex;
+    width: 100%;
+}
+
+.carousel-buttons > button:hover {
+    transition: all 0.5s;
+    opacity: 100%;
+    color: white;
+}
+
+.carousel-buttons > button {
+    width: 40%;
+    background: transparent;
+    border: none;
+    border-radius: 1rem;
+    transition: all 0.5s;
+    color: white;
+    opacity: 50%;
+    display: flex;
+}
+
+.carousel-buttons > button > svg {
+    margin: auto auto auto 1rem;
+}
+
+.carousel-buttons > button:last-child > svg {
+    margin: auto 1rem auto auto;
+}
+
+.carousel-buttons > button:last-child {
+    margin-left: auto;
+    margin-right: 0;
+}
+
