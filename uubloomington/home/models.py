@@ -9,7 +9,6 @@ from wagtail.models import Page, Orderable
 from wagtail.fields import RichTextField
 from django.db.models import CharField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel
-from wagtail.images.edit_handlers import ImageChooserPanel
 
 
 class HomePageCarouselImages(Orderable):
@@ -25,7 +24,7 @@ class HomePageCarouselImages(Orderable):
     header = models.TextField(max_length=25, null=True, blank=True)
 
     panels = [
-        ImageChooserPanel("carousel_image"),
+        FieldPanel("carousel_image"),
         FieldPanel('header'),
     ]
 
