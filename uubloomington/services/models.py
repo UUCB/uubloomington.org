@@ -131,8 +131,7 @@ def create_matching_order_of_service(sender, instance, **kwargs):
             # back_page=previous_order_of_service.back_page,
         )
         service.add_child(instance=order_of_service)
-        order_of_service.save()
         service.title = f"{str(order_of_service.date)}: {service.title}"
-        service.save()
+        service.save_revision()
 
 
