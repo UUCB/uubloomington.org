@@ -17,6 +17,8 @@
     </div>
     <article>
         <h2>{{ page.title }}</h2>
-        <a href="{{ page.get_children.first.url }}">Order of Service</a>
+        {% if page.get_children.first.live %}
+            <a href="{{ page.get_children.first.url }}">Order of Service</a>
+        {% endif %}
     </article>
 {% endblock %}
