@@ -15,7 +15,8 @@ from site_settings.models import SiteWideSettings
 
 from recurrence.fields import RecurrenceField
 
-from .blocks import OOSElementBlock
+from wagtail.blocks import RichTextBlock
+from .blocks import OOSElementBlock, OOSMultiColumnBlock
 
 
 def get_default_stream_url():
@@ -99,7 +100,9 @@ class OrderOfService(Page):
     time = models.TimeField()
     program = StreamField(
        [
-           ('element', OOSElementBlock())
+           ('element', OOSElementBlock()),
+           ('text', RichTextBlock()),
+           ('multicolumn', OOSMultiColumnBlock()),
        ],
         null=True,
     )

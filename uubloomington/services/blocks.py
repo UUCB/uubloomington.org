@@ -6,18 +6,18 @@ class OOSGenericStreamBlock(blocks.StreamBlock):
 
 
 class OOSParticipantStreamBlock(blocks.StreamBlock):
-    person = blocks.PageChooserBlock()
+    # TODO: Add some dynamic content to orders of service, such as hover-over bios of people and groups
+    # person = blocks.PageChooserBlock()
     text = blocks.TextBlock()
 
 
 class OOSElementBlock(blocks.StructBlock):
     header = blocks.CharBlock(required=False)
-    participants = OOSParticipantStreamBlock(required=False)
-    body = blocks.RichTextBlock(required=False)
+    info = OOSParticipantStreamBlock(required=False)
 
     class Meta:
         template = 'services/blocks/oos_element.html'
 
 
-class OOSMultiColumnBlock(blocks.StructBlock):
-    column = blocks.ListBlock(OOSGenericStreamBlock)
+class OOSMultiColumnBlock(blocks.StreamBlock):
+    column = OOSGenericStreamBlock()
