@@ -68,7 +68,7 @@ class ServicePage(Page):
         # FieldPanel('order_of_service_link'),
     ]
 
-    def get_context(self, request):
+    def get_context(self, request, *args, **kwargs):
         context = super().get_context(request)
         service_pages = self.get_siblings().live().order_by('-title')
         context['service_pages'] = service_pages
