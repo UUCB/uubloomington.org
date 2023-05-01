@@ -38,6 +38,8 @@ class ServicesHomePage(Page):
         )
     ]
 
+    subpage_types = ['services.ServicePage']
+
 
     def get_next_service_time(self):
         existing_services = [service.specific.order_of_service.first().date for service in self.get_children() if service.specific.order_of_service.first()]
@@ -106,6 +108,8 @@ class OrderOfService(Page):
        ],
         null=True,
     )
+
+    parent_page_types = ['services.ServicePage']
 
     content_panels = Page.content_panels + [
         FieldPanel("program")
