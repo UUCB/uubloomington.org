@@ -9,8 +9,6 @@ from modelcluster.fields import ParentalKey
 from wagtail.models import Page, Orderable, Site
 from wagtail.fields import RichTextField, StreamField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel
-from wagtail.images.edit_handlers import ImageChooserPanel
-from wagtail.contrib import settings
 from site_settings.models import SiteWideSettings
 
 from recurrence.fields import RecurrenceField
