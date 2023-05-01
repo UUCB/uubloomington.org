@@ -40,9 +40,10 @@ class ServicesHomePage(Page):
 
     subpage_types = ['services.ServicePage']
 
-
     def get_next_service_time(self):
-        existing_services = [service.specific.order_of_service.first().date for service in self.get_children() if service.specific.order_of_service.first()]
+        existing_services = [service.specific.order_of_service.first().date
+                             for service in self.get_children()
+                             if service.specific.order_of_service.first()]
         existing_services.append(datetime.datetime.now().date())  # Don't break if there are no existing services.
         # Using now() for this is fine, as we should never create any services that are in the past anyway.
         latest_service_date = max(existing_services)
@@ -67,11 +68,10 @@ class ServicePage(Page):
         # FieldPanel('order_of_service_link'),
     ]
 
-
     def get_context(self, request):
         context = super().get_context(request)
-        servicepages = self.get_siblings().live().order_by('-title')
-        context['servicepages'] = servicepages
+        service_pages = self.get_siblings().live().order_by('-title')
+        context['service_pages'] = service_pages
         return context
 
 
@@ -101,11 +101,11 @@ class OrderOfService(Page):
     date = models.DateField()
     time = models.TimeField()
     program = StreamField(
-       [
+        [
            ('element', OOSElementBlock()),
            ('text', RichTextBlock()),
            ('multicolumn', OOSMultiColumnBlock()),
-       ],
+        ],
         null=True,
     )
 
