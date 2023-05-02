@@ -510,8 +510,16 @@ footer .menu-toggle {
     gap: 0.5rem;
 }
 
-.minister-feature > span > :not(p:first-of-type):not(img) {
+.minister-feature > span > :not(p:first-of-type):not(img):not(h3):not(h4) {
     display: none;
+}
+
+.minister-feature h3 {
+    margin-bottom: 0.5rem;
+}
+
+.minister-feature h4 {
+    margin-bottom: 0.25rem;
 }
 
 /*End Footer*/

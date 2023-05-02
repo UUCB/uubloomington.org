@@ -118,10 +118,11 @@
         </div>
         <footer>
             <div class="minister-feature">
-                <h3>{{ settings.site_settings.FooterSettings.minister_feature_heading }}</h3>
-                <h4>{{ settings.site_settings.FooterSettings.minister_feature.title }}</h4>
                 <span _="on load remove <.minister-feature > span > :not(p:first-of-type):not(img):not(h3):not(h4)/>">
                     {% image settings.site_settings.FooterSettings.minister_feature.featured_image fill-100x100 class="right" %}
+                    <h3>{{ settings.site_settings.FooterSettings.minister_feature_heading }}</h3>
+
+                    <h4>{{ settings.site_settings.FooterSettings.minister_feature.title }}</h4>
                     {{ settings.site_settings.FooterSettings.minister_feature.body|richtext }}
                 </span>
 
