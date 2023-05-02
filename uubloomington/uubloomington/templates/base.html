@@ -131,6 +131,7 @@
             <div class="footer-menu">
                 {% main_menu %}
             </div>
+            {% include_block settings.site_settings.FooterSettings.additional_content %}
         </footer>
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/uubloomington.js' %}"></script>

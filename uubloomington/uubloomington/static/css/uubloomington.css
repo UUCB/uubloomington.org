@@ -470,7 +470,8 @@ hr {
 footer {
     max-width: var(--page-width);
     /*padding: 0 calc(calc(100% - 11in) / 2);*/
-    height: 20rem;
+    min-height: 20rem;
+    height: auto;
     padding: 1.5rem;
     margin: auto;
     background: #005000;
@@ -502,6 +503,12 @@ footer .nav > li ul {
 
 footer .menu-toggle {
     display: none;
+}
+
+footer .block-image img {
+    max-width: 100%;
+    height: auto;
+    max-height: 20rem;
 }
 
 .minister-feature {

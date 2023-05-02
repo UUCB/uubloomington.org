@@ -1,6 +1,9 @@
 from django.db import models
 
 from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
+from wagtail.fields import StreamField
+from wagtail.blocks import RichTextBlock
+from wagtail.images.blocks import ImageChooserBlock
 from wagtail.contrib.settings.models import BaseGenericSetting, register_setting
 
 
@@ -47,10 +50,20 @@ class FooterSettings(BaseGenericSetting):
         null=True,
         blank=True,
     )
+    additional_content = StreamField(
+        [
+            ('text', RichTextBlock()),
+            ('image', ImageChooserBlock()),
+        ],
+        max_num=3,
+        use_json_field=True,
+        null=True,
+    )
 
     panels = [
         MultiFieldPanel([
             FieldPanel('minister_feature_heading'),
             FieldPanel('minister_feature'),
-        ], heading='Minister Feature')
+        ], heading='Minister Feature'),
+        FieldPanel("additional_content"),
     ]
