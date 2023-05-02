@@ -480,8 +480,28 @@ footer {
     gap: 1.5rem;
 }
 
+footer a:link {
+    color: #bee3f8;
+}
+
+footer a:visited {
+    color: #e8dfff;
+}
+
 footer > div {
     flex-grow: 1;
+}
+
+footer .nav {
+    list-style: none;
+}
+
+footer .nav > li ul {
+    display: none;
+}
+
+footer .menu-toggle {
+    display: none;
 }
 
 .minister-feature {
