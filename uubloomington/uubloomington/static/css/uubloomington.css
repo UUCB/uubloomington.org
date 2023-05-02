@@ -117,7 +117,7 @@ header {
     font-variation-settings: "wght" 345;
 }
 
-.nav {
+nav > .nav {
     display: flex;
     padding: 0 calc(calc(100% - var(--page-width)) / 2);
     align-items: start;
@@ -131,35 +131,35 @@ header {
     font-size: larger;
 }
 
-.nav li {
+nav > .nav li {
     list-style: none;
     width: fit-content;
     height: 100%;
     position: relative;
 }
 
-.nav > li > ul {
+nav > .nav > li > ul {
     display: none;
 }
 
-.nav > li.expand > ul {
+nav > .nav > li.expand > ul {
     display: unset;
     position: absolute;
     background: #005000;
     z-index: 1000;
 }
 
-.nav li:hover {
+nav > .nav li:hover {
     background: #006b1b;
 }
 
-.nav li.ancestor,
-.nav li.active,
-.nav li.expand {
+nav > .nav li.ancestor,
+nav > .nav li.active,
+nav > .nav li.expand {
     background: #006b1b;
 }
 
-.nav a {
+nav > .nav a {
     text-decoration: none;
     color: white;
     display: block;
@@ -168,7 +168,7 @@ header {
     padding: 0.5rem;
 }
 
-.nav .menu-toggle {
+nav > .nav .menu-toggle {
     display: none;
 }
 
@@ -229,13 +229,13 @@ hr {
 
 @media screen and (max-width: 8in) {
     /*Responsive Navbar*/
-    .nav {
+    nav > .nav {
         flex-direction: column;
         width: 100%;
         gap: 0;
     }
 
-    .nav li {
+    nav > .nav li {
         display: flex;
         flex-direction: column;
         width: 100%;
@@ -243,42 +243,42 @@ hr {
         background: #005000;
     }
 
-    .nav li.expand {
+    nav > .nav li.expand {
         padding-bottom: 0.5rem;
     }
 
-    .nav > li.expand > ul {
+    nav > .nav > li.expand > ul {
         display: flex;
         flex-direction: column;
         position: unset;
     }
 
-    .nav li > ul a {
+    nav > .nav li > ul a {
         margin-left: 1rem;
     }
 
-    .nav li:hover {
+    nav > .nav li:hover {
         background: unset;
     }
 
-    .nav a {
+    nav > .nav a {
         width: 100%;
         height: 100%;
         padding: 0.5rem;
     }
 
-    .nav li.active,
-    .nav li.expand,
-    .nav li.ancestor {
+    nav > .nav li.active,
+    nav > .nav li.expand,
+    nav > .nav li.ancestor {
         background: #006b1b;
     }
 
-    .nav .menu-toggle {
+    nav > .nav .menu-toggle {
         display: unset;
         text-align: center;
     }
 
-    .nav.closed li:not(.menu-toggle) {
+    nav > .nav.closed li:not(.menu-toggle) {
         display: none;
     }
 
