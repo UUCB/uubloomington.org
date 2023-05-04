@@ -9,7 +9,6 @@ from wagtail.models import Page, Orderable
 from wagtail.fields import RichTextField
 from django.db.models import CharField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel
-from wagtail.images.edit_handlers import ImageChooserPanel\
 
 from core.models import Post
 
