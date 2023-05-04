@@ -12,6 +12,15 @@ SECRET_KEY = os.getenv('UUBLOOMINGTON_SECRET_KEY')
 PLANNING_CENTER_APPLICATION_ID = os.getenv("UUBLOOMINGTON_PLANNING_CENTER_APPLICATION_ID")
 PLANNING_CENTER_SECRET = os.getenv("UUBLOOMINGTON_PLANNING_CENTER_SECRET")
 
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "OPTIONS": {
+            "read_default_file": os.getenv('UUBLOOMINGTON_MYSQL_CONFIG_PATH')
+        },
+    }
+}
+
 try:
     from .local import *
 except ImportError:
