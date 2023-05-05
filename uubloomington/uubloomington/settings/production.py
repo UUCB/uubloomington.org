@@ -15,6 +15,8 @@ SECRET_KEY = loaded_configuration['secret_key']
 PLANNING_CENTER_APPLICATION_ID = loaded_configuration['planning_center_app_id']
 PLANNING_CENTER_SECRET = loaded_configuration['planning_center_secret']
 
+ALLOWED_HOSTS = [host for host in loaded_configuration['allowed_hosts'].split(',')]
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
