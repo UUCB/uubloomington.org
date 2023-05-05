@@ -133,9 +133,6 @@
             </div>
             {% include_block settings.site_settings.FooterSettings.additional_content %}
         </footer>
-        {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/uubloomington.js' %}"></script>
-
         {% block extra_js %}
         {# Override this in templates to add extra javascript #}
         {% endblock %}
