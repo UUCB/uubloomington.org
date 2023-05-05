@@ -1,0 +1,8 @@
+{
+  "static_root": "path/to/static/root",
+  "media_root": "path/to/media/root",
+  "secret_key": "changeme_secretkey",
+  "planning_center_app_id": "changeme_pc_appid",
+  "planning_center_secret": "changeme_pc_secret",
+  "mysql_config_path": "path/to/mysql/config"
+}
