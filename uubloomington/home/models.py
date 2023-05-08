@@ -40,10 +40,10 @@ class HomePageCard(Orderable):
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    title = models.CharField(max_length=20)
+    title = models.CharField(max_length=30)
     body = RichTextField(max_length=400)
     action_url = models.CharField(max_length=1000)
-    action_text = models.CharField(max_length=20)
+    action_text = models.CharField(max_length=30)
 
     panels = [
         FieldPanel('image'),
