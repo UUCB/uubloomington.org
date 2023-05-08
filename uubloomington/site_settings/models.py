@@ -22,6 +22,8 @@ class SiteWideSettings(BaseGenericSetting):
 
     livestream_url = models.CharField(max_length=900, blank=True, null=True)
 
+    refresh_from_planningcenter_every = models.IntegerField(default=5)
+
     panels = [
         MultiFieldPanel([
             FieldPanel('title'),
@@ -36,7 +38,10 @@ class SiteWideSettings(BaseGenericSetting):
         ], heading="Church Center Integration Settings"),
         MultiFieldPanel([
             FieldPanel('livestream_url'),
-        ], heading="Livestream URL")
+        ], heading="Livestream URL"),
+        MultiFieldPanel([
+            FieldPanel('refresh_from_planningcenter_every'),
+        ], heading="Planning Center Integration Settings")
     ]
 
 

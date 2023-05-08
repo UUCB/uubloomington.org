@@ -1,8 +1,17 @@
 import datetime
 import random
+import pickle
+import zoneinfo
 
 import pypco
 from django.db import models
+
+from site_settings.models import SiteWideSettings
+
+from django.utils import timezone
+from django.utils.dateparse import parse_datetime
+
+from django.conf import settings
 
 from modelcluster.fields import ParentalKey
 from wagtail.models import Page, Orderable
@@ -60,8 +69,8 @@ class HomePageCard(Orderable):
 
 class HomePage(Page):
     body = RichTextField(blank=True)
-    # upcoming_events_offset = django_models.IntegerField(editable=False, null=True, blank=True)
     parent_page_types = []
+    display_next_events = models.IntegerField(default=10)
     content_panels = Page.content_panels + [
         FieldPanel('body'),
         MultiFieldPanel(
@@ -71,13 +80,63 @@ class HomePage(Page):
         MultiFieldPanel(
             [InlinePanel("cards", max_num=6, min_num=2, label="Card")],
             heading="Cards"
-        )
+        ),
+        FieldPanel("display_next_events"),
     ]
+
+    upcoming_events_last_checked = models.DateTimeField(default=timezone.make_aware(timezone.datetime.min))
+    upcoming_events = models.BinaryField(null=True)  # Pickled Events
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        context['upcoming_events'] = self.get_upcoming_events(request)
+        return context
+
+    def get_upcoming_events(self, request):
+        site_settings = SiteWideSettings.load()
+        if (timezone.now()
+            - self.upcoming_events_last_checked) \
+                > datetime.timedelta(minutes=site_settings.refresh_from_planningcenter_every):
+            pco = pypco.PCO(settings.PLANNING_CENTER_APPLICATION_ID, settings.PLANNING_CENTER_SECRET)
+            upcoming_event_instances = pco.get(
+                '/calendar/v2/event_instances',
+                order='starts_at',
+                include='event',
+                filter='future',
+            )
+            output_events = []
+            print('gettingevents')
+            for index, event_instance in enumerate(upcoming_event_instances['data'], start=0):
+                if index >= self.display_next_events:
+                    break
+                event = pco.get(
+                    event_instance['relationships']['event']['links']['related']
+                )
+                output_events.append(Event(
+                    name=event['data']['attributes']['name'],
+                    start_time=timezone.localtime(
+                        parse_datetime(
+                            event_instance['attributes']['starts_at']
+                        )
+                    ),
+                    end_time=timezone.localtime(
+                        parse_datetime(
+                            event_instance['attributes']['ends_at']
+                        )
+                    ),
+                    link=f'https://uucb.churchcenter.com/calendar/event/{event_instance["id"]}'
+                ))
+            self.upcoming_events = pickle.dumps(output_events)
+            self.upcoming_events_last_checked = timezone.now()
+            self.save()
+            return output_events
+        else:
+            return pickle.loads(self.upcoming_events)
 
     def get_carousel_image(self):
         return random.choice(self.carousel_images.all())
 
-    def upcoming_events(self):  # Generate some placeholder events for now. Eventually, this will somehow pull from PC
+    def get_placeholder_upcoming_events(self):  # Generate some placeholder events for now. Eventually, this will somehow pull from PC
         return [
             Event(
                 name='Website Design Meeting',
