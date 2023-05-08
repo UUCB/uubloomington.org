@@ -68,11 +68,9 @@ class HomePageCard(Orderable):
 
 
 class HomePage(Page):
-    body = RichTextField(blank=True)
     parent_page_types = []
     display_next_events = models.IntegerField(default=10)
     content_panels = Page.content_panels + [
-        FieldPanel('body'),
         MultiFieldPanel(
             [InlinePanel("carousel_images", max_num=5, min_num=1, label="Image")],
             heading="Carousel Images",
