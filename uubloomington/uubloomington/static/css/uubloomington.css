@@ -11,7 +11,7 @@
 }
 
 body {
-    background: #006b1b;
+    background: #ffffff;
     align-content: center;
     min-height: 100vh;
     min-height: 100dvh;
@@ -136,6 +136,8 @@ nav > .nav li {
     width: fit-content;
     height: 100%;
     position: relative;
+    background: unset;
+    transition: background 150ms;
 }
 
 nav > .nav > li > ul {
@@ -151,6 +153,7 @@ nav > .nav > li.expand > ul {
 
 nav > .nav li:hover {
     background: #006b1b;
+    transition: background 150ms;
 }
 
 nav > .nav li.ancestor,
