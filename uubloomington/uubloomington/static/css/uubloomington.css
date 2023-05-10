@@ -452,25 +452,30 @@ hr {
     width: 100%;
     text-align: center;
     margin-top: 0.5rem;
+    font-variation-settings: "wght" 450;
+}
+
+.card h2:first-child {
+    margin-top: var(--standard-gap);
 }
 
 .card-action {
     align-self: center;
     margin-top: auto;
     /*margin-bottom: calc(-2.5rem - 6px);*/
-    padding: 1rem;
+    padding: 1rem 1.5rem 0.85rem;
     border: 3px solid #006b1b;
     border-radius: 4rem;
-    background: #006b1b;
-    color:white;
+    background: unset;
+    color: black;
     text-decoration: none;
     transition: background var(--hover-transition-time), color var(--hover-transition-time);
     margin-bottom: 1rem;
 }
 
 .card-action:hover {
-    background: white;
-    color: #006b1b;
+    background: #006b1b;
+    color: white;
     transition: background var(--hover-transition-time), color var(--hover-transition-time);
 }
 
@@ -478,6 +483,10 @@ hr {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+}
+
+.card > .events-container h3 {
+    font-variation-settings: "wght" 450;
 }
 
 .event-title {
