@@ -8,22 +8,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="sidebar">
-        <ul>
-            <li>
-                <a href="{{ page.get_parent.url }}">{{ page.get_parent.title }}</a>
-                <ul>
-                    {% for sibling_page in page.get_parent.children %}
-                        {% if sibling_page.live %}
-                            <li>
-                                <a href="{{ sibling_page.url }}">{{ sibling_page.title }}</a>
-                            </li>
-                        {% endif %}
-                    {% endfor %}
-                </ul>
-            </li>
-        </ul>
-    </div>
+    {% include 'core/sidebar_snippet.html' %}
     <div class="content">
         <article>
             <h2>{{ page.title }}</h2>
