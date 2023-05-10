@@ -36,7 +36,12 @@ img {
 
 h2 {
     font-family: "League Spartan Variable";
+    font-variation-settings: "wght" 450;
     margin-bottom: 1rem;
+}
+
+article h2 {
+    margin: auto;
 }
 
 article li {
