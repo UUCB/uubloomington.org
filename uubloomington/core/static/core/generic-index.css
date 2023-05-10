@@ -12,9 +12,10 @@
     gap: 0.5rem;
     padding: 0.5rem;
     background: #eeeeee;
-    border-radius: 1rem;
+    border-radius: var(--standard-radius);
 }
 
 .index-list > li > img {
     grid-row: span 2;
+    border-radius: 100%;
 }
