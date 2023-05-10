@@ -78,7 +78,8 @@ a {
 }
 
 .site-logo > svg {
-    fill: #005000;
+    fill: #006b1b;
+    height: 100px;
 }
 
 .site-title > h3 {
