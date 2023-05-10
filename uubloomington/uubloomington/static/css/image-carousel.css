@@ -34,16 +34,16 @@
 
 .carousel-header {
     grid-area: stack;
-    background: #00000099;
+    background: #FFFFFF99;
     height: 70px;
     text-align: center;
-    color: white;
+    color: black;
     font-family: "League Spartan Variable";
-    font-variation-settings: "wght" 345;
-    font-size: min(30pt, 5vw);
+    font-variation-settings: "wght" 450;
+    /*font-size: min(30pt, 5vw);*/
     line-height: 70px;
     vertical-align: middle;
-    margin-top: 30px;
+    /*margin-top: 30px;*/
 }
 
 .carousel-buttons {
