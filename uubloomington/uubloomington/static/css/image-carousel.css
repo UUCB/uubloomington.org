@@ -29,8 +29,6 @@
 .carousel-container {
     display: grid;
     grid-template-areas: "stack";
-    background: #006b1b;
-    border-radius: 1rem;
     overflow: clip;
 }
 
