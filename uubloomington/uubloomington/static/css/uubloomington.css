@@ -26,6 +26,8 @@ body {
         1fr /*Content*/
         auto; /*Footer*/
     font-family: "League Spartan Variable";
+    font-size: 1.2rem;
+    line-height: 1.5rem;
 }
 
 img {
