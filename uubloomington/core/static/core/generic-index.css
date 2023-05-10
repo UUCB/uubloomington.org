@@ -2,20 +2,37 @@
     list-style: none;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0.5rem;
+    gap: var(--standard-gap);
+    container-type: inline-size;
+    height: 100%;
 }
 
 .index-list > li {
     display: grid;
     grid-template-columns: auto 1fr;
     grid-template-rows: auto 1fr;
-    gap: 0.5rem;
-    padding: 0.5rem;
+    gap: 1rem;
+    padding: 1rem;
     background: #eeeeee;
     border-radius: var(--standard-radius);
 }
 
+@container (max-width: 40rem) {
+    .index-list > li {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
 .index-list > li > img {
-    grid-row: span 2;
+    grid-row: span 3;
     border-radius: 100%;
+    margin: auto;
+}
+
+.index-list > li > a {
+    margin-left: auto;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    grid-column: 2;
 }
