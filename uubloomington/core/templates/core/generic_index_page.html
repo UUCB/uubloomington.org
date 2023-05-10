@@ -36,7 +36,12 @@
                         <li>
                             {% image child_page.specific.featured_image fill-150x150 %}
                             <h3><a href="{{ child_page.url }}">{{ child_page.specific.title }}</a></h3>
-                            <span class="child-page-description" _="on load remove <.child-page-description > :not(p:first-of-type)/>">{{ child_page.specific.body|richtext }}</span>
+                            <span class="child-page-description"
+                                  _="on load remove <.child-page-description > :not(p:first-of-type)/>"
+                            >
+                                {{ child_page.specific.body|richtext }}
+                            </span>
+                        <a href="{{ child_page.url }}">Read More</a>
                         </li>
                     {% endif %}
                 {% endfor %}
