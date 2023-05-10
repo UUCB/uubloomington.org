@@ -8,6 +8,7 @@
     padding: 0;
     margin: 0;
     --page-width: 85rem;
+    --standard-gap: 1rem;
 }
 
 body {
@@ -91,10 +92,11 @@ header {
 
 .header-left {
     display: flex;
+    margin-left: 1rem;
 }
 
 .header-right {
-    margin-right: 10px;
+    margin-right: 1rem;
     margin-left: auto;
     font-family: "League Spartan Variable";
     display: flex;
@@ -189,7 +191,7 @@ article > ul {
     padding: 0.75rem;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: var(--standard-gap);
 }
 
 .post.less > * {
@@ -382,7 +384,7 @@ hr {
 .card-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(45ch, 1fr));
-    gap: 0.75rem;
+    gap: var(--standard-gap);
 }
 
 .card {
