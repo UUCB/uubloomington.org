@@ -9,6 +9,7 @@
     margin: 0;
     --page-width: 85rem;
     --standard-gap: 1rem;
+    --hover-transition-time: 180ms;
 }
 
 body {
@@ -121,16 +122,18 @@ header {
 
 nav > .nav {
     display: flex;
-    padding: 0 calc(calc(100% - var(--page-width)) / 2);
+    /*padding: 0 calc(calc(100% - var(--page-width)) / 2);*/
+    padding: 0;
     align-items: start;
-    width: 100%;
-    margin: 0;
-    background: #005000;
+    width: calc(var(--page-width) - 2rem);
+    margin: auto;
+    background: white;
+    border-bottom: 3px solid #006b1b;
     text-decoration: none;
     color: white;
     font-family: "League Spartan Variable";
-    font-variation-settings: "wght" 400;
-    font-size: larger;
+    font-variation-settings: "wght" 350;
+    font-size: 1.5rem;
 }
 
 nav > .nav li {
@@ -139,7 +142,23 @@ nav > .nav li {
     height: 100%;
     position: relative;
     background: unset;
-    transition: background 150ms;
+    transition: background var(--hover-transition-time);
+    white-space: nowrap;
+    color: black;
+    padding: 0.25rem 1rem;
+}
+
+.nav li a {
+    color: black;
+    transition: color var(--hover-transition-time);
+}
+
+.nav li:hover a,
+.nav li.ancestor a,
+.nav li.active a,
+.nav li.expand a {
+    color: white;
+    transition: color var(--hover-transition-time);
 }
 
 nav > .nav > li > ul {
@@ -149,13 +168,15 @@ nav > .nav > li > ul {
 nav > .nav > li.expand > ul {
     display: unset;
     position: absolute;
-    background: #005000;
+    /*background: #005000;*/
+    background: #006b1b;
     z-index: 1000;
 }
 
 nav > .nav li:hover {
     background: #006b1b;
-    transition: background 150ms;
+    transition: background var(--hover-transition-time);
+    color: white;
 }
 
 nav > .nav li.ancestor,
@@ -164,9 +185,18 @@ nav > .nav li.expand {
     background: #006b1b;
 }
 
+.nav li > ul > li {
+    background: unset;
+    transition: background var(--hover-transition-time);
+}
+
+.nav li > ul > li:hover {
+    background: #005000;
+    transition: background var(--hover-transition-time);
+}
+
 nav > .nav a {
     text-decoration: none;
-    color: white;
     display: block;
     width: 100%;
     height: 100%;
@@ -240,6 +270,7 @@ hr {
         flex-direction: column;
         width: 100%;
         gap: 0;
+        background: #005000;
     }
 
     nav > .nav li {
@@ -272,6 +303,7 @@ hr {
         width: 100%;
         height: 100%;
         padding: 0.5rem;
+        color: white;
     }
 
     nav > .nav li.active,
@@ -428,14 +460,14 @@ hr {
     background: #006b1b;
     color:white;
     text-decoration: none;
-    transition: background 0.2s, color 0.2s;
+    transition: background var(--hover-transition-time), color var(--hover-transition-time);
     margin-bottom: 1rem;
 }
 
 .card-action:hover {
     background: white;
     color: #006b1b;
-    transition: background 0.2s, color 0.2s;
+    transition: background var(--hover-transition-time), color var(--hover-transition-time);
 }
 
 .card > .events-container ul {
