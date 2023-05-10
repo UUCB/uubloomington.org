@@ -40,7 +40,7 @@ h2 {
     margin-bottom: 1rem;
 }
 
-article h2 {
+article > h2 {
     margin: auto;
 }
 
