@@ -5,10 +5,9 @@
 .home-header-container {
     display: grid;
     grid-template-columns: 60fr 40fr;
-    gap: 1rem;
+    gap: var(--standard-gap);
     width: 100%;
     height: fit-content;
-    margin-bottom: var(--standard-gap);
 }
 
 @media screen and (min-width: 8in) {

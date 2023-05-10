@@ -179,6 +179,8 @@ nav > .nav .menu-toggle {
 
 article {
     max-width: var(--page-width);
+    display: grid;
+    gap: var(--standard-gap);
     padding: 1rem;
     margin: auto;
 }
@@ -396,7 +398,6 @@ hr {
     /*border: 1px solid #006b1b;*/
     border-radius: 1rem;
     /*padding: 1rem;*/
-    margin-bottom: 0.75rem;
     overflow: clip;
 }
 
