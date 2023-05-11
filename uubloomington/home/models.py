@@ -110,20 +110,21 @@ class HomePage(Page):
                 event = pco.get(
                     event_instance['relationships']['event']['links']['related']
                 )
-                output_events.append(Event(
-                    name=event['data']['attributes']['name'],
-                    start_time=timezone.localtime(
-                        parse_datetime(
-                            event_instance['attributes']['starts_at']
-                        )
-                    ),
-                    end_time=timezone.localtime(
-                        parse_datetime(
-                            event_instance['attributes']['ends_at']
-                        )
-                    ),
-                    link=f'https://uucb.churchcenter.com/calendar/event/{event_instance["id"]}'
-                ))
+                if event['data']['attributes']['visible_in_church_center']:
+                    output_events.append(Event(
+                        name=event['data']['attributes']['name'],
+                        start_time=timezone.localtime(
+                            parse_datetime(
+                                event_instance['attributes']['starts_at']
+                            )
+                        ),
+                        end_time=timezone.localtime(
+                            parse_datetime(
+                                event_instance['attributes']['ends_at']
+                            )
+                        ),
+                        link=f'https://uucb.churchcenter.com/calendar/event/{event_instance["id"]}'
+                    ))
             self.upcoming_events = pickle.dumps(output_events)
             self.upcoming_events_last_checked = timezone.now()
             self.save()
