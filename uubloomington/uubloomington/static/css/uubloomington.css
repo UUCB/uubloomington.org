@@ -501,6 +501,7 @@ hr {
 .event-title a {
     margin-left: auto;
     margin-right: 0.25rem;
+    white-space: nowrap;
 }
 
 /*.event-title > a {*/
