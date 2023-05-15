@@ -75,6 +75,16 @@ a {
 }
 /*End Wagtail Rich Text image classes*/
 
+/*Support custom text-align Rich Text blocks*/
+p.centered {
+    text-align: center;
+}
+
+p.right-aligned {
+    text-align: right;
+}
+/*End custom text-align blocks*/
+
 #content {
     max-width: var(--page-width);
     width: 100%;
