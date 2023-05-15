@@ -452,7 +452,7 @@ hr {
     overflow: clip;
 }
 
-.card > :not(img) {
+.card > :not(img):not(h2) {
     margin-left: 1rem;
     margin-right: 1rem;
 }
