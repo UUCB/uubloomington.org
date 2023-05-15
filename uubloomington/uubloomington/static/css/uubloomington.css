@@ -34,10 +34,19 @@ img {
     border-radius: var(--standard-radius);
 }
 
+h1 {
+    line-height: initial;
+}
+
 h2 {
     font-family: "League Spartan Variable";
     font-variation-settings: "wght" 450;
     margin-bottom: 1rem;
+    line-height: initial;
+}
+
+h3 {
+    line-height: initial;
 }
 
 article > h2 {
@@ -100,10 +109,6 @@ p.right-aligned {
     height: 100px;
 }
 
-.site-title > h3 {
-    margin-top: 10px;
-}
-
 header {
     background: white;
     padding: 20px calc(calc(100% - var(--page-width)) / 2);
@@ -130,6 +135,7 @@ header {
     margin-top: auto;
     margin-bottom: auto;
     color: #505050;
+    white-space: nowrap;
 }
 
 .site-title {
