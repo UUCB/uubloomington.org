@@ -2,6 +2,11 @@
     display: inline;
 }
 
+article {
+    display: grid;
+    gap: var(--standard-gap)
+}
+
 .home-header-container {
     display: grid;
     grid-template-columns: 60fr 40fr;
