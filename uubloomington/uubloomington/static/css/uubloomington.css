@@ -66,6 +66,7 @@ a {
 .right {
     max-width: 45%;
     height: auto;
+    clear: both;
 }
 
 .left {
@@ -234,10 +235,13 @@ nav > .nav .menu-toggle {
 
 article {
     max-width: var(--page-width);
-    display: grid;
-    gap: var(--standard-gap);
+    display: unset;
     padding: 1rem;
     margin: auto;
+}
+
+article > p {
+    margin-bottom: var(--standard-gap);
 }
 
 article > ul {
