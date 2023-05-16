@@ -235,7 +235,7 @@ nav > .nav .menu-toggle {
 
 article {
     max-width: var(--page-width);
-    display: unset;
+    display: block;
     padding: 1rem;
     margin: auto;
 }
