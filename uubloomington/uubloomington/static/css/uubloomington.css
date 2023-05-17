@@ -245,7 +245,8 @@ article > p {
 }
 
 article > ul {
-    list-style-position: inside;
+    list-style-position: outside;
+    padding-left: 1rem;
 }
 
 .post {
