@@ -15,6 +15,71 @@ article {
     height: fit-content;
 }
 
+.card.upcoming-service {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: auto auto 1fr auto;
+    container-type: inline-size;
+}
+
+.card.upcoming-service > h2,
+.card.upcoming-service > div,
+.card.upcoming-service > .upcoming-service-buttons {
+    grid-column: span 2;
+}
+
+.card.upcoming-service > h2 {
+    margin-bottom: 0;
+    height: auto;
+}
+
+.card.upcoming-service > h3 {
+    font-variation-settings: "wght" 350;
+    height: auto;
+}
+
+@container (width < 23.5rem) {
+    .upcoming-service-buttons a {
+        font-size: 1rem;
+    }
+    .upcoming-service-buttons {
+        gap: 0.75rem;
+    }
+}
+
+.upcoming-service-buttons {
+    margin-bottom: 1rem;
+    margin-top: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 7rem;
+    gap: var(--standard-gap);
+}
+
+.upcoming-service-buttons > a {
+    height: 100%;
+}
+
+.upcoming-service-buttons .card-action {
+    padding: 0.5rem;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.upcoming-service .card-action > svg {
+    margin: 1rem auto 0.5rem auto;
+}
+
+/*.upcoming-service-buttons a {*/
+/*    border: 3px solid #006b1b;*/
+/*    border-radius: var(--standard-radius);*/
+/*    font-size: 1rem;*/
+/*    text-align: center;*/
+/*}*/
+
 @media screen and (min-width: 8in) {
     .home-header-container > .card {
         margin-bottom: 0;
@@ -22,7 +87,7 @@ article {
     }
 }
 
-@media screen and (max-width: 8in) {
+@media screen and (max-width: 10in) {
     /*Responsive Home-Header*/
     .home-header-container {
         display: flex;

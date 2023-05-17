@@ -2,6 +2,7 @@
 {% load static %}
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
+{% load icon %}
 
 {% block body_class %}template-homepage{% endblock %}
 
@@ -16,8 +17,27 @@
         {% if page.carousel_images.first %}
         {% include "home/carousel_image.html" with carousel_image=page.get_carousel_image %}
         {% endif %}
-        <div class="card">
+        <div class="card upcoming-service">
             <h2>This Sunday's Service</h2>
+            <h3>{{ next_service.title }}</h3>
+            {% image next_service.featured_image fill-200x200 %}
+            <div>
+                {{ next_service.body|richtext }}
+            </div>
+            <span class="upcoming-service-buttons">
+                <a class="card-action" href="{{ page.first_time_visitors_page.url }}">
+                    {% icon "star" %}
+                    First Time Visitor?
+                </a>
+                <a class="card-action" href="{{ page.services_home_page.url }}">
+                    {% icon "calendar" %}
+                    Upcoming Services
+                </a>
+                <a class="card-action">
+                    {% icon "list" %}
+                    Service Archive
+                </a>
+            </span>
         </div>
     </div>
 

@@ -18,6 +18,7 @@ from wagtail.models import Page, Orderable
 from wagtail.fields import RichTextField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel
 
+from services.models import OrderOfService
 
 class HomePageCarouselImages(Orderable):
     page = ParentalKey("home.HomePage", related_name="carousel_images")
@@ -70,6 +71,20 @@ class HomePageCard(Orderable):
 class HomePage(Page):
     parent_page_types = []
     display_next_events = models.IntegerField(default=10)
+    services_home_page = models.OneToOneField(
+        to='services.ServicesHomePage',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    first_time_visitors_page = models.ForeignKey(
+        to=Page,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
     content_panels = Page.content_panels + [
         MultiFieldPanel(
             [InlinePanel("carousel_images", max_num=5, min_num=1, label="Image")],
@@ -79,6 +94,8 @@ class HomePage(Page):
             [InlinePanel("cards", max_num=6, min_num=2, label="Card")],
             heading="Cards"
         ),
+        FieldPanel("services_home_page"),
+        FieldPanel("first_time_visitors_page"),
         FieldPanel("display_next_events"),
     ]
 
@@ -88,6 +105,12 @@ class HomePage(Page):
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
         context['upcoming_events'] = self.get_upcoming_events(request)
+        context['next_service'] = (
+            OrderOfService.objects.filter(date__gte=timezone.now())
+            .order_by('-date')
+            .first()
+            .service.specific
+        )
         return context
 
     def get_upcoming_events(self, request):

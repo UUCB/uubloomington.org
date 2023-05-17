@@ -9,6 +9,8 @@ from modelcluster.fields import ParentalKey
 from wagtail.models import Page, Orderable, Site
 from wagtail.fields import RichTextField, StreamField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel
+from wagtail.images.models import Image
+
 from site_settings.models import SiteWideSettings
 
 from recurrence.fields import RecurrenceField
@@ -52,12 +54,14 @@ class ServicesHomePage(Page):
 class ServicePage(Page):
     body = RichTextField(blank=True, null=True)
     vimeo_link = models.CharField(max_length=100, blank=False, null=True, default=get_default_stream_url)
+    featured_image = models.ForeignKey(to=Image, on_delete=models.SET_NULL, null=True, blank=True)
     # order_of_service_link = models.CharField(max_length=900, blank=True, null=True)
 
     parent_page_types = ['ServicesHomePage']
 
     content_panels = Page.content_panels + [
         FieldPanel('body'),
+        FieldPanel('featured_image'),
         MultiFieldPanel(
             [InlinePanel('participants', label="Participant")],
             heading="Participants"

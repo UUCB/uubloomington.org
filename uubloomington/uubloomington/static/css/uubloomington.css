@@ -492,7 +492,7 @@ hr {
     /*margin-bottom: calc(-2.5rem - 6px);*/
     padding: 1rem 1.5rem 0.85rem;
     border: 3px solid #006b1b;
-    border-radius: 4rem;
+    border-radius: var(--standard-radius);
     background: unset;
     color: black;
     text-decoration: none;
