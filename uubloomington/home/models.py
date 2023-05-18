@@ -105,12 +105,13 @@ class HomePage(Page):
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
         context['upcoming_events'] = self.get_upcoming_events(request)
-        context['next_service'] = (
+        next_oos = (
             OrderOfService.objects.filter(date__gte=timezone.now())
             .order_by('date')
             .first()
-            .service.specific
         )
+        if next_oos:
+            context['next_service'] = next_oos.service.specific
         return context
 
     def get_upcoming_events(self, request):
