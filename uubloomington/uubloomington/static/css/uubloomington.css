@@ -682,9 +682,7 @@ footer .block-image img {
 
 
 /*Copied from home.css - reconsider how to do this*/
-#content {
-    display: inline;
-}
+
 
 article {
     display: grid;
