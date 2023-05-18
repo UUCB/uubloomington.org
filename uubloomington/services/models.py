@@ -146,7 +146,7 @@ class OrderOfService(Page):
 def create_matching_order_of_service(sender, instance, **kwargs):
     service = instance.specific
     previous_order_of_service = OrderOfService.objects.order_by("-date").first()
-    if not service.order_of_service:
+    if not service.order_of_service.first():
         next_service_date = service.get_parent().specific.get_next_service_time()
         order_of_service = OrderOfService(
             title=f"Order of Service for {next_service_date}",
