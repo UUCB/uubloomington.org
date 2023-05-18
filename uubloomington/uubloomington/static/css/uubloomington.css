@@ -34,19 +34,43 @@ img {
     border-radius: var(--standard-radius);
 }
 
-h1 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.site-title > * {
     line-height: initial;
+}
+
+h1 {
+    font-family: "League Spartan Variable";
+    font-variation-settings: "wght" 450;
+    text-align: center;
+    margin-bottom: var(--standard-gap);
 }
 
 h2 {
     font-family: "League Spartan Variable";
     font-variation-settings: "wght" 450;
     margin-bottom: 1rem;
-    line-height: initial;
 }
 
 h3 {
-    line-height: initial;
+    font-variation-settings: "wght" 450;
+}
+
+h4 {
+    font-variation-settings: "wght" 450;
+}
+
+h5 {
+    font-variation-settings: "wght" 450;
+}
+
+h6 {
+    font-variation-settings: "wght" 450;
 }
 
 article > h2 {
@@ -144,6 +168,21 @@ header {
     margin-left: 1rem;
     font-family: "League Spartan Variable";
     font-variation-settings: "wght" 345;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.site-title > :nth-child(1) {
+    font-size: 2.5rem;
+    margin-bottom: -0.5rem;
+}
+.site-title > span:nth-child(2) {
+    font-size: 1.9rem;
+    margin-bottom: 0.5rem;
+}
+.site-title > span:nth-child(3) {
+    font-size: 1.2rem;
 }
 
 nav > .nav {
@@ -358,13 +397,13 @@ hr {
         margin: 0;
     }
 
-    .site-title > h1 {
+    .site-title > :nth-child(1) {
         font-size: 1.6rem;
     }
-    .site-title > h2 {
+    .site-title > span:nth-child(2) {
         font-size: 1.3rem;
     }
-    .site-title > h3 {
+    .site-title > span:nth-child(3) {
         font-size: 1rem;
     }
     .site-logo {
@@ -498,6 +537,7 @@ hr {
     text-decoration: none;
     transition: background var(--hover-transition-time), color var(--hover-transition-time);
     margin-bottom: 1rem;
+    font-variation-settings: "wght" 450;
 }
 
 .card-action:hover {
@@ -628,6 +668,7 @@ footer .block-image img {
 
 .sidebar ul {
     list-style: none;
+    padding-left: 1rem;
 }
 
 .sidebar ul ul {

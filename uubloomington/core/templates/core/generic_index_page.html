@@ -11,7 +11,7 @@
     {% include 'core/sidebar_snippet.html' %}
     <div class="content">
         <article>
-            <h2>{{ page.title }}</h2>
+            <h1>{{ page.title }}</h1>
             {% image page.featured_image fill-200x200 %}
             {{ page.body|richtext }}
         <hr>

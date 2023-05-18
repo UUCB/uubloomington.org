@@ -94,13 +94,13 @@
                 </span>
                 <span class="site-title">
                     {% if settings.site_settings.SiteWideSettings.title %}
-                        <h1>{{ settings.site_settings.SiteWideSettings.title }}</h1>
+                        <span>{{ settings.site_settings.SiteWideSettings.title }}</span>
                     {% endif %}
                     {% if settings.site_settings.SiteWideSettings.subtitle %}
-                        <h2>{{ settings.site_settings.SiteWideSettings.subtitle }}</h2>
+                        <span>{{ settings.site_settings.SiteWideSettings.subtitle }}</span>
                     {% endif %}
                     {% if settings.site_settings.SiteWideSettings.tagline %}
-                        <h3>{{ settings.site_settings.SiteWideSettings.tagline|safe }}</h3>
+                        <span>{{ settings.site_settings.SiteWideSettings.tagline|safe }}</span>
                     {% endif %}
                 </span>
             </div>
