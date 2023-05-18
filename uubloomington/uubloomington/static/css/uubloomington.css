@@ -26,6 +26,7 @@ body {
         1fr /*Content*/
         auto; /*Footer*/
     font-family: "League Spartan Variable";
+    font-variation-settings: "wght" 375;
     font-size: 1.2rem;
     line-height: 1.5rem;
 }
