@@ -5,6 +5,8 @@ from django.db import models
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
+from django.utils import timezone
+
 from modelcluster.fields import ParentalKey
 from wagtail.models import Page, Orderable, Site
 from wagtail.fields import RichTextField, StreamField
@@ -50,9 +52,20 @@ class ServicesHomePage(Page):
         latest_service_datetime = datetime.datetime.combine(latest_service_date, datetime.time.min)
         return self.service_schedule.after(latest_service_datetime, dtstart=latest_service_datetime, inc=False).date()
 
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request)
+        context['next_service'] = (
+            OrderOfService.objects.filter(date__gte=timezone.now())
+            .order_by('date')
+            .first()
+            .service.specific
+        )
+        return context
+
 
 class ServicePage(Page):
     body = RichTextField(blank=True, null=True)
+    one_sentence = models.CharField(max_length=400, blank=False, null=True)
     vimeo_link = models.CharField(max_length=100, blank=False, null=True, default=get_default_stream_url)
     featured_image = models.ForeignKey(to=Image, on_delete=models.SET_NULL, null=True, blank=True)
     # order_of_service_link = models.CharField(max_length=900, blank=True, null=True)
@@ -61,6 +74,7 @@ class ServicePage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel('body'),
+        FieldPanel('one_sentence', heading='One-Sentence Description'),
         FieldPanel('featured_image'),
         MultiFieldPanel(
             [InlinePanel('participants', label="Participant")],
@@ -74,6 +88,12 @@ class ServicePage(Page):
         context = super().get_context(request)
         service_pages = self.get_siblings().live().order_by('-title')
         context['service_pages'] = service_pages
+        context['next_service'] = (
+            OrderOfService.objects.filter(date__gte=timezone.now())
+            .order_by('date')
+            .first()
+            .service.specific
+        )
         return context
 
 
@@ -124,7 +144,7 @@ class OrderOfService(Page):
 def create_matching_order_of_service(sender, instance, **kwargs):
     service = instance
     previous_order_of_service = OrderOfService.objects.order_by("-date").first()
-    if not service.order_of_service.first():
+    if not service.order_of_service:
         next_service_date = service.get_parent().specific.get_next_service_time()
         order_of_service = OrderOfService(
             title=f"Order of Service for {next_service_date}",

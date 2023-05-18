@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+{% load icon %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'services/services_home_page.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="card upcoming-service">
+        <h2>This Sunday's Service</h2>
+        <h3>{{ next_service.title }}</h3>
+        {% image next_service.featured_image fill-200x200 %}
+        <span>
+            {{ next_service.body|richtext }}
+        </span>
+        <span class="upcoming-service-buttons">
+            <a class="card-action" href="{{ next_service.url }}">
+                {% icon "plus" %}
+                More Details
+            </a>
+        </span>
+    </div>
+    <div class="card">
+        <h2>Upcoming Services</h2>
+{#        Upcoming services list#}
+    </div>
+    <div class="card archive">
+        <h2>Past Services</h2>
+{#        Service Archive, show 3 and allow expansion#}
+    </div>
+{% endblock %}

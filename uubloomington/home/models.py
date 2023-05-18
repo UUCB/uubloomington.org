@@ -107,7 +107,7 @@ class HomePage(Page):
         context['upcoming_events'] = self.get_upcoming_events(request)
         context['next_service'] = (
             OrderOfService.objects.filter(date__gte=timezone.now())
-            .order_by('-date')
+            .order_by('date')
             .first()
             .service.specific
         )

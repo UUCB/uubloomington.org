@@ -21,21 +21,21 @@
             <h2>This Sunday's Service</h2>
             <h3>{{ next_service.title }}</h3>
             {% image next_service.featured_image fill-200x200 %}
-            <div>
-                {{ next_service.body|richtext }}
-            </div>
+            <span>
+                {{ next_service.one_sentence }}
+            </span>
             <span class="upcoming-service-buttons">
                 <a class="card-action" href="{{ page.first_time_visitors_page.url }}">
                     {% icon "star" %}
                     First Time Visitor?
                 </a>
-                <a class="card-action" href="{{ page.services_home_page.url }}">
-                    {% icon "calendar" %}
-                    Upcoming Services
+                <a class="card-action" href="{{ next_service.url }}">
+                    {% icon "plus" %}
+                    More Details
                 </a>
-                <a class="card-action">
+                <a class="card-action" href="{{ page.services_home_page.url }}">
                     {% icon "list" %}
-                    Service Archive
+                    All Sunday Services
                 </a>
             </span>
         </div>

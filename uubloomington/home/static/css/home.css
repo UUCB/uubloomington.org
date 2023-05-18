@@ -20,12 +20,17 @@ article {
     grid-template-columns: 3fr 1fr;
     grid-template-rows: auto auto 1fr auto;
     container-type: inline-size;
+    padding: 1rem;
 }
 
 .card.upcoming-service > h2,
-.card.upcoming-service > div,
+/*.card.upcoming-service > div,*/
 .card.upcoming-service > .upcoming-service-buttons {
     grid-column: span 2;
+}
+
+.card.upcoming-service > img {
+    grid-row: span 2;
 }
 
 .card.upcoming-service > h2 {
@@ -48,11 +53,11 @@ article {
 }
 
 .upcoming-service-buttons {
-    margin-bottom: 1rem;
-    margin-top: auto;
+    /*margin-bottom: 1rem;*/
+    /*margin-top: auto;*/
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    height: 7rem;
+    height: 8rem;
     gap: var(--standard-gap);
 }
 
