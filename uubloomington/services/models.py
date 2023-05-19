@@ -61,6 +61,24 @@ class ServicesHomePage(Page):
         )
         if next_oos:
             context['next_service'] = next_oos.service.specific
+        next_services = []
+        for oos in OrderOfService.objects.filter(date__gte=timezone.now()).order_by('date'):
+            if oos.service.live:
+                next_services.append(oos.service)
+            if len(next_services) > 8:
+                break
+        context['next_services_list'] = next_services
+        previous_services = []
+        previous_oos_list = OrderOfService.objects.filter(date__lte=timezone.now()).order_by('-date')
+        for oos in previous_oos_list:
+            if oos.service.live:
+                previous_services.append(oos.service)
+            if len(previous_services) > 5:
+                break
+        if previous_oos_list.count() > len(previous_services):
+            context['show_expand_previous_services'] = True
+        context['previous_services_list'] = previous_services
+        context['last_previous_service'] = previous_services[-1]
         return context
 
 

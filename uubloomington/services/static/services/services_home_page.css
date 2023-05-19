@@ -3,8 +3,10 @@
     gap: var(--standard-gap);
     padding: 1rem;
     grid-template-columns: 2fr 1fr;
+    /*align-items: start;*/
 }
 
 .archive {
     grid-column: span 2;
+    min-height: 40dvh;
 }
