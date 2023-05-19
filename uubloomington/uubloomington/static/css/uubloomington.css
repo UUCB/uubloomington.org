@@ -334,6 +334,30 @@ hr {
     /*End Responsive Header*/
 }
 
+@media screen and (min-width: 60rem) {
+    @container (width < 28rem) {
+        .service-description {
+            line-height: 1.3rem;
+        }
+        .service-description > img {
+            height: 100px;
+            width: auto;
+        }
+    }
+
+    @container (width < 25.5rem) {
+        .upcoming-service-buttons a {
+            font-size: 1rem;
+        }
+        .upcoming-service-buttons {
+            gap: 0.75rem;
+        }
+        .service-description {
+            line-height: 1rem;
+        }
+    }
+}
+
 @media screen and (max-width: 8in) {
     /*Responsive Navbar*/
     nav > .nav {
@@ -698,11 +722,12 @@ article {
 }
 
 .card.upcoming-service {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     grid-template-columns: 3fr 1fr;
     grid-template-rows: auto auto 1fr auto;
     container-type: inline-size;
-    padding: 1rem;
+    padding: 0 1rem 1rem 1rem;
 }
 
 .card.upcoming-service > h2,
@@ -725,22 +750,16 @@ article {
     height: auto;
 }
 
-@container (width < 23.5rem) {
-    .upcoming-service-buttons a {
-        font-size: 1rem;
-    }
-    .upcoming-service-buttons {
-        gap: 0.75rem;
-    }
-}
-
 .upcoming-service-buttons {
-    /*margin-bottom: 1rem;*/
-    /*margin-top: auto;*/
+    margin-bottom: 0;
+    margin-top: auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    height: 8rem;
+    height: 6rem;
     gap: var(--standard-gap);
+    max-width: 40rem;
+    width: 100%;
+    align-self: center;
 }
 
 .upcoming-service-buttons > a {
@@ -748,7 +767,7 @@ article {
 }
 
 .upcoming-service-buttons .card-action {
-    padding: 0.5rem;
+    padding: 0 0.5rem 0 0.5rem;
     text-align: center;
     margin-top: auto;
     margin-bottom: 0;
@@ -757,7 +776,17 @@ article {
 }
 
 .upcoming-service .card-action > svg {
-    margin: 1rem auto 0.5rem auto;
+    margin: 0.5rem auto 0.5rem auto;
+}
+
+@container (width < 25.5rem) {
+    .upcoming-service-buttons a {
+        font-size: 1rem;
+    }
+
+    .upcoming-service-buttons {
+        gap: 0.75rem;
+    }
 }
 
 /*.upcoming-service-buttons a {*/
@@ -767,19 +796,4 @@ article {
 /*    text-align: center;*/
 /*}*/
 
-@media screen and (min-width: 8in) {
-    .home-header-container > .card {
-        margin-bottom: 0;
-        border: none;
-    }
-}
-
-@media screen and (max-width: 10in) {
-    /*Responsive Home-Header*/
-    .home-header-container {
-        display: flex;
-        flex-direction: column;
-        gap: var(--standard-gap);
-    }
-}
 /*End copied from home.css*/

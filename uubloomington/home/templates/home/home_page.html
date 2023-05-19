@@ -20,8 +20,9 @@
         <div class="card upcoming-service">
             <h2>This Sunday's Service</h2>
             <h3>{{ next_service.title }}</h3>
-            {% image next_service.featured_image fill-200x200 %}
-            <span>
+{#            {% image next_service.featured_image fill-200x200 %}#}
+            <span class="service-description">
+                {% image next_service.featured_image fill-150x150 class='right'%}
                 {{ next_service.one_sentence }}
             </span>
             <span class="upcoming-service-buttons">
@@ -31,7 +32,7 @@
                 </a>
                 <a class="card-action" href="{{ next_service.url }}">
                     {% icon "plus" %}
-                    More Details
+                    More<br>Details
                 </a>
                 <a class="card-action" href="{{ page.services_home_page.url }}">
                     {% icon "list" %}
