@@ -78,7 +78,8 @@ class ServicesHomePage(Page):
         if previous_oos_list.count() > len(previous_services):
             context['show_expand_previous_services'] = True
         context['previous_services_list'] = previous_services
-        context['last_previous_service'] = previous_services[-1]
+        if len(previous_services) > 0:
+            context['last_previous_service'] = previous_services[-1]
         return context
 
 
