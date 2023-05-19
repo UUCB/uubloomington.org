@@ -129,12 +129,12 @@ class HomePage(Page):
             output_events = []
             print('gettingevents')
             for index, event_instance in enumerate(upcoming_event_instances['data'], start=0):
-                if index >= self.display_next_events:
-                    break
                 event = pco.get(
                     event_instance['relationships']['event']['links']['related']
                 )
                 if event['data']['attributes']['visible_in_church_center']:
+                    if len(output_events) >= self.display_next_events:
+                        break
                     output_events.append(Event(
                         name=event['data']['attributes']['name'],
                         start_time=timezone.localtime(
