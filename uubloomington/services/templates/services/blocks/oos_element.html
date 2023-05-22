@@ -1,6 +1,12 @@
 {% load wagtailcore_tags %}
 
 <div class="oos-element">
-    <h4>{% include_block value.header %}</h4>
-    <span class="oos-element-info">{% include_block value.info %}</span>
+    <span class="header-line"><h4 _="
+    on load measure my width then set headerwidth to width
+    then measure the next <p/> width then set nextpwidth to width
+    then measure the closest <.oos-element/> width then set elementwidth to width
+    then log elementwidth
+    then if headerwidth + nextpwidth > elementwidth add .span to the next <p/>
+    ">{% include_block value.header %}</h4></span>
+    {% include_block value.info %}
 </div>

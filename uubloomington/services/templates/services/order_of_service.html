@@ -12,6 +12,11 @@
         Hi! I'm a Sidebar!
     </div>
     <div class="program">
+        {% include_block page.back %}
+        {% include_block page.cover %}
+    </div>
+    <br>
+    <div class="program">
         {% include_block page.program %}
     </div>
 {% endblock %}

@@ -13,7 +13,7 @@ class OOSParticipantStreamBlock(blocks.StreamBlock):
 
 class OOSElementBlock(blocks.StructBlock):
     header = blocks.CharBlock(required=False)
-    info = OOSParticipantStreamBlock(required=False)
+    info = blocks.RichTextBlock(required=False)
 
     class Meta:
         template = 'services/blocks/oos_element.html'

@@ -138,8 +138,8 @@ class OrderOfService(Page):
         unique=True,
         related_name='order_of_service',
     )
-    # back_page = RichTextField()
-    # front_page = RichTextField()
+    back_page = RichTextField(null=True)
+    cover_page = RichTextField(null=True)
     date = models.DateField()
     time = models.TimeField()
     program = StreamField(
@@ -157,8 +157,16 @@ class OrderOfService(Page):
     max_count_per_parent = 1
 
     content_panels = Page.content_panels + [
-        FieldPanel("program")
+        FieldPanel("program"),
+        FieldPanel("cover_page"),
+        FieldPanel("back_page"),
     ]
+
+    def get_template(self, request, *args, **kwargs):
+        print(request.GET)
+        if request.GET.get("print") == 'true':
+            return 'services/order_of_service_print.html'
+        return 'services/order_of_service.html'
 
 
 @receiver(post_save, sender=ServicePage)

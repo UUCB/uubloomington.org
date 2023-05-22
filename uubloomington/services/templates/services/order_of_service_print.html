@@ -1,0 +1,24 @@
+{% load static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+<html>
+    <head>
+        <title>Order of Service</title>
+    </head>
+    <link rel="stylesheet" href="{% static 'services/order_of_service.css' %}">
+    <script src="{% static 'js/_hyperscript.min.js' %}"></script>
+    <body>
+        <div class="program">
+            <div id="back-page">
+                {{ page.back_page|richtext }}
+            </div>
+            <div id="cover-page">
+                {{ page.cover_page|richtext }}
+            </div>
+        </div>
+        <div class="program">
+            {% include_block page.program %}
+        </div>
+    </body>
+</html>
