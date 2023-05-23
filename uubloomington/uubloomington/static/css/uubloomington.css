@@ -819,3 +819,86 @@ footer .block-image img {
 /*}*/
 
 /*End copied from home.css*/
+
+
+/*Copied from generic-index.css*/
+.index-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--standard-gap);
+    container-type: inline-size;
+    /*height: 100%;*/
+}
+
+.index-list > li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    /*grid-template-rows: auto 1fr;*/
+    gap: 1rem;
+    padding: 1rem;
+    background: #eeeeee;
+    border-radius: var(--standard-radius);
+}
+
+@container (max-width: 40rem) {
+    .index-list > li {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.index-list > li > img {
+    grid-row: span 3;
+    border-radius: 100%;
+    margin: auto;
+}
+
+.index-list > li > a {
+    margin-left: auto;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    grid-column: 2;
+}
+
+/*End copied from generic-index.css*/
+
+
+/*Expandable Text Block*/
+.block-read_more ~ * {
+    display: none;
+}
+
+/*.block-read_more.expand ~ * {*/
+/*    display: initial;*/
+/*}*/
+.expandable {
+    display: grid;
+}
+
+.expandable .show-more,
+.expandable .show-less {
+    margin-right: 1.5rem;
+    margin-left: auto;
+}
+
+.expandable.expand > * {
+    display: initial;
+}
+
+.expandable .show-more {
+    display: initial;
+}
+
+.expandable.expand .show-less {
+    display: initial;
+}
+
+.expandable.expand .show-more {
+    display: none;
+}
+
+/*.expandable > button {*/
+/*    display: initial;*/
+/*}*/
+/*End Expandable Text Block*/

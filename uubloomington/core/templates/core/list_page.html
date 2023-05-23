@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+{% block content %}
+    {% include 'core/sidebar_snippet.html' %}
+    <article class="content">
+        <h1>{{ page.title }}</h1>
+        {{ page.body|richtext }}
+        <ul class="index-list">
+            {% for item in page.list_items.all %}
+                <li>
+                    {% image item.image fill-200x200 %}
+                    <h2>{{ item.title }}</h2>
+                    {% include 'core/expandable_content_snippet.html' with content=item.body %}
+                </li>
+            {% endfor %}
+        </ul>
+    </article>
+{% endblock %}

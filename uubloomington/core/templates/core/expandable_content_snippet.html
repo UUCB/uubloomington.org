@@ -1,0 +1,6 @@
+{% load wagtailcore_tags %}
+<div class="expandable">
+    {% include_block content %}
+    <a href="null" class="show-more" _="on click add .expand to closest <.expandable/> then halt">Show More</a>
+    <a href="null" class="show-less" _="on click remove .expand from closest <.expandable/> then halt">Show Less</a>
+</div>
