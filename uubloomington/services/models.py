@@ -108,12 +108,6 @@ class ServicePage(Page):
         context = super().get_context(request)
         service_pages = self.get_siblings().live().order_by('-title')
         context['service_pages'] = service_pages
-        context['next_service'] = (
-            OrderOfService.objects.filter(date__gte=timezone.now())
-            .order_by('date')
-            .first()
-            .service.specific
-        )
         return context
 
 
