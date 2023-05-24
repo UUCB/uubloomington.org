@@ -280,6 +280,12 @@ article {
     /*margin: auto;*/
 }
 
+article.list-page {
+    display: flex;
+    flex-direction: column;
+    gap: var(--standard-gap)
+}
+
 article > p {
     margin-bottom: var(--standard-gap);
 }
