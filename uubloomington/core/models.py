@@ -4,7 +4,7 @@ from modelcluster.fields import ParentalKey
 from wagtail.fields import RichTextField, StreamField
 from wagtail.admin.panels import FieldPanel, PageChooserPanel, MultiFieldPanel, InlinePanel
 from wagtail import blocks
-from .blocks import ReadMoreTagBlock
+from .blocks import ReadMoreTagBlock, ShowFeaturedImageBlock, PageFeatureBlock, ExpandableListItemBlock
 
 
 class Post(Page):
@@ -71,8 +71,7 @@ class GenericIndexPage(Page):
     ]
 
 
-class ListPage(Page):
-    body = RichTextField()
+class StandardBlockPage(Page):
     featured_image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
@@ -80,42 +79,15 @@ class ListPage(Page):
         on_delete=models.SET_NULL,
         related_name="+",
     )
+    body = StreamField([
+        ('rich_text', blocks.RichTextBlock()),
+        ('read_more', ReadMoreTagBlock()),
+        ('show_featured_image', ShowFeaturedImageBlock()),
+        ('page_feature', PageFeatureBlock()),
+        ('expandable_list', blocks.ListBlock(ExpandableListItemBlock))
+    ], use_json_field=True, null=True)
 
     content_panels = Page.content_panels + [
         FieldPanel('featured_image'),
-        FieldPanel('body'),
-        MultiFieldPanel(
-            [
-                InlinePanel(
-                    "list_items",
-                    label="List Item"
-                )
-            ],
-            heading="List Items",
-        )
-    ]
-
-
-class ListPageItem(Orderable):
-    page = ParentalKey(
-        to=ListPage,
-        related_name="list_items"
-    )
-    title = models.CharField(max_length=200)
-    body = StreamField([
-        ('text', blocks.RichTextBlock()),
-        ('read_more', ReadMoreTagBlock()),
-    ], use_json_field=True, null=True)
-    image = models.ForeignKey(
-        "wagtailimages.Image",
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name="+",
-    )
-
-    panels = [
-        FieldPanel('image'),
-        FieldPanel('title'),
         FieldPanel('body'),
     ]

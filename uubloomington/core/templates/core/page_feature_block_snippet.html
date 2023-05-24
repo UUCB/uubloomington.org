@@ -1,0 +1,15 @@
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+{% image value.specific.featured_image fill-200x200 %}
+<h3>{{ value.title }}</h3>
+
+{% if body_is_streamfield %}
+    <div class="page-preview stream"> {# TODO: Remove extra DOM elements once _hyperscript supports ~ (as in remove <.block-read_more ~ * />) #}
+        {% include_block value.specific.body %}
+    </div>
+{% else %}
+    <div class="page-preview richtext" _="on load remove <.page-preview > *:not(p:first-of-type)/>">
+        {{ value.specific.body|richtext }}
+    </div>
+{% endif%}
+<a href="{{ value.url }}">Read More</a>

@@ -107,6 +107,8 @@ a {
 .full-width {
     max-width: 100%;
     align-self: center;
+    margin: auto;
+    display: block;
 }
 /*End Wagtail Rich Text image classes*/
 
@@ -277,6 +279,7 @@ article {
     max-width: var(--page-width);
     display: block;
     padding: 1rem;
+    container-type: inline-size;
     /*margin: auto;*/
 }
 
@@ -828,6 +831,7 @@ footer .block-image img {
 
 
 /*Copied from generic-index.css*/
+.block-expandable_list > ul,
 .index-list {
     list-style: none;
     display: grid;
@@ -837,6 +841,8 @@ footer .block-image img {
     /*height: 100%;*/
 }
 
+.block-expandable_list > ul > li,
+.block-page_feature,
 .index-list > li {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -848,18 +854,24 @@ footer .block-image img {
 }
 
 @container (max-width: 40rem) {
+    .block-page_feature,
+    .block-expandable_list > ul > li,
     .index-list > li {
         display: flex;
         flex-direction: column;
     }
 }
 
+.block-expandable_list > ul > li > img,
+.block-page_feature > img,
 .index-list > li > img {
     grid-row: span 3;
     border-radius: 100%;
     margin: auto;
 }
 
+.block-expandable_list > ul > li > a,
+.block-page_feature > a,
 .index-list > li > a {
     margin-left: auto;
     margin-right: 1rem;
@@ -869,6 +881,28 @@ footer .block-image img {
 
 /*End copied from generic-index.css*/
 
+/*Blocks!*/
+
+.block-show_featured_image {
+    display: flex;
+    flex-direction: column;
+}
+
+.block-rich_text {
+    display: block;
+}
+
+.page-preview.richtext > *:not(p:first-of-type){
+    display: none;
+}
+
+.page-preview.stream > .block-read_more ~ * {
+    display: none;
+}
+
+.page-preview.stream img {
+    display: none;
+}
 
 /*Expandable Text Block*/
 .block-read_more ~ * {
