@@ -892,6 +892,10 @@ footer .block-image img {
     display: block;
 }
 
+.block-rich_text > p {
+    margin-bottom: 1rem;
+}
+
 .page-preview.richtext > *:not(p:first-of-type){
     display: none;
 }
@@ -914,6 +918,7 @@ footer .block-image img {
 /*}*/
 .expandable {
     display: grid;
+    gap: 1rem;
 }
 
 .expandable .show-more,
