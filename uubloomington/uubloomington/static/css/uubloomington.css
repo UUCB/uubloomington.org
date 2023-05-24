@@ -918,7 +918,6 @@ footer .block-image img {
 /*}*/
 .expandable {
     display: grid;
-    gap: 1rem;
 }
 
 .expandable .show-more,
