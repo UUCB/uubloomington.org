@@ -156,6 +156,9 @@ class OrderOfService(Page):
         FieldPanel("back_page"),
     ]
 
+    def get_readable_datetime(self):
+        return f'{self.date.strftime("%B %d, %Y")}'
+
     def get_template(self, request, *args, **kwargs):
         print(request.GET)
         if request.GET.get("print") == 'true':
@@ -180,7 +183,7 @@ def create_matching_order_of_service(sender, instance, **kwargs):
             # back_page=previous_order_of_service.back_page,
         )
         service.add_child(instance=order_of_service)
-        service.title = f"{str(order_of_service.date)}: {service.title}"
+        service.title = f"{str(order_of_service.get_readable_datetime())}: {service.title}"
         service.save_revision()
 
 
