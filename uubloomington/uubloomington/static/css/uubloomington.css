@@ -109,6 +109,7 @@ a {
     align-self: center;
     margin: auto;
     display: block;
+    height: auto;
 }
 /*End Wagtail Rich Text image classes*/
 
