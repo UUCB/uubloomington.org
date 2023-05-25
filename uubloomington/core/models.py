@@ -4,6 +4,7 @@ from modelcluster.fields import ParentalKey
 from wagtail.fields import RichTextField, StreamField
 from wagtail.admin.panels import FieldPanel, PageChooserPanel, MultiFieldPanel, InlinePanel
 from wagtail import blocks
+from wagtail.embeds.blocks import EmbedBlock
 from .blocks import ReadMoreTagBlock, ShowFeaturedImageBlock, PageFeatureBlock, ExpandableListItemBlock
 
 
@@ -84,7 +85,8 @@ class StandardBlockPage(Page):
         ('read_more', ReadMoreTagBlock()),
         ('show_featured_image', ShowFeaturedImageBlock()),
         ('page_feature', PageFeatureBlock()),
-        ('expandable_list', blocks.ListBlock(ExpandableListItemBlock))
+        ('expandable_list', blocks.ListBlock(ExpandableListItemBlock)),
+        ('embed', EmbedBlock(max_height=900)),
     ], use_json_field=True, null=True)
 
     content_panels = Page.content_panels + [
