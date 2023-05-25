@@ -132,8 +132,8 @@ class OrderOfService(Page):
         unique=True,
         related_name='order_of_service',
     )
-    back_page = RichTextField(null=True)
-    cover_page = RichTextField(null=True)
+    back_page = RichTextField(null=True, blank=True)
+    cover_page = RichTextField(null=True, blank=True)
     date = models.DateField()
     time = models.TimeField()
     program = StreamField(
@@ -172,6 +172,7 @@ def create_matching_order_of_service(sender, instance, **kwargs):
         order_of_service = OrderOfService(
             title=f"Order of Service for {next_service_date}",
             service=service,
+            program=previous_order_of_service.program,
             time=service.get_parent().specific.service_time,
             date=next_service_date,
             live=False,
