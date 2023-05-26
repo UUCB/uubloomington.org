@@ -67,6 +67,8 @@ class ServicesHomePage(Page):
                 next_services.append(oos.service)
             if len(next_services) > 8:
                 break
+        if len(next_services) > 0:
+            next_services.pop(0)
         context['next_services_list'] = next_services
         previous_services = []
         previous_oos_list = OrderOfService.objects.filter(date__lte=timezone.now()).order_by('-date')
