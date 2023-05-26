@@ -189,6 +189,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 WAGTAILEMBEDS_FINDERS = [
     {
-        'class': 'core.embed_finders.VimeoChatEmbedFinder'
+        'class': 'core.embed_finders.VimeoChatEmbedFinder',
+    },
+    {
+        'class': 'wagtail.embeds.finders.oembed',
     },
 ]

@@ -12,7 +12,6 @@ class VimeoChatEmbedFinder(EmbedFinder):
 
         This should not have any side effects (no requests to external servers)
         """
-        print('finding')
         if re.search("^https://vimeo.com/event.*/chat/interaction/$", url):
             return True
         else:
