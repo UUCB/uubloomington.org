@@ -91,6 +91,7 @@ class ServicePage(Page):
     vimeo_link = models.CharField(max_length=100, blank=False, null=True, default=get_default_stream_url)
     featured_image = models.ForeignKey(to=Image, on_delete=models.SET_NULL, null=True, blank=True)
     # order_of_service_link = models.CharField(max_length=900, blank=True, null=True)
+    video_archive_link = models.CharField(max_length=400, blank=True, null=True)
 
     parent_page_types = ['ServicesHomePage']
 
@@ -102,7 +103,7 @@ class ServicePage(Page):
             [InlinePanel('participants', label="Participant")],
             heading="Participants"
         ),
-        FieldPanel('vimeo_link'),
+        FieldPanel('video_archive_link'),
         # FieldPanel('order_of_service_link'),
     ]
 

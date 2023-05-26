@@ -5,6 +5,7 @@ from wagtail.fields import StreamField
 from wagtail.blocks import RichTextBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.contrib.settings.models import BaseGenericSetting, register_setting
+from wagtail.models import Page
 
 
 @register_setting
@@ -22,6 +23,14 @@ class SiteWideSettings(BaseGenericSetting):
 
     livestream_url = models.CharField(max_length=900, blank=True, null=True)
 
+    internal_livestream_page = models.ForeignKey(
+        to=Page,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='+',
+    )
+
     refresh_from_planningcenter_every = models.IntegerField(default=5)
 
     panels = [
@@ -38,6 +47,7 @@ class SiteWideSettings(BaseGenericSetting):
         ], heading="Church Center Integration Settings"),
         MultiFieldPanel([
             FieldPanel('livestream_url'),
+            FieldPanel('internal_livestream_page'),
         ], heading="Livestream URL"),
         MultiFieldPanel([
             FieldPanel('refresh_from_planningcenter_every'),

@@ -86,7 +86,7 @@ a {
     tab-index: 0;
 }
 
-.block-embed iframe {
+iframe {
     aspect-ratio: 1.77 / 1;
     width: 100%;
     height: auto;
