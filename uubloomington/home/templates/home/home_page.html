@@ -20,6 +20,7 @@
         <div class="card upcoming-service">
             <h2>This Sunday's Service</h2>
             <h3>{{ next_service.title }}</h3>
+            <span class="link-container"><a href="{{ page.live_stream_page.url }}">Live Stream</a> or in person!</span>
 {#            {% image next_service.featured_image fill-200x200 %}#}
             <span class="service-description">
                 {% image next_service.featured_image fill-150x150 class='right'%}

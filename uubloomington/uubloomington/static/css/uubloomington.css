@@ -350,6 +350,17 @@ hr {
     /*End Responsive Header*/
 }
 
+.card.upcoming-service {
+    gap: 0;
+}
+
+.card.upcoming-service h2,
+.card.upcoming-service h3,
+.service-description,
+.link-container {
+    margin-bottom: 1rem;
+}
+
 @media screen and (min-width: 60rem) {
     @container (width < 28rem) {
         .service-description {
@@ -370,6 +381,11 @@ hr {
         }
         .service-description {
             line-height: 1rem;
+        }
+        .card.upcoming-service h2,
+        .card.upcoming-service h3,
+        .service-description {
+            margin-bottom: 0.5rem;
         }
     }
 }
@@ -761,7 +777,7 @@ footer .block-image img {
 }
 
 .card.upcoming-service > h2 {
-    margin-bottom: 0;
+    /*margin-bottom: 0;*/
     height: auto;
 }
 

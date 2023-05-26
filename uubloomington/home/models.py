@@ -97,10 +97,18 @@ class HomePage(Page):
         FieldPanel("services_home_page"),
         FieldPanel("first_time_visitors_page"),
         FieldPanel("display_next_events"),
+        FieldPanel("live_stream_page"),
     ]
 
     upcoming_events_last_checked = models.DateTimeField(default=timezone.make_aware(timezone.datetime.min))
     upcoming_events = models.BinaryField(null=True)  # Pickled Events
+    live_stream_page = models.ForeignKey(
+        to=Page,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
