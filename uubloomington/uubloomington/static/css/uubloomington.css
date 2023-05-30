@@ -1009,3 +1009,8 @@ footer .block-image img {
     margin-bottom: auto;
 }
 /*End order of service*/
+
+/*Hack to kinda fix styling on list page body, this will be unnecessary when all pages are block pages someday*/
+article.list-page > p {
+    margin-bottom: 0;
+}
