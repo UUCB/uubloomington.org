@@ -4,18 +4,13 @@
 {% load static %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'services/order_of_service.css' %}">
+{#    <link rel="stylesheet" href="{% static 'services/order_of_service.css' %}">#}
 {% endblock %}
 
 {% block content %}
     <div class="sidebar">
         Hi! I'm a Sidebar!
     </div>
-    <div class="program">
-        {% include_block page.back %}
-        {% include_block page.cover %}
-    </div>
-    <br>
     <div class="program">
         {% include_block page.program %}
     </div>

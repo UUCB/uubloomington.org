@@ -969,3 +969,43 @@ footer .block-image img {
 /*    display: initial;*/
 /*}*/
 /*End Expandable Text Block*/
+
+/*Order of Service on desktop/mobile*/
+.program {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    /*text-align: center;*/
+    max-width: 40rem;
+}
+
+.program h4 {
+    text-transform: uppercase;
+    font-variation-settings: "wght" 550;
+}
+
+.block-page_feature.order-of-service {
+    width: 100%;
+}
+
+.block-page_feature.order-of-service > img {
+    border-radius: 0;
+}
+
+.block-page_feature.order-of-service > .program > :not(a.show) {
+    display: none;
+}
+
+.block-page_feature.order-of-service.expand > .program > :not(a.show) {
+    display: initial;
+}
+
+.block-page_feature.order-of-service.expand > .program > a.show {
+    display: none;
+}
+
+.block-page_feature.order-of-service > img {
+    margin-top: 0.6rem;
+    margin-bottom: auto;
+}
+/*End order of service*/

@@ -18,6 +18,14 @@
             </div>
         </div>
         <div class="program">
+            <div class="oos-element">
+                <span class="header-line">
+                    <h4>Order of Service</h4>
+                </span>
+                <img src="{% static 'chalice-logo-black.svg' %}" class="chalice-logo">
+                <span class='info-left'>{{ page.get_readable_date }}</span>
+                <span class="info-left">{{ page.get_readable_time }}</span>
+            </div>
             {% include_block page.program %}
         </div>
     </body>

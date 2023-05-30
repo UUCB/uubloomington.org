@@ -35,13 +35,15 @@
     .program {
         column-count: 2;
         column-gap: 4rem;
-        /*height: 100%;*/
-        /*width: 100%;*/
-        padding: 2rem;
-        border: 1px solid black;
+        height: calc(100vh - 2rem);
+        margin-inline: auto;
+        width: 11in;
+        padding: 0;
         display: block;
         page-break-after: always;
         font-size: 1rem;
+        padding-block: 1rem;
+        /*outline: 1px solid darkblue;*/
     }
 
     .program:first-child > div {
@@ -62,9 +64,13 @@
         display: grid;
         gap: 0.25rem;
         grid-template-columns: auto 1fr;
-        /*break-inside: avoid-column;*/
+        break-inside: avoid-column;
         margin-top: 1rem;
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .block-text {
+        break-inside: avoid-column;
     }
 
     .oos-element h4 {
@@ -76,6 +82,7 @@
         font-variation-settings: "wght" 600;
     }
 
+
     .oos-element p {
         display: inline;
         white-space: nowrap;
@@ -83,7 +90,7 @@
         margin-left: auto;
     }
 
-    .oos-element > :not(:first-child):not(:nth-child(2)) {
+    .oos-element > :not(:first-child):not(:nth-child(2)):not(.info-left) {
         grid-column: span 2;
     }
 
@@ -95,5 +102,30 @@
 
     .block-multicolumn > .block-column {
         flex-grow: 1;
+    }
+
+    .chalice-logo {
+        grid-row: span 3;
+        grid-column: 2;
+        margin-left: auto;
+        margin-right: 0;
+        height: 4rem;
+        width: auto;
+    }
+
+    .oos-element > .info-left {
+        grid-column: 1;/
+    }
+
+    .centered {
+        text-align: center;
+    }
+
+    .right-aligned {
+        text-align: right;
+    }
+
+    .oos-element:first-child {
+        margin-top: 0;
     }
 }
