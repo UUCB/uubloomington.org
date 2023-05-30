@@ -44,6 +44,7 @@
     line-height: 70px;
     vertical-align: middle;
     /*margin-top: 30px;*/
+    margin-inline: 0;
 }
 
 .carousel-buttons {
