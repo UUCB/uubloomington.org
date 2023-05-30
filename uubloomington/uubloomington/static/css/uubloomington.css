@@ -74,8 +74,9 @@ h6 {
     font-variation-settings: "wght" 450;
 }
 
-article > h2 {
-    margin: auto;
+article h2 {
+    margin-inline: auto;
+    text-align: center;
 }
 
 article li {
