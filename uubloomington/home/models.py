@@ -124,9 +124,7 @@ class HomePage(Page):
 
     def get_upcoming_events(self, request):
         site_settings = SiteWideSettings.load()
-        if (timezone.now()
-            - self.upcoming_events_last_checked) \
-                > datetime.timedelta(minutes=site_settings.refresh_from_planningcenter_every):
+        if request.GET.get("refreshevents") == 'true':
             pco = pypco.PCO(settings.PLANNING_CENTER_APPLICATION_ID, settings.PLANNING_CENTER_SECRET)
             upcoming_event_instances = pco.get(
                 '/calendar/v2/event_instances',
