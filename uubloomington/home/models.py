@@ -269,7 +269,7 @@ class Event():  # Eventually, this should be replaced with an external module
 
     def readable_times(self):
         return {
-            'date': self.start_time.strftime('%A, %b. %d'),
-            'start_time': self.start_time.strftime('%I:%M %p'),
-            'end_time': self.end_time.strftime('%I:%M %p'),
+            'date': self.start_time.strftime('%A, %B %-d'),
+            'start_time': self.start_time.strftime('%-I:%M %p'),
+            'end_time': self.end_time.strftime('%-I:%M %p'),
         }
