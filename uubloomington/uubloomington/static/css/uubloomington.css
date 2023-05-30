@@ -120,6 +120,10 @@ iframe {
 }
 /*End Wagtail Rich Text image classes*/
 
+b {
+    font-variation-settings: "wght" 550;
+}
+
 /*Support custom text-align Rich Text blocks*/
 p.centered {
     text-align: center;
