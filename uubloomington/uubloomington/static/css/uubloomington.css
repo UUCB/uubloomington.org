@@ -329,7 +329,7 @@ hr {
     border: 2px solid #006b1b;
 }
 
-@media screen and (max-width: 60rem) {
+@media screen and (max-width: 63rem) {
     /*Responsive Header*/
     header {
         flex-direction: column;
