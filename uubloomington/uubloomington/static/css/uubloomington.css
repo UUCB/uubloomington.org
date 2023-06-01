@@ -570,7 +570,7 @@ hr {
     overflow: clip;
 }
 
-.card:not(.upcoming-service) > :not(img):not(h2) {
+.card:not(.upcoming-service):not(.badges) > :not(img):not(h2) {
     margin-left: 1rem;
     margin-right: 1rem;
 }
@@ -621,6 +621,19 @@ hr {
 
 .card > .events-container h3 {
     font-variation-settings: "wght" 450;
+}
+
+.card.badges {
+    padding: 1rem;
+    display: flex;
+    flex-direction: initial;
+    justify-content: center;
+}
+
+.card.badges > a {
+    display: block;
+    width: fit-content;
+    height: fit-content;
 }
 
 .event-title {

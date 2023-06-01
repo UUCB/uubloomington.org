@@ -68,6 +68,22 @@ class HomePageCard(Orderable):
     ]
 
 
+class HomePageBadge(Orderable):
+    page = ParentalKey("home.HomePage", related_name="badges")
+    image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    url = models.URLField()
+    panels = [
+        FieldPanel('image'),
+        FieldPanel('url'),
+    ]
+
+
 class HomePage(Page):
     parent_page_types = []
     display_next_events = models.IntegerField(default=10)
@@ -93,6 +109,10 @@ class HomePage(Page):
         MultiFieldPanel(
             [InlinePanel("cards", max_num=6, min_num=2, label="Card")],
             heading="Cards"
+        ),
+        MultiFieldPanel(
+            [InlinePanel("badges", max_num=6, label="Badge")],
+            heading="Badges"
         ),
         FieldPanel("services_home_page"),
         FieldPanel("first_time_visitors_page"),

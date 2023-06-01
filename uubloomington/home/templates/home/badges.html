@@ -1,0 +1,6 @@
+{% load wagtailimages_tags %}
+{% for badge in page.badges.all %}
+    <a href="{{ badge.url }}">
+        {% image badge.image max-200x200 %}
+    </a>
+{% endfor %}
