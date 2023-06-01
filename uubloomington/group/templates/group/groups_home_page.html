@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'core/generic-index.css' %}">
+{% endblock %}
+
+{% block content %}
+    {% include 'core/sidebar_snippet.html' %}
+    <div class="content">
+        <article class="list-page">
+            <h1>{{ page.title }}</h1>
+            {% image page.featured_image max-900x500 class="full-width" %}
+            {{ page.body|richtext }}
+        <hr>
+            <ul class="index-list">
+                {% for child_page in page.get_children %}
+                    {% if child_page.live %}
+                        <li>
+                            {% image child_page.specific.featured_image fill-200x200 class="round-featured-image" %}
+                            <h3><a href="{{ child_page.url }}">{{ child_page.specific.title }}</a></h3>
+                            <span>
+                                {{ child_page.specific.summary|richtext }}
+                            </span>
+                        <a href="{{ child_page.url }}">Read More</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </article>
+    </div>
+{% endblock %}

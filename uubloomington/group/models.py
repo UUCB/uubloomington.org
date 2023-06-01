@@ -14,17 +14,35 @@ from core.models import Post
 
 class GroupsHomePage(Page):
     body = RichTextField()
+    featured_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
     parent_page_types = ['home.HomePage']
     content_panels = Page.content_panels + [
-        FieldPanel('body')
+        FieldPanel('body'),
+        FieldPanel('featured_image'),
     ]
 
 
 class GroupPage(Page):
     planning_center_group_id = models.CharField(max_length=20)
     show_posts = models.BooleanField(default=True)
+    summary = RichTextField(null=True, blank=True)
+    featured_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
     content_panels = Page.content_panels + [
         FieldPanel('planning_center_group_id'),
+        FieldPanel('summary'),
+        FieldPanel('featured_image'),
         FieldPanel('show_posts'),
     ]
 
