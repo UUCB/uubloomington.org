@@ -27,7 +27,7 @@ class GroupsHomePage(Page):
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    parent_page_types = ['home.HomePage']
+    # parent_page_types = ['home.HomePage']
     content_panels = Page.content_panels + [
         FieldPanel('body'),
         FieldPanel('featured_image'),
