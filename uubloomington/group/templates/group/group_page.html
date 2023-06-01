@@ -11,13 +11,14 @@
 {% block content %}
     {% include 'core/sidebar_snippet.html' %}
     <div class="content">
-        {% with group=page.group_info %}
+{#        {% with group=page.group_info %}#}
             <article>
-                <h1>{{ group.data.attributes.name|safe }}</h1>
-                    <img src="{{ group.data.attributes.header_image.original }}" class="right">
-                {{ group.data.attributes.description|safe }}
+                <h1>{{ group_title }}</h1>
+                    <img src="{{ header_image }}" class="right">
+                    <a href="{{ churchcenter_group_url }}" class="right">View and join this group on Church Center</a>
+                {{ group_body|safe }}
             </article>
-        {% endwith %}
+{#        {% endwith %}#}
         {% if page.show_posts %}
             <hr>
             {% for post in page.get_posts %}
