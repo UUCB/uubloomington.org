@@ -85,7 +85,7 @@
 
     .oos-element p {
         display: inline;
-        white-space: nowrap;
+        /*white-space: nowrap;*/
         margin-right: 0;
         margin-left: auto;
     }
