@@ -1,4 +1,4 @@
 {% load wagtailimages_tags %}
-{% image value.image fill-200x200 %}
+{% image value.image fill-200x200 class="round-featured-image" %}
 <h2>{{ value.title }}</h2>
 {% include 'core/expandable_content_snippet.html' with content=value.body %}

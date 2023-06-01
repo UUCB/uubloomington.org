@@ -1,6 +1,6 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
-{% image value.specific.featured_image fill-200x200 %}
+{% image value.specific.featured_image fill-200x200 class="round-featured-image" %}
 <h3>{{ value.title }}</h3>
 
 {% if body_is_streamfield %}

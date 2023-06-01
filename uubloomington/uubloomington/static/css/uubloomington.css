@@ -35,6 +35,11 @@ img {
     border-radius: var(--standard-radius);
 }
 
+.round-featured-image {
+    width: 200px;
+    height: 200px;
+}
+
 h1,
 h2,
 h3,
