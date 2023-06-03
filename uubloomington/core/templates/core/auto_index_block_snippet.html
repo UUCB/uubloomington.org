@@ -1,8 +1,10 @@
 {% load wagtailcore_tags %}
 <ul class="index-list">
     {% for child_page in child_pages %}
-        <li>
-            {% include "core/page_feature_block_snippet.html" with value=child_page.value body_is_streamfield=child_page.body_is_streamfield %}
-        </li>
+        {% if child_page.value.show_in_menus == True %}
+            <li>
+                {% include "core/page_feature_block_snippet.html" with value=child_page.value body_is_streamfield=child_page.body_is_streamfield %}
+            </li>
+        {% endif %}
     {% endfor %}
 </ul>
