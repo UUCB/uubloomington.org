@@ -2,8 +2,11 @@
 {% load wagtailimages_tags %}
 {% image value.specific.featured_image fill-200x200 class="round-featured-image" %}
 <h3>{{ value.title }}</h3>
-
-{% if body_is_streamfield %}
+{% if value.specific.summary %}
+    <div class="page-preview">
+        {{ value.specific.summary|richtext }}
+    </div>
+{% elif body_is_streamfield %}
     <div class="page-preview stream"> {# TODO: Remove extra DOM elements once _hyperscript supports ~ (as in remove <.block-read_more ~ * />) #}
         {% include_block value.specific.body %}
     </div>
