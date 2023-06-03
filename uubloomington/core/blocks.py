@@ -64,6 +64,6 @@ class AutoIndexBlock(blocks.StaticBlock):
         context['child_pages'] = [
             {'value': child_page, 'body_is_streamfield': self.check_for_streamfield(child_page)}
             for child_page
-            in context['page'].get_children().live()
+            in context['page'].get_children().live().in_menu()
         ]
         return(context)
