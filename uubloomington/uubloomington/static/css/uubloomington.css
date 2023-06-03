@@ -973,6 +973,10 @@ footer .block-image img {
     display: none;
 }
 
+.block-rich_text ul {
+    margin-left: 1rem;
+}
+
 /*Expandable Text Block*/
 .block-read_more ~ * {
     display: none;
