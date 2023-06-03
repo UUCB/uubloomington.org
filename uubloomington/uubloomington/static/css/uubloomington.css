@@ -648,6 +648,11 @@ hr {
     align-items: center;
     max-width: min-content;
     text-align: center;
+    margin: auto;
+}
+
+.card.badges img {
+    border-radius: 0;
 }
 
 .event-title {
