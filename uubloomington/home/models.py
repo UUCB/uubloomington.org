@@ -77,10 +77,12 @@ class HomePageBadge(Orderable):
         on_delete=models.SET_NULL,
         related_name="+",
     )
+    text = RichTextField(max_length=100, null=True)
     url = models.URLField()
     panels = [
         FieldPanel('image'),
         FieldPanel('url'),
+        FieldPanel('text', heading='Text to be displayed under the badge'),
     ]
 
 

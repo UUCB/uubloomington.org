@@ -623,17 +623,31 @@ hr {
     font-variation-settings: "wght" 450;
 }
 
-.card.badges {
+.card.badges > ul {
     padding: 1rem;
     display: flex;
     flex-direction: initial;
     justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .card.badges > a {
     display: block;
     width: fit-content;
     height: fit-content;
+}
+
+.card.badges > ul {
+    list-style: none;
+}
+
+.card.badges > ul > li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: min-content;
+    text-align: center;
 }
 
 .event-title {

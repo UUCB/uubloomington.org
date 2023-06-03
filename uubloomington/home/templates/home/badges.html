@@ -1,6 +1,12 @@
+{% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
-{% for badge in page.badges.all %}
-    <a href="{{ badge.url }}">
-        {% image badge.image max-200x200 %}
-    </a>
-{% endfor %}
+<ul class="badge-list">
+    {% for badge in page.badges.all %}
+        <li>
+            <a href="{{ badge.url }}">
+                {% image badge.image max-200x200 %}
+            </a>
+            <span class="badge-text">{{ badge.text|richtext }}</span>
+        </li>
+    {% endfor %}
+</ul>
