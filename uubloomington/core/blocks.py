@@ -61,8 +61,6 @@ class AutoIndexBlock(blocks.StaticBlock):
 
     def get_context(self, value, parent_context=None):
         context = super().get_context(value, parent_context)
-        child_page = context['page'].get_children().live().first()
-        print(type(child_page.get_context(request=context['request'])))
         context['child_pages'] = [
             {'value': child_page, 'body_is_streamfield': self.check_for_streamfield(child_page)}
             for child_page
