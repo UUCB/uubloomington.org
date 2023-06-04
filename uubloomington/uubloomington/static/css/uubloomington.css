@@ -978,7 +978,8 @@ footer .block-image img {
 }
 
 /*Expandable Text Block*/
-.block-read_more ~ * {
+.block-page_feature .block-read_more ~ *,
+.expandable .block-read_more ~ * {
     display: none;
 }
 
