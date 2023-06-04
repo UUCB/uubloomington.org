@@ -67,3 +67,25 @@ class AutoIndexBlock(blocks.StaticBlock):
             in context['page'].get_children().live().in_menu()
         ]
         return(context)
+
+
+class IndexBlock(blocks.StructBlock):
+    page = blocks.PageChooserBlock()
+
+    class Meta:
+        template = 'core/auto_index_block_snippet.html'
+
+    def check_for_streamfield(self, page):
+        if type(page.specific.body) == blocks.StreamValue:
+            return True
+        else:
+            return False
+
+    def get_context(self, value, parent_context=None):
+        context = super().get_context(value, parent_context)
+        context['child_pages'] = [
+            {'value': child_page, 'body_is_streamfield': self.check_for_streamfield(child_page)}
+            for child_page
+            in context['value']['page'].get_children().live().in_menu()
+        ]
+        return(context)

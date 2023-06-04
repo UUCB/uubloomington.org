@@ -5,7 +5,7 @@ from wagtail.fields import RichTextField, StreamField
 from wagtail.admin.panels import FieldPanel, PageChooserPanel, MultiFieldPanel, InlinePanel
 from wagtail import blocks
 from wagtail.embeds.blocks import EmbedBlock
-from .blocks import ReadMoreTagBlock, ShowFeaturedImageBlock, PageFeatureBlock, ExpandableListItemBlock, AutoIndexBlock
+from .blocks import ReadMoreTagBlock, ShowFeaturedImageBlock, PageFeatureBlock, ExpandableListItemBlock, AutoIndexBlock, IndexBlock
 
 
 class Post(Page):
@@ -87,7 +87,8 @@ class StandardBlockPage(Page):
         ('page_feature', PageFeatureBlock()),
         ('expandable_list', blocks.ListBlock(ExpandableListItemBlock)),
         ('embed', EmbedBlock(max_height=900)),
-        ('auto_index', AutoIndexBlock())
+        ('auto_index', AutoIndexBlock()),
+        ('selectable_index', IndexBlock()),
     ], use_json_field=True, null=True)
 
     body_is_streamfield = True
