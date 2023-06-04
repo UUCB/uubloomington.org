@@ -11,7 +11,7 @@
         {% include_block value.specific.body %}
     </div>
 {% else %}
-    <div class="page-preview richtext" _="on load remove <.page-preview > *:not(p:first-of-type)/>">
+    <div class="page-preview richtext" _="on load remove <next .page-preview > *:not(p:first-of-type)/>">
         {{ value.specific.body|richtext }}
     </div>
 {% endif%}
