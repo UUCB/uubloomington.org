@@ -175,6 +175,16 @@ header {
     text-align: right;
 }
 
+.header-links > a {
+    padding-bottom: 0;
+    padding-top: 0.1rem;
+}
+
+.header-links > a + a {
+    border-left: 1px solid black;
+    padding-left: 0.3rem;
+}
+
 .announcement {
     font-size: 1.8rem;
     margin-top: auto;

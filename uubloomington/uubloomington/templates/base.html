@@ -105,8 +105,13 @@
                 </span>
             </div>
             <div class="header-right">
+{#                <span class="header-links">#}
+{#                    <a href="{{ settings.site_settings.SiteWideSettings.directions_url }}">Directions</a>&nbsp;|&nbsp;<a href="{{ settings.site_settings.SiteWideSettings.giving_url }}">Give</a>&nbsp;|&nbsp;<a href="/contact">Contact</a>#}
+{#                </span>#}
                 <span class="header-links">
-                    <a href="{{ settings.site_settings.SiteWideSettings.directions_url }}">Directions</a>&nbsp;|&nbsp;<a href="{{ settings.site_settings.SiteWideSettings.giving_url }}">Give</a>&nbsp;|&nbsp;<a href="/contact">Contact</a>
+                    {% for link in settings.site_settings.SiteWideSettings.header_links %}
+                        <a href="{{ link.value.destination }}">{{ link.value.text }}</a>
+                    {% endfor %}
                 </span>
                 <span class="announcement">
                     {{ settings.site_settings.SiteWideSettings.header_announcement }}

@@ -1,8 +1,8 @@
 from django.db import models
 
-from wagtail.admin.panels import FieldPanel, MultiFieldPanel
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel
 from wagtail.fields import StreamField
-from wagtail.blocks import RichTextBlock
+from wagtail.blocks import RichTextBlock, StructBlock, CharBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.contrib.settings.models import BaseGenericSetting, register_setting
 from wagtail.models import Page
@@ -15,9 +15,22 @@ class SiteWideSettings(BaseGenericSetting):
     title = models.CharField(max_length=50, blank=True, null=True)
     subtitle = models.CharField(max_length=50, blank=True, null=True)
     tagline = models.CharField(max_length=200, blank=True, null=True)
-    giving_url = models.CharField(max_length=200, blank=True, null=True)
-    directions_url = models.CharField(max_length=2000, blank=True, null=True)
     header_announcement = models.CharField(max_length=50, blank=True, null=True )
+    header_links = StreamField(
+        [
+            (
+                'url', StructBlock(
+                    [
+                        ('text', CharBlock()),
+                        ('destination', CharBlock()),
+                    ],
+                    icon='globe',
+                )
+            )
+        ],
+        use_json_field=True,
+        null=True,
+    )
 
     churchcenter_calendar_url = models.CharField(max_length=900, blank=True, null=True, help_text='Church Center Calendar URL')
 
@@ -38,8 +51,6 @@ class SiteWideSettings(BaseGenericSetting):
             FieldPanel('title'),
             FieldPanel('subtitle'),
             FieldPanel('tagline'),
-            FieldPanel('giving_url'),
-            FieldPanel('directions_url'),
             FieldPanel('header_announcement'),
         ], heading="Header Settings"),
         MultiFieldPanel([
@@ -49,6 +60,7 @@ class SiteWideSettings(BaseGenericSetting):
             FieldPanel('livestream_url'),
             FieldPanel('internal_livestream_page'),
         ], heading="Livestream URL"),
+        FieldPanel('header_links'),
         MultiFieldPanel([
             FieldPanel('refresh_from_planningcenter_every'),
         ], heading="Planning Center Integration Settings")
