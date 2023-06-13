@@ -59,13 +59,17 @@ h1 {
     margin-bottom: var(--standard-gap);
 }
 
+.visual-h2,
 h2 {
     font-family: "League Spartan Variable";
     font-variation-settings: "wght" 450;
     margin-bottom: 1rem;
+    font-size: 1.8rem;
 }
 
+.visual-h3,
 h3 {
+    font-size: 1.4rem;
     font-variation-settings: "wght" 450;
 }
 
