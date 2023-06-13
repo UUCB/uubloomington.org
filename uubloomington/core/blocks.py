@@ -1,7 +1,5 @@
 from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
-from wagtail.fields import StreamField
-from wagtail.models import Page
 
 
 class ReadMoreTagBlock(blocks.StaticBlock):
@@ -53,39 +51,9 @@ class AutoIndexBlock(blocks.StaticBlock):
     class Meta:
         template = 'core/auto_index_block_snippet.html'
 
-    def check_for_streamfield(self, page):
-        if type(page.specific.body) == blocks.StreamValue:
-            return True
-        else:
-            return False
-
-    def get_context(self, value, parent_context=None):
-        context = super().get_context(value, parent_context)
-        context['child_pages'] = [
-            {'value': child_page, 'body_is_streamfield': self.check_for_streamfield(child_page)}
-            for child_page
-            in context['page'].get_children().live().in_menu()
-        ]
-        return(context)
-
 
 class IndexBlock(blocks.StructBlock):
     page = blocks.PageChooserBlock()
 
     class Meta:
-        template = 'core/auto_index_block_snippet.html'
-
-    def check_for_streamfield(self, page):
-        if type(page.specific.body) == blocks.StreamValue:
-            return True
-        else:
-            return False
-
-    def get_context(self, value, parent_context=None):
-        context = super().get_context(value, parent_context)
-        context['child_pages'] = [
-            {'value': child_page, 'body_is_streamfield': self.check_for_streamfield(child_page)}
-            for child_page
-            in context['value']['page'].get_children().live().in_menu()
-        ]
-        return(context)
+        template = 'core/selectable_index_block_snippet.html'
