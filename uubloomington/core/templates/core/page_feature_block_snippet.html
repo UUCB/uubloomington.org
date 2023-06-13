@@ -1,7 +1,12 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
-{% image value.specific.featured_image fill-200x200 class="round-featured-image" %}
-<h3>{{ value.title }}</h3>
+{% load static %}
+{% if value.specific.featured_image %}
+    {% image value.specific.featured_image fill-200x200 class="round-featured-image" %}
+{% else %}
+    <img src="{% static 'chalice-logo-black.svg' %}" class="round-featured-image">
+{% endif %}
+<h3><a href="{{ value.url }}">{{ value.title }}</a></h3>
 {% if value.specific.summary %}
     <div class="page-preview">
         {{ value.specific.summary|richtext }}
