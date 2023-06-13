@@ -11,6 +11,8 @@
     --standard-gap: 1.5rem;
     --standard-radius: 2rem;
     --hover-transition-time: 180ms;
+    --accent-color: #006b1b;
+    --standard-border-thickness: 3px; /*TODO: Implement this everywhere*/
 }
 
 body {
@@ -611,7 +613,7 @@ hr {
     margin-top: auto;
     /*margin-bottom: calc(-2.5rem - 6px);*/
     padding: 1rem 1.5rem 0.85rem;
-    border: 3px solid #006b1b;
+    border: var(--standard-border-thickness) solid var(--accent-color);
     border-radius: var(--standard-radius);
     background: unset;
     color: black;
@@ -1075,3 +1077,30 @@ footer .block-image img {
 article.list-page > p {
     margin-bottom: 0;
 }
+
+/*Search styling*/
+article.search-page > form {
+    display: flex;
+    text-align: center;
+    margin-bottom: 2rem;
+    justify-content: center;
+    gap: 1rem;
+}
+
+article.search-page > form > label {
+    padding: 1rem 1.5rem 0.85rem;
+    border: var(--standard-border-thickness) solid var(--accent-color);
+    border-radius: var(--standard-radius);
+    display: inline-block;
+}
+
+article.search-page > form > label > input {
+    border: none;
+    border-bottom: var(--standard-border-thickness) solid var(--accent-color);
+    font-size: 1.2rem;
+}
+
+article.search-page .card-action {
+    margin: 0;
+}
+/*End search styling*/

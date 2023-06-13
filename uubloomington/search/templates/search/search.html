@@ -1,38 +1,40 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags %}
+{% load static wagtailcore_tags feature_page %}
+{% load icon %}
 
 {% block body_class %}template-searchresults{% endblock %}
 
 {% block title %}Search{% endblock %}
 
 {% block content %}
-<h1>Search</h1>
+<article class="search-page">
+    <h1>Search</h1>
 
-<form action="{% url 'search' %}" method="get">
-    <input type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
-    <input type="submit" value="Search" class="button">
-</form>
+    <form action="{% url 'search' %}" method="get">
+        <label>
+            <input placeholder="Enter Search Keywords" type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
+        </label>
+        <button class="card-action" aria-label="Search">{% icon 'search' %}</button>
+    </form>
 
-{% if search_results %}
-<ul>
-    {% for result in search_results %}
-    <li>
-        <h4><a href="{% pageurl result %}">{{ result }}</a></h4>
-        {% if result.search_description %}
-        {{ result.search_description }}
-        {% endif %}
-    </li>
-    {% endfor %}
-</ul>
+    {% if search_results %}
+    <ul class="index-list">
+        {% for result in search_results %}
+        <li>
+            {% feature_page result %}
+        </li>
+        {% endfor %}
+    </ul>
 
-{% if search_results.has_previous %}
-<a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
-{% endif %}
+    {% if search_results.has_previous %}
+    <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
+    {% endif %}
 
-{% if search_results.has_next %}
-<a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
-{% endif %}
-{% elif search_query %}
-No results found
-{% endif %}
+    {% if search_results.has_next %}
+    <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
+    {% endif %}
+    {% elif search_query %}
+    No results found
+    {% endif %}
+</article>
 {% endblock %}
