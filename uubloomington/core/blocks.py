@@ -27,7 +27,6 @@ class PageFeatureBlock(blocks.PageChooserBlock):
 
     def get_context(self, value, parent_context = None):
         context = super(PageFeatureBlock, self).get_context(value)
-        print(f'fieldtype {type(value.specific.body)}')
         if type(value.specific.body) == blocks.StreamValue:
             context['body_is_streamfield'] = True
         return context
