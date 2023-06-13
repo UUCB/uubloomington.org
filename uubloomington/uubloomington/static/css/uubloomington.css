@@ -149,6 +149,10 @@ p.right-aligned {
     background: white;
 }
 
+#content > :only-child {
+    grid-column: span 2
+}
+
 .site-logo > svg {
     fill: #006b1b;
     height: 100px;
