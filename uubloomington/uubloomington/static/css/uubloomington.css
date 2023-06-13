@@ -1107,4 +1107,8 @@ article.search-page > form > label > input {
 article.search-page .card-action {
     margin: 0;
 }
+
+article.search-page .page-buttons {
+    text-align: center;
+}
 /*End search styling*/
