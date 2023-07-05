@@ -1,5 +1,6 @@
 from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail.documents.models import Document
 
 
 class ReadMoreTagBlock(blocks.StaticBlock):
@@ -8,6 +9,19 @@ class ReadMoreTagBlock(blocks.StaticBlock):
         label = '"Read More" tag'
         admin_text = f'{label}: Anything after this tag will be hidden behind a "Read More" button.'
         template = 'core/read_more_snippet.html'
+
+
+class DocumentListBlock(blocks.CharBlock):
+    class Meta:
+        required = True
+        max_length = 200
+        help_text = 'Display all documents with this tag'  # TODO: Make this help text actually appear in admin
+        template = 'core/document_list_block.html'
+
+    def get_context(self, value, parent_context=None):
+        context = super().get_context(value, parent_context)
+        context['documents'] = Document.objects.filter(tags__name=value)
+        return context
 
 
 class ShowFeaturedImageBlock(blocks.StaticBlock):
@@ -35,6 +49,7 @@ class PageFeatureBlock(blocks.PageChooserBlock):
 class ExpandableListItemBodyBlock(blocks.StreamBlock):
     rich_text = blocks.RichTextBlock()
     read_more = ReadMoreTagBlock()
+    document_list = DocumentListBlock()
 
 
 class ExpandableListItemBlock(blocks.StructBlock):

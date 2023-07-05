@@ -1,0 +1,7 @@
+<ul class="no-list-style">
+    {% for document in documents %}
+        <li>
+            <a href="{{ document.url }}">{{ document.title }}</a>
+        </li>
+    {% endfor %}
+</ul>

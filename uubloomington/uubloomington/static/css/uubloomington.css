@@ -104,6 +104,10 @@ iframe {
     height: auto;
 }
 
+.no-list-style {
+    list-style: none;
+}
+
 /*Support Wagtail Rich Text image classes*/
 .left,
 .right {
