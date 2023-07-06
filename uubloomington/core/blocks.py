@@ -20,7 +20,10 @@ class DocumentListBlock(blocks.CharBlock):
 
     def get_context(self, value, parent_context=None):
         context = super().get_context(value, parent_context)
-        context['documents'] = Document.objects.filter(tags__name=value)
+        config = value.split(',')
+        if len(config) < 2:
+            config.append('-title')
+        context['documents'] = Document.objects.filter(tags__name=config[0]).order_by(config[1])
         return context
 
 
