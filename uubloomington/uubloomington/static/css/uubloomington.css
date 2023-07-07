@@ -109,8 +109,8 @@ iframe {
 }
 
 /*Support Wagtail Rich Text image classes*/
-.left,
-.right {
+.left:not(.parent-height),
+.right:not(.parent-height) {
     max-width: 45%;
     height: auto;
     clear: both;
@@ -132,6 +132,10 @@ iframe {
     margin: auto;
     display: block;
     height: auto;
+}
+
+.parent-height {
+    width: auto;
 }
 /*End Wagtail Rich Text image classes*/
 
@@ -334,7 +338,8 @@ article > p {
     margin-bottom: var(--standard-gap);
 }
 
-article > ul {
+article > ul,
+.block-rich_text > ul {
     list-style-position: outside;
     padding-left: 1rem;
 }
@@ -526,8 +531,8 @@ hr {
     }
     /*End Responsive Header*/
     /*Center all rich text images on mobile*/
-    .left,
-    .right,
+    .left:not(.parent-height),
+    .right:not(.parent-height),
     .full-width {
         float: unset;
         display: block;
