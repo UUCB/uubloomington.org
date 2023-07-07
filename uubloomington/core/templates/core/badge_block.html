@@ -1,0 +1,8 @@
+{% load wagtailimages_tags %}
+
+<li>
+    <a href="{{ value.link }}">
+        {% image value.image max-200x200 %}
+        <span class="badge-text">{{ value.link_text }}</span>
+    </a>
+</li>

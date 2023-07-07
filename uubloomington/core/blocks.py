@@ -74,3 +74,17 @@ class IndexBlock(blocks.StructBlock):
 
     class Meta:
         template = 'core/selectable_index_block_snippet.html'
+
+
+class BadgeBlock(blocks.StructBlock):
+    image = ImageChooserBlock()
+    link = blocks.URLBlock()
+    link_text = blocks.CharBlock()
+
+    class Meta:
+        template = 'core/badge_block.html'
+
+
+class BadgeAreaBlock(blocks.ListBlock):
+    class Meta:
+        template = 'core/badge_area_block.html'

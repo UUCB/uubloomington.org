@@ -1,0 +1,8 @@
+{% load wagtailcore_tags %}
+<div class="card badges">
+    <ul class="badge-list">
+        {% for badge in value %}
+            {% include_block badge %}
+        {% endfor %}
+    </ul>
+</div>
