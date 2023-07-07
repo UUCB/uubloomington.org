@@ -338,6 +338,9 @@ article > ul {
     list-style-position: outside;
     padding-left: 1rem;
 }
+.left ~ ul {
+    overflow: hidden;
+}
 
 .post {
     padding: 0.75rem;
