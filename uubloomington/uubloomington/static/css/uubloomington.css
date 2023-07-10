@@ -139,6 +139,7 @@ iframe {
 }
 /*End Wagtail Rich Text image classes*/
 
+strong,
 b {
     font-variation-settings: "wght" 550;
 }
