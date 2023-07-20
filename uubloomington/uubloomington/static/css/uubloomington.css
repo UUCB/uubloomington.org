@@ -137,6 +137,12 @@ iframe {
 .parent-height {
     width: auto;
 }
+
+.full-width,
+.right,
+.left {
+    margin-bottom: 1rem;
+}
 /*End Wagtail Rich Text image classes*/
 
 strong,
