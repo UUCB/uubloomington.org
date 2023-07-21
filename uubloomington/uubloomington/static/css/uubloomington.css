@@ -79,6 +79,10 @@ h3 {
 
 h4 {
     font-variation-settings: "wght" 450;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+    text-align: center;
 }
 
 h5 {
