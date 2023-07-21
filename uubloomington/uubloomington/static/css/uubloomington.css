@@ -346,12 +346,16 @@ article > p {
 }
 
 article > ul,
-.block-rich_text > ul {
+article > ol,
+.block-rich_text > ul,
+.block-rich_text > ol {
     list-style-position: outside;
     padding-left: 1rem;
 }
-.left ~ ul {
+.left ~ ul,
+.left ~ ol {
     overflow: hidden;
+    padding-left: 2rem;
 }
 
 .post {
