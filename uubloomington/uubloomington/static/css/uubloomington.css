@@ -1016,7 +1016,8 @@ footer .block-image img {
     display: none;
 }
 
-.block-rich_text ul {
+.block-rich_text ul,
+.block-rich_text ol {
     margin-left: 1rem;
 }
 
