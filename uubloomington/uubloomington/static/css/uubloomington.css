@@ -1026,6 +1026,8 @@ footer .block-image img {
     display: none;
 }
 
+.planningcenter-html ul,
+.planningcenter-html ol,
 .block-rich_text ul,
 .block-rich_text ol {
     margin-left: 1rem;
