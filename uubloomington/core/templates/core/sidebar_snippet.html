@@ -1,5 +1,5 @@
 <div class="sidebar">
-    <h3>{{ page.get_parent.title }}</h3>
+    <a class="visual-h4" href="{{ page.url }}">{{ page.get_parent.title }}</a>
     <ul>
         {% for sibling_page in page.get_parent.get_children.live %}
             <li>

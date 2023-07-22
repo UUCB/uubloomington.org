@@ -819,6 +819,8 @@ footer .block-image img {
 .sidebar {
     padding: 0.75rem;
     font-family: "League Spartan Variable";
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar img {
@@ -837,6 +839,10 @@ footer .block-image img {
 
 .sidebar li {
     margin-bottom: 0.5rem;
+}
+
+.sidebar .visual-h4 {
+    margin-inline: auto;
 }
 
 
