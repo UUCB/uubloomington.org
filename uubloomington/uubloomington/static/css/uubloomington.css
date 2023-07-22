@@ -1145,3 +1145,7 @@ article.search-page .page-buttons {
     text-align: center;
 }
 /*End search styling*/
+
+.block-anchor {
+    margin-top: calc(var(--standard-gap) * -1);
+}
