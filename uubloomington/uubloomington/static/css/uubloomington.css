@@ -968,6 +968,7 @@ footer .block-image img {
     padding: 1rem;
     background: #eeeeee;
     border-radius: var(--standard-radius);
+    margin-bottom: 0;
 }
 
 @container (max-width: 40rem) {
