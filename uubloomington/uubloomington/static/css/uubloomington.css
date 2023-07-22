@@ -643,10 +643,23 @@ hr {
     text-align: center;
     margin-top: 0.5rem;
     font-variation-settings: "wght" 450;
+    font-size: 1.8rem;
 }
 
 .card h2:first-child {
     margin-top: var(--standard-gap);
+}
+
+.card h3 {
+    font-size: 1.4rem;
+    margin-top: initial;
+    margin-bottom: initial;
+}
+
+.card h4 {
+    font-size: initial;
+    margin-bottom: initial;
+    margin-top: initial;
 }
 
 .card-action {
