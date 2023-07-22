@@ -88,3 +88,10 @@ class BadgeBlock(blocks.StructBlock):
 class BadgeAreaBlock(blocks.ListBlock):
     class Meta:
         template = 'core/badge_area_block.html'
+
+
+class AnchorBlock(blocks.StructBlock):
+    name = blocks.CharBlock()
+
+    class Meta:
+        template = 'core/anchor_block.html'

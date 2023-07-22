@@ -5,7 +5,7 @@ from wagtail.fields import RichTextField, StreamField
 from wagtail.admin.panels import FieldPanel, PageChooserPanel, MultiFieldPanel, InlinePanel
 from wagtail import blocks
 from wagtail.embeds.blocks import EmbedBlock
-from .blocks import ReadMoreTagBlock, ShowFeaturedImageBlock, PageFeatureBlock, ExpandableListItemBlock, AutoIndexBlock, IndexBlock, DocumentListBlock, BadgeAreaBlock, BadgeBlock
+from .blocks import ReadMoreTagBlock, ShowFeaturedImageBlock, PageFeatureBlock, ExpandableListItemBlock, AutoIndexBlock, IndexBlock, DocumentListBlock, BadgeAreaBlock, BadgeBlock, AnchorBlock
 
 
 class Post(Page):
@@ -91,6 +91,7 @@ class StandardBlockPage(Page):
         ('selectable_index', IndexBlock()),
         ('document_list', DocumentListBlock()),
         ('badge_area', BadgeAreaBlock(child_block=BadgeBlock())),
+        ('anchor', AnchorBlock())
     ], use_json_field=True, null=True)
 
     body_is_streamfield = True
