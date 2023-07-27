@@ -12,6 +12,7 @@ from wagtail.models import Page, Orderable, Site
 from wagtail.fields import RichTextField, StreamField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel
 from wagtail.images.models import Image
+from wagtail.api import APIField
 
 from site_settings.models import SiteWideSettings
 
@@ -157,6 +158,11 @@ class OrderOfService(Page):
         FieldPanel("program"),
         FieldPanel("cover_page"),
         FieldPanel("back_page"),
+    ]
+
+    api_fields = [
+        APIField('program'),
+        APIField('date'),
     ]
 
     def get_readable_date(self):
