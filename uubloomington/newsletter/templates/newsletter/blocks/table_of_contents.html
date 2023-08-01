@@ -1,0 +1,7 @@
+<ul>
+    {% for article_block in article_blocks %}
+        <li>
+            <a href="#article-{{ article_block.value.pk }}">{{ article_block.value.title }}</a>
+        </li>
+    {% endfor %}
+</ul>

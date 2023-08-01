@@ -359,6 +359,7 @@ article > p {
     margin-bottom: var(--standard-gap);
 }
 
+.page-preview.newsletter ul,
 article > ul,
 article > ol,
 .block-rich_text > ul,
@@ -370,6 +371,10 @@ article > ol,
 .left ~ ol {
     overflow: hidden;
     padding-left: 2rem;
+}
+
+.page-preview.newsletter ul {
+    list-style-type: disc;
 }
 
 .post {

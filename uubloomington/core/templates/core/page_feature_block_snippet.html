@@ -11,6 +11,16 @@
     <div class="page-preview">
         {{ value.specific.summary|richtext }}
     </div>
+{% elif value.specific.newsletter %}
+    <div class="page-preview newsletter">
+        <ul>
+            {% for article in value.specific.get_article_blocks %}
+                <li>
+                    <a href="{{ value.url }}#article-{{ article.value.pk }}">{{ article.value.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 {% elif body_is_streamfield %}
     <div class="page-preview stream"> {# TODO: Remove extra DOM elements once _hyperscript supports ~ (as in remove <.block-read_more ~ * />) #}
         {% include_block value.specific.body %}
