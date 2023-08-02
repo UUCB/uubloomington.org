@@ -188,6 +188,10 @@ p.right-aligned {
     grid-column: span 2
 }
 
+body:not(.template-homepage) > #content {
+    margin-top: 1rem;
+}
+
 .site-logo > svg {
     fill: #006b1b;
     height: 100px;
