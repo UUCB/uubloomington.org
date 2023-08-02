@@ -1,4 +1,5 @@
 {% load wagtailcore_tags %}
 <h2 id="article-{{ value.pk }}">{{ value.title }}</h2>
 {% include_block value.specific.body %}
+<a href="#toc">Back to Table of Contents</a>
 <hr>

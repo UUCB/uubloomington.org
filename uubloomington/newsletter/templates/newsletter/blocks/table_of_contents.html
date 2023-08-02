@@ -1,4 +1,5 @@
-<ul>
+<ul id="toc">
+    <h2>Table of Contents</h2>
     {% for article_block in article_blocks %}
         <li>
             <a href="#article-{{ article_block.value.pk }}">{{ article_block.value.title }}</a>
