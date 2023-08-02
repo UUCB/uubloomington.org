@@ -103,7 +103,7 @@ def before_create_issue(request, parent_page, page_class):
     if page_class == Issue:
         publication_date = parent_page.get_date_of_next_issue(),
         issue = Issue(
-            title=f"{parent_page.title} for {publication_date[0].strftime('%B %d, %Y')}",
+            title=f"{parent_page.title} for {publication_date[0].strftime('%B %Y')}",  # TODO: Fix this so the day of the month is added when the newsletter is published more than monthly
             publication_date=publication_date[0],
         )
         parent_page.add_child(instance=issue)
