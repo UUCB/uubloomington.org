@@ -12,6 +12,8 @@
     {% include 'core/sidebar_snippet.html' %}
     <article class="content list-page">
         <h1>{{ page.title }}</h1>
+        {% block pre_body %}{% endblock %}
         {% include_block page.body %}
+        {% block post_body %}{% endblock %}
     </article>
 {% endblock %}

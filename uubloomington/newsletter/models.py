@@ -115,6 +115,6 @@ class Article(StandardBlockPage):
     parent_page_types = [
         'newsletter.Issue'
     ]
-    template = 'core/standard_block_page.html'
+    template = 'newsletter/article.html'
 
 

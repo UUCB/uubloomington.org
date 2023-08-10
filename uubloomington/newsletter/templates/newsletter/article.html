@@ -1,0 +1,6 @@
+{% extends 'core/standard_block_page.html' %}
+{% load wagtailcore_tags %}
+{% block post_body %}
+    <i>This article originally appeared in <a href="{{ page.get_parent.url }}">{{ page.get_parent.title }}. Click to read the full issue!</a></i>
+{% endblock %}
+

@@ -1,6 +1,0 @@
-{% load wagtailcore_tags %}
-{% for segment in page.segments.all %}
-    {% if segment.post %}
-        {{ segment.post.body|richtext }}
-    {% endif %}
-{% endfor %}
