@@ -76,8 +76,10 @@ class GroupPage(Page):
         context['group_title'] = group_info['data']['attributes']['name']
         context['group_body'] = group_info['data']['attributes']['description']
         context['header_image'] = group_info['data']['attributes']['header_image']['original']
-        group_type_slug = slugify(group_type['data']['attributes']['name'])
-        group_slug = slugify(context['group_title'])
+        # Church Center's slugify works differently from Django's. To reconstruct their URLs, we need to
+        # replace apostrophes with dashes as well. This may require further tweaks in the future.
+        group_type_slug = slugify(group_type['data']['attributes']['name'].replace("'", "-"))
+        group_slug = slugify(context['group_title'].replace("'", '-'))
         # TODO: Add a setting for churchcenter base URL and un-hard-code this
         context['churchcenter_group_url'] = f'https://uucb.churchcenter.com/groups/{group_type_slug}/{group_slug}/'
         return context
