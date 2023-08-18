@@ -7,7 +7,7 @@
     <img src="{% static 'chalice-logo-black.svg' %}" class="round-featured-image">
 {% endif %}
 <span class="visual-h3"><a href="{{ value.url }}">{{ value.title }}</a></span>
-{% if value.specific.summary %}
+{% if value.specific.summary or value.specific.summary == "" %}
     <div class="page-preview">
         {{ value.specific.summary|richtext }}
     </div>
