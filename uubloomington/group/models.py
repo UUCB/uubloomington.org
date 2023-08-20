@@ -83,6 +83,7 @@ class GroupPage(Page):
             self.group_info = pickle.dumps(group_info)
             self.group_type = pickle.dumps(group_type)
             if not request.is_preview:
+                self.last_fetched = timezone.now()
                 self.save()
         else:
             group_info = pickle.loads(self.group_info)
