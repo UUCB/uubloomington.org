@@ -558,6 +558,7 @@ hr {
     .header-right {
         margin-top: .5rem;
         margin-right: auto;
+        text-align: center;
     }
 
     .announcement {
