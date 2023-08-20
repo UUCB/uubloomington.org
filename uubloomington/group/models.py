@@ -82,7 +82,8 @@ class GroupPage(Page):
             group_type = planningcenter.get(f'https://api.planningcenteronline.com/groups/v2/group_types/{group_info["data"]["relationships"]["group_type"]["data"]["id"]}')
             self.group_info = pickle.dumps(group_info)
             self.group_type = pickle.dumps(group_type)
-            self.save()
+            if not request.is_preview:
+                self.save()
         else:
             group_info = pickle.loads(self.group_info)
             group_type = pickle.loads(self.group_type)
