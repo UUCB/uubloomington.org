@@ -1,4 +1,4 @@
-from .models import Issue, Newsletter
+from .models import Issue
 from core.models import Post
 from django.utils import timezone
 from django.shortcuts import HttpResponseRedirect, reverse

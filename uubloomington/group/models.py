@@ -4,11 +4,9 @@ import pypco
 from django.db import models
 
 from django.conf import settings
-from modelcluster.fields import ParentalKey
-from wagtail.models import Page, Orderable
+from wagtail.models import Page
 from wagtail.fields import RichTextField
-from django.db.models import CharField
-from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel
+from wagtail.admin.panels import FieldPanel
 from django.utils.text import slugify
 from django.utils import timezone
 

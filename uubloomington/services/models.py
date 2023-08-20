@@ -8,7 +8,7 @@ from django.db.models.signals import post_save
 from django.utils import timezone
 
 from modelcluster.fields import ParentalKey
-from wagtail.models import Page, Orderable, Site
+from wagtail.models import Page, Orderable
 from wagtail.fields import RichTextField, StreamField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel
 from wagtail.images.models import Image

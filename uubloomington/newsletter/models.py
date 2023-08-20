@@ -5,7 +5,7 @@ from wagtail.admin.views.pages.create import CreateView
 from wagtail import hooks
 from wagtail import blocks
 from wagtail.embeds.blocks import EmbedBlock
-from core.blocks import ReadMoreTagBlock, ShowFeaturedImageBlock, PageFeatureBlock, ExpandableListItemBlock, AutoIndexBlock, IndexBlock, BadgeAreaBlock, BadgeBlock, AnchorBlock
+from core.blocks import ReadMoreTagBlock, ShowFeaturedImageBlock, PageFeatureBlock, ExpandableListItemBlock, IndexBlock, BadgeAreaBlock, BadgeBlock, AnchorBlock
 from core.models import StandardBlockPage
 from .blocks import ArticleBlock, TableOfContentsBlock
 
