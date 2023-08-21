@@ -71,10 +71,12 @@ class GroupPage(Page):
     def get_context(self, request, *args, **kwargs):
         site_settings = SiteWideSettings.load()
         context = super().get_context(request)
-        if self.last_fetched < (
+        if (self.last_fetched < (
             timezone.now()
             - datetime.timedelta(minutes=site_settings.refresh_from_planningcenter_every)
-        ) or request.GET.get('refresh') == "true":
+        )
+                or request.GET.get('refresh') == "true")\
+                or request.is_preview:
             planningcenter = pypco.PCO(settings.PLANNING_CENTER_APPLICATION_ID, settings.PLANNING_CENTER_SECRET)
             group_info = planningcenter.get(f'https://api.planningcenteronline.com/groups/v2/groups/{self.planning_center_group_id}')
             group_type = planningcenter.get(f'https://api.planningcenteronline.com/groups/v2/group_types/{group_info["data"]["relationships"]["group_type"]["data"]["id"]}')
