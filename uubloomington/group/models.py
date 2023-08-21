@@ -74,7 +74,7 @@ class GroupPage(Page):
         if self.last_fetched < (
             timezone.now()
             - datetime.timedelta(minutes=site_settings.refresh_from_planningcenter_every)
-        ):
+        ) or request.GET.get('refresh') == "true":
             planningcenter = pypco.PCO(settings.PLANNING_CENTER_APPLICATION_ID, settings.PLANNING_CENTER_SECRET)
             group_info = planningcenter.get(f'https://api.planningcenteronline.com/groups/v2/groups/{self.planning_center_group_id}')
             group_type = planningcenter.get(f'https://api.planningcenteronline.com/groups/v2/group_types/{group_info["data"]["relationships"]["group_type"]["data"]["id"]}')
@@ -86,6 +86,8 @@ class GroupPage(Page):
         else:
             group_info = pickle.loads(self.group_info)
             group_type = pickle.loads(self.group_type)
+        if request.user.has_perm("wagtailadmin.access_admin"):
+            context['refresh_from_planningcenter_link'] = True
         context['group'] = group_info
         context['group_title'] = group_info['data']['attributes']['name']
         context['group_body'] = group_info['data']['attributes']['description']

@@ -29,5 +29,8 @@
                 </div>
             {% endfor %}
         {% endif %}
+        {% if refresh_from_planningcenter_link %}
+            <a href="?refresh=true">Refresh from Planning Center</a>
+        {% endif %}
     </div>
 {% endblock content %}
