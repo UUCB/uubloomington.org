@@ -172,7 +172,6 @@ class OrderOfService(Page):
         return f'{self.time.strftime("%I:%M %p")}'
 
     def get_template(self, request, *args, **kwargs):
-        print(request.GET)
         if request.GET.get("print") == 'true':
             return 'services/order_of_service_print.html'
         return 'services/order_of_service.html'
