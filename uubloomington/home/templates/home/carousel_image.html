@@ -18,7 +18,7 @@
         {% endif %}
     </div>
     <span class="carousel-buttons" id="carousel-buttons" hx-swap-oob="true">
-        <button id="carousel-previous" _="on click set <.carousel-image/>'s @hx-get to '{% url 'previous-carousel-image' carousel_image.pk %}' then call htmx.process(document.body) then send changeImage to <.carousel-image/>">{% icon 'chevron-left' width='60' height='60' %}</button>
-        <button id="carousel-next" _="on click send changeImage to <.carousel-image/>">{% icon 'chevron-right' width='60' height='60' %}</button>
+        <button id="carousel-previous" _="on click set <.carousel-image/>'s @hx-get to '{% url 'previous-carousel-image' carousel_image.pk %}' then call htmx.process(document.body) then send changeImage to <.carousel-image/>" aria-label="Previous Carousel Image">{% icon 'chevron-left' width='60' height='60' %}</button>
+        <button id="carousel-next" _="on click send changeImage to <.carousel-image/>" aria-label="Next Carousel Image">{% icon 'chevron-right' width='60' height='60' %}</button>
     </span>
 </div>
