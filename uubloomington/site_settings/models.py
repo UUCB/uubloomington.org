@@ -70,27 +70,17 @@ class SiteWideSettings(BaseGenericSetting):
 @register_setting
 class FooterSettings(BaseGenericSetting):
     """Footer Content Settings"""
-    minister_feature_heading = models.CharField(max_length=50)
-    minister_feature = models.OneToOneField(
-        to='core.PageWithPosts',
-        on_delete=models.SET_NULL,
+    copyright_notice = models.CharField(
+        max_length=70,
+        blank=True,
+        null=True,
+        help_text='Copyright Notice - displayed in footer'
+    )
+    content = StreamField(
+        [
+            ('footer_text', RichTextBlock()),
+        ],
+        use_json_field=True,
         null=True,
         blank=True,
     )
-    additional_content = StreamField(
-        [
-            ('text', RichTextBlock()),
-            ('image', ImageChooserBlock()),
-        ],
-        max_num=3,
-        use_json_field=True,
-        null=True,
-    )
-
-    panels = [
-        MultiFieldPanel([
-            FieldPanel('minister_feature_heading'),
-            FieldPanel('minister_feature'),
-        ], heading='Minister Feature'),
-        FieldPanel("additional_content"),
-    ]

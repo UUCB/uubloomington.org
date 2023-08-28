@@ -779,14 +779,9 @@ footer {
     margin: auto;
     background: #005000;
     color: white;
-    display: flex;
+    display: grid;
     /*grid-template-columns: 1.5fr repeat(4, 1fr);*/
     gap: 1.5rem;
-}
-
-footer > :last-child {
-    margin-right: 1rem;
-    margin-left: auto;
 }
 
 footer a:link {
@@ -817,6 +812,21 @@ footer .block-image img {
     max-width: 100%;
     height: auto;
     max-height: 20rem;
+}
+
+footer > .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-inline: auto;
+    text-align: center;
+}
+
+.footer-content > * {
+    margin-inline: auto;
+}
+
+footer > .footer-content > * {
 }
 
 .minister-feature {

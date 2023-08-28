@@ -120,20 +120,15 @@
             {% block content %}{% endblock %}
         </div>
         <footer>
-            <span>Copyright 2023 Unitarian Universalist Church of Bloomington</span>
-            <span>Powered by <a href="https://wagtail.org">Wagtail</a></span>
-{#            <div class="minister-feature">#}
-{#                <span _="on load remove <.minister-feature > span > :not(p:first-of-type):not(img):not(h3):not(h4)/>">#}
-{#                    {% image settings.site_settings.FooterSettings.minister_feature.featured_image fill-100x100 class="right" %}#}
-{#                    <h3>{{ settings.site_settings.FooterSettings.minister_feature_heading }}</h3>#}
-{##}
-{#                    <h4>{{ settings.site_settings.FooterSettings.minister_feature.title }}</h4>#}
-{#                    {{ settings.site_settings.FooterSettings.minister_feature.body|richtext }}#}
-{#                </span>#}
-{##}
-{#                <a href="{{ settings.site_settings.FooterSettings.minister_feature.url }}">Read More</a>#}
-{#            </div>#}
-{#            {% include_block settings.site_settings.FooterSettings.additional_content %}#}
+            <span class="footer-content">
+                {% include_block settings.site_settings.FooterSettings.content %}
+            </span>
+            <span class="footer-content">
+                {% if settings.site_settings.FooterSettings.copyright_notice  %}
+                    <span>{{ settings.site_settings.FooterSettings.copyright_notice }}</span>
+                {% endif %}
+                <span>Powered by <a href="https://wagtail.org">Wagtail</a></span>
+            </span>
         </footer>
         {% block extra_js %}
         {# Override this in templates to add extra javascript #}
