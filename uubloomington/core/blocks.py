@@ -1,6 +1,8 @@
 from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.documents.models import Document
+from services.models import OrderOfService
+from django.utils import timezone
 
 
 class ReadMoreTagBlock(blocks.StaticBlock):
@@ -95,3 +97,21 @@ class AnchorBlock(blocks.StructBlock):
 
     class Meta:
         template = 'core/anchor_block.html'
+
+
+class UpcomingServiceBlock(blocks.StaticBlock):
+    class Meta:
+        template = 'core/upcoming_service_block.html'
+
+    def get_context(self, *args, **kwargs):
+        print('hi! getting context :)')
+        context = super(UpcomingServiceBlock, self).get_context(*args, **kwargs)
+        next_oos = (
+            OrderOfService.objects.filter(date__gte=timezone.now())
+            .order_by('date')
+            .first()
+        )
+        if next_oos:
+            context['next_service'] = next_oos.service.specific
+            context['next_oos'] = next_oos
+        return context
