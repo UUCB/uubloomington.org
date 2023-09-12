@@ -158,6 +158,7 @@ class OrderOfService(Page):
         FieldPanel("program"),
         FieldPanel("cover_page"),
         FieldPanel("back_page"),
+        FieldPanel("date"),
     ]
 
     api_fields = [
@@ -175,6 +176,20 @@ class OrderOfService(Page):
         if request.GET.get("print") == 'true':
             return 'services/order_of_service_print.html'
         return 'services/order_of_service.html'
+
+    def save_revision(self, *args, **kwargs):
+        if self.pk:
+            cls = self.__class__
+            old = cls.objects.get(pk=self.pk)
+            if old.date != self.date:
+                self.title = f"Order of Service for {self.date}"
+                service_title = self.service.title
+                index = service_title.find(':')
+                self.service.title = f'{self.get_readable_date()}{service_title[index:]}'
+                service = self.service.save_revision()
+                if self.service.live:
+                    self.service.publish(service)
+        return super(OrderOfService, self).save_revision(*args, **kwargs)
 
 
 @receiver(post_save, sender=ServicePage)
