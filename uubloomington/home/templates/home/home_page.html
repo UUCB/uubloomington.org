@@ -18,7 +18,7 @@
         {% include "home/carousel_image.html" with carousel_image=page.get_carousel_image %}
         {% endif %}
         <div class="card upcoming-service">
-            {% if next_service.order_of_service.is_on_sunday %}
+            {% if next_service.get_children.first.specific.is_on_sunday %}
                 <h2>This Sunday's Service</h2>
             {% else %}
                 <h2>Upcoming Service</h2>
