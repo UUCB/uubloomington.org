@@ -9,4 +9,15 @@
 .archive {
     grid-column: span 2;
     min-height: 40dvh;
+    margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 60rem) {
+    #content {
+        grid-template-columns: 1fr;
+    }
+
+    .archive {
+        grid-column: unset;
+    }
 }
