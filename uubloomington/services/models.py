@@ -166,6 +166,12 @@ class OrderOfService(Page):
         APIField('date'),
     ]
 
+    def is_on_sunday(self):
+        if self.date.strftime("%A") == 'Sunday':
+            return True
+        else:
+            return False
+
     def get_readable_date(self):
         return f'{self.date.strftime("%B %d, %Y")}'
 

@@ -11,7 +11,11 @@
 
 {% block content %}
     <div class="card upcoming-service">
-        <h2>This Sunday's Service</h2>
+        {% if next_service.order_of_service.is_on_sunday %}
+            <h2>This Sunday's Service</h2>
+        {% else %}
+            <h2>Upcoming Service</h2>
+        {% endif %}
         <h3>{{ next_service.title }}</h3>
         <span class="service-description">
             {% image next_service.featured_image fill-200x200 class="right" %}
