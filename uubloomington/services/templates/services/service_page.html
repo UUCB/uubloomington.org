@@ -28,7 +28,7 @@
         {% if page.video_archive_link %}
             <div>View the video archive of this service here:</div>
             {% embed page.video_archive_link %}
-    `   {% else %}
+        {% else %}
             <div>To join this service over the internet, please see <a href="{{ settings.site_settings.SiteWideSettings.internal_livestream_page.url }}">our live stream page</a>.</div>
         {% endif %}
         {% if page.get_children.first.live %}
