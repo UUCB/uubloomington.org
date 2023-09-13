@@ -1,7 +1,7 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
 {% load static %}
-{% if next_service.order_of_service.specific.is_on_sunday %}
+{% if next_service.get_children.first.specific.is_on_sunday %}
     <h2>This Sunday's Service</h2>
 {% else %}
     <h2>Upcoming Service</h2>
