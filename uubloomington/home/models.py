@@ -105,7 +105,7 @@ class HomePage(Page):
     )
     content_panels = Page.content_panels + [
         MultiFieldPanel(
-            [InlinePanel("carousel_images", max_num=5, min_num=1, label="Image")],
+            [InlinePanel("carousel_images", min_num=1, label="Image")],
             heading="Carousel Images",
         ),
         MultiFieldPanel(
