@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     "wagtailmenus",
     "wagtail.contrib.modeladmin",
     "wagtail.api.v2",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
