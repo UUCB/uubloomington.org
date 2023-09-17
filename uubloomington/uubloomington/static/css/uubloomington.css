@@ -875,6 +875,10 @@ footer > .footer-content > * {
     margin-bottom: 0.5rem;
 }
 
+.sidebar ul li ul > :first-child {
+    margin-top: 0.5rem;
+}
+
 .sidebar .visual-h4 {
     margin-inline: auto;
     margin-top: 0;
