@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     "wagtail.contrib.modeladmin",
     "wagtail.api.v2",
     "rest_framework",
+    "wagtailaudioembed",
 ]
 
 MIDDLEWARE = [
@@ -195,5 +196,8 @@ WAGTAILEMBEDS_FINDERS = [
     },
     {
         'class': 'wagtail.embeds.finders.oembed',
+    },
+    {
+        "class": "wagtailaudioembed.embed.AudioEmbedFinder",
     },
 ]
