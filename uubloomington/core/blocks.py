@@ -115,3 +115,11 @@ class UpcomingServiceBlock(blocks.StaticBlock):
             context['next_service'] = next_oos.service.specific
             context['next_oos'] = next_oos
         return context
+
+
+class ColumnBlock(blocks.StreamBlock):
+    rich_text = blocks.RichTextBlock()
+
+
+class MultiColumnBlock(blocks.StreamBlock):
+    column = ColumnBlock(max_num=3)

@@ -404,6 +404,14 @@ hr {
     border: 2px solid #006b1b;
 }
 
+.block-multi_column {
+    display: flex;
+}
+
+.block-column {
+    flex-grow: 1;
+}
+
 @media screen and (max-width: 63rem) {
     /*Responsive Header*/
     header {
@@ -467,6 +475,15 @@ hr {
 }
 
 @media screen and (max-width: 63rem) {
+
+    .block-multi_column {
+        flex-direction: column;
+    }
+
+    .block-column {
+        flex-grow: unset;
+    }
+
     /*Responsive Navbar*/
     nav > .nav {
         flex-direction: column;
