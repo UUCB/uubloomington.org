@@ -1222,5 +1222,5 @@ article.search-page .page-buttons {
 
 .block-anchor {
     margin-top: calc(var(--standard-gap) * -1);
-    display: none;
+    display: inline;
 }
