@@ -93,6 +93,7 @@ class ServicePage(Page):
     featured_image = models.ForeignKey(to=Image, on_delete=models.SET_NULL, null=True, blank=True)
     # order_of_service_link = models.CharField(max_length=900, blank=True, null=True)
     video_archive_link = models.CharField(max_length=400, blank=True, null=True)
+    show_video_embed = models.BooleanField(default=True)
 
     parent_page_types = ['ServicesHomePage']
 
@@ -105,8 +106,15 @@ class ServicePage(Page):
             heading="Participants"
         ),
         FieldPanel('video_archive_link'),
+        FieldPanel('show_video_embed'),
         # FieldPanel('order_of_service_link'),
     ]
+
+    def service_in_future(self):
+        if timezone.now().date() <= self.get_children().first().specific.date:
+            return True
+        else:
+            return False
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request)
