@@ -1,0 +1,16 @@
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+{% load static %}
+{% if next_oos.live %}
+    <div class="block-page_feature order-of-service">
+        <img src="{% static 'chalice-logo-black.svg' %}">
+        <h3>Order of Service</h3>
+        Our order of service is available both here on our website and in print.
+        <div class="program">
+            {% include_block next_oos.program %}
+            <a href="" class="show" _="on click add .expand to closest <.order-of-service/> then halt">Show Order of Service</a>
+            <a href="" class="hide" _="on click remove .expand from closest <.order-of-service/> then halt">Hide Order of Service</a>
+{#            <a href="{{ page.get_children.first.url }}?print=true">View Printable Version</a>#}
+        </div>
+    </div>
+{% endif %}

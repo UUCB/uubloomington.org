@@ -4,7 +4,7 @@ from wagtail.fields import RichTextField, StreamField
 from wagtail.admin.panels import FieldPanel, PageChooserPanel
 from wagtail import blocks
 from wagtail.embeds.blocks import EmbedBlock
-from .blocks import ReadMoreTagBlock, ShowFeaturedImageBlock, PageFeatureBlock, ExpandableListItemBlock, AutoIndexBlock, IndexBlock, DocumentListBlock, BadgeAreaBlock, BadgeBlock, AnchorBlock, UpcomingServiceBlock, MultiColumnBlock
+from .blocks import ReadMoreTagBlock, ShowFeaturedImageBlock, PageFeatureBlock, ExpandableListItemBlock, AutoIndexBlock, IndexBlock, DocumentListBlock, BadgeAreaBlock, BadgeBlock, AnchorBlock, UpcomingServiceBlock, MultiColumnBlock, UpcomingOrderOfServiceBlock
 
 
 class Post(Page):
@@ -92,6 +92,7 @@ class StandardBlockPage(Page):
         ('badge_area', BadgeAreaBlock(child_block=BadgeBlock())),
         ('anchor', AnchorBlock()),
         ('upcoming_service', UpcomingServiceBlock()),
+        ('upcoming_oos', UpcomingOrderOfServiceBlock()),
         ('multi_column', MultiColumnBlock()),
     ], use_json_field=True, null=True)
 
