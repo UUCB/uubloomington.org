@@ -71,7 +71,8 @@ class Issue(Page):
         ('table_of_contents', TableOfContentsBlock()),
     ], use_json_field=True, null=True, blank=True)
     content_panels = Page.content_panels + [
-        FieldPanel('body')
+        FieldPanel('featured_image'),
+        FieldPanel('body'),
     ]
     parent_page_types = [
         'newsletter.Newsletter',
