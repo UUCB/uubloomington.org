@@ -1224,3 +1224,7 @@ article.search-page .page-buttons {
     margin-top: calc(var(--standard-gap) * -1);
     display: inline;
 }
+
+.hidden {
+    display: none;
+}

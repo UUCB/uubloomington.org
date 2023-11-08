@@ -24,6 +24,7 @@ class VimeoChatEmbedFinder(EmbedFinder):
 
         This is the part that may make requests to external APIs.
         """
+        # TODO: Set chat visibility with extra param taken through the URL field. This should be added when this embed's behavior is documented.
         return {
             'title': "Vimeo Chat",
             'author_name': "UU Church of Bloomington",
@@ -32,5 +33,5 @@ class VimeoChatEmbedFinder(EmbedFinder):
             'thumbnail_url': "URL to thumbnail image",
             'width': 360,
             'height': 640,
-            'html': f'<iframe src="{url}" width="400" height="600" frameborder="0" class="vimeo-chat"></iframe>',
+            'html': f'<a href="javascript:void(0)" _="on click toggle .hidden on <#vimeo-chat/> then halt">Show/Hide Livestream Chat</a><iframe class="hidden" id="vimeo-chat" src="{url}" width="400" height="600" frameborder="0" class="vimeo-chat"></iframe>',
         }
