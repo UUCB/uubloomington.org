@@ -104,7 +104,6 @@ class UpcomingServiceBlock(blocks.StaticBlock):
         template = 'core/upcoming_service_block.html'
 
     def get_context(self, *args, **kwargs):
-        print('hi! getting context :)')
         context = super(UpcomingServiceBlock, self).get_context(*args, **kwargs)
         next_oos = (
             OrderOfService.objects.filter(date__gte=timezone.now())
