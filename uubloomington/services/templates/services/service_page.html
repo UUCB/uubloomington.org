@@ -21,7 +21,7 @@
     </div>
     <article>
         <h1>{{ page.title }}</h1>
-        <div>
+        <div class="block-rich_text"> <!--This isn't actually a StreamField block, but we need the same styling.-->
             {% image page.featured_image fill-300x300 class="right" %}
             {{ page.body|richtext }}
         </div>
