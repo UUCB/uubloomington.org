@@ -1,7 +1,6 @@
 import datetime
 import random
 import pickle
-import zoneinfo
 
 import pypco
 from django.db import models
@@ -19,6 +18,7 @@ from wagtail.fields import RichTextField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel
 
 from services.models import OrderOfService
+
 
 class HomePageCarouselImages(Orderable):
     page = ParentalKey("home.HomePage", related_name="carousel_images")
