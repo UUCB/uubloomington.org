@@ -57,19 +57,28 @@ class Issue(Page):
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    body = StreamField([
-        ('rich_text', blocks.RichTextBlock()),
-        ('read_more', ReadMoreTagBlock()),
-        ('show_featured_image', ShowFeaturedImageBlock()),
-        ('page_feature', PageFeatureBlock()),
-        ('expandable_list', blocks.ListBlock(ExpandableListItemBlock)),
-        ('embed', EmbedBlock(max_height=900)),
-        ('selectable_index', IndexBlock()),
-        ('badge_area', BadgeAreaBlock(child_block=BadgeBlock())),
-        ('anchor', AnchorBlock()),
-        ('article', ArticleBlock()),
-        ('table_of_contents', TableOfContentsBlock()),
-    ], use_json_field=True, null=True, blank=True)
+    body = StreamField(
+        [
+            ('rich_text', blocks.RichTextBlock()),
+            ('read_more', ReadMoreTagBlock()),
+            ('show_featured_image', ShowFeaturedImageBlock()),
+            ('page_feature', PageFeatureBlock()),
+            ('expandable_list', blocks.ListBlock(ExpandableListItemBlock)),
+            ('embed', EmbedBlock(max_height=900)),
+            ('selectable_index', IndexBlock()),
+            ('badge_area', BadgeAreaBlock(child_block=BadgeBlock())),
+            ('anchor', AnchorBlock()),
+            ('article', ArticleBlock()),
+            ('table_of_contents', TableOfContentsBlock()),
+        ],
+        default=[
+            ('show_featured_image',None),
+            ('table_of_contents',None),
+        ],
+        use_json_field=True,
+        null=True,
+        blank=True,
+    )
     content_panels = Page.content_panels + [
         FieldPanel('featured_image'),
         FieldPanel('body'),
