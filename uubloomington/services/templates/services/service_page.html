@@ -26,10 +26,10 @@
             {{ page.body|richtext }}
         </div>
         {% if page.video_archive_link and page.show_video_embed %}
-            <div>View the video archive of this service here:</div>
+            <div class="block-rich_text"><p>View the video archive of this service here:</p></div>
             {% embed page.video_archive_link %}
         {% elif page.service_in_future %}
-            <div>To join this service over the internet, please see <a href="{{ settings.site_settings.SiteWideSettings.internal_livestream_page.url }}">our live stream page</a>.</div>
+            <div class="block-rich_text"><p>To join this service over the internet, please see <a href="{{ settings.site_settings.SiteWideSettings.internal_livestream_page.url }}">our live stream page</a>.</p></div>
         {% endif %}
         {% if page.get_children.first.live %}
             <div class="block-page_feature order-of-service">
