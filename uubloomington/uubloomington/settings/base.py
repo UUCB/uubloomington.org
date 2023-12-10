@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "wagtailmenus",
-    "wagtail.contrib.modeladmin",
+    "wagtail_modeladmin",
     "wagtail.api.v2",
     "rest_framework",
     "wagtailaudioembed",
