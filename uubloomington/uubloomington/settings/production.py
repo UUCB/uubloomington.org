@@ -1,6 +1,7 @@
 from .base import *
 import os
 import json
+import sentry_sdk
 
 DEBUG = False
 with open(os.getenv("UUBLOOMINGTON_CONFIG_PATH")) as config_file:
@@ -30,3 +31,14 @@ try:
     from .local import *
 except ImportError:
     pass
+
+sentry_sdk.init(
+    dsn=loaded_configuration['sentry_dsn'],
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    traces_sample_rate=1.0,
+    # Set profiles_sample_rate to 1.0 to profile 100%
+    # of sampled transactions.
+    # We recommend adjusting this value in production.
+    profiles_sample_rate=1.0,
+)
