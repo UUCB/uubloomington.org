@@ -51,23 +51,47 @@
     grid-area: stack;
     display: flex;
     width: 100%;
+    z-index: 1000;
 }
 
+.carousel-buttons > button:focus,
 .carousel-buttons > button:hover {
     transition: all 0.5s;
     opacity: 100%;
     color: white;
 }
 
+.carousel-buttons > button::before {
+    background-image: linear-gradient(90deg, #006b1b00 0%, #006b1bbb 100%);
+    content: '';
+    inset: 0;
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.5s;
+    border-radius: var(--standard-radius);
+}
+
+.carousel-buttons > :first-child::before {
+    background-image: linear-gradient(90deg, #006b1bbb 0%, #006b1b00 100%);
+}
+
+.carousel-buttons > button:focus::before,
+.carousel-buttons > button:hover::before {
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
 .carousel-buttons > button {
     width: 40%;
-    background: transparent;
+    background: linear-gradient(90deg, #006b1b00 0%, #006b1b00 100%);
     border: none;
-    border-radius: 1rem;
+    border-radius: var(--standard-radius);
     transition: all 0.5s;
     color: white;
     opacity: 50%;
     display: flex;
+    position: relative;
 }
 
 .carousel-buttons > button > svg {
