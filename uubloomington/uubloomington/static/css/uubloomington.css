@@ -174,7 +174,7 @@ p.right-aligned {
 }
 /*End custom text-align blocks*/
 
-#content {
+main {
     max-width: var(--page-width);
     width: 100%;
     margin: auto;
@@ -184,11 +184,11 @@ p.right-aligned {
     background: white;
 }
 
-#content > :only-child {
+main > :only-child {
     grid-column: span 2
 }
 
-body:not(.template-homepage) > #content {
+body:not(.template-homepage) > main {
     margin-top: 1rem;
 }
 
@@ -594,11 +594,11 @@ hr {
     }
     /*End Center all rich text images on mobile*/
     /*Move sidebar to bottom on mobile*/
-    #content {
+    main {
         grid-template-columns: unset;
     }
 
-    #content .content {
+    main .content {
         order: -1;
     }
 

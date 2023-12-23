@@ -116,9 +116,9 @@
             </div>
         </header>
     <nav>{% main_menu %}</nav>
-        <div id="content">
+        <main>
             {% block content %}{% endblock %}
-        </div>
+        </main>
         <footer>
             <span class="footer-content">
                 {% include_block settings.site_settings.FooterSettings.content %}
