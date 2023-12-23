@@ -15,6 +15,23 @@
     --standard-border-thickness: 3px; /*TODO: Implement this everywhere*/
 }
 
+.skiplink {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+}
+
+.skiplink:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    background: red;
+    padding: 0.5rem;
+    color: white;
+}
+
 body {
     background: #ffffff;
     align-content: center;

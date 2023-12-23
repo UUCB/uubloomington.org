@@ -38,6 +38,7 @@
 
     <body class="{% block body_class %}{% endblock %}">
     {% wagtailuserbar %}
+    <a href="#main" class="skiplink">Skip to main content</a>
         <header>
             <div class="header-left">
                 <span class="site-logo">
@@ -116,7 +117,7 @@
             </div>
         </header>
     <nav>{% main_menu %}</nav>
-        <main>
+        <main id="main">
             {% block content %}{% endblock %}
         </main>
         <footer>
