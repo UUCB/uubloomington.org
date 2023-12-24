@@ -12,7 +12,7 @@ class VimeoChatEmbedFinder(EmbedFinder):
 
         This should not have any side effects (no requests to external servers)
         """
-        if re.search("^https://vimeo.com/event.*/chat/interaction/$", url):
+        if re.search("^https://vimeo.com/event.*/chat/interaction/.*$", url):
             return True
         else:
             return False
@@ -24,7 +24,18 @@ class VimeoChatEmbedFinder(EmbedFinder):
 
         This is the part that may make requests to external APIs.
         """
-        # TODO: Set chat visibility with extra param taken through the URL field. This should be added when this embed's behavior is documented.
+        print(url)
+        try:
+            options = url.split('||')[1]
+        except IndexError:
+            options = None
+
+        css_class = "hidden"
+
+        if options is not None:
+            if "show" in options:
+                css_class = ""
+        # TODO: Document ||show option here
         return {
             'title': "Vimeo Chat",
             'author_name': "UU Church of Bloomington",
@@ -33,5 +44,5 @@ class VimeoChatEmbedFinder(EmbedFinder):
             'thumbnail_url': "URL to thumbnail image",
             'width': 360,
             'height': 640,
-            'html': f'<a href="javascript:void(0)" _="on click toggle .hidden on <#vimeo-chat/> then halt">Show/Hide Livestream Chat</a><iframe class="hidden" id="vimeo-chat" src="{url}" width="400" height="600" frameborder="0" class="vimeo-chat"></iframe>',
+            'html': f'<a href="javascript:void(0)" _="on click toggle .hidden on <#vimeo-chat/> then halt">Show/Hide Livestream Chat</a><iframe class="{css_class}" id="vimeo-chat" src="{url.split("||")[0]}" width="400" height="600" frameborder="0" class="vimeo-chat"></iframe>',
         }
