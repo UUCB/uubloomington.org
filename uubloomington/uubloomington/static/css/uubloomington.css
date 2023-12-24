@@ -674,8 +674,7 @@ hr {
 }
 
 .card:not(.upcoming-service):not(.badges) > :not(img) {
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin-inline: 1rem;
 }
 
 .card > img {
