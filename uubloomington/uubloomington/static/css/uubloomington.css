@@ -673,7 +673,7 @@ hr {
     overflow: clip;
 }
 
-.card:not(.upcoming-service):not(.badges) > :not(img):not(h2) {
+.card:not(.upcoming-service):not(.badges) > :not(img) {
     margin-left: 1rem;
     margin-right: 1rem;
 }
@@ -685,7 +685,6 @@ hr {
 }
 
 .card h2 {
-    width: 100%;
     text-align: center;
     margin-top: 0.5rem;
     font-variation-settings: "wght" 450;
