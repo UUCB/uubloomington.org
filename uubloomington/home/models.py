@@ -185,7 +185,6 @@ class HomePage(Page):
                 if event['data']['attributes']['visible_in_church_center']:
                     if len(output_events) >= self.display_next_events:
                         break
-                    print(event_instance)
                     output_events.append(Event(
                         name=event['data']['attributes']['name'],
                         start_time=timezone.localtime(times[0]),
