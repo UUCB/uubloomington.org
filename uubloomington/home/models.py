@@ -180,9 +180,12 @@ class HomePage(Page):
                     event_instance['relationships']['event']['links']['related']
                 )
                 times = self.get_start_and_end(pco, f"{event_instance['links']['self']}/event_times")
+                if not times:
+                    continue  # Don't throw a 500 error if the event is visible on Church Center but has no public times
                 if event['data']['attributes']['visible_in_church_center']:
                     if len(output_events) >= self.display_next_events:
                         break
+                    print(event_instance)
                     output_events.append(Event(
                         name=event['data']['attributes']['name'],
                         start_time=timezone.localtime(times[0]),
