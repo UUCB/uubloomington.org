@@ -144,26 +144,6 @@ class HomePage(Page):
             context['next_service'] = next_oos.service.specific
         return context
 
-    def get_start_and_end(self, pco, times_url):
-        """
-        :param pco:
-        Instance of pypco.PCO to use for API requests
-        :param times_url:
-        URL to the event_times endpoint for an event_instance in the Planning Center API
-        :return:
-        Two-item list of start time and end time
-        """
-        event_times = pco.get(times_url)
-        for time in event_times['data']:
-            if time['attributes']['visible_on_kiosks']:
-                times = (
-                    parse_datetime(time['attributes']['starts_at']),
-                    parse_datetime(time['attributes']['ends_at']),
-                )
-            else:
-                times = None
-            return times
-
     def get_upcoming_events(self, request):
         site_settings = SiteWideSettings.load()
         if request.GET.get("refreshevents") == 'true':
@@ -179,16 +159,23 @@ class HomePage(Page):
                 event = pco.get(
                     event_instance['relationships']['event']['links']['related']
                 )
-                times = self.get_start_and_end(pco, f"{event_instance['links']['self']}/event_times")
-                if not times:
-                    continue  # Don't throw a 500 error if the event is visible on Church Center but has no public times
+                if event_instance['attributes']['all_day_event']:
+                    continue  # Ignore all day events for now, as we currently have no good way to display them
                 if event['data']['attributes']['visible_in_church_center']:
                     if len(output_events) >= self.display_next_events:
                         break
                     output_events.append(Event(
                         name=event['data']['attributes']['name'],
-                        start_time=timezone.localtime(times[0]),
-                        end_time=timezone.localtime(times[1]),
+                        start_time=timezone.localtime(
+                            parse_datetime(
+                                event_instance['attributes']['published_starts_at']
+                            )
+                        ),
+                        end_time=timezone.localtime(
+                            parse_datetime(
+                                event_instance['attributes']['published_ends_at']
+                            )
+                        ),
                         link=f'https://uucb.churchcenter.com/calendar/event/{event_instance["id"]}'
                     ))
             self.upcoming_events = pickle.dumps(output_events)
