@@ -49,7 +49,7 @@ class GroupsHomePage(Page):
 class GroupPage(Page):
     planning_center_group_id = models.CharField(max_length=20)
     show_posts = models.BooleanField(default=True)
-    summary = RichTextField(null=True, blank=True)
+    summary = RichTextField(null=False, blank=True, default='')
     featured_image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
