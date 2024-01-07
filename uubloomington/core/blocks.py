@@ -46,8 +46,11 @@ class PageFeatureBlock(blocks.PageChooserBlock):
 
     def get_context(self, value, parent_context = None):
         context = super(PageFeatureBlock, self).get_context(value)
-        if type(value.specific.body) == blocks.StreamValue:
-            context['body_is_streamfield'] = True
+        try:
+            if type(value.specific.body) == blocks.StreamValue:
+                context['body_is_streamfield'] = True
+        except AttributeError:
+            pass  # If the page has no body, it's still valid
         return context
 
 
