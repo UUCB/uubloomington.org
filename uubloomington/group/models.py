@@ -66,7 +66,6 @@ class GroupPage(Page):
         FieldPanel('featured_image'),
         FieldPanel('show_posts'),
     ]
-    body = models.BooleanField(default=False)  # TODO: Figure out why removing this totally breaks featuring group pages
 
     def get_context(self, request, *args, **kwargs):
         site_settings = SiteWideSettings.load()
