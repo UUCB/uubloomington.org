@@ -42,3 +42,10 @@ sentry_sdk.init(
     # We recommend adjusting this value in production.
     profiles_sample_rate=1.0,
 )
+
+DEFAULT_FROM_EMAIL = loaded_configuration['default_from_email']
+SERVER_EMAIL = loaded_configuration['server_from_email']
+
+ANYMAIL = {
+    "SENDGRID_API_KEY": loaded_configuration['sendgrid_api_key']
+}
