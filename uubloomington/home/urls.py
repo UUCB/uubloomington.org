@@ -13,4 +13,8 @@ urlpatterns = [
          kwargs={'mode': 'reverse'},
          name='previous-carousel-image'
          ),
+    path('refresh_events/<int:page_pk>',
+         views.refresh_events,
+         name='refresh_events',
+         ),
 ]
