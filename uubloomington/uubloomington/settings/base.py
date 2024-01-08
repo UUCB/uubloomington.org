@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     "wagtail.api.v2",
     "rest_framework",
     "wagtailaudioembed",
+    "anymail",
 ]
 
 MIDDLEWARE = [
@@ -201,3 +202,5 @@ WAGTAILEMBEDS_FINDERS = [
         "class": "wagtailaudioembed.embed.AudioEmbedFinder",
     },
 ]
+
+EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
