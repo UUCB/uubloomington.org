@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+{% load static %}
+
+{% block content %}
+    {% include 'core/sidebar_snippet.html' %}
+    <div class="content">
+        <article>
+        <h1>{{ page.title }} - Thank You!</h1>
+        {{ page.thank_you_text|richtext }}
+        </article>
+    </div>
+{% endblock %}
