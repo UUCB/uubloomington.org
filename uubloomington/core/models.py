@@ -119,9 +119,16 @@ class FormField(AbstractFormField):
 class FormPage(AbstractEmailForm):
     intro = RichTextField(blank=True)
     thank_you_text = RichTextField(blank=True)
-
+    featured_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
     content_panels = AbstractEmailForm.content_panels + [
         FormSubmissionsPanel(),
+        FieldPanel('featured_image'),
         FieldPanel('intro'),
         InlinePanel('form_fields', label="Form fields"),
         FieldPanel('thank_you_text'),
