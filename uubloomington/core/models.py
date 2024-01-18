@@ -5,6 +5,14 @@ from wagtail.admin.panels import FieldPanel, PageChooserPanel
 from wagtail import blocks
 from wagtail.embeds.blocks import EmbedBlock
 from .blocks import ReadMoreTagBlock, ShowFeaturedImageBlock, PageFeatureBlock, ExpandableListItemBlock, AutoIndexBlock, IndexBlock, DocumentListBlock, BadgeAreaBlock, BadgeBlock, AnchorBlock, UpcomingServiceBlock, MultiColumnBlock, UpcomingOrderOfServiceBlock
+from modelcluster.fields import ParentalKey
+from wagtail.admin.panels import (
+    FieldPanel, FieldRowPanel,
+    InlinePanel, MultiFieldPanel
+)
+from wagtail.fields import RichTextField
+from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
+from wagtail.contrib.forms.panels import FormSubmissionsPanel
 
 
 class Post(Page):
@@ -101,4 +109,34 @@ class StandardBlockPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('featured_image'),
         FieldPanel('body'),
+    ]
+
+
+class FormField(AbstractFormField):
+    page = ParentalKey('FormPage', on_delete=models.CASCADE, related_name='form_fields')
+
+
+class FormPage(AbstractEmailForm):
+    intro = RichTextField(blank=True)
+    thank_you_text = RichTextField(blank=True)
+    featured_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    content_panels = AbstractEmailForm.content_panels + [
+        # FormSubmissionsPanel(),  # Can't use this until wagtail 5.2.3 https://github.com/wagtail/wagtail/issues/11405
+        FieldPanel('featured_image'),
+        FieldPanel('intro'),
+        InlinePanel('form_fields', label="Form fields"),
+        FieldPanel('thank_you_text'),
+        MultiFieldPanel([
+            FieldRowPanel([
+                FieldPanel('from_address', classname="col6"),
+                FieldPanel('to_address', classname="col6"),
+            ]),
+            FieldPanel('subject'),
+        ], "Email"),
     ]

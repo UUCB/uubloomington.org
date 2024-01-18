@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'core/forms.css' %}">
+{% endblock %}
+
+{% block content %}
+    {% include 'core/sidebar_snippet.html' %}
+    <div class="content">
+        <article>
+        <h1>{{ page.title }}</h1>
+        {{ page.intro|richtext }}
+        <form action="{% pageurl page %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="card-action">Submit</button>
+        </form>
+        </article>
+    </div>
+{% endblock %}

@@ -11,6 +11,10 @@
     <div class="page-preview">
         {{ value.specific.summary|richtext }}
     </div>
+{% elif value.specific.intro or value.specific.intro == "" %}
+    <div class="page-preview">
+        {{ value.specific.intro|richtext }}
+    </div>
 {% elif value.specific.newsletter %}
     <div class="page-preview newsletter">
         <ul>
