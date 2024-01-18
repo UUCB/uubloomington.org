@@ -3,6 +3,10 @@
 {% load wagtailimages_tags %}
 {% load static %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'core/forms.css' %}">
+{% endblock %}
+
 {% block content %}
     {% include 'core/sidebar_snippet.html' %}
     <div class="content">

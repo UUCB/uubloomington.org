@@ -1,0 +1,45 @@
+form p {
+    margin-bottom: 1rem;
+}
+
+form p > label {
+    display: block;
+    font-variation-settings: "wght" 500;
+}
+
+/*form p > label:has(+input[type=checkbox]) {*/
+/*    display: inline;*/
+/*}*/
+
+.helptext {
+    display: block;
+    font-style: italic;
+}
+
+form p + div {
+    margin-top: -1rem;
+}
+
+input[type=text],
+input[type=email],
+input[type=url],
+input[type=number] {
+    background: #ededed;
+    border-top: none;
+    border-inline: none;
+    border-top-left-radius: 0.2rem;
+    border-top-right-radius: 0.2rem;
+    padding: 0.5rem;
+    border-bottom: var(--standard-border-thickness) solid var(--accent-color)
+}
+
+input[type=checkbox],
+input[type=radio] {
+    width: 1.5em;
+    height: 1.5em;
+    accent-color: var(--accent-color);
+}
+
+option:focus {
+    color: #000;
+}
