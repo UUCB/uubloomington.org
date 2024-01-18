@@ -27,7 +27,9 @@ def get_upcoming_events(count:int) -> bytes:
         )
         if event_instance['attributes']['all_day_event']:
             continue  # Ignore all day events for now, as we currently have no good way to display them
-        if event['data']['attributes']['visible_in_church_center']:
+        if event['data']['attributes']['visible_in_church_center']\
+                and event_instance['attributes']['published_starts_at']\
+                and event_instance['attributes']['published_ends_at']:
             if len(output_events) >= count:
                 break
             output_events.append(Event(
