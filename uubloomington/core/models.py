@@ -127,7 +127,7 @@ class FormPage(AbstractEmailForm):
         related_name="+",
     )
     content_panels = AbstractEmailForm.content_panels + [
-        FormSubmissionsPanel(),
+        # FormSubmissionsPanel(),  # Can't use this until wagtail 5.2.3 https://github.com/wagtail/wagtail/issues/11405
         FieldPanel('featured_image'),
         FieldPanel('intro'),
         InlinePanel('form_fields', label="Form fields"),
