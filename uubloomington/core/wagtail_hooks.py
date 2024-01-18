@@ -1,6 +1,8 @@
 import wagtail.admin.rich_text.editors.draftail.features as draftail_features
 from wagtail.admin.rich_text.converters.html_to_contentstate import BlockElementHandler
 from wagtail import hooks
+from django.utils.html import format_html_join
+from django.templatetags.static import static
 
 
 @hooks.register('register_rich_text_features')
@@ -46,3 +48,14 @@ def register_right_aligned_text_feature(features):
         'from_database_format': {'p[class=right-aligned]': BlockElementHandler(type_)},
         'to_database_format': {'block_map': {type_: {'element': 'p', 'props': {'class': 'right-aligned'}}}},
     })
+
+
+@hooks.register('insert_editor_js')
+def editor_js():
+    js_files = [
+        'js/_hyperscript.js',  # https://fireworks.js.org
+    ]
+    js_includes = format_html_join('\n', '<script src="{0}"></script>',
+                                   ((static(filename),) for filename in js_files)
+                                   )
+    return js_includes

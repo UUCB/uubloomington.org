@@ -1,5 +1,6 @@
 from django.db import models
-from wagtail.models import Page
+from django.forms.widgets import TextInput
+from wagtail.models import Page, Orderable
 from wagtail.fields import RichTextField, StreamField
 from wagtail.admin.panels import FieldPanel, PageChooserPanel
 from wagtail import blocks
@@ -13,6 +14,7 @@ from wagtail.admin.panels import (
 from wagtail.fields import RichTextField
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 from wagtail.contrib.forms.panels import FormSubmissionsPanel
+from .clusterable_extras import ClusterableAbstractFormField
 
 
 class Post(Page):
@@ -112,8 +114,24 @@ class StandardBlockPage(Page):
     ]
 
 
-class FormField(AbstractFormField):
+class FormField(ClusterableAbstractFormField):
     page = ParentalKey('FormPage', on_delete=models.CASCADE, related_name='form_fields')
+    panels = ClusterableAbstractFormField.panels + [
+        InlinePanel('field_conditions'),
+    ]
+
+
+class ClientsideFormFieldSelector(TextInput):
+    template_name = 'core/admin/clientside_form_selector.html'
+
+
+class FormCondition(Orderable):
+    field = ParentalKey(FormField, on_delete=models.CASCADE, related_name='field_conditions')
+    check_field = models.CharField(max_length=50, blank=False, null=True, widget=ClientsideFormFieldSelector)
+    panels = [
+        FieldPanel('field'),
+        FieldPanel('check_field'),
+    ]
 
 
 class FormPage(AbstractEmailForm):
@@ -127,7 +145,7 @@ class FormPage(AbstractEmailForm):
         related_name="+",
     )
     content_panels = AbstractEmailForm.content_panels + [
-        FormSubmissionsPanel(),
+        # FormSubmissionsPanel(),
         FieldPanel('featured_image'),
         FieldPanel('intro'),
         InlinePanel('form_fields', label="Form fields"),
