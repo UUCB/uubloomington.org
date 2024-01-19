@@ -202,7 +202,7 @@ main {
 }
 
 main > :only-child {
-    grid-column: span 2
+    grid-column: span 2;
 }
 
 body:not(.template-homepage) > main {
