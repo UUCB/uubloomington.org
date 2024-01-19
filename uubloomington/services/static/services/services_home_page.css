@@ -1,4 +1,4 @@
-#content {
+main {
     display: grid;
     gap: var(--standard-gap);
     padding: 1rem;
@@ -13,7 +13,7 @@
 }
 
 @media screen and (max-width: 60rem) {
-    #content {
+    main {
         grid-template-columns: 1fr;
     }
 
