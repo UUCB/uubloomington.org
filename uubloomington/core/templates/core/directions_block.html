@@ -1,0 +1,18 @@
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+<ol>
+    {% for step in value %}
+        <li class="{% if step.value.image %}has-image{% endif %}"}>
+            <span class="visual-h2">{{ step.value.title }}</span>
+            {% if step.value.image %}
+{#                <div class="image-container">#}
+{#                    {% image step.value.image max-1000x1000 %}#}
+{#                </div>#}
+                {% image step.value.image max-1000x1000 %}
+            {% endif %}
+            <div>
+                {% include_block step.value.body %}
+            </div>
+        </li>
+    {% endfor%}
+</ol>

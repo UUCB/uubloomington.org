@@ -431,6 +431,65 @@ hr {
     flex-grow: 1;
 }
 
+/*Directions List*/
+.block-directions ol {
+    list-style: none;
+    counter-reset: directions-counter 0;
+    display: grid;
+    gap: var(--standard-gap)
+}
+
+.block-directions ol > li {
+    counter-increment: directions-counter 1;
+}
+
+.block-directions ol > li.has-image {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    column-gap: var(--standard-gap)
+}
+
+.block-directions ol > li ol,
+.block-directions ol > li ul {
+    list-style: inside;
+}
+
+/*.block-directions ol > li.has-image > .image-container {*/
+/*    max-height: 35rem;*/
+/*    height: auto;*/
+/*    width: 100%;*/
+/*}*/
+
+.block-directions ol > li.has-image > img {
+    height: auto;
+    width: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.block-directions ol > li > span:before {
+    content: counter(directions-counter) ": "
+}
+
+.block-directions ol > li.has-image > span {
+    grid-column: span 2;
+}
+
+@media screen and (max-width: 50rem) {
+    /*Mobile directions list*/
+    .block-directions > ol > li.has-image {
+        grid-template-columns: 1fr;
+    }
+
+    .block-directions > ol > li.has-image > span {
+        grid-column: auto;
+    }
+
+    .block-directions > ol > li.has-image > img {
+        margin-bottom: 0.5rem;
+    }
+}
+
 @media screen and (max-width: 63rem) {
     /*Responsive Header*/
     header {
@@ -1246,3 +1305,4 @@ article.search-page .page-buttons {
 .hidden {
     display: none;
 }
+

@@ -142,3 +142,16 @@ class ColumnBlock(blocks.StreamBlock):
 
 class MultiColumnBlock(blocks.StreamBlock):
     column = ColumnBlock(max_num=3)
+
+
+class StepBlock(blocks.StructBlock):
+    title = blocks.CharBlock()
+    body = blocks.RichTextBlock()
+    image = ImageChooserBlock(required=False, help_text='Image associated with step in directions')
+
+
+class DirectionsBlock(blocks.StreamBlock):
+    step = StepBlock()
+
+    class Meta:
+        template = 'core/directions_block.html'
