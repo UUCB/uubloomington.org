@@ -1306,3 +1306,19 @@ article.search-page .page-buttons {
     display: none;
 }
 
+@media print {
+    header,
+    nav,
+    .sidebar {
+        display: none;
+    }
+
+    .block-table_of_contents a:not(#specificity-hack) {
+        text-decoration: none;
+        color: black;
+    }
+
+    #main {
+        grid-template-columns: 1fr;
+    }
+}
