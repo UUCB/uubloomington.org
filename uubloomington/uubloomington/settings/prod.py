@@ -1,28 +1,31 @@
 from .base import *
 import os
-import json
 import sentry_sdk
 
 DEBUG = False
-with open(os.getenv("UUBLOOMINGTON_CONFIG_PATH")) as config_file:
-    loaded_configuration = json.load(config_file)
 
-STATIC_ROOT = loaded_configuration['static_root']
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
-MEDIA_ROOT = loaded_configuration['media_root']
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-SECRET_KEY = loaded_configuration['secret_key']
+SECRET_KEY = os.environ['SECRET_KEY']
 
-PLANNING_CENTER_APPLICATION_ID = loaded_configuration['planning_center_app_id']
-PLANNING_CENTER_SECRET = loaded_configuration['planning_center_secret']
+PLANNING_CENTER_APPLICATION_ID = os.environ['PLANNING_CENTER_APPLICATION_ID']
+PLANNING_CENTER_SECRET = os.environ['PLANNING_CENTER_SECRET']
 
-ALLOWED_HOSTS = [host for host in loaded_configuration['allowed_hosts'].split(',')]
+ALLOWED_HOSTS = [os.environ['VIRTUAL_HOST']]
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "OPTIONS": {
-            "read_default_file": loaded_configuration['mysql_config_path']
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': os.environ['DB_HOST'],
+        'NAME': os.environ['DB_NAME'],
+        'USER': os.environ['DB_USER'],
+        'PASSWORD': os.environ['DB_PASSWORD'],
+        'OPTIONS': {
+            'ssl': {},
+            'charset': 'utf8mb4',
         },
     }
 }
@@ -33,7 +36,7 @@ except ImportError:
     pass
 
 sentry_sdk.init(
-    dsn=loaded_configuration['sentry_dsn'],
+    dsn=os.environ['SENTRY_DSN'],
     # Set traces_sample_rate to 1.0 to capture 100%
     # of transactions for performance monitoring.
     traces_sample_rate=1.0,
@@ -43,9 +46,9 @@ sentry_sdk.init(
     profiles_sample_rate=1.0,
 )
 
-DEFAULT_FROM_EMAIL = loaded_configuration['default_from_email']
-SERVER_EMAIL = loaded_configuration['server_from_email']
+DEFAULT_FROM_EMAIL = os.environ['DEFAULT_FROM_EMAIL']
+SERVER_EMAIL = os.environ['SERVER_FROM_EMAIL']
 
 ANYMAIL = {
-    "SENDGRID_API_KEY": loaded_configuration['sendgrid_api_key']
+    "SENDGRID_API_KEY": os.environ['SENDGRID_API_KEY']
 }
