@@ -1318,6 +1318,11 @@ article.search-page .page-buttons {
         color: black;
     }
 
+    .richtext-image.full-width:not(#specificity-hack) {
+        max-height: 10in;
+        width: auto;
+    }
+
     #main {
         grid-template-columns: 1fr;
     }
