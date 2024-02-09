@@ -32,7 +32,7 @@ class AudioEmbedFinder(EmbedFinder):
             return False
 
         # Support ogg files for now (need ogg in URL)
-        return ".ogg" in parsed_url.path
+        return ".ogg" or ".mp3" in parsed_url.path
 
     def _get_html(self, ctx):
         return render_to_string("wagtailaudioembed/audio.html", ctx)
@@ -46,7 +46,15 @@ class AudioEmbedFinder(EmbedFinder):
         """
         # TODO: Perform the request
 
-        ctx = {"title": "", "url": url}
+        ctx = {}
+
+        if url.endswith("+t"):
+            url = url[:-len("+t")]
+            ctx["url"] = url
+            ctx['title'] = url.split("/")[-1].strip('.mp3')
+        else:
+            ctx['title'] = ''
+            ctx['url'] = url
 
         return {
             "title": ctx["title"],
