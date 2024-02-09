@@ -51,7 +51,7 @@ class AudioEmbedFinder(EmbedFinder):
         if url.endswith("+t"):
             url = url[:-len("+t")]
             ctx["url"] = url
-            ctx['title'] = url.split("/")[-1].strip('.mp3')
+            ctx['title'] = url.split("/")[-1].strip('.mp3').replace('_', ' ')
         else:
             ctx['title'] = ''
             ctx['url'] = url
