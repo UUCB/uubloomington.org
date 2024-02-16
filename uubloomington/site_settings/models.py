@@ -36,6 +36,8 @@ class SiteWideSettings(BaseGenericSetting):
 
     livestream_url = models.CharField(max_length=900, blank=True, null=True)
 
+    emergency_alert = models.CharField(max_length=5000, blank=True, null=True)
+
     internal_livestream_page = models.ForeignKey(
         to=Page,
         on_delete=models.SET_NULL,
@@ -52,6 +54,7 @@ class SiteWideSettings(BaseGenericSetting):
             FieldPanel('subtitle'),
             FieldPanel('tagline'),
             FieldPanel('header_announcement'),
+            FieldPanel('emergency_alert'),
         ], heading="Header Settings"),
         MultiFieldPanel([
             FieldPanel('churchcenter_calendar_url'),

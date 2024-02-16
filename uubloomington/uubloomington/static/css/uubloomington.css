@@ -1327,3 +1327,9 @@ article.search-page .page-buttons {
         grid-template-columns: 1fr;
     }
 }
+
+.emergency-alert {
+    border: 10px solid red;
+    padding: 0.25rem;
+    padding-bottom: 0;
+}
