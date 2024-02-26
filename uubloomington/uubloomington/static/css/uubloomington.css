@@ -12,6 +12,13 @@
     --standard-radius: 2rem;
     --hover-transition-time: 180ms;
     --accent-color: #006b1b;
+    --secondary-accent-color: #005000;
+    --background-color: white;
+    --text-color: black;
+    --inverse-text-color: white;
+    --accent-text-color: #505050;
+    --dark-link-color: #bee3f8;
+    --dark-visited-link-color: #e8dfff;
     --standard-border-thickness: 3px; /*TODO: Implement this everywhere*/
 }
 
@@ -33,7 +40,7 @@
 }
 
 body {
-    background: #ffffff;
+    background: var(--background-color);
     align-content: center;
     min-height: 100vh;
     min-height: 100dvh;
@@ -198,7 +205,6 @@ main {
     height: 100%;
     display: grid;
     grid-template-columns: 30ch auto;
-    background: white;
 }
 
 main > :only-child {
@@ -215,7 +221,6 @@ body:not(.template-homepage) > main {
 }
 
 header {
-    background: white;
     padding: 20px calc(calc(100% - var(--page-width)) / 2);
     display: flex;
 }
@@ -249,7 +254,7 @@ header {
     font-size: 1.8rem;
     margin-top: auto;
     margin-bottom: auto;
-    color: #505050;
+    color: var(--accent-text-color);
     white-space: nowrap;
 }
 
@@ -282,7 +287,6 @@ nav > .nav {
     align-items: start;
     max-width: calc(var(--page-width) - 2rem);
     margin: auto;
-    background: white;
     border-bottom: 3px solid var(--accent-color);
     text-decoration: none;
     color: white;
@@ -325,7 +329,7 @@ nav > .nav > li > ul {
 nav > .nav > li.expand > ul {
     display: unset;
     position: absolute;
-    /*background: #005000;*/
+    /*background: var(--secondary-accent-color);*/
     background: var(--accent-color);
     z-index: 1000;
 }
@@ -349,7 +353,7 @@ nav > .nav li.expand {
 }
 
 .nav li > ul > li:hover {
-    background: #005000;
+    background: var(--secondary-accent-color);
     transition: background var(--hover-transition-time);
 }
 
@@ -567,7 +571,7 @@ hr {
         flex-direction: column;
         width: 100%;
         gap: 0;
-        background: #005000;
+        background: var(--secondary-accent-color);
     }
 
     nav > .nav li {
@@ -575,7 +579,7 @@ hr {
         flex-direction: column;
         width: 100%;
         margin: 0;
-        background: #005000;
+        background: var(--secondary-accent-color);
     }
 
     nav > .nav li.expand {
@@ -871,7 +875,7 @@ footer {
     height: auto;
     padding: 1.5rem;
     margin: auto;
-    background: #005000;
+    background: var(--secondary-accent-color);
     color: white;
     display: grid;
     /*grid-template-columns: 1.5fr repeat(4, 1fr);*/
@@ -879,11 +883,11 @@ footer {
 }
 
 footer a:link {
-    color: #bee3f8;
+    color: var(--dark-link-color);
 }
 
 footer a:visited {
-    color: #e8dfff;
+    color: var(--dark-visited-link-color);
 }
 
 footer > div {
