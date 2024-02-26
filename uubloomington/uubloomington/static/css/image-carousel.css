@@ -78,8 +78,16 @@
     background-image: linear-gradient(90deg, #006b1bbb 0%, #006b1b00 100%);
 }
 
-.carousel-buttons > button:focus::before,
-.carousel-buttons > button:hover::before {
+@media (pointer: fine) {
+    .carousel-buttons > button:hover::before,
+    .carousel-buttons > button:focus::before {
+        opacity: 1;
+        transition: opacity var(--hover-transition-time);
+    }
+}
+
+.carousel-buttons > button:hover::before,
+.carousel-buttons > button:focus::before {
     opacity: 1;
     transition: opacity var(--hover-transition-time);
 }
@@ -107,5 +115,11 @@
 .carousel-buttons > button:last-child {
     margin-left: auto;
     margin-right: 0;
+}
+
+@media (hover: none) {
+    .carousel-buttons > button {
+        opacity: 1;
+    }
 }
 
