@@ -58,7 +58,7 @@
 
 .carousel-buttons > button:focus,
 .carousel-buttons > button:hover {
-    transition: all 0.5s;
+    transition: all var(--hover-transition-time);
     opacity: 100%;
     color: white;
 }
@@ -70,7 +70,7 @@
     position: absolute;
     z-index: -1;
     opacity: 0;
-    transition: opacity 0.5s;
+    transition: opacity var(--hover-transition-time);
     border-radius: var(--standard-radius);
 }
 
@@ -81,7 +81,7 @@
 .carousel-buttons > button:focus::before,
 .carousel-buttons > button:hover::before {
     opacity: 1;
-    transition: opacity 0.5s;
+    transition: opacity var(--hover-transition-time);
 }
 
 .carousel-buttons > button {
