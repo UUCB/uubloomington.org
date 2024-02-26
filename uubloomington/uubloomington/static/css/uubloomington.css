@@ -210,7 +210,7 @@ body:not(.template-homepage) > main {
 }
 
 .site-logo > svg {
-    fill: #006b1b;
+    fill: var(--accent-color);
     height: 100px;
 }
 
@@ -283,7 +283,7 @@ nav > .nav {
     max-width: calc(var(--page-width) - 2rem);
     margin: auto;
     background: white;
-    border-bottom: 3px solid #006b1b;
+    border-bottom: 3px solid var(--accent-color);
     text-decoration: none;
     color: white;
     font-family: "League Spartan Variable";
@@ -326,13 +326,13 @@ nav > .nav > li.expand > ul {
     display: unset;
     position: absolute;
     /*background: #005000;*/
-    background: #006b1b;
+    background: var(--accent-color);
     z-index: 1000;
 }
 
 nav > .nav li:focus-within,
 nav > .nav li:hover {
-    background: #006b1b;
+    background: var(--accent-color);
     transition: background var(--hover-transition-time);
     color: white;
 }
@@ -340,7 +340,7 @@ nav > .nav li:hover {
 nav > .nav li.ancestor,
 nav > .nav li.active,
 nav > .nav li.expand {
-    background: #006b1b;
+    background: var(--accent-color);
 }
 
 .nav li > ul > li {
@@ -420,7 +420,7 @@ article > ol,
 hr {
     width: 75%;
     margin: 1rem auto 1rem auto;
-    border: 2px solid #006b1b;
+    border: 2px solid var(--accent-color);
 }
 
 .block-multi_column {
@@ -606,7 +606,7 @@ hr {
     nav > .nav li.active,
     nav > .nav li.expand,
     nav > .nav li.ancestor {
-        background: #006b1b;
+        background: var(--accent-color);
     }
 
     nav > .nav .menu-toggle {
@@ -682,7 +682,7 @@ hr {
 
     .sidebar::before {
         content: "";
-        border-top: 2px solid #006b1b;
+        border-top: 2px solid var(--accent-color);
         width: 100%;
         display: block;
         margin-bottom: 0.75rem;
@@ -726,7 +726,7 @@ hr {
     flex-direction: column;
     gap: 1rem;
     background: #eeeeee;
-    /*border: 1px solid #006b1b;*/
+    /*border: 1px solid var(--accent-color);*/
     border-radius: var(--standard-radius);
     /*padding: 1rem;*/
     overflow: clip;
@@ -782,7 +782,7 @@ hr {
 
 .card-action:focus,
 .card-action:hover {
-    background: #006b1b;
+    background: var(--accent-color);
     color: white;
     transition: background var(--hover-transition-time), color var(--hover-transition-time);
 }
@@ -1082,7 +1082,7 @@ footer > .footer-content > * {
 }
 
 /*.upcoming-service-buttons a {*/
-/*    border: 3px solid #006b1b;*/
+/*    border: 3px solid var(--accent-color);*/
 /*    border-radius: var(--standard-radius);*/
 /*    font-size: 1rem;*/
 /*    text-align: center;*/
