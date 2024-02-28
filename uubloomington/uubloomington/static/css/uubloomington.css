@@ -749,11 +749,28 @@ hr {
     color: var(--accent-text-color);
 }
 
+/*.card-container {*/
+/*    display: grid;*/
+/*    grid-template-columns: repeat(auto-fit, minmax(30ch, 1fr));*/
+/*    gap: var(--standard-gap);*/
+/*}*/
+
 .card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30ch, 1fr));
+    display: flex;
     gap: var(--standard-gap);
+    flex-wrap: wrap;
+    justify-content: center;
 }
+
+/*.card-container > :nth-child(2n) {*/
+/*    page-break-after: always;*/
+/*}*/
+
+/*.card-container:has(:nth-child(4)):not(:has(:nth-child(5))) * {*/
+/*    flex-basis: 40%;*/
+/*}*/
+
+/*The above is awesome, let's revisit it in the future when more browsers support :has()*/
 
 .card {
     font-family: "League Spartan Variable";
@@ -765,7 +782,31 @@ hr {
     border-radius: var(--standard-radius);
     /*padding: 1rem;*/
     overflow: clip;
+    flex-basis: 30%;
+    flex-grow: 1;
 }
+
+.card-container > .card {
+    max-width: 40rem;
+}
+
+:where(.card-container.has_4) .card {
+    flex-basis: 40%;
+}
+
+@media screen and (max-width: 60rem) {
+    .card {
+        flex-basis: 40%; !important;
+    }
+}
+
+@media screen and (max-width: 40rem) {
+    .card {
+        flex-basis: 100%; !important;
+    }
+}
+
+
 
 .card:not(.upcoming-service):not(.badges) > :not(img) {
     margin-inline: 1rem;

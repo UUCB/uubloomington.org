@@ -136,6 +136,8 @@ class HomePage(Page):
         )
         if next_oos:
             context['next_service'] = next_oos.service.specific
+        if len(self.cards.all()) == 4:
+            context['has_4'] = 'has_4'
         return context
 
     def get_carousel_image(self):

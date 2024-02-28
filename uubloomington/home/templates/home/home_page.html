@@ -48,7 +48,7 @@
     </div>
 
     {% if page.cards.first %}
-        <div class="card-container">
+        <div class="card-container {{ has_4 }}">
             {% for card in page.cards.all %}
                 <div class="card">
                     {% image card.image fill-640x375 %}
