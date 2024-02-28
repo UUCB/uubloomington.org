@@ -16,6 +16,9 @@
         <form action="{% pageurl page %}" method="POST">
             {% csrf_token %}
             {{ form.as_p }}
+            {% if page.send_confirmation_email %}
+                <p>When you submit this form, you will receive an email confirming your entries.</p>
+            {% endif %}
             <button type="submit" class="card-action">Submit</button>
         </form>
         </article>

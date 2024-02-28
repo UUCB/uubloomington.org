@@ -13,6 +13,7 @@ from wagtail.admin.panels import (
 from wagtail.fields import RichTextField
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 from wagtail.contrib.forms.panels import FormSubmissionsPanel
+from wagtail.admin.mail import send_mail
 
 
 class Post(Page):
@@ -120,6 +121,46 @@ class FormField(AbstractFormField):
 class FormPage(AbstractEmailForm):
     intro = RichTextField(blank=True)
     thank_you_text = RichTextField(blank=True)
+    send_confirmation_email = models.BooleanField(
+        default=False,
+        help_text="""
+        If checked, this form will send a confirmation to the submitter.
+        For this to work, your form MUST contain required fields for the submitter's name and email,
+        and those fields must be specified below. 
+        """
+    )
+    confirmation_email_greeting = models.TextField(
+        blank=True,
+        null=True,
+        help_text="""
+        Text to place at the beginning of the confirmation email, before the submitted data
+        """
+    )
+    confirmation_email_ending = models.TextField(
+        blank=True,
+        null=True,
+        help_text="""
+        Text to place at the end of the confirmation email, after the submitted data
+        """
+    )
+    name_field_name = models.CharField(
+        blank=True,
+        null=True,
+        max_length=30,
+        default='name',
+        help_text="""
+        The name of the field representing "name" for email purposes (usually where the submitter enters their name)
+        """
+    )
+    email_field_name = models.CharField(
+        blank=True,
+        null=True,
+        max_length=30,
+        default='email',
+        help_text="""
+        The name of the field representing the submitter's email address
+        """
+    )
     featured_image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
@@ -140,4 +181,26 @@ class FormPage(AbstractEmailForm):
             ]),
             FieldPanel('subject'),
         ], "Email"),
+        MultiFieldPanel(
+            [
+                FieldPanel('send_confirmation_email'),
+                FieldPanel('confirmation_email_greeting'),
+                FieldPanel('confirmation_email_ending'),
+                FieldPanel('name_field_name'),
+                FieldPanel('email_field_name'),
+            ],
+            "Confirmation Email Settings",
+        )
     ]
+
+    def send_mail(self, form):
+        super().send_mail(form)
+        if self.send_confirmation_email:
+            confirmation_email_text = f'{form.cleaned_data.get(self.name_field_name)},\n{self.confirmation_email_greeting}\n{self.render_email(form)}\n{self.confirmation_email_ending}'
+            send_mail(
+                subject=self.subject,
+                message=confirmation_email_text,
+                from_email=self.from_address,
+                recipient_list=(form.cleaned_data.get(self.email_field_name), )
+            )
+
