@@ -1,0 +1,20 @@
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+<head>
+    <title>UUCB Mailchimp Export: {{ page.title }}</title>
+</head>
+
+<h1>{{ page.title }}</h1>
+{% image page.specific.featured_image max-900x500 class="full-width" %}
+{% for block in page.body %}
+    {% if block.block_type != 'table_of_contents' and block.block_type != 'show_featured_image' %}
+        <h2>{{ block.value.title }}</h2>
+        {% image block.value.specific.featured_image max-500x500 %}
+        {% for article_block in block.value.specific.get_blocks_before_read_more %}
+            {% include_block article_block %}
+        {% endfor %}
+        <a href="{{ full_path }}#article-{{ block.value.pk }}">Read More</a>
+        <hr>
+    {% endif %}
+{% endfor %}

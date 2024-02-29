@@ -1,6 +1,6 @@
 from django.db import models
 from wagtail.models import Page, StreamField
-from wagtail.admin.panels import FieldPanel
+from wagtail.admin.panels import FieldPanel, HelpPanel
 from wagtail.admin.views.pages.create import CreateView
 from wagtail import hooks
 from wagtail import blocks
@@ -80,6 +80,9 @@ class Issue(Page):
         blank=True,
     )
     content_panels = Page.content_panels + [
+        HelpPanel(
+            template='newsletter/admin/mailchimp_export.html'
+        ),
         FieldPanel('featured_image'),
         FieldPanel('body'),
     ]
@@ -100,7 +103,14 @@ class Issue(Page):
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
         context['article_blocks'] = self.get_article_blocks()
+        context['full_path'] = request.get_full_path().split('?')[0]
         return context
+
+    def get_template(self, request, *args, **kwargs):
+        if request.GET.get("mailchimp") == 'true':
+            return 'newsletter/mailchimp_export.html'
+        else:
+            return super().get_template(request, *args, **kwargs)
 
 
 class CreateIssueView(CreateView):
