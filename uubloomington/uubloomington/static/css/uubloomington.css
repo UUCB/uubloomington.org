@@ -103,7 +103,7 @@ h4,
 h5,
 h6,
 .site-title > * {
-    line-height: initial;
+    line-height: 1.1;
 }
 
 h1 {
