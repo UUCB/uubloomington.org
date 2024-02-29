@@ -113,6 +113,19 @@ class StandardBlockPage(Page):
         FieldPanel('body'),
     ]
 
+    def get_blocks_before_read_more(self):
+        blocks_before_read_more = []
+        found_read_more = False
+        for block in self.body:
+            if block.block_type != "read_more":
+                blocks_before_read_more.append(block)
+            else:
+                found_read_more = True
+                break
+        if not found_read_more:
+            blocks_before_read_more = [self.body[0]]
+        return blocks_before_read_more
+
 
 class FormField(AbstractFormField):
     page = ParentalKey('FormPage', on_delete=models.CASCADE, related_name='form_fields')
