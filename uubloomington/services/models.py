@@ -89,7 +89,7 @@ class ServicesHomePage(Page):
 class ServicePage(Page):
     body = RichTextField(blank=True, null=True)
     one_sentence = models.CharField(max_length=200, blank=False, null=True)
-    vimeo_link = models.CharField(max_length=100, blank=False, null=True, default=get_default_stream_url)
+    vimeo_link = models.CharField(max_length=100, blank=True, null=True, default=get_default_stream_url)
     featured_image = models.ForeignKey(to=Image, on_delete=models.SET_NULL, null=True, blank=True)
     # order_of_service_link = models.CharField(max_length=900, blank=True, null=True)
     video_archive_link = models.CharField(max_length=400, blank=True, null=True)
@@ -210,12 +210,16 @@ class OrderOfService(Page):
 def create_matching_order_of_service(sender, instance, **kwargs):
     service = instance.specific
     previous_order_of_service = OrderOfService.objects.order_by("-date").first()
+    if previous_order_of_service:
+        previous_program = previous_order_of_service.program
+    else:
+        previous_program = None
     if not service.order_of_service.first():
         next_service_date = service.get_parent().specific.get_next_service_time()
         order_of_service = OrderOfService(
             title=f"Order of Service for {next_service_date}",
             service=service,
-            program=previous_order_of_service.program,
+            program=previous_program,
             time=service.get_parent().specific.service_time,
             date=next_service_date,
             live=False,
