@@ -1,3 +1,4 @@
+from django.core.mail import EmailMessage
 from django.db import models
 from wagtail.models import Page
 from wagtail.fields import RichTextField, StreamField
@@ -207,13 +208,27 @@ class FormPage(AbstractEmailForm):
     ]
 
     def send_mail(self, form):
-        super().send_mail(form)
-        if self.send_confirmation_email:
+        submitter_email = form.cleaned_data.get(self.email_field_name)
+        submitter_name = form.cleaned_data.get(self.name_field_name)
+        subject = self.subject
+        if submitter_name:
+            subject += f' from {submitter_name}'
+        addresses = [address.strip() for address in self.to_address.split(",")]
+        submission_email = EmailMessage(
+            subject=subject,
+            body=self.render_email(form),
+            from_email=self.from_address,
+            to=addresses,
+            reply_to=[form.cleaned_data.get(self.email_field_name)]
+        )
+        submission_email.send()
+        if self.send_confirmation_email and submitter_email:
             confirmation_email_text = f'{form.cleaned_data.get(self.name_field_name)},\n{self.confirmation_email_greeting}\n{self.render_email(form)}\n{self.confirmation_email_ending}'
-            send_mail(
+            confirmation_email = EmailMessage(
                 subject=self.subject,
-                message=confirmation_email_text,
+                body=confirmation_email_text,
                 from_email=self.from_address,
-                recipient_list=(form.cleaned_data.get(self.email_field_name), )
+                to=(form.cleaned_data.get(self.email_field_name), ),
             )
+            confirmation_email.send()
 
