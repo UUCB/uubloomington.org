@@ -23,33 +23,33 @@
     --standard-border-thickness: 3px; /*TODO: Implement this everywhere*/
 }
 
-/*@media (prefers-color-scheme: dark) {*/
-/*    * {*/
-/*        --accent-color: #006b1b;*/
-/*        --secondary-accent-color: #005000;*/
-/*        --background-color: #1e1e1e;*/
-/*        --text-color: #ffffff;*/
-/*        --inverse-text-color: white;*/
-/*        --accent-text-color: #dcdcdc;*/
-/*        --dark-link-color: #84daff;*/
-/*        --dark-visited-link-color: #c4aeff;*/
-/*        --card-background-color: #2a2a2a;*/
-/*    }*/
+@media (prefers-color-scheme: dark) {
+    * {
+        --accent-color: #006b1b;
+        --secondary-accent-color: #005000;
+        --background-color: #1e1e1e;
+        --text-color: #ffffff;
+        --inverse-text-color: white;
+        --accent-text-color: #dcdcdc;
+        --dark-link-color: #84daff;
+        --dark-visited-link-color: #c4aeff;
+        --card-background-color: #2a2a2a;
+    }
 
-/*    a:not(.card-action) {*/
-/*        color: var(--dark-link-color)*/
-/*    }*/
+    a:not(.card-action) {
+        color: var(--dark-link-color)
+    }
 
-/*    a:visited:not(.card-action) {*/
-/*        color: var(--dark-visited-link-color)*/
-/*    }*/
+    a:visited:not(.card-action) {
+        color: var(--dark-visited-link-color)
+    }
 
-/*    nav > .nav :not(li.ancestor),*/
-/*    nav > .nav :not(li.active),*/
-/*    nav > .nav :not(li.expand) {*/
-/*        color: var(--text-color)*/
-/*    }*/
-/*}*/
+    nav > .nav :not(li.ancestor),
+    nav > .nav :not(li.active),
+    nav > .nav :not(li.expand) {
+        color: var(--text-color)
+    }
+}
 
 .skiplink {
     position: absolute;
