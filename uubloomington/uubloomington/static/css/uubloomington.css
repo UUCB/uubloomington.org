@@ -789,6 +789,10 @@ hr {
     flex-grow: 1;
 }
 
+.card:not(:has(> .card-action)) {
+    padding-bottom: 1rem;
+}
+
 .card-container > .card {
     max-width: 40rem;
 }
@@ -808,8 +812,6 @@ hr {
         flex-basis: 100%; !important;
     }
 }
-
-
 
 .card:not(.upcoming-service):not(.badges) > :not(img) {
     margin-inline: 1rem;
