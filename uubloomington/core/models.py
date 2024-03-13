@@ -17,6 +17,7 @@ from wagtail.contrib.forms.forms import FormBuilder
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField, FORM_FIELD_CHOICES
 from wagtail.contrib.forms.panels import FormSubmissionsPanel
 from core.widgets import TelephoneInput
+from django.utils.text import slugify
 from wagtail.admin.mail import send_mail
 
 
@@ -225,8 +226,8 @@ class FormPage(AbstractEmailForm):
     ]
 
     def send_mail(self, form):
-        submitter_email = form.cleaned_data.get(self.email_field_name)
-        submitter_name = form.cleaned_data.get(self.name_field_name)
+        submitter_email = form.cleaned_data.get(slugify(self.email_field_name))
+        submitter_name = form.cleaned_data.get(slugify(self.name_field_name))
         subject = self.subject
         if submitter_name:
             subject += f' from {submitter_name}'
@@ -236,16 +237,16 @@ class FormPage(AbstractEmailForm):
             body=self.render_email(form),
             from_email=self.from_address,
             to=addresses,
-            reply_to=[form.cleaned_data.get(self.email_field_name)]
+            reply_to=[submitter_email]
         )
         submission_email.send()
         if self.send_confirmation_email and submitter_email:
-            confirmation_email_text = f'{form.cleaned_data.get(self.name_field_name)},\n{self.confirmation_email_greeting}\n{self.render_email(form)}\n{self.confirmation_email_ending}'
+            confirmation_email_text = f'{submitter_name},\n{self.confirmation_email_greeting}\n{self.render_email(form)}\n{self.confirmation_email_ending}'
             confirmation_email = EmailMessage(
                 subject=self.subject,
                 body=confirmation_email_text,
                 from_email=self.from_address,
-                to=(form.cleaned_data.get(self.email_field_name), ),
+                to=(submitter_email, ),
             )
             confirmation_email.send()
 
