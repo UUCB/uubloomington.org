@@ -97,6 +97,8 @@ class HomePage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+    center_stage_header_text = models.CharField(max_length=100, null=True, blank=True)
+    center_stage_body = RichTextField(null=True, blank=True)
     content_panels = Page.content_panels + [
         MultiFieldPanel(
             [InlinePanel("carousel_images", min_num=1, label="Image")],
@@ -105,6 +107,13 @@ class HomePage(Page):
         MultiFieldPanel(
             [InlinePanel("cards", max_num=6, min_num=2, label="Card")],
             heading="Cards"
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("center_stage_header_text"),
+                FieldPanel("center_stage_body"),
+            ],
+            heading="Center Stage Section"
         ),
         MultiFieldPanel(
             [InlinePanel("badges", max_num=6, label="Badge")],

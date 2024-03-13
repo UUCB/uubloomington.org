@@ -46,7 +46,16 @@
             </span>
         </div>
     </div>
-
+    {% if page.center_stage_header_text or page.center_stage_body %}
+        <div class="card horizontal">
+            {% if page.center_stage_header_text %}
+                <h2>{{ page.center_stage_header_text }}</h2>
+            {% endif %}
+            {% if page.center_stage_body %}
+                {{ page.center_stage_body|richtext }}
+            {% endif %}
+        </div>
+    {% endif %}
     {% if page.cards.first %}
         <div class="card-container {{ has_4 }}">
             {% for card in page.cards.all %}
