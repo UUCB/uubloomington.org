@@ -24,6 +24,7 @@ form p + div {
 input[type=text],
 input[type=email],
 input[type=url],
+input[type=tel],
 input[type=number] {
     background: #ededed;
     border-top: none;

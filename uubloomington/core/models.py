@@ -1,3 +1,4 @@
+import django.forms
 from django.core.mail import EmailMessage
 from django.db import models
 from wagtail.models import Page
@@ -12,8 +13,10 @@ from wagtail.admin.panels import (
     InlinePanel, MultiFieldPanel
 )
 from wagtail.fields import RichTextField
-from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
+from wagtail.contrib.forms.forms import FormBuilder
+from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField, FORM_FIELD_CHOICES
 from wagtail.contrib.forms.panels import FormSubmissionsPanel
+from core.widgets import TelephoneInput
 from wagtail.admin.mail import send_mail
 
 
@@ -129,10 +132,24 @@ class StandardBlockPage(Page):
 
 
 class FormField(AbstractFormField):
+    CHOICES = FORM_FIELD_CHOICES + (
+        ('tel', 'Telephone Number'),
+    )
     page = ParentalKey('FormPage', on_delete=models.CASCADE, related_name='form_fields')
+    field_type = models.CharField(
+        verbose_name='field type',
+        max_length=16,
+        choices=CHOICES,
+    )
+
+
+class CustomFormBuilder(FormBuilder):
+    def create_tel_field(self, field, options):
+        return django.forms.CharField(widget=TelephoneInput, **options)
 
 
 class FormPage(AbstractEmailForm):
+    form_builder = CustomFormBuilder
     intro = RichTextField(blank=True)
     thank_you_text = RichTextField(blank=True)
     send_confirmation_email = models.BooleanField(
