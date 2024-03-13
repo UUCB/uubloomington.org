@@ -910,6 +910,21 @@ hr {
     border-radius: 0;
 }
 
+@media screen and (min-width: 63rem) {
+    .card.horizontal {
+        flex-direction: row;
+        padding: 1rem;
+    }
+    .card.horizontal > h2 {
+        white-space: nowrap;
+        justify-self: center;
+    }
+    .card.horizontal > p {
+        align-self: center;
+        height: min-content;
+    }
+}
+
 .event-title {
     display: flex;
 }
