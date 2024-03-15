@@ -8,6 +8,7 @@
          hx-get="{% url 'next-carousel-image' carousel_image.pk %}"
          hx-swap="afterend"
          hx-select=".carousel-image"
+         data-previous-image-url="{% url 'previous-carousel-image' carousel_image.pk %}"
          >
         <img alt="{{ displayed_image.alt }}"
              width="{{ displayed_image.width }}"
@@ -17,8 +18,8 @@
             <h2 class="carousel-header">{{ carousel_image.header }}</h2>
         {% endif %}
     </div>
-    <span class="carousel-buttons" id="carousel-buttons" hx-swap-oob="true">
-        <button id="carousel-previous" _="on click set <.carousel-image/>'s @hx-get to '{% url 'previous-carousel-image' carousel_image.pk %}' then call htmx.process(document.body) then send changeImage to <.carousel-image/> then if window.matchMedia( '(pointer: coarse)' ).matches blur() me end on mouseleave blur() me" aria-label="Previous Carousel Image">{% icon 'chevron-left' width='60' height='60' %}</button>
+    <span class="carousel-buttons">
+        <button id="carousel-previous" _="on click set <.carousel-image/>'s @hx-get to the last <.carousel-image/>'s @data-previous-image-url then call htmx.process(document.body) then send changeImage to <.carousel-image/> then if window.matchMedia( '(pointer: coarse)' ).matches blur() me end on mouseleave blur() me" aria-label="Previous Carousel Image">{% icon 'chevron-left' width='60' height='60' %}</button>
         <button id="carousel-next" _="on click send changeImage to <.carousel-image/> then if window.matchMedia( '(pointer: coarse)' ).matches blur() me end on mouseleave blur() me" aria-label="Next Carousel Image">{% icon 'chevron-right' width='60' height='60' %}</button>
     </span>
 </div>
