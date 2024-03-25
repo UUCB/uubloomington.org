@@ -1,0 +1,18 @@
+{% load icon %}
+{% with children=page.get_children.all %}
+    <li class="page-leaf {% if not children %}no-children{% endif %}">
+        <a href="{{ page.url }}"><span class="visual-h2">{{ page.title }}</span></a>
+        {% if children %}
+            <button class="card-action" _="on click toggle .expand on closest parent <.page-leaf/> then blur() me">{% icon 'chevron-down' %}</button>
+            <div class="expander">
+                <ul>
+                    {% for child in children %}
+                        {% if child.live %}
+                            {% include "core/page_in_tree_snippet.html" with page=child %}
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </li>
+{% endwith %}

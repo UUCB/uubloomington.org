@@ -155,3 +155,10 @@ class DirectionsBlock(blocks.StreamBlock):
 
     class Meta:
         template = 'core/directions_block.html'
+
+
+class SearchableTreeIndexBlock (blocks.StructBlock):
+    page = blocks.PageChooserBlock()
+
+    class Meta:
+        template = 'core/searchable_tree_index_block.html'

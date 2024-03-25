@@ -1,0 +1,8 @@
+{% load wagtailcore_tags %}
+<ul class="searchable_tree">
+    {% for child_page in value.page.get_children.all %}
+        {% if child_page.live %}
+            {% include "core/page_in_tree_snippet.html" with page=child_page %}
+        {% endif %}
+    {% endfor %}
+</ul>

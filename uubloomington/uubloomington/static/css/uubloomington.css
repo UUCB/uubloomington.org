@@ -1429,3 +1429,81 @@ article.search-page .page-buttons {
     padding: 0.25rem;
     padding-bottom: 0;
 }
+
+/* Tree Index Block */
+
+.expander {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.2s;
+    overflow: hidden;
+}
+
+.expander > * {
+    min-height: 0;
+    height: auto;
+}
+
+ul.searchable_tree {
+    display: flex;
+    flex-direction: column;
+    gap: var(--standard-gap);
+    height: 900px;
+}
+
+.page-leaf > .expander > ul > li,
+ul.searchable_tree > li {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 8rem;
+}
+
+.page-leaf:not(.expand) > .expander {
+    grid-template-rows: 0fr;
+}
+
+.page-leaf.expand > .expander {
+    grid-template-rows: 1fr;
+}
+
+.page-leaf > .expander {
+    grid-column: span 2;
+}
+
+.page-leaf > button > svg {
+    width: 2rem;
+    height: 2rem;
+}
+
+.page-leaf:not(.expand) > button > svg {
+    transform: none;
+    transition: transform 0.2s;
+}
+
+.page-leaf.expand > button > svg {
+    transform: rotate(180deg);
+    transition: transform 0.2s;
+}
+
+.page-leaf.no-children {
+    grid-column: span 2;
+}
+
+.page-leaf {
+    border-left: 4px solid var(--accent-color);
+    background: var(--card-background-color);
+    border-radius: 0 var(--standard-radius) var(--standard-radius) 0;
+}
+
+.page-leaf .visual-h2 {
+    padding: 1rem;
+    display: inline-block;
+}
+
+.page-leaf .page-leaf {
+    margin-left: var(--standard-gap);
+}
+
+.page-leaf > button {
+    margin: 1rem;
+}
