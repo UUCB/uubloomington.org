@@ -1496,7 +1496,7 @@ ul.searchable_tree > li {
 }
 
 .page-leaf .visual-h2 {
-    padding: 1rem;
+    padding: 0;
     display: inline-block;
 }
 
@@ -1506,4 +1506,12 @@ ul.searchable_tree > li {
 
 .page-leaf > button {
     margin: 1rem;
+}
+
+.summary-in-tree {
+    grid-column: 1;
+}
+
+.page-leaf > span {
+    padding: 1rem;
 }

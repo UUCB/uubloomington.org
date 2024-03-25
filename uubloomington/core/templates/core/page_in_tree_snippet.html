@@ -1,7 +1,11 @@
 {% load icon %}
+{% load wagtailcore_tags %}
 {% with children=page.get_children.all %}
     <li class="page-leaf {% if not children %}no-children{% endif %}">
-        <a href="{{ page.url }}"><span class="visual-h2">{{ page.title }}</span></a>
+        <span>
+            <a href="{{ page.url }}"><span class="visual-h2">{{ page.title }}</span></a>
+            {{ page.specific.summary|richtext }}
+        </span>
         {% if children %}
             <button class="card-action" _="on click toggle .expand on closest parent <.page-leaf/> then blur() me">{% icon 'chevron-down' %}</button>
             <div class="expander">

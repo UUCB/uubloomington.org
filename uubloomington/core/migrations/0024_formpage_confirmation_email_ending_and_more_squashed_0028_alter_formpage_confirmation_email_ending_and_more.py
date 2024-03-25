@@ -5,7 +5,7 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    replaces = [('core', '0024_formpage_confirmation_email_ending_and_more'), ('core', '0025_formpage_email_field_name_formpage_name_field_name'), ('core', '0026_alter_formpage_email_field_name_and_more'), ('core', '0027_alter_formpage_confirmation_email_ending_and_more'), ('core', '0028_alter_formpage_confirmation_email_ending_and_more')]
+    # replaces = [('core', '0024_formpage_confirmation_email_ending_and_more'), ('core', '0025_formpage_email_field_name_formpage_name_field_name'), ('core', '0026_alter_formpage_email_field_name_and_more'), ('core', '0027_alter_formpage_confirmation_email_ending_and_more'), ('core', '0028_alter_formpage_confirmation_email_ending_and_more')]
 
     dependencies = [
         ('core', '0023_alter_standardblockpage_body'),

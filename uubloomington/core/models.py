@@ -112,11 +112,14 @@ class StandardBlockPage(Page):
         ('page_tree_index', SearchableTreeIndexBlock()),
     ], use_json_field=True, null=True)
 
+    summary = RichTextField(null=True, blank=True)
+
     body_is_streamfield = True
 
     content_panels = Page.content_panels + [
         FieldPanel('featured_image'),
         FieldPanel('body'),
+        FieldPanel('summary'),
     ]
 
     def get_blocks_before_read_more(self):
