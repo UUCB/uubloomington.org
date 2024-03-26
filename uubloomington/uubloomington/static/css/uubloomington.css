@@ -1448,7 +1448,6 @@ ul.searchable_tree {
     display: flex;
     flex-direction: column;
     gap: var(--standard-gap);
-    height: 900px;
 }
 
 .page-leaf > .expander > ul > li,
