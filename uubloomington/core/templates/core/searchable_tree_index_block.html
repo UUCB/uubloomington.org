@@ -5,7 +5,8 @@
         add .hidden to <.page-leaf/>
         remove .expand from <.page-leaf/>
         for leaf in <.page-leaf/>
-            if innerHTML of the first <span/> in leaf contains my value
+            set leaftext to textContent of the first <span/> in leaf
+            if leaftext.toLowerCase() contains my value.toLowerCase()
                 remove .hidden from leaf
                 remove .expand from leaf
                 set parent to closest <.page-leaf/> to parentElement of leaf
