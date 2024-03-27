@@ -7,7 +7,13 @@
             {{ page.specific.summary|richtext }}
         </span>
         {% if children %}
-            <button class="card-action" _="on click toggle .expand on closest parent <.page-leaf/> then blur() me">{% icon 'chevron-down' %}</button>
+            <button
+                    class="card-action"
+                    _="on click toggle .expand on closest parent <.page-leaf/> then blur() me"
+                    aria-label="Expand {{ page.title }}"
+            >
+                {% icon 'chevron-down' %}
+            </button>
             <div class="expander">
                 <ul>
                     {% for child in children %}
