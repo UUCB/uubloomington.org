@@ -1,4 +1,33 @@
 {% load wagtailcore_tags %}
+
+<input type="text" _="
+    on keyup debounced at 50ms
+        add .hidden to <.page-leaf/>
+        remove .expand from <.page-leaf/>
+        for leaf in <.page-leaf/>
+            if innerHTML of the first <span/> in leaf contains my value
+                remove .hidden from leaf
+                remove .expand from leaf
+                set parent to closest <.page-leaf/> to parentElement of leaf
+                repeat until parent is null
+                    remove .hidden from parent
+                    add .expand to parent
+                    set parent to closest <.page-leaf/> to parentElement of parent
+                end
+            end
+        end
+        if my value is ''
+            remove .expand from <.page-leaf/>
+            remove .hidden from <.page-leaf/>
+        end
+    end
+    on blur
+        if my value is ''
+            remove .expand from <.page-leaf/>
+            remove .hidden from <.page-leaf/>
+        end
+    end
+" class="tree-search" placeholder="Search...">
 <ul class="searchable_tree">
     {% for child_page in value.page.get_children.all %}
         {% if child_page.live %}
