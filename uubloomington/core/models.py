@@ -18,6 +18,7 @@ from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField, F
 from wagtail.contrib.forms.panels import FormSubmissionsPanel
 from core.widgets import TelephoneInput
 from django.utils.text import slugify
+from wagtail.contrib.forms.utils import get_field_clean_name
 from wagtail.admin.mail import send_mail
 
 
@@ -230,8 +231,8 @@ class FormPage(AbstractEmailForm):
     ]
 
     def send_mail(self, form):
-        submitter_email = form.cleaned_data.get(slugify(self.email_field_name))
-        submitter_name = form.cleaned_data.get(slugify(self.name_field_name))
+        submitter_email = form.cleaned_data.get(get_field_clean_name(self.email_field_name))
+        submitter_name = form.cleaned_data.get(get_field_clean_name(self.name_field_name))
         subject = self.subject
         if submitter_name:
             subject += f' from {submitter_name}'
