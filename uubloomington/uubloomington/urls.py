@@ -12,12 +12,15 @@ from home import urls as home_extra_urls
 
 from .api import api_router
 
+from .views import publish_scheduled
+
 urlpatterns = [
     path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("search/", search_views.search, name="search"),
     path('home-extras/', include(home_extra_urls)),
+    path('publish_scheduled/', publish_scheduled),
 ]
 
 
