@@ -1533,3 +1533,25 @@ ul.searchable_tree > li {
     margin-inline: auto;
     margin-bottom: var(--standard-gap);
 }
+
+.block-rich_text blockquote {
+    background: var(--card-background-color);
+    padding-block: var(--standard-gap);
+    padding-left: 2.6rem;
+    padding-right: var(--standard-gap);
+    position: relative;
+    border-radius: 0.5rem;
+    margin-bottom: var(--standard-gap);
+}
+
+.block-rich_text blockquote::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 1.8rem;
+    height: calc(100% - calc(var(--standard-gap) * 2));
+    /*height: 100%;*/
+    margin-block: var(--standard-gap);
+    border: 3px solid var(--accent-color);
+    border-radius: 1rem;
+}
