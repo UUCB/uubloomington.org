@@ -123,3 +123,11 @@
     }
 }
 
+@media screen and (max-width: 25rem) {
+    .carousel-header {
+        height: 40px;
+        line-height: 40px;
+        font-size: 23px;
+    }
+}
+
