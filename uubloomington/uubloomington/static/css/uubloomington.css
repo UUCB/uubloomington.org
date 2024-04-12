@@ -796,7 +796,9 @@ hr {
 }
 
 .card-container > .card {
-    max-width: 40rem;
+    max-width: 41rem;
+    /*This is a weird value. Keeps cards from being full-width if they are alone on a row,*/
+    /*but also allows 2 cards across to fill the fill width of <main/>.*/
 }
 
 :where(.card-container.has_4) .card {
