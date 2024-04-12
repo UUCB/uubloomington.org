@@ -1181,6 +1181,19 @@ footer > .footer-content > * {
     }
 }
 
+@container (width < 19rem) {
+    .upcoming-service-buttons a {
+        font-size: 1rem;
+        border-radius: calc(var(--standard-radius) / 1.5);
+        font-variation-settings: "wght" 375;
+    }
+
+    .upcoming-service-buttons {
+        gap: 3px;
+        line-height: normal;
+    }
+}
+
 /*.upcoming-service-buttons a {*/
 /*    border: 3px solid var(--accent-color);*/
 /*    border-radius: var(--standard-radius);*/
