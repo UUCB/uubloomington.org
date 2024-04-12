@@ -529,6 +529,16 @@ hr {
     }
 }
 
+/*@media screen and (max-width: 25rem) {*/
+/*    !*for very narrow devices*!*/
+/*    * {*/
+/*        --standard-gap: 0.75rem;*/
+/*    }*/
+/*    article {*/
+/*        padding-inline: 0.75rem;*/
+/*    }*/
+/*}*/
+
 @media screen and (max-width: 63rem) {
     /*Responsive Header*/
     header {
