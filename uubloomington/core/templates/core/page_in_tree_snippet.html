@@ -9,7 +9,7 @@
         {% if children %}
             <button
                     class="card-action"
-                    _="on click toggle .expand on closest parent <.page-leaf/> then blur() me"
+                    _="on click remove .hidden from <*/> in closest parent <.page-leaf/> then toggle .expand on closest parent <.page-leaf/> then blur() me"
                     aria-label="Expand {{ page.title }}"
             >
                 {% icon 'chevron-down' %}
