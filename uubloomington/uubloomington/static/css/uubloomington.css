@@ -1709,4 +1709,9 @@ ul.searchable_tree > li {
     border-radius: 1rem;
     padding: 0.75rem;
 }
+
+.advanced-form select {
+    display: block;
+    margin-bottom: var(--standard-gap);
+}
 /*End Advanced Forms Styling*/
