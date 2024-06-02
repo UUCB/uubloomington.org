@@ -1698,4 +1698,15 @@ ul.searchable_tree > li {
 .advanced-form .multiple-choice label {
     font-variation-settings: unset;
 }
+
+.advanced-form textarea {
+    display: block;
+    width: 20rem;
+    height: 10rem;
+    font-family: "League Spartan Variable";
+    font-size: 1.2rem;
+    border: var(--standard-border-thickness) solid var(--accent-color);
+    border-radius: 1rem;
+    padding: 0.75rem;
+}
 /*End Advanced Forms Styling*/

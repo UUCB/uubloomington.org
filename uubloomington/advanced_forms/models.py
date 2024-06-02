@@ -13,6 +13,7 @@ FORM_FIELD_BLOCKS = [
     ('checkboxes_field', advanced_forms_blocks.CheckboxesBlock()),
     ('radio_buttons_field', advanced_forms_blocks.RadioButtonsBlock()),
     ('dropdown_field', advanced_forms_blocks.DropdownBlock()),
+    ('multi_line_text_field', advanced_forms_blocks.MultiLineTextBlock()),
 ]
 
 

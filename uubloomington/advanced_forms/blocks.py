@@ -21,6 +21,11 @@ class SingleLineTextBlock(GenericFieldBlock):
     pass
 
 
+class MultiLineTextBlock(GenericFieldBlock):
+    class Meta:
+        template = 'advanced_forms/blocks/multiline_text.html'
+
+
 class TelephoneInputBlock(GenericFieldBlock):
     class Meta:
         template = 'advanced_forms/blocks/tel_field.html'
@@ -82,6 +87,7 @@ class RepeatingFormBlock(blocks.StreamBlock):
     checkboxes_field = CheckboxesBlock()
     radio_buttons_field = RadioButtonsBlock()
     dropdown_field = DropdownBlock()
+    multi_line_text_field = MultiLineTextBlock()
 
     class Meta:
         template = 'advanced_forms/blocks/repeating_form.html'
