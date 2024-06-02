@@ -1,5 +1,6 @@
 from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtail.documents.models import Document
 from services.models import OrderOfService
 from django.utils import timezone
@@ -162,3 +163,8 @@ class SearchableTreeIndexBlock (blocks.StructBlock):
 
     class Meta:
         template = 'core/searchable_tree_index_block.html'
+
+
+class AdvancedFormBlock(SnippetChooserBlock):
+    class Meta:
+        template = 'core/advanced_form_block.html'

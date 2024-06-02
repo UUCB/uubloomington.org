@@ -6,7 +6,7 @@ from wagtail.fields import RichTextField, StreamField
 from wagtail.admin.panels import FieldPanel, PageChooserPanel
 from wagtail import blocks
 from wagtail.embeds.blocks import EmbedBlock
-from .blocks import ReadMoreTagBlock, ShowFeaturedImageBlock, PageFeatureBlock, ExpandableListItemBlock, AutoIndexBlock, IndexBlock, DocumentListBlock, BadgeAreaBlock, BadgeBlock, AnchorBlock, UpcomingServiceBlock, MultiColumnBlock, UpcomingOrderOfServiceBlock, DirectionsBlock, SearchableTreeIndexBlock
+from .blocks import ReadMoreTagBlock, ShowFeaturedImageBlock, PageFeatureBlock, ExpandableListItemBlock, AutoIndexBlock, IndexBlock, DocumentListBlock, BadgeAreaBlock, BadgeBlock, AnchorBlock, UpcomingServiceBlock, MultiColumnBlock, UpcomingOrderOfServiceBlock, DirectionsBlock, SearchableTreeIndexBlock, AdvancedFormBlock
 from modelcluster.fields import ParentalKey
 from wagtail.admin.panels import (
     FieldPanel, FieldRowPanel,
@@ -20,6 +20,7 @@ from core.widgets import TelephoneInput
 from django.utils.text import slugify
 from wagtail.contrib.forms.utils import get_field_clean_name
 from wagtail.admin.mail import send_mail
+from advanced_forms.models import AdvancedForm
 
 
 class Post(Page):
@@ -111,6 +112,7 @@ class StandardBlockPage(Page):
         ('multi_column', MultiColumnBlock()),
         ('directions', DirectionsBlock()),
         ('page_tree_index', SearchableTreeIndexBlock()),
+        ('advanced_form', AdvancedFormBlock(AdvancedForm)),
     ], use_json_field=True, null=True)
 
     summary = RichTextField(null=True, blank=True)

@@ -1,0 +1,9 @@
+<p class="error" data-problematic-fields="{{ problematic_fields }}" _="
+    on load
+        remove .field-error from .field-error
+        {% for problematic_field in problematic_fields %}
+            then add .field-error to <input[name='{{ problematic_field }}'/>
+        {% endfor %}
+        then wait 5s
+        then remove me
+">Please check your input and try again.</p>

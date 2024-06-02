@@ -1,0 +1,56 @@
+from django.shortcuts import render
+from django.views.generic import FormView
+from django.http.response import HttpResponseBadRequest
+from wagtail.snippets.views.snippets import InspectView
+
+from .forms import AdvancedFormResponseForm
+from .models import AdvancedFormResponse
+
+import json
+
+
+class AdvancedFormResponseView(FormView):
+    form_class = AdvancedFormResponseForm
+    extra_context = {}
+
+    # Disable GET requests, the frontend of this form is generated elsewhere
+    def get(self, request, *args, **kwargs):
+        return HttpResponseBadRequest()
+
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        print('HELLO')
+        dynamic_response = form.cleaned_data['response_json']
+        repeated_values = dynamic_response.get('repeatedValues')
+        constant_values = dynamic_response.get('constantValues')
+        if repeated_values:
+            for submission in repeated_values:
+                response_out = constant_values.copy()
+                response_out.update(submission)
+                AdvancedFormResponse.objects.create(
+                    response_json=json.dumps(response_out),
+                    form=form.cleaned_data['form'],
+                    submitter_name=form.cleaned_data['submitter_name'],
+                    submitter_email=form.cleaned_data['submitter_email'],
+                )
+        else:
+            AdvancedFormResponse.objects.create(
+                response_json=json.dumps(form.cleaned_data['constant_values']),
+                form=form.cleaned_data['form'],
+                submitter_name=form.cleaned_data['submitter_name'],
+                submitter_email=form.cleaned_data['submitter_email'],
+            )
+        self.template_name = 'advanced_forms/valid.html'
+        return self.render_to_response(self.get_context_data(form=form))
+
+    def form_invalid(self, form):
+        self.template_name = 'advanced_forms/invalid.html'
+        self.extra_context['test'] = 'HI IMA TEST'
+        self.extra_context['problematic_fields'] = list(form.errors.as_data().keys())
+        return super(self.__class__, self).form_invalid(form)
+
+
+class AdvancedFormInspectView(InspectView):
+    def get_context_data(self, **kwargs):
+        context = super(self.__class__, self).get_context_data(**kwargs)
+        context['']

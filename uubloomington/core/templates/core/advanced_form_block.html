@@ -1,0 +1,34 @@
+{% load wagtailcore_tags %}
+
+<form
+        id="advanced-form-{{ value.pk }}"
+        class="advanced-form"
+        hx-post="{% url 'process_advanced_form_response' %}"
+        hx-swap="beforeend"
+        hx-trigger="submit"
+>
+    {% csrf_token %}
+    {% include_block value.form_fields %}
+    <input type="hidden" name="form" value="{{ value.pk }}">
+    <input type="hidden" name="response_json">
+    <button
+            class="card-action"
+            type="submit"
+            _="
+    on click
+        set Submission to {}
+        set repeatedValues to []
+        for form in .repeating-fields
+            get it as Values
+            append it to repeatedValues
+        end
+        set Submission['repeatedValues'] to repeatedValues
+        get <.dynamic-field:not(.repeating-fields *)/> as Values
+        set Submission['constantValues'] to it
+        then log Submission
+        then set <input[name='response_json']/>'s @value to (Submission as JSON)
+    ">Submit</button>
+</form>
+
+
+

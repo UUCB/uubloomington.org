@@ -21,6 +21,7 @@
     --dark-visited-link-color: #e8dfff;
     --card-background-color: #eeeeee;
     --standard-border-thickness: 3px; /*TODO: Implement this everywhere*/
+    --error-color: #f1bfbf
 }
 
 /*@media (prefers-color-scheme: dark) {*/
@@ -1583,3 +1584,118 @@ ul.searchable_tree > li {
     border: 3px solid var(--accent-color);
     border-radius: 1rem;
 }
+
+/*Advanced Forms Styling*/
+
+.advanced-form {
+    padding: var(--standard-gap);
+}
+
+.advanced-form p {
+    margin-bottom: 1rem;
+}
+
+.advanced-form label {
+    display: block;
+    font-variation-settings: "wght" 500;
+}
+
+/*form p > label:has(+input[type=checkbox]) {*/
+/*    display: inline;*/
+/*}*/
+
+.advanced-form .helptext {
+    display: block;
+    font-style: italic;
+    margin-top: 0.25rem;
+}
+
+.advanced-form p + div {
+    margin-top: -1rem;
+}
+
+.advanced-form input {
+    display: block;
+}
+
+.advanced-form input[type=text],
+.advanced-form input[type=email],
+.advanced-form input[type=url],
+.advanced-form input[type=tel],
+.advanced-form input[type=number] {
+    background: #ededed;
+    border-top: none;
+    border-inline: none;
+    border-top-left-radius: 0.2rem;
+    border-top-right-radius: 0.2rem;
+    padding: 0.5rem;
+    border-bottom: var(--standard-border-thickness) solid var(--accent-color)
+}
+
+.advanced-form input[type=checkbox],
+.advanced-form input[type=radio] {
+    width: 1.5em;
+    height: 1.5em;
+    accent-color: var(--accent-color);
+}
+
+.advanced-form option:focus {
+    color: #000;
+}
+
+.advanced-form .card-action {
+    font-size: 1.2rem;
+    font-family: "League Spartan Variable";
+    display: block;
+    margin-inline: auto;
+    margin-block: var(--standard-gap)
+}
+
+/*.advanced-form .repeating-fields:not(:last-of-type) button {*/
+/*    display: none;*/
+/*}*/
+
+.advanced-form .repeating-fields:only-child button.remove {
+    display: none;
+}
+
+.advanced-form .repeating-fields {
+    border: var(--standard-border-thickness) solid var(--accent-color);
+    width: fit-content;
+    padding: var(--standard-gap);
+    border-radius: var(--standard-radius);
+    margin-bottom: var(--standard-gap);
+    margin-left: calc(var(--standard-gap) * -1);
+}
+
+.advanced-form .repeating-fields p:first-of-type {
+    margin-top: 0.5rem;
+}
+
+.advanced-form .field-error:not(#specificity-hack) {
+    background: var(--error-color);
+}
+
+.advanced-form .error {
+    margin-inline: auto;
+    margin-block: var(--standard-gap);
+    border: var(--standard-border-thickness) solid red;
+    background-color: var(--error-color);
+    border-radius: var(--standard-radius);
+    padding: 0.75rem;
+    display: block;
+    max-width: fit-content;
+}
+
+.advanced-form .card-action.warning {
+    --accent-color: red;
+}
+
+.advanced-form .multiple-choice input {
+    display: inline;
+}
+
+.advanced-form .multiple-choice label {
+    font-variation-settings: unset;
+}
+/*End Advanced Forms Styling*/
