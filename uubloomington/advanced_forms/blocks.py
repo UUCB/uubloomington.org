@@ -26,6 +26,11 @@ class TelephoneInputBlock(GenericFieldBlock):
         template = 'advanced_forms/blocks/tel_field.html'
 
 
+class EmailInputBlock(GenericFieldBlock):
+    class Meta:
+        template = 'advanced_forms/blocks/email_field.html'
+
+
 class CheckboxesBlock(blocks.StructBlock):
     label_text = blocks.CharBlock()
     name_slug = blocks.CharBlock(required=False)
@@ -72,6 +77,7 @@ class SubmitterNameBlock(blocks.StructBlock):
 class RepeatingFormBlock(blocks.StreamBlock):
     single_line_text_field = SingleLineTextBlock()
     telephone_input_field = TelephoneInputBlock()
+    email_input_field = EmailInputBlock()
     rich_text = blocks.RichTextBlock()
     checkboxes_field = CheckboxesBlock()
     radio_buttons_field = RadioButtonsBlock()

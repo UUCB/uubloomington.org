@@ -9,6 +9,7 @@ from django.utils.text import slugify
 FORM_FIELD_BLOCKS = [
     ('single_line_text_field', advanced_forms_blocks.SingleLineTextBlock()),
     ('telephone_input_field', advanced_forms_blocks.TelephoneInputBlock()),
+    ('email_input_field', advanced_forms_blocks.EmailInputBlock()),
     ('checkboxes_field', advanced_forms_blocks.CheckboxesBlock()),
     ('radio_buttons_field', advanced_forms_blocks.RadioButtonsBlock()),
     ('dropdown_field', advanced_forms_blocks.DropdownBlock()),
