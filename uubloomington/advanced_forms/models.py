@@ -1,3 +1,4 @@
+from django.core.mail import EmailMessage
 from django.db import models
 from wagtail.fields import StreamField
 from wagtail import blocks
@@ -46,6 +47,7 @@ class AdvancedForm(models.Model):
             'repeating_fields': {'max_num': 1},
         }
     )
+    confirmation_text = models.TextField(null=True, blank=True)
 
     def get_current_field_names(self):
         name_slugs = []

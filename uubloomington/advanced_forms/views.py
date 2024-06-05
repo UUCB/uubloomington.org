@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import FormView
 from django.http.response import HttpResponseBadRequest
+from django.core.mail import EmailMessage
 from wagtail.snippets.views.snippets import InspectView
 
 from .forms import AdvancedFormResponseForm
@@ -16,6 +17,16 @@ class AdvancedFormResponseView(FormView):
     # Disable GET requests, the frontend of this form is generated elsewhere
     def get(self, request, *args, **kwargs):
         return HttpResponseBadRequest()
+
+    def send_confirmation_email(self, form):
+        message_text = f'{form.cleaned_data["submitter_name"]},\n\n{form.cleaned_data["form"].confirmation_text}'
+        confirmation_email = EmailMessage(
+            to=[form.cleaned_data['submitter_email'],],
+            subject=f'Thank you for your submission to "{form.cleaned_data["form"].name}"!',
+            body=message_text,
+            from_email='noreply@website.uubloomington.org'
+        )
+        confirmation_email.send()
 
     def form_valid(self, form):
         print(form.cleaned_data)
@@ -41,6 +52,8 @@ class AdvancedFormResponseView(FormView):
                 submitter_email=form.cleaned_data['submitter_email'],
             )
         self.template_name = 'advanced_forms/valid.html'
+        if form.cleaned_data['form'].send_confirmation:
+            self.send_confirmation_email(form)
         return self.render_to_response(self.get_context_data(form=form))
 
     def form_invalid(self, form):
