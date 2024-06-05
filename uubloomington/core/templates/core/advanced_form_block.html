@@ -11,6 +11,9 @@
     {% include_block value.form_fields %}
     <input type="hidden" name="form" value="{{ value.pk }}">
     <input type="hidden" name="response_json">
+    {% if value.send_confirmation %}
+        <i>When you submit this form, you will receive a confirmation email from our website.</i>
+    {% endif %}
     <button
             class="card-action"
             type="submit"
