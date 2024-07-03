@@ -85,6 +85,7 @@ class Issue(Page):
         ),
         FieldPanel('featured_image'),
         FieldPanel('body'),
+        FieldPanel('publication_date', help_text='This should never be changed unless there is a problem and you know what you are doing.')
     ]
     parent_page_types = [
         'newsletter.Newsletter',
