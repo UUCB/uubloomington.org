@@ -1,0 +1,2 @@
+{% for key in object.get_current_field_labels %}{{ key }},{% endfor %}{% for response in object.responses.all %}
+{% for value in response.get_current_values %}{% if value.1 %}{{ value.1 }}{% else %}No Response{% endif %},{% endfor %}{% endfor %}

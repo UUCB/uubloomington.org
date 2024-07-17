@@ -1,11 +1,12 @@
 from django.shortcuts import render
-from django.views.generic import FormView
+from django.views.generic import FormView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http.response import HttpResponseBadRequest
 from django.core.mail import EmailMessage
 from wagtail.snippets.views.snippets import InspectView
 
 from .forms import AdvancedFormResponseForm
-from .models import AdvancedFormResponse
+from .models import AdvancedFormResponse, AdvancedForm
 
 import json
 
@@ -67,3 +68,9 @@ class AdvancedFormInspectView(InspectView):
     def get_context_data(self, **kwargs):
         context = super(self.__class__, self).get_context_data(**kwargs)
         context['']
+
+
+class AdvancedFormResponseExportCsvView(LoginRequiredMixin, DetailView):
+    model = AdvancedForm
+    template_name = 'advanced_forms/export_csv.html'
+    login_url = '/admin/login'
