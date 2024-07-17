@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import FormView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http.response import HttpResponseBadRequest
+from django.http.response import HttpResponseBadRequest, HttpResponse
 from django.core.mail import EmailMessage
 from wagtail.snippets.views.snippets import InspectView
 
@@ -9,6 +9,9 @@ from .forms import AdvancedFormResponseForm
 from .models import AdvancedFormResponse, AdvancedForm
 
 import json
+
+import openpyxl
+import tempfile
 
 
 class AdvancedFormResponseView(FormView):
@@ -70,7 +73,28 @@ class AdvancedFormInspectView(InspectView):
         context['']
 
 
-class AdvancedFormResponseExportCsvView(LoginRequiredMixin, DetailView):
+class AdvancedFormResponseExportXlsxView(LoginRequiredMixin, DetailView):
     model = AdvancedForm
-    template_name = 'advanced_forms/export_csv.html'
+
     login_url = '/admin/login'
+
+    def get(self, request, *args, **kwargs):
+        advanced_form_object = self.get_object()
+        workbook = openpyxl.Workbook()
+        worksheet = workbook.active
+        # Insert the headers
+        worksheet.append([key for key in advanced_form_object.get_current_field_labels()])
+        # Make columns the right size, sort of
+        for column in worksheet.columns:
+            cell = column[0]
+            if len(str(cell.value)) > 13:
+                worksheet.column_dimensions[cell.column_letter].width = len(str(cell.value)) + 2
+        # Insert the actual data
+        for response in advanced_form_object.responses.all():
+            worksheet.append([str(value[1]) for value in response.get_current_values()])
+        response = HttpResponse(content_type='application/ms-excel')
+        with tempfile.NamedTemporaryFile() as tmp:
+            workbook.save(tmp)
+            tmp.seek(0)
+            response.write(tmp.read())
+        return response

@@ -8,7 +8,7 @@
 
 {% block main_content %}
     {% include "wagtailadmin/shared/header.html" with title=object.name icon="form" %}
-    <a href="{% url 'export_advanced_form_response_csv' pk=object.pk %}" download="{{ object.name|slugify }}_responses.tsv">Export Responses to CSV</a>
+    <a href="{% url 'export_advanced_form_response_xlsx' pk=object.pk %}" download="{{ object.name|slugify }}_responses.xlsx">Export Responses to Excel File</a>
     <table class="advanced-form-table">
         <tr>
             <th>Submitter Name</th>

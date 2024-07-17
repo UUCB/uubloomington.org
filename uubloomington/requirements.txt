@@ -7,3 +7,4 @@ django-feather==0.3.0
 django-recurrence
 sentry-sdk[django]
 django-anymail[sendgrid]
+openpyxl
