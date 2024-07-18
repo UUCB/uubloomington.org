@@ -83,7 +83,10 @@ class AdvancedFormResponseExportXlsxView(LoginRequiredMixin, DetailView):
         workbook = openpyxl.Workbook()
         worksheet = workbook.active
         # Insert the headers
-        worksheet.append([key for key in advanced_form_object.get_current_field_labels()])
+        worksheet.append(
+            ['Submitter Name', 'Submitter Email'] +
+            [key for key in advanced_form_object.get_current_field_labels()]
+        )
         # Make columns the right size, sort of
         for column in worksheet.columns:
             cell = column[0]
@@ -91,7 +94,10 @@ class AdvancedFormResponseExportXlsxView(LoginRequiredMixin, DetailView):
                 worksheet.column_dimensions[cell.column_letter].width = len(str(cell.value)) + 2
         # Insert the actual data
         for response in advanced_form_object.responses.all():
-            worksheet.append([str(value[1]) for value in response.get_current_values()])
+            worksheet.append(
+                [response.submitter_name, response.submitter_email] +
+                [str(value[1]) for value in response.get_current_values()]
+            )
         response = HttpResponse(content_type='application/ms-excel')
         with tempfile.NamedTemporaryFile() as tmp:
             workbook.save(tmp)
