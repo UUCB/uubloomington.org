@@ -1,0 +1,12 @@
+<label>{{ self.label_text }}
+    <select
+            class="dynamic-field"
+            name="{% block name %}{% if self.name_slug %}{{ self.name_slug }}{% else %}{{ self.label_text|slugify }}{% endif %}{% endblock %}"
+    >
+        {% for option in self.options %}
+            <label>
+                <option value="{{ option }}">{{ option }}</option>
+            </label>
+        {% endfor %}
+    </select>
+</label>

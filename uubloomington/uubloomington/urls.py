@@ -9,6 +9,7 @@ from wagtail.documents import urls as wagtaildocs_urls
 from search import views as search_views
 
 from home import urls as home_extra_urls
+from advanced_forms import urls as advanced_forms_urls
 
 from .api import api_router
 
@@ -21,6 +22,7 @@ urlpatterns = [
     path("search/", search_views.search, name="search"),
     path('home-extras/', include(home_extra_urls)),
     path('publish_scheduled/', publish_scheduled),
+    path('advanced_forms/', include(advanced_forms_urls)),
 ]
 
 

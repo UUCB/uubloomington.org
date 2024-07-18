@@ -1,0 +1,15 @@
+<p>
+    <label>{{ self.label_text }}</label>
+</p>
+<div class="multiple-choice dynamic-field">
+    {% for option in self.options %}
+        <label>
+            <input
+                    type="{% block type %}checkbox{% endblock %}"
+                    name="{% block name %}{% if self.name_slug %}{{ self.name_slug }}{% else %}{{ self.label_text|slugify }}{% endif %}{% endblock %}"
+                    value="{{ option }}"
+            >
+        {{ option }}
+        </label>
+    {% endfor %}
+</div>

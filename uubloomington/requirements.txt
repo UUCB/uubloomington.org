@@ -1,5 +1,5 @@
 Django>=5.0,<6.0
-wagtail>=6.0,<6.1
+wagtail>=6.1,<6.2
 wagtailmenus==3.1.9
 wagtail_modeladmin
 pypco
@@ -7,3 +7,4 @@ django-feather==0.3.0
 django-recurrence
 sentry-sdk[django]
 django-anymail[sendgrid]
+openpyxl

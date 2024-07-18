@@ -1,0 +1,20 @@
+.advanced-form-table {
+    max-width: 100%;
+    width: fit-content;
+    overflow-x: scroll;
+    display: block;
+}
+
+.advanced-form-table tr:nth-child(even) {
+  background-color: rgba(191, 211, 255, 0.5);
+}
+
+.advanced-form-table td,
+.advanced-form-table th {
+    padding: 0.75rem;
+}
+
+.advanced-form-table td:not(:first-child),
+.advanced-form-table th:not(:first-child) {
+    border-left: 2px solid #aaaaaa;
+}

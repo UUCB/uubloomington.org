@@ -1,0 +1,11 @@
+<p>
+    <label>
+        {{ self.label_text }}
+        <input
+                type="{% block field_type %}text{% endblock %}"
+                name="{% block name %}{% if self.name_slug %}{{ self.name_slug }}{% else %}{{ self.label_text|slugify }}{% endif %}{% endblock %}"
+                class="{% block class %}dynamic-field{% endblock %}"
+                placeholder="{{ self.placeholder_text }}"
+        >
+    </label>
+</p>

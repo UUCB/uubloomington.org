@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     "services",
     "site_settings",
     "search",
+    "advanced_forms",
     "django_feather",
     "recurrence",
     "wagtail.contrib.forms",

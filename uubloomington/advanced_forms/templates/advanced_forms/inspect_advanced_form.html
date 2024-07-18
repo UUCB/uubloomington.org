@@ -1,0 +1,38 @@
+{% extends 'wagtailadmin/generic/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'advanced_forms/admin.css' %}">
+{% endblock %}
+
+{% block main_content %}
+    {% include "wagtailadmin/shared/header.html" with title=object.name icon="form" %}
+    <a href="{% url 'export_advanced_form_response_xlsx' pk=object.pk %}" download="{{ object.name|slugify }}_responses.xlsx">Export Responses to Excel File</a>
+    <table class="advanced-form-table">
+        <tr>
+            <th>Submitter Name</th>
+            <th>Submitter Email</th>
+            {% for key in object.get_current_field_labels %}
+                <th>
+                    {{ key }}
+                </th>
+            {% endfor %}
+        </tr>
+        {% for response in object.responses.all %}
+            <tr>
+                <td>{{ response.submitter_name }}</td>
+                <td>{{ response.submitter_email }}</td>
+                {% for value in response.get_current_values %}
+                    <td>
+                        {% if value.1 is not None %}
+                            {{ value.1 }}
+                        {% else %}
+                            No Response
+                        {% endif %}
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
