@@ -6,7 +6,7 @@ from wagtail.fields import RichTextField, StreamField
 from wagtail.admin.panels import FieldPanel, PageChooserPanel
 from wagtail import blocks
 from wagtail.embeds.blocks import EmbedBlock
-from .blocks import ReadMoreTagBlock, ShowFeaturedImageBlock, PageFeatureBlock, ExpandableListItemBlock, AutoIndexBlock, IndexBlock, DocumentListBlock, BadgeAreaBlock, BadgeBlock, AnchorBlock, UpcomingServiceBlock, MultiColumnBlock, UpcomingOrderOfServiceBlock, DirectionsBlock, SearchableTreeIndexBlock, AdvancedFormBlock
+from .blocks import ReadMoreTagBlock, ShowFeaturedImageBlock, PageFeatureBlock, ExpandableListItemBlock, AutoIndexBlock, IndexBlock, DocumentListBlock, BadgeAreaBlock, BadgeBlock, AnchorBlock, UpcomingServiceBlock, MultiColumnBlock, UpcomingOrderOfServiceBlock, DirectionsBlock, SearchableTreeIndexBlock, AdvancedFormBlock, CardContainerBlock
 from modelcluster.fields import ParentalKey
 from wagtail.admin.panels import (
     FieldPanel, FieldRowPanel,
@@ -113,6 +113,7 @@ class StandardBlockPage(Page):
         ('directions', DirectionsBlock()),
         ('page_tree_index', SearchableTreeIndexBlock()),
         ('advanced_form', AdvancedFormBlock(AdvancedForm)),
+        ('card_container', CardContainerBlock()),
     ], use_json_field=True, null=True)
 
     summary = RichTextField(null=True, blank=True)

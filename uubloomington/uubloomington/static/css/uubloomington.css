@@ -771,6 +771,15 @@ hr {
 /*    gap: var(--standard-gap);*/
 /*}*/
 
+.block-card_container > :nth-child(2n) {
+    page-break-after: always;
+}
+
+.block-card_container:has(:nth-child(4)):not(:has(:nth-child(5))) > * {
+    flex-basis: 40%;
+}
+
+.block-card_container,
 .card-container {
     display: flex;
     gap: var(--standard-gap);
@@ -778,16 +787,9 @@ hr {
     justify-content: center;
 }
 
-/*.card-container > :nth-child(2n) {*/
-/*    page-break-after: always;*/
-/*}*/
-
-/*.card-container:has(:nth-child(4)):not(:has(:nth-child(5))) * {*/
-/*    flex-basis: 40%;*/
-/*}*/
-
 /*The above is awesome, let's revisit it in the future when more browsers support :has()*/
 
+.block-card,
 .card {
     font-family: "League Spartan Variable";
     display: flex;
@@ -802,10 +804,12 @@ hr {
     flex-grow: 1;
 }
 
+.block-card:not(:has(> .card-action)),
 .card:not(:has(> .card-action)) {
     padding-bottom: 1rem;
 }
 
+.block-card_container > .block-card,
 .card-container > .card {
     max-width: 41rem;
     /*This is a weird value. Keeps cards from being full-width if they are alone on a row,*/
@@ -828,16 +832,19 @@ hr {
     }
 }
 
+.block-card:not(.upcoming-service):not(.badges) > :not(img),
 .card:not(.upcoming-service):not(.badges) > :not(img) {
     margin-inline: 1rem;
 }
 
+.block-card > img,
 .card > img {
     /*margin: -1rem -1rem -1rem -1rem;*/
     width: 100%;
     height: auto;
 }
 
+.block-card > h2,
 .card h2 {
     text-align: center;
     margin-top: 0.5rem;
@@ -845,6 +852,7 @@ hr {
     font-size: 1.8rem;
 }
 
+.block-card h2:first-child,
 .card h2:first-child {
     margin-top: var(--standard-gap);
 }

@@ -1,0 +1,6 @@
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+{% image value.image fill-640x375 %}
+<h2>{{ value.title }}</h2>
+{{ value.body|richtext }}
+<a class="card-action" href="{{ value.action_link }}">{{ value.action_text }}</a>

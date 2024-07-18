@@ -168,3 +168,18 @@ class SearchableTreeIndexBlock (blocks.StructBlock):
 class AdvancedFormBlock(SnippetChooserBlock):
     class Meta:
         template = 'core/advanced_form_block.html'
+
+
+class CardBlock(blocks.StructBlock):
+    title = blocks.CharBlock()
+    body = blocks.RichTextBlock()
+    image = ImageChooserBlock()
+    action_text = blocks.CharBlock()
+    action_link = blocks.CharBlock()
+
+    class Meta:
+        template = 'core/card_block.html'
+
+
+class CardContainerBlock(blocks.StreamBlock):
+    card = CardBlock()
