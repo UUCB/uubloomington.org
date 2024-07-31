@@ -160,6 +160,7 @@ class CustomFormBuilder(FormBuilder):
 class FormPage(AbstractEmailForm):
     form_builder = CustomFormBuilder
     intro = RichTextField(blank=True)
+    summary = RichTextField(blank=True)
     thank_you_text = RichTextField(blank=True)
     send_confirmation_email = models.BooleanField(
         default=False,
@@ -212,6 +213,7 @@ class FormPage(AbstractEmailForm):
         FormSubmissionsPanel(),
         FieldPanel('featured_image'),
         FieldPanel('intro'),
+        FieldPanel('summary', help_text="Shown when this page is featured, or in a searchable index"),
         InlinePanel('form_fields', label="Form fields"),
         FieldPanel('thank_you_text'),
         MultiFieldPanel([
