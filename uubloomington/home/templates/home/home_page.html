@@ -24,7 +24,13 @@
                 <h2>Upcoming Service</h2>
             {% endif %}
             <h3>{{ next_service.title }}</h3>
-            <span class="link-container"><a href="{{ page.live_stream_page.url }}">Live Stream</a> or in person!</span>
+            <span class="link-container">
+                {% if next_service.video_archive_link %}
+                    <a href="{{ next_service.url }}">See Recording</a>
+                {% else %}
+                    <a href="{{ page.live_stream_page.url }}">Live Stream</a> or in person!
+                {% endif %}
+            </span>
 {#            {% image next_service.featured_image fill-200x200 %}#}
             <span class="service-description">
                 {% image next_service.featured_image fill-150x150 class='right'%}
