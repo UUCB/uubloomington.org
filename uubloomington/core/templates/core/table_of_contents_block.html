@@ -1,0 +1,3 @@
+{% for title in page.get_section_titles %}
+    <a href="#{{ title|slugify }}">{{ title }}</a>
+{% endfor %}

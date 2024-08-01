@@ -1,7 +1,10 @@
 from wagtail import blocks
+from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtail.documents.models import Document
+
+from advanced_forms.models import AdvancedForm
 from services.models import OrderOfService
 from django.utils import timezone
 
@@ -183,3 +186,38 @@ class CardBlock(blocks.StructBlock):
 
 class CardContainerBlock(blocks.StreamBlock):
     card = CardBlock()
+
+
+class SectionBlock(blocks.StructBlock):
+    heading = blocks.CharBlock()
+    body = blocks.StreamBlock([
+        ('rich_text', blocks.RichTextBlock()),
+        ('read_more', ReadMoreTagBlock()),
+        ('show_featured_image', ShowFeaturedImageBlock()),
+        ('page_feature', PageFeatureBlock()),
+        ('expandable_list', blocks.ListBlock(ExpandableListItemBlock)),
+        ('embed', EmbedBlock(max_height=900)),
+        ('auto_index', AutoIndexBlock()),
+        ('selectable_index', IndexBlock()),
+        ('document_list', DocumentListBlock()),
+        ('badge_area', BadgeAreaBlock(child_block=BadgeBlock())),
+        ('anchor', AnchorBlock()),
+        ('upcoming_service', UpcomingServiceBlock()),
+        ('upcoming_oos', UpcomingOrderOfServiceBlock()),
+        ('multi_column', MultiColumnBlock()),
+        ('directions', DirectionsBlock()),
+        ('page_tree_index', SearchableTreeIndexBlock()),
+        ('advanced_form', AdvancedFormBlock(AdvancedForm)),
+        ('card_container', CardContainerBlock()),
+    ])
+
+    class Meta:
+        template = 'core/section_block.html'
+
+
+class TableOfContentsBlock(blocks.StaticBlock):
+    class Meta:
+        icon = 'table'
+        label = 'Show Table Of Contents'
+        admin_text = f'{label}: This block generates a clickable table of contents, listing all Section blocks on the page.'
+        template = 'core/table_of_contents_block.html'

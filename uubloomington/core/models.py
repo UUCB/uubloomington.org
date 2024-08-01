@@ -7,7 +7,7 @@ from wagtail.admin.panels import FieldPanel, PageChooserPanel
 from wagtail import blocks
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.search import index
-from .blocks import ReadMoreTagBlock, ShowFeaturedImageBlock, PageFeatureBlock, ExpandableListItemBlock, AutoIndexBlock, IndexBlock, DocumentListBlock, BadgeAreaBlock, BadgeBlock, AnchorBlock, UpcomingServiceBlock, MultiColumnBlock, UpcomingOrderOfServiceBlock, DirectionsBlock, SearchableTreeIndexBlock, AdvancedFormBlock, CardContainerBlock
+from .blocks import ReadMoreTagBlock, ShowFeaturedImageBlock, PageFeatureBlock, ExpandableListItemBlock, AutoIndexBlock, IndexBlock, DocumentListBlock, BadgeAreaBlock, BadgeBlock, AnchorBlock, UpcomingServiceBlock, MultiColumnBlock, UpcomingOrderOfServiceBlock, DirectionsBlock, SearchableTreeIndexBlock, AdvancedFormBlock, CardContainerBlock, SectionBlock, TableOfContentsBlock
 from modelcluster.fields import ParentalKey
 from wagtail.admin.panels import (
     FieldPanel, FieldRowPanel,
@@ -123,6 +123,8 @@ class StandardBlockPage(Page):
         ('page_tree_index', SearchableTreeIndexBlock()),
         ('advanced_form', AdvancedFormBlock(AdvancedForm)),
         ('card_container', CardContainerBlock()),
+        ('section', SectionBlock()),
+        ('table_of_contents', TableOfContentsBlock()),
     ], use_json_field=True, null=True)
 
     summary = RichTextField(null=True, blank=True)
@@ -138,6 +140,11 @@ class StandardBlockPage(Page):
     search_fields = Page.search_fields + [
         index.SearchField('body'),
     ]
+
+    def get_section_titles(self):
+        section_titles = [section.value['heading'] for section in self.body.blocks_by_name('section')]
+        print(section_titles)
+        return section_titles
 
     def get_blocks_before_read_more(self):
         blocks_before_read_more = []

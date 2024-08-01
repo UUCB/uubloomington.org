@@ -1,0 +1,5 @@
+{% load wagtailcore_tags %}
+<section id="{{ value.heading|slugify }}">
+    <h2>{{ value.heading }}</h2>
+    {% include_block value.body %}
+</section>
