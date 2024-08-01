@@ -13,7 +13,7 @@ from advanced_forms import urls as advanced_forms_urls
 
 from .api import api_router
 
-from .views import publish_scheduled
+from .views import publish_scheduled, reindex_search
 
 urlpatterns = [
     path("django-admin/", admin.site.urls),
@@ -22,6 +22,7 @@ urlpatterns = [
     path("search/", search_views.search, name="search"),
     path('home-extras/', include(home_extra_urls)),
     path('publish_scheduled/', publish_scheduled),
+    path('reindex_search/', reindex_search),
     path('advanced_forms/', include(advanced_forms_urls)),
 ]
 
