@@ -1,3 +1,33 @@
-{% for title in page.get_section_titles %}
-    <a href="#{{ title|slugify }}">{{ title }}</a>
-{% endfor %}
+{#{% for title in page.get_section_titles %}#}
+{#    {% with title.type as class_modifier %}#}
+{#        <a href="#{{ title.title|slugify }}">{{ title.title }}</a>#}
+{#    {% endwith %}#}
+{#{% endfor %}#}
+<h2>Table of Contents</h2>
+<ul>
+    {% for block in page.body %}
+        {% if block.block_type == 'section' %}
+            <li>
+                <a href="#{{ block.value.heading|slugify }}">{{ block.value.heading }}</a>
+                <ul>
+                    {% for block in block.value.body %}
+                        {% if block.block_type == 'sub_section' %}
+                            <li>
+                                <a href="#{{ block.value.heading|slugify }}">{{ block.value.heading }}</a>
+                                <ul>
+                                    {% for block in block.value.body %}
+                                        {% if block.block_type == 'sub_sub_section' %}
+                                            <li>
+                                                <a href="#{{ block.value.heading|slugify }}">{{ block.value.heading }}</a>
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endif %}
+    {% endfor %}
+</ul>

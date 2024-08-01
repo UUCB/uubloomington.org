@@ -188,9 +188,10 @@ class CardContainerBlock(blocks.StreamBlock):
     card = CardBlock()
 
 
-class SectionBlock(blocks.StructBlock):
+class BaseSectionBlock(blocks.StructBlock):
     heading = blocks.CharBlock()
-    body = blocks.StreamBlock([
+
+    body_blocks = [
         ('rich_text', blocks.RichTextBlock()),
         ('read_more', ReadMoreTagBlock()),
         ('show_featured_image', ShowFeaturedImageBlock()),
@@ -209,10 +210,38 @@ class SectionBlock(blocks.StructBlock):
         ('page_tree_index', SearchableTreeIndexBlock()),
         ('advanced_form', AdvancedFormBlock(AdvancedForm)),
         ('card_container', CardContainerBlock()),
-    ])
+    ]
+
+
+class SubSubSectionBlock(BaseSectionBlock):
+    body = blocks.StreamBlock(
+        BaseSectionBlock.body_blocks
+    )
 
     class Meta:
-        template = 'core/section_block.html'
+        template = 'core/section_block/subsubsection_block.html'
+
+
+class SubSectionBlock(BaseSectionBlock):
+    body = blocks.StreamBlock(
+        BaseSectionBlock.body_blocks + [
+            ('sub_sub_section', SubSubSectionBlock())
+        ]
+    )
+
+    class Meta:
+        template = 'core/section_block/subsection_block.html'
+
+
+class SectionBlock(BaseSectionBlock):
+    body = blocks.StreamBlock(
+        BaseSectionBlock.body_blocks + [
+            ('sub_section', SubSectionBlock())
+        ]
+    )
+
+    class Meta:
+        template = 'core/section_block/section_block.html'
 
 
 class TableOfContentsBlock(blocks.StaticBlock):

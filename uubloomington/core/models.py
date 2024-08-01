@@ -141,10 +141,6 @@ class StandardBlockPage(Page):
         index.SearchField('body'),
     ]
 
-    def get_section_titles(self):
-        section_titles = [section.value['heading'] for section in self.body.blocks_by_name('section')]
-        print(section_titles)
-        return section_titles
 
     def get_blocks_before_read_more(self):
         blocks_before_read_more = []
