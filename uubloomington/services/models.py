@@ -13,6 +13,7 @@ from wagtail.fields import RichTextField, StreamField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel
 from wagtail.images.models import Image
 from wagtail.api import APIField
+from wagtail.search import index
 
 from site_settings.models import SiteWideSettings
 
@@ -42,6 +43,10 @@ class ServicesHomePage(Page):
     ]
 
     subpage_types = ['services.ServicePage']
+
+    search_fields = Page.search_fields + [
+        index.SearchField('body'),
+    ]
 
     def get_next_service_time(self):
         existing_services = [service.specific.order_of_service.first().date
@@ -110,6 +115,11 @@ class ServicePage(Page):
         # FieldPanel('order_of_service_link'),
     ]
 
+    search_fields = Page.search_fields + [
+        index.SearchField('body'),
+        index.SearchField('one_sentence'),
+    ]
+
     def service_in_future(self):
         if timezone.now().date() <= self.get_children().first().specific.date:
             return True
@@ -172,6 +182,10 @@ class OrderOfService(Page):
     api_fields = [
         APIField('program'),
         APIField('date'),
+    ]
+
+    search_fields = Page.search_fields + [
+        index.SearchField('program'),
     ]
 
     def is_on_sunday(self):

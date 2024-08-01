@@ -6,6 +6,7 @@ from wagtail.fields import RichTextField, StreamField
 from wagtail.admin.panels import FieldPanel, PageChooserPanel
 from wagtail import blocks
 from wagtail.embeds.blocks import EmbedBlock
+from wagtail.search import index
 from .blocks import ReadMoreTagBlock, ShowFeaturedImageBlock, PageFeatureBlock, ExpandableListItemBlock, AutoIndexBlock, IndexBlock, DocumentListBlock, BadgeAreaBlock, BadgeBlock, AnchorBlock, UpcomingServiceBlock, MultiColumnBlock, UpcomingOrderOfServiceBlock, DirectionsBlock, SearchableTreeIndexBlock, AdvancedFormBlock, CardContainerBlock
 from modelcluster.fields import ParentalKey
 from wagtail.admin.panels import (
@@ -70,6 +71,10 @@ class PageWithPosts(Page):
 
     subpage_types = ['core.Post']
 
+    search_fields = Page.search_fields + [
+        index.SearchField('body'),
+    ]
+
 
 class GenericIndexPage(Page):
     body = RichTextField()
@@ -84,6 +89,10 @@ class GenericIndexPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('featured_image'),
         FieldPanel('body'),
+    ]
+
+    search_fields = Page.search_fields + [
+        index.SearchField('body'),
     ]
 
 
@@ -124,6 +133,10 @@ class StandardBlockPage(Page):
         FieldPanel('featured_image'),
         FieldPanel('body'),
         FieldPanel('summary'),
+    ]
+
+    search_fields = Page.search_fields + [
+        index.SearchField('body'),
     ]
 
     def get_blocks_before_read_more(self):
@@ -233,6 +246,11 @@ class FormPage(AbstractEmailForm):
             ],
             "Confirmation Email Settings",
         )
+    ]
+
+    search_fields = Page.search_fields + [
+        index.SearchField('intro'),
+        index.SearchField('summary'),
     ]
 
     def send_mail(self, form):

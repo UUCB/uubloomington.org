@@ -5,6 +5,7 @@ from wagtail.admin.views.pages.create import CreateView
 from wagtail import hooks
 from wagtail import blocks
 from wagtail.embeds.blocks import EmbedBlock
+from wagtail.search import index
 from core.blocks import ReadMoreTagBlock, ShowFeaturedImageBlock, PageFeatureBlock, ExpandableListItemBlock, IndexBlock, BadgeAreaBlock, BadgeBlock, AnchorBlock
 from core.models import StandardBlockPage
 from .blocks import ArticleBlock, TableOfContentsBlock
@@ -35,6 +36,10 @@ class Newsletter(Page):
     ]
     subpage_types = [
         'newsletter.Issue'
+    ]
+
+    search_fields = Page.search_fields + [
+        index.SearchField('body'),
     ]
 
     def get_date_of_next_issue(self) -> datetime.date:
@@ -95,6 +100,10 @@ class Issue(Page):
     ]
     publication_date = models.DateField()
     template = 'core/standard_block_page.html'
+
+    search_fields = Page.search_fields + [
+        index.SearchField('body'),
+    ]
 
     newsletter = True  # for page feature handling
 

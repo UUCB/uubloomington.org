@@ -9,6 +9,7 @@ from wagtail.fields import RichTextField
 from wagtail.admin.panels import FieldPanel
 from django.utils.text import slugify
 from django.utils import timezone
+from wagtail.search import index
 
 from site_settings.models import SiteWideSettings
 
@@ -65,6 +66,11 @@ class GroupPage(Page):
         FieldPanel('summary'),
         FieldPanel('featured_image'),
         FieldPanel('show_posts'),
+    ]
+
+    search_fields = Page.search_fields + [
+        index.SearchField('summary'),
+
     ]
 
     def get_context(self, request, *args, **kwargs):
