@@ -84,7 +84,7 @@ class AdvancedFormResponseExportXlsxView(LoginRequiredMixin, DetailView):
         worksheet = workbook.active
         # Insert the headers
         worksheet.append(
-            ['Submitter Name', 'Submitter Email'] +
+            ['Submission Date/Time', 'Submitter Name', 'Submitter Email'] +
             [key for key in advanced_form_object.get_current_field_labels()]
         )
         # Make columns the right size, sort of
@@ -95,7 +95,7 @@ class AdvancedFormResponseExportXlsxView(LoginRequiredMixin, DetailView):
         # Insert the actual data
         for response in advanced_form_object.responses.all():
             worksheet.append(
-                [response.submitter_name, response.submitter_email] +
+                [response.submission_datetime.replace(tzinfo=None), response.submitter_name, response.submitter_email] +
                 [str(value[1]) for value in response.get_current_values()]
             )
         response = HttpResponse(content_type='application/ms-excel')

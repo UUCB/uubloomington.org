@@ -11,6 +11,7 @@
     <a href="{% url 'export_advanced_form_response_xlsx' pk=object.pk %}" download="{{ object.name|slugify }}_responses.xlsx">Export Responses to Excel File</a>
     <table class="advanced-form-table">
         <tr>
+            <th>Submission Date/Time</th>
             <th>Submitter Name</th>
             <th>Submitter Email</th>
             {% for key in object.get_current_field_labels %}
@@ -21,6 +22,7 @@
         </tr>
         {% for response in object.responses.all %}
             <tr>
+                <td>{{ response.submission_datetime }}</td>
                 <td>{{ response.submitter_name }}</td>
                 <td>{{ response.submitter_email }}</td>
                 {% for value in response.get_current_values %}

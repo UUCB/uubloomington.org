@@ -1,5 +1,6 @@
 from django.core.mail import EmailMessage
 from django.db import models
+from django.utils import timezone
 from wagtail.fields import StreamField
 from wagtail import blocks
 import advanced_forms.blocks as advanced_forms_blocks
@@ -80,6 +81,7 @@ class AdvancedFormResponse(models.Model):
     submitter_name = models.CharField(max_length=500)
     submitter_email = models.EmailField()
     response_json = models.JSONField()
+    submission_datetime = models.DateTimeField(default=timezone.now)
     form = models.ForeignKey(AdvancedForm, on_delete=models.CASCADE, related_name='responses')
 
     def get_current_values(self):
