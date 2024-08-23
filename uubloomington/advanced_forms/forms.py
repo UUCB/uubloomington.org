@@ -11,4 +11,9 @@ class AdvancedFormResponseForm(ModelForm):
 
     class Meta:
         model = AdvancedFormResponse
-        fields = '__all__'
+        fields = [
+            'submitter_name',
+            'submitter_email',
+            'response_json',
+            'form',
+        ]
