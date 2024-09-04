@@ -1352,6 +1352,10 @@ footer > .footer-content > * {
     display: none;
 }
 
+.expandable:not(:has(.block-read_more)) .show-more {
+    display: none;
+}
+
 /*.expandable > button {*/
 /*    display: initial;*/
 /*}*/
