@@ -1348,6 +1348,10 @@ footer > .footer-content > * {
     display: none;
 }
 
+.expandable:not(.expand) .show-less {
+    display: none;
+}
+
 /*.expandable > button {*/
 /*    display: initial;*/
 /*}*/
