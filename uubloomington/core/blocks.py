@@ -1,3 +1,5 @@
+from tokenize import blank_re
+
 from wagtail import blocks
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
@@ -215,7 +217,8 @@ class BaseSectionBlock(blocks.StructBlock):
 
 class SubSubSectionBlock(BaseSectionBlock):
     body = blocks.StreamBlock(
-        BaseSectionBlock.body_blocks
+        BaseSectionBlock.body_blocks,
+        blank=True,
     )
 
     class Meta:
@@ -226,7 +229,8 @@ class SubSectionBlock(BaseSectionBlock):
     body = blocks.StreamBlock(
         BaseSectionBlock.body_blocks + [
             ('sub_sub_section', SubSubSectionBlock())
-        ]
+        ],
+        blank=True,
     )
 
     class Meta:
@@ -237,7 +241,8 @@ class SectionBlock(BaseSectionBlock):
     body = blocks.StreamBlock(
         BaseSectionBlock.body_blocks + [
             ('sub_section', SubSectionBlock())
-        ]
+        ],
+        blank=True,
     )
 
     class Meta:
