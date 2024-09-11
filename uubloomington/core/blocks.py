@@ -218,7 +218,7 @@ class BaseSectionBlock(blocks.StructBlock):
 class SubSubSectionBlock(BaseSectionBlock):
     body = blocks.StreamBlock(
         BaseSectionBlock.body_blocks,
-        blank=True,
+        required=False,
     )
 
     class Meta:
@@ -230,7 +230,7 @@ class SubSectionBlock(BaseSectionBlock):
         BaseSectionBlock.body_blocks + [
             ('sub_sub_section', SubSubSectionBlock())
         ],
-        blank=True,
+        required=False,
     )
 
     class Meta:
@@ -242,7 +242,7 @@ class SectionBlock(BaseSectionBlock):
         BaseSectionBlock.body_blocks + [
             ('sub_section', SubSectionBlock())
         ],
-        blank=True,
+        required=False,
     )
 
     class Meta:
