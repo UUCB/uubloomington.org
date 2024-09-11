@@ -1739,3 +1739,97 @@ ul.searchable_tree > li {
 .block-table_of_contents ul ul {
     margin-left: 0.75rem;
 }
+
+.order-of-service-dual-page-feature {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--standard-gap)
+}
+
+.order-of-service-dual-page-feature .oos-content,
+.order-of-service-dual-page-feature .tab {
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--card-background-color);
+    border-radius: var(--standard-radius);
+    margin-bottom: 0;
+    border: none;
+    min-height: 5rem;
+    font-family: "League Spartan Variable";
+    font-variation-settings: "wght" 375;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    display: grid;
+}
+
+.order-of-service-dual-page-feature .oos-content {
+    grid-column: span 2;
+}
+
+.order-of-service-dual-page-feature .tab.selected {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom: var(--standard-gap) solid var(--card-background-color);
+    margin-bottom: calc(var(--standard-gap) - calc(var(--standard-gap) * 2));
+}
+
+.order-of-service-dual-page-feature .tab.selected .card-action.show {
+    display: none;
+}
+
+.order-of-service-dual-page-feature .tab:not(.selected) .card-action.hide {
+    display: none;
+}
+
+.order-of-service-dual-page-feature .oos-content:not(.selected) {
+    display: none;
+}
+
+.order-of-service-dual-page-feature .oos-content.selected {
+    display: initial;
+}
+
+#oos-program.selected {
+    border-top-left-radius: 0;
+}
+
+#oos-info.selected {
+    border-top-right-radius: 0;
+}
+
+.order-of-service-dual-page-feature .card-action {
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: auto;
+}
+
+button.card-action {
+    font-family: "League Spartan Variable";
+    font-variation-settings: "wght" 450;
+    font-size: 1.2rem;
+    line-height: 1rem;
+}
+
+@media screen and (max-width: 30rem) {
+    .order-of-service-dual-page-feature {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .order-of-service-dual-page-feature:has(#oos-program.selected) .tab:not(.selected) {
+        grid-row: 3;
+    }
+
+    .order-of-service-dual-page-feature:has(#oos-info.selected) .tab.selected {
+        grid-row: 2;
+    }
+
+    .order-of-service-dual-page-feature .tab:not(#specificity-hack) {
+        width: 100%;
+    }
+
+    .order-of-service-dual-page-feature .tab:not(:first-of-type) {
+        margin-top: var(--standard-gap)
+    }
+}
