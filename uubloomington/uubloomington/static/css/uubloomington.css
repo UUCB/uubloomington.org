@@ -1743,7 +1743,8 @@ ul.searchable_tree > li {
 .order-of-service-dual-page-feature {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--standard-gap)
+    gap: var(--standard-gap);
+    width: 100%;
 }
 
 .order-of-service-dual-page-feature .oos-content,
