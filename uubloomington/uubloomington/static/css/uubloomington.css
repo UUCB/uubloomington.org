@@ -364,7 +364,7 @@ nav > .nav > li.expand > ul {
     position: absolute;
     /*background: var(--secondary-accent-color);*/
     background: var(--accent-color);
-    z-index: 1000;
+    z-index: 1100;
 }
 
 nav > .nav li:focus-within,
