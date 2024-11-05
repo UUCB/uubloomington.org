@@ -48,6 +48,9 @@ class SiteWideSettings(BaseGenericSetting):
 
     refresh_from_planningcenter_every = models.IntegerField(default=5)
 
+    use_shynet = models.BooleanField(default=False)
+    shynet_ingress_url = models.CharField(max_length=900, blank=True, null=True, help_text='The first part of the shynet ingress URL - leave off the filename.')
+
     panels = [
         MultiFieldPanel([
             FieldPanel('title'),
@@ -66,7 +69,14 @@ class SiteWideSettings(BaseGenericSetting):
         FieldPanel('header_links'),
         MultiFieldPanel([
             FieldPanel('refresh_from_planningcenter_every'),
-        ], heading="Planning Center Integration Settings")
+        ], heading="Planning Center Integration Settings"),
+        MultiFieldPanel(
+            children=[
+                FieldPanel('use_shynet'),
+                FieldPanel('shynet_ingress_url'),
+            ],
+            heading="Shynet Integration Settings",
+        )
     ]
 
 
