@@ -137,11 +137,13 @@
         {% block extra_js %}
         {# Override this in templates to add extra javascript #}
         {% endblock %}
-    {% if settings.site_settings.SiteWideSettings.use_shynet %}
-        <noscript>
-            <img src="{{ settings.site_settings.SiteWideSettings.shynet_ingress_url }}/pixel.gif">
-        </noscript>
-        <script src="{{ settings.site_settings.SiteWideSettings.shynet_ingress_url }}/script.js"></script>
+    {% if not request.is_preview %}
+        {% if settings.site_settings.SiteWideSettings.use_shynet %}
+            <noscript>
+                <img src="{{ settings.site_settings.SiteWideSettings.shynet_ingress_url }}/pixel.gif">
+            </noscript>
+            <script src="{{ settings.site_settings.SiteWideSettings.shynet_ingress_url }}/script.js"></script>
+        {% endif %}
     {% endif %}
     </body>
 </html>
