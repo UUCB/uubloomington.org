@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='issue',
             name='body',
-            field=wagtail.fields.StreamField([('rich_text', wagtail.blocks.RichTextBlock()), ('read_more', core.blocks.ReadMoreTagBlock()), ('show_featured_image', core.blocks.ShowFeaturedImageBlock()), ('page_feature', core.blocks.PageFeatureBlock()), ('expandable_list', wagtail.blocks.ListBlock(core.blocks.ExpandableListItemBlock)), ('embed', wagtail.embeds.blocks.EmbedBlock(max_height=900)), ('selectable_index', wagtail.blocks.StructBlock([('page', wagtail.blocks.PageChooserBlock())])), ('badge_area', core.blocks.BadgeAreaBlock(child_block=wagtail.blocks.StructBlock([('image', wagtail.images.blocks.ImageChooserBlock()), ('link', wagtail.blocks.URLBlock()), ('link_text', wagtail.blocks.CharBlock())]))), ('anchor', wagtail.blocks.StructBlock([('name', wagtail.blocks.CharBlock())]))], null=True, use_json_field=True),
+            field=wagtail.fields.StreamField([('rich_text', wagtail.blocks.RichTextBlock()), ('read_more', core.blocks.ReadMoreTagBlock()), ('show_featured_image', core.blocks.ShowFeaturedImageBlock()), ('page_feature', core.blocks.PageFeatureBlock()), ('expandable_list', wagtail.blocks.ListBlock(core.blocks.ExpandableListItemBlock)), ('embed', wagtail.embeds.blocks.EmbedBlock(max_height=900)), ('selectable_index', wagtail.blocks.StructBlock([('page', wagtail.blocks.PageChooserBlock())])), ('anchor', wagtail.blocks.StructBlock([('name', wagtail.blocks.CharBlock())]))], null=True, use_json_field=True),
         ),
         migrations.AddField(
             model_name='issue',
