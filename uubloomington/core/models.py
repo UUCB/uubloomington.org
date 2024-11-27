@@ -114,7 +114,7 @@ class StandardBlockPage(Page):
         ('auto_index', AutoIndexBlock()),
         ('selectable_index', IndexBlock()),
         ('document_list', DocumentListBlock()),
-        ('badge_area', BadgeAreaBlock(child_block=BadgeBlock())),
+        ('badge_area', BadgeAreaBlock(BadgeBlock())),
         ('anchor', AnchorBlock()),
         ('upcoming_service', UpcomingServiceBlock()),
         ('upcoming_oos', UpcomingOrderOfServiceBlock()),
