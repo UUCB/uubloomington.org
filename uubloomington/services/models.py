@@ -155,6 +155,12 @@ class OrderOfService(Page):
         related_name='order_of_service',
     )
     back_page = RichTextField(null=True, blank=True)
+    back_page_title = models.CharField(
+        max_length=255,
+        blank=False,
+        default="Other Sunday Information",
+        help_text="This will be the title of the \"back page\" tab on the service page.",
+    )
     cover_page = RichTextField(null=True, blank=True)
     date = models.DateField()
     time = models.TimeField()
@@ -176,6 +182,7 @@ class OrderOfService(Page):
         FieldPanel("program"),
         FieldPanel("cover_page"),
         FieldPanel("back_page"),
+        FieldPanel("back_page_title"),
         FieldPanel("date"),
     ]
 

@@ -52,7 +52,7 @@
                         <button class="card-action hide" _="on click remove .selected from <.tab, .oos-content/>">Hide</button>
                     </div>
                     <div class="tab">
-                        <div class="visual-h2">Other Sunday Information</div>
+                        <div class="visual-h2">{{ page.get_children.first.specific.back_page_title }}</div>
                         <div>Information about other happenings at UUCB each week is available here.</div>
                         <button class="card-action show" _="on click remove .selected from <.tab, .oos-content/> then add .selected to closest parent <.tab/> then add .selected to #oos-info">Show</button>
                         <button class="card-action hide" _="on click remove .selected from <.tab, .oos-content/>">Hide</button>
