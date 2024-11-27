@@ -178,6 +178,7 @@ class FormPage(AbstractEmailForm):
     intro = RichTextField(blank=True)
     summary = RichTextField(blank=True)
     thank_you_text = RichTextField(blank=True)
+    subject = models.CharField(verbose_name="Subject", max_length=255, blank=False)
     send_confirmation_email = models.BooleanField(
         default=False,
         help_text="""
