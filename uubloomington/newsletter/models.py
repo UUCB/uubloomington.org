@@ -26,7 +26,7 @@ class Newsletter(Page):
         ('expandable_list', blocks.ListBlock(ExpandableListItemBlock)),
         ('embed', EmbedBlock(max_height=900)),
         ('selectable_index', IndexBlock()),
-        ('badge_area', BadgeAreaBlock(child_block=BadgeBlock())),
+        ('badge_area', BadgeAreaBlock(BadgeBlock())),
         ('anchor', AnchorBlock()),
     ], use_json_field=True, null=True)
     publication_schedule = RecurrenceField()
@@ -71,7 +71,7 @@ class Issue(Page):
             ('expandable_list', blocks.ListBlock(ExpandableListItemBlock)),
             ('embed', EmbedBlock(max_height=900)),
             ('selectable_index', IndexBlock()),
-            ('badge_area', BadgeAreaBlock(child_block=BadgeBlock())),
+            ('badge_area', BadgeAreaBlock(BadgeBlock())),
             ('anchor', AnchorBlock()),
             ('article', ArticleBlock()),
             ('table_of_contents', TableOfContentsBlock()),
