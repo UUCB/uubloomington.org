@@ -18,11 +18,7 @@
         {% include "home/carousel_image.html" with carousel_image=page.get_carousel_image %}
         {% endif %}
         <div class="card upcoming-service">
-            {% if next_service.get_children.first.specific.is_on_sunday %}
-                <h2>This Sunday's Service</h2>
-            {% else %}
-                <h2>Upcoming Service</h2>
-            {% endif %}
+            <h2>Upcoming Service</h2>
             <h3>{{ next_service.title }}</h3>
             <span class="link-container">
                 {% if next_service.video_archive_link %}
@@ -47,7 +43,7 @@
                 </a>
                 <a class="card-action" href="{{ page.services_home_page.url }}">
                     {% icon "list" %}
-                    All Sunday Services
+                    All<br>Services
                 </a>
             </span>
         </div>
