@@ -60,6 +60,7 @@ class GroupPage(Page):
     )
     group_info = models.BinaryField(null=True)  # Pickled Group
     group_type = models.BinaryField(null=True)  # Pickled Group Type
+    group_is_open = models.BooleanField(default=True)
     last_fetched = models.DateTimeField(default=timezone.make_aware(datetime.datetime.min))
     content_panels = Page.content_panels + [
         FieldPanel('planning_center_group_id'),
@@ -85,6 +86,9 @@ class GroupPage(Page):
             planningcenter = pypco.PCO(settings.PLANNING_CENTER_APPLICATION_ID, settings.PLANNING_CENTER_SECRET)
             group_info = planningcenter.get(f'https://api.planningcenteronline.com/groups/v2/groups/{self.planning_center_group_id}')
             group_type = planningcenter.get(f'https://api.planningcenteronline.com/groups/v2/group_types/{group_info["data"]["relationships"]["group_type"]["data"]["id"]}')
+            group_enrollment = planningcenter.get(f'https://api.planningcenteronline.com/groups/v2/groups/{self.planning_center_group_id}/enrollment')
+            enrollment_is_open_types = {'open': True, 'private': False, 'closed': False}  # Lookup table in case we need to add support for more types later
+            self.group_is_open = enrollment_is_open_types.get(group_enrollment["data"]["attributes"]["status"], False)
             self.group_info = pickle.dumps(group_info)
             self.group_type = pickle.dumps(group_type)
             if not request.is_preview:

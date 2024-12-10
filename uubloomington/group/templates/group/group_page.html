@@ -15,7 +15,7 @@
             <article class="planningcenter-html">
                 <h1>{{ group_title }}</h1>
                     <img src="{{ header_image }}" class="right">
-                    <a href="{{ churchcenter_group_url }}" class="right">View and join this group on Church Center</a>
+                    <a href="{{ churchcenter_group_url }}" class="right">View {% if page.group_is_open %}and join {% endif %}this group on Church Center</a>
                 {{ group_body|safe }}
             </article>
 {#        {% endwith %}#}
