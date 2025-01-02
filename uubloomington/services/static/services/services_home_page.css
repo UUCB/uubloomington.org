@@ -2,14 +2,20 @@ main {
     display: grid;
     gap: var(--standard-gap);
     padding: 1rem;
-    grid-template-columns: 2fr 1fr;
-    /*align-items: start;*/
+    grid-template-columns: 1fr;
 }
 
-.archive {
-    grid-column: span 2;
+main .card {
     min-height: 40dvh;
-    margin-bottom: 1rem;
+}
+
+main .card:last-child{
+    margin-bottom: var(--standard-gap);
+}
+
+.placeholder {
+    font-style: italic;
+    text-align: center;
 }
 
 @media screen and (max-width: 60rem) {
