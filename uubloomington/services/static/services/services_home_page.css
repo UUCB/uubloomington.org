@@ -12,6 +12,17 @@ main {
     margin-bottom: 1rem;
 }
 
+.service-description .card-action {
+    display: block;
+    margin-top: 0.75rem;
+    margin-inline: auto;
+    width: fit-content;
+}
+
+.card:has(.events-container) h2 {
+    margin-bottom: 0;
+}
+
 @media screen and (max-width: 60rem) {
     main {
         grid-template-columns: 1fr;
