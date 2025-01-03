@@ -4,7 +4,6 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
 {% load icon %}
-{% load feature_page %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'services/services_home_page.css' %}">
@@ -15,24 +14,21 @@
     <article class="content list-page">
         <h1>{{ page.title }}</h1>
         {{ page.body|richtext }}
-        <div class="block-page_feature">
-            {% feature_page next_service %}
-        </div>
         <div class="card">
-            <h2>Future Services</h2>
+            <h2>Upcoming Services</h2>
     {#        Upcoming services list#}
             <div class="events-container">
                 {% if next_service %}
                     <ul>
-{#                        <li>#}
-{#                            <span class="service-title">#}
-{#                                <a href="{{ next_service.url }}"><h3>{{ next_service.title }}</h3></a>#}
-{#                            </span>#}
-{#                            <span class="event-info">#}
+                        <li>
+                            <span class="service-title">
+                                <a href="{{ next_service.url }}"><h3>{{ next_service.title }}</h3></a>
+                            </span>
+                            <span class="event-info">
 {#                                {% image next_service.featured_image fill-200x200 class="right" %}#}
-{#                                {{ next_service.body|richtext }}#}
-{#                            </span>#}
-{#                        </li>#}
+                                {{ next_service.body|richtext }}
+                            </span>
+                        </li>
                         {% for service in next_services_list %}
                             <li>
                                 <span class="service-title">
