@@ -1,13 +1,13 @@
-/*main {*/
-/*    display: grid;*/
-/*    gap: var(--standard-gap);*/
-/*    padding: 1rem;*/
-/*    grid-template-columns: 1fr;*/
-/*}*/
+main {
+    display: grid;
+    gap: var(--standard-gap);
+    padding: 1rem;
+    grid-template-columns: 1fr;
+}
 
-/*main .card {*/
-/*    min-height: 40dvh;*/
-/*}*/
+main .card {
+    min-height: 40dvh;
+}
 
 main .card:last-child{
     margin-bottom: var(--standard-gap);
