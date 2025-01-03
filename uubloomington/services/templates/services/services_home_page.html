@@ -32,7 +32,7 @@
                         {% for service in next_services_list %}
                             <li>
                                 <span class="service-title">
-                                <a href="{{ service.url }}"><h3>{{ service.title }}</h3></a>
+                                <a href="{{ next_service.url }}"><h3>{{ next_service.title }}</h3></a>
                                 </span>
                                 <span class="event-info">
                                     {% if service.one_sentence %}
@@ -58,7 +58,7 @@
                     {% for service in previous_services_list %}
                         <li>
                             <span class="service-title">
-                                <a href="{{ service.url }}"><h3>{{ service.title }}</h3></a>
+                                <a href="{{ next_service.url }}"><h3>{{ next_service.title }}</h3></a>
                             </span>
                             <span class="event-info">
                                 {% if service.one_sentence %}
