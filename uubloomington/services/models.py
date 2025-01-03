@@ -128,8 +128,13 @@ class ServicePage(Page):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request)
-        service_pages = self.get_siblings().live().order_by('-title')
-        context['service_pages'] = service_pages
+        next_services = []
+        for oos in OrderOfService.objects.filter(date__gte=timezone.now()).order_by('date'):
+            if oos.service.live:
+                next_services.append(oos.service)
+            if len(next_services) > 8:
+                break
+        context['next_services'] = next_services
         return context
 
 
