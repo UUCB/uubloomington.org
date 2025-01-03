@@ -31,8 +31,14 @@ class ServicesHomePage(Page):
     body = RichTextField(blank=True, null=True)
     service_schedule = RecurrenceField(blank=False, null=True)
     service_time = models.TimeField(blank=False, null=True)
+    no_services_placeholder = RichTextField(
+        blank=False,
+        null=True,
+        help_text="Text to display if no future services exist"
+    )
     content_panels = Page.content_panels + [
         FieldPanel('body'),
+        FieldPanel('no_services_placeholder'),
         MultiFieldPanel(
             [
                 FieldPanel('service_schedule', heading="Services happen every:"),
