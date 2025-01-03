@@ -10,28 +10,55 @@
 {% endblock %}
 
 {% block content %}
-    <h1>{{ page.title }}</h1>
-    {{ page.body|richtext }}
-    <div class="card">
-        <h2>Upcoming Services</h2>
-{#        Upcoming services list#}
-        <div class="events-container">
-            {% if next_service %}
-                <ul>
-                    <li>
-                        <span class="service-title">
-                            <a href="{{ next_service.url }}"><h3>{{ next_service.title }}</h3></a>
-                        </span>
-                        <span class="service-description">
-                            {% image next_service.featured_image fill-200x200 class="right" %}
-                            {{ next_service.body|richtext }}
-                        </span>
-                    </li>
-                    {% for service in next_services_list %}
+    {% include 'core/sidebar_snippet.html' %}
+    <article class="content list-page">
+        <h1>{{ page.title }}</h1>
+        {{ page.body|richtext }}
+        <div class="card">
+            <h2>Upcoming Services</h2>
+    {#        Upcoming services list#}
+            <div class="events-container">
+                {% if next_service %}
+                    <ul>
                         <li>
-                            <span class="event-title">
-                                <h3>{{ service.title }}</h3>
-                                <a href="{{ service.url }}">More Info</a>
+                            <span class="service-title">
+                                <a href="{{ next_service.url }}"><h3>{{ next_service.title }}</h3></a>
+                            </span>
+                            <span class="event-info">
+                                {% image next_service.featured_image fill-200x200 class="right" %}
+                                {{ next_service.body|richtext }}
+                            </span>
+                        </li>
+                        {% for service in next_services_list %}
+                            <li>
+                                <span class="service-title">
+                                <a href="{{ next_service.url }}"><h3>{{ next_service.title }}</h3></a>
+                                </span>
+                                <span class="event-info">
+                                    {% if service.one_sentence %}
+                                        {{ service.one_sentence }}
+                                    {% endif %}
+                                </span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <div class="placeholder">
+                        {{ page.no_services_placeholder|richtext }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="card archive">
+            <h2>Past Services</h2>
+    {#        Service Archive, show 5 and allow expansion#}
+    {#    Make this an HX-Post which knows what the last-fetched service was, OOB swaps the form, and loads the next 10.#}
+            <div class="events-container services">
+                <ul>
+                    {% for service in previous_services_list %}
+                        <li>
+                            <span class="service-title">
+                                <a href="{{ next_service.url }}"><h3>{{ next_service.title }}</h3></a>
                             </span>
                             <span class="event-info">
                                 {% if service.one_sentence %}
@@ -41,33 +68,7 @@
                         </li>
                     {% endfor %}
                 </ul>
-            {% else %}
-                <div class="placeholder">
-                    {{ page.no_services_placeholder|richtext }}
-                </div>
-            {% endif %}
+            </div>
         </div>
-    </div>
-    <div class="card archive">
-        <h2>Past Services</h2>
-{#        Service Archive, show 5 and allow expansion#}
-{#    Make this an HX-Post which knows what the last-fetched service was, OOB swaps the form, and loads the next 10.#}
-        <div class="events-container services">
-            <ul>
-                {% for service in previous_services_list %}
-                    <li>
-                        <span class="event-title">
-                            <h3>{{ service.title }}</h3>
-                            <a href="{{ service.url }}">More Info</a>
-                        </span>
-                        <span class="event-info">
-                            {% if service.one_sentence %}
-                                {{ service.one_sentence }}
-                            {% endif %}
-                        </span>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
+    </article>
 {% endblock %}
