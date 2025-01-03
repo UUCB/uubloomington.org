@@ -989,7 +989,8 @@ footer {
     /*min-height: 20rem;*/
     height: auto;
     padding: 1.5rem;
-    margin: auto;
+    margin-top: auto;
+    margin-bottom: 0;
     background: var(--secondary-accent-color);
     color: white;
     display: grid;
