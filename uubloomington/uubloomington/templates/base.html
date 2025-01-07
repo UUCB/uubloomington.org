@@ -145,5 +145,17 @@
             <script src="{{ settings.site_settings.SiteWideSettings.shynet_ingress_url }}/script.js"></script>
         {% endif %}
     {% endif %}
+    <script>
+        /* Scroll to anchor */
+        function page_show(event){
+            let elId = window.location.hash;
+            if (elId.length > 1){
+                let el = document.getElementById(elId.substr(1));
+                if (el) el.scrollIntoView(true);
+            }
+        }
+        // pageshow fires after load and on Back/Forward
+        window.addEventListener('pageshow', page_show);
+    </script>
     </body>
 </html>
