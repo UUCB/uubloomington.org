@@ -138,6 +138,9 @@ class ServicePage(Page):
         context['service_pages'] = service_pages
         return context
 
+    def summary(self):
+        return self.one_sentence
+
 
 class Participant(Orderable):
     # copy_from = models.ForeignKey(unique=False)
