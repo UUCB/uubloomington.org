@@ -1,21 +1,26 @@
-/*main {*/
-/*    display: grid;*/
-/*    gap: var(--standard-gap);*/
-/*    padding: 1rem;*/
-/*    grid-template-columns: 1fr;*/
-/*}*/
-
-/*main .card {*/
-/*    min-height: 40dvh;*/
-/*}*/
-
-main .card:last-child{
-    margin-bottom: var(--standard-gap);
+main {
+    display: grid;
+    gap: var(--standard-gap);
+    padding: 1rem;
+    grid-template-columns: 2fr 1fr;
+    /*align-items: start;*/
 }
 
-.placeholder {
-    font-style: italic;
-    text-align: center;
+.archive {
+    grid-column: span 2;
+    min-height: 40dvh;
+    margin-bottom: 1rem;
+}
+
+.service-description .card-action {
+    display: block;
+    margin-top: 0.75rem;
+    margin-inline: auto;
+    width: fit-content;
+}
+
+.card:has(.events-container) h2 {
+    margin-bottom: 0;
 }
 
 @media screen and (max-width: 60rem) {

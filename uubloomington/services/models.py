@@ -31,14 +31,8 @@ class ServicesHomePage(Page):
     body = RichTextField(blank=True, null=True)
     service_schedule = RecurrenceField(blank=False, null=True)
     service_time = models.TimeField(blank=False, null=True)
-    no_services_placeholder = RichTextField(
-        blank=False,
-        null=True,
-        help_text="Text to display if no future services exist"
-    )
     content_panels = Page.content_panels + [
         FieldPanel('body'),
-        FieldPanel('no_services_placeholder'),
         MultiFieldPanel(
             [
                 FieldPanel('service_schedule', heading="Services happen every:"),
@@ -134,12 +128,14 @@ class ServicePage(Page):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request)
-        service_pages = self.get_siblings().live().order_by('-title')
-        context['service_pages'] = service_pages
+        next_services = []
+        for oos in OrderOfService.objects.filter(date__gte=timezone.now()).order_by('date'):
+            if oos.service.live:
+                next_services.append(oos.service)
+            if len(next_services) > 8:
+                break
+        context['next_services'] = next_services
         return context
-
-    def summary(self):
-        return self.one_sentence
 
 
 class Participant(Orderable):
