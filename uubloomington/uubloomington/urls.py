@@ -10,6 +10,7 @@ from search import views as search_views
 
 from home import urls as home_extra_urls
 from advanced_forms import urls as advanced_forms_urls
+from planningcenter_events import urls as planningcenter_events_urls
 
 from .api import api_router
 
@@ -21,6 +22,7 @@ urlpatterns = [
     path("documents/", include(wagtaildocs_urls)),
     path("search/", search_views.search, name="search"),
     path('home-extras/', include(home_extra_urls)),
+    path('planningcenter_events/', include(planningcenter_events_urls)),
     path('publish_scheduled/', publish_scheduled),
     path('reindex_search/', reindex_search),
     path('advanced_forms/', include(advanced_forms_urls)),

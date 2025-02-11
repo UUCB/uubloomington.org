@@ -34,6 +34,13 @@ class SiteWideSettings(BaseGenericSetting):
 
     churchcenter_calendar_url = models.CharField(max_length=900, blank=True, null=True, help_text='Church Center Calendar URL')
 
+    max_fetched_planning_center_events = models.PositiveSmallIntegerField(
+        default=200,
+        blank=False,
+        null=False,
+        help_text='Maximum number of calendar events to fetch from Planning Center at a time'
+    )
+
     livestream_url = models.CharField(max_length=900, blank=True, null=True)
 
     emergency_alert = models.CharField(max_length=5000, blank=True, null=True)
@@ -69,6 +76,7 @@ class SiteWideSettings(BaseGenericSetting):
         FieldPanel('header_links'),
         MultiFieldPanel([
             FieldPanel('refresh_from_planningcenter_every'),
+            FieldPanel('max_fetched_planning_center_events'),
         ], heading="Planning Center Integration Settings"),
         MultiFieldPanel(
             children=[
