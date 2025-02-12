@@ -4,12 +4,12 @@
         <ul>
             {% for event in value.get_events %}
                 <li>
-                    <span class="event-title">
-                        <span class="visual-h3">{{ event.name }}</span>
+                    <div class="event-title">
+                        <h3>{{ event.name }}</h3>
                         <a href="{{ event.link }}">
                             More Info
                         </a>
-                    </span>
+                    </div>
                     <span class="event-info">
                         {{ event.readable_times.date }}, {{ event.readable_times.start_time }} - {{ event.readable_times.end_time }}
                     </span>
