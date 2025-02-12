@@ -17,6 +17,13 @@ class Event(models.Model):
     end_time = models.DateTimeField()
     description = models.TextField(null=True, blank=True)
 
+    def readable_times(self):
+        return {
+            'date': self.start_time.strftime('%A, %B %-d'),
+            'start_time': self.start_time.strftime('%-I:%M %p'),
+            'end_time': self.end_time.strftime('%-I:%M %p'),
+        }
+
     def __str__(self):
         return self.name
 
