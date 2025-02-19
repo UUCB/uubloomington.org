@@ -3,16 +3,23 @@
     <div class="events-container">
         <ul>
             {% for event in value.get_events %}
-                <li>
+                <li _="on click toggle .expand on <.event-description/> in me then halt">
                     <div class="event-title">
                         <h3>{{ event.name }}</h3>
-                        <a href="{{ event.link }}">
-                            More Info
-                        </a>
                     </div>
                     <span class="event-info">
                         {{ event.readable_times.date }}, {{ event.readable_times.start_time }} - {{ event.readable_times.end_time }}
                     </span>
+                    <div class="event-description hidden">
+                        {% if event.description %}
+                            {{ event.description|safe }}
+                        {% else %}
+                            This event has no description.
+                        {% endif %}
+                        <a href="{{ event.link }}">
+                            View on Chuch Center
+                        </a>
+                    </div>
                 </li>
             {% endfor %}
         </ul>

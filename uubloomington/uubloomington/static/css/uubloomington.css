@@ -1840,3 +1840,7 @@ button.card-action {
         margin-top: var(--standard-gap)
     }
 }
+
+.event-description.hidden {
+    display: none;
+}
