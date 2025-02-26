@@ -22,6 +22,8 @@ from django.utils.text import slugify
 from wagtail.contrib.forms.utils import get_field_clean_name
 from wagtail.admin.mail import send_mail
 from advanced_forms.models import AdvancedForm
+from planningcenter_events.blocks import EventListingBlock
+from planningcenter_events.models import EventListing
 
 
 class Post(Page):
@@ -125,6 +127,7 @@ class StandardBlockPage(Page):
         ('card_container', CardContainerBlock()),
         ('section', SectionBlock()),
         ('table_of_contents', TableOfContentsBlock()),
+        ('event_listing', EventListingBlock(EventListing)),
     ], use_json_field=True, null=True)
 
     summary = RichTextField(null=True, blank=True)

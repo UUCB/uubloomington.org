@@ -1,0 +1,32 @@
+{% load icon %}
+<div class="card">
+    <h2>{{ value.name }}</h2>
+    <div class="events-container">
+        <ul>
+            {% for event in value.get_events %}
+                <li>
+                    <div class="event-title" _="on click toggle .expand on next <.expander/> then halt">
+                        <h3>{{ event.name }}</h3>
+                    </div>
+                    <span class="event-info" _="on click toggle .expand on next <.expander/> then halt">
+                        {{ event.readable_times.date }}, {{ event.readable_times.start_time }} - {{ event.readable_times.end_time }}
+                    </span>
+                    <button class="card-action" _="on mouseleave blur() me end on click toggle .expand on next <.expander/> then halt">{% icon "chevron-down" %}</button>
+                    <div class="expander">
+                        <div class="event-description">
+                            {% if event.description %}
+                                {{ event.description|safe }}
+                            {% else %}
+                                This event has no description.
+                            {% endif %}
+                            <a href="{{ event.link }}">
+                                View on Church Center
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <a class="card-action" href="{{ settings.site_settings.SiteWideSettings.churchcenter_calendar_url }}">View Full Calendar</a>
+</div>
