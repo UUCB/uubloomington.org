@@ -61,21 +61,18 @@ def update_events(events: list) -> None:
     for event in Event.objects.all():
         event.just_imported = False
         event.save()
-    new_events = Event.objects.bulk_create(
-        objs=events,
-        update_conflicts=True,
-        update_fields=[
-            "planning_center_event_id",
-            "just_imported",
-            "name",
-            "link",
-            "start_time",
-            "end_time",
-            "description",
-        ],
-        unique_fields=[
-            "planning_center_instance_id",
-        ],
-    )
+    for new_event in events:
+        try:
+            event_object = Event.objects.get(planning_center_instance_id=new_event.planning_center_instance_id)
+        except Event.DoesNotExist:
+            event_object = Event(planning_center_instance_id=new_event.planning_center_instance_id)
+        event_object.just_imported = True
+        event_object.planning_center_event_id = new_event.planning_center_event_id
+        event_object.name = new_event.name
+        event_object.start_time = new_event.start_time
+        event_object.end_time = new_event.end_time
+        event_object.link = new_event.link
+        event_object.description = new_event.description
+        event_object.save()
     for event in Event.objects.filter(just_imported=False):
         event.delete()
