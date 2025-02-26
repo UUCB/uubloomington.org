@@ -414,6 +414,7 @@ article {
     /*margin: auto;*/
 }
 
+.block-article,
 article.list-page {
     display: flex;
     flex-direction: column;
