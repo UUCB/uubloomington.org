@@ -6,5 +6,4 @@ from .planningcenter_extras import get_events, update_events
 def update_events_view(request):
     events = get_events()
     update_events(events)
-    print(events)
     return HttpResponse("Update Events OK")
