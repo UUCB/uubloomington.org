@@ -123,10 +123,12 @@ class HomePage(Page):
         FieldPanel("first_time_visitors_page"),
         FieldPanel("display_next_events"),
         FieldPanel("live_stream_page"),
+        FieldPanel("show_upcoming_events"),
     ]
 
     upcoming_events_last_checked = models.DateTimeField(default=timezone.make_aware(timezone.datetime.min))
     upcoming_events = models.BinaryField(null=True)  # Pickled Events
+    show_upcoming_events = models.BooleanField(default=True, null=False, help_text='Show "Upcoming Events" card using legacy hacks')
     live_stream_page = models.ForeignKey(
         to=Page,
         null=True,
