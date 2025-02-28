@@ -58,6 +58,7 @@
             {% endif %}
         </div>
     {% endif %}
+    {% include_block page.body %}
     {% if page.cards.first %}
         <div class="card-container {{ has_4 }}">
             {% for card in page.cards.all %}

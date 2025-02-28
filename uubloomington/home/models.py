@@ -6,9 +6,12 @@ from django.db import models
 from django.utils import timezone
 from modelcluster.fields import ParentalKey
 from wagtail.models import Page, Orderable
-from wagtail.fields import RichTextField
+from wagtail.fields import RichTextField, StreamField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel
 
+from core.blocks import BadgeAreaBlock, BadgeBlock, CardContainerBlock
+from planningcenter_events.blocks import EventListingBlock
+from planningcenter_events.models import EventListing
 from services.models import OrderOfService
 
 from core.planningcenter_extras import Event  # Needed to un-pickle upcoming events
@@ -111,6 +114,7 @@ class HomePage(Page):
             ],
             heading="Center Stage Section"
         ),
+        FieldPanel("body"),
         MultiFieldPanel(
             [InlinePanel("cards", max_num=6, min_num=2, label="Card")],
             heading="Cards"
@@ -125,7 +129,15 @@ class HomePage(Page):
         FieldPanel("live_stream_page"),
         FieldPanel("show_upcoming_events"),
     ]
-
+    body = StreamField(
+        block_types=[
+            ('card_container', CardContainerBlock()),
+            ('badge_area', BadgeAreaBlock(BadgeBlock())),
+            ('event_listing', EventListingBlock(EventListing)),
+        ],
+        use_json_field=True,
+        null=True,
+    )
     upcoming_events_last_checked = models.DateTimeField(default=timezone.make_aware(timezone.datetime.min))
     upcoming_events = models.BinaryField(null=True)  # Pickled Events
     show_upcoming_events = models.BooleanField(default=True, null=False, help_text='Show "Upcoming Events" card using legacy hacks')
