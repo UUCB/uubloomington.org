@@ -116,7 +116,7 @@ class HomePage(Page):
         ),
         FieldPanel("body"),
         MultiFieldPanel(
-            [InlinePanel("cards", max_num=6, min_num=2, label="Card")],
+            [InlinePanel("cards", max_num=6, min_num=0, label="Card")],
             heading="Cards"
         ),
         MultiFieldPanel(
