@@ -826,12 +826,14 @@ hr {
 }
 
 @media screen and (max-width: 60rem) {
+    .block-card,
     .card {
         flex-basis: 40%; !important;
     }
 }
 
 @media screen and (max-width: 40rem) {
+    .block-card,
     .card {
         flex-basis: 100%; !important;
     }
@@ -862,12 +864,14 @@ hr {
     margin-top: var(--standard-gap);
 }
 
+.block-card h3,
 .card h3 {
     font-size: 1.4rem;
     margin-top: initial;
     margin-bottom: initial;
 }
 
+.block-card h4,
 .card h4 {
     font-size: initial;
     margin-bottom: initial;
