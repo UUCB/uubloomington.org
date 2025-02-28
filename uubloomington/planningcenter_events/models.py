@@ -27,6 +27,9 @@ class Event(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ('start_time',)
+
 
 class EventListing(ClusterableModel):
     name = models.CharField(max_length=255)
