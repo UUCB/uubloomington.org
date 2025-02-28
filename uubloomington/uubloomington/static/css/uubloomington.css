@@ -826,14 +826,14 @@ hr {
 }
 
 @media screen and (max-width: 60rem) {
-    .block-card,
+    .block-card:not(#specificity-hack),
     .card {
         flex-basis: 40%; !important;
     }
 }
 
 @media screen and (max-width: 40rem) {
-    .block-card,
+    .block-card:not(#specificity-hack),
     .card {
         flex-basis: 100%; !important;
     }
