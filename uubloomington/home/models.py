@@ -105,15 +105,15 @@ class HomePage(Page):
             heading="Carousel Images",
         ),
         MultiFieldPanel(
-            [InlinePanel("cards", max_num=6, min_num=2, label="Card")],
-            heading="Cards"
-        ),
-        MultiFieldPanel(
             [
                 FieldPanel("center_stage_header_text"),
                 FieldPanel("center_stage_body"),
             ],
             heading="Center Stage Section"
+        ),
+        MultiFieldPanel(
+            [InlinePanel("cards", max_num=6, min_num=2, label="Card")],
+            heading="Cards"
         ),
         MultiFieldPanel(
             [InlinePanel("badges", max_num=6, label="Badge")],
