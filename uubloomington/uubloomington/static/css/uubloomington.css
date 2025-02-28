@@ -792,8 +792,6 @@ hr {
     justify-content: center;
 }
 
-/*The above is awesome, let's revisit it in the future when more browsers support :has()*/
-
 .block-card,
 .card {
     font-family: "League Spartan Variable";
