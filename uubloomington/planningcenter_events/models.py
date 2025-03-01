@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from modelcluster.models import ClusterableModel
 from wagtail.models import Orderable
 
@@ -19,9 +20,9 @@ class Event(models.Model):
 
     def readable_times(self):
         return {
-            'date': self.start_time.strftime('%A, %B %-d'),
-            'start_time': self.start_time.strftime('%-I:%M %p'),
-            'end_time': self.end_time.strftime('%-I:%M %p'),
+            'date': timezone.localtime(self.start_time).strftime('%A, %B %-d'),
+            'start_time': timezone.localtime(self.start_time).strftime('%-I:%M %p'),
+            'end_time': timezone.localtime(self.end_time).strftime('%-I:%M %p'),
         }
 
     def __str__(self):
