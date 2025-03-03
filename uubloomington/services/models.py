@@ -30,7 +30,22 @@ def get_default_stream_url():
 class ServicesHomePage(Page):
     body = RichTextField(blank=True, null=True)
     service_schedule = RecurrenceField(blank=False, null=True)
-    service_time = models.TimeField(blank=False, null=True)
+    order_of_service_program_template = StreamField(
+        [
+           ('element', OOSElementBlock()),
+           ('text', RichTextBlock()),
+           ('multicolumn', OOSMultiColumnBlock()),
+        ],
+        null=True,
+        use_json_field=True,
+        verbose_name="Order of Service Program Template",
+        help_text="Newly-created Order of Service pages will contain this in their Program field."
+    )
+
+    order_of_service_panels = [
+        FieldPanel('order_of_service_program_template'),
+    ]
+
     content_panels = Page.content_panels + [
         FieldPanel('body'),
         MultiFieldPanel(
@@ -40,6 +55,11 @@ class ServicesHomePage(Page):
             heading="Service Schedule"
         )
     ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(content_panels, heading="Content"),
+        ObjectList(order_of_service_panels, heading="Order of Service Program Template")
+    ])
 
     subpage_types = ['services.ServicePage']
 
@@ -230,21 +250,14 @@ class OrderOfService(Page):
 @receiver(post_save, sender=ServicePage)
 def create_matching_order_of_service(sender, instance, **kwargs):
     service = instance.specific
-    previous_order_of_service = OrderOfService.objects.order_by("-date").first()
-    if previous_order_of_service:
-        previous_program = previous_order_of_service.program
-    else:
-        previous_program = None
     if not service.order_of_service.first():
         next_service_date = service.get_parent().specific.get_next_service_time()
         order_of_service = OrderOfService(
             title=f"Order of Service for {next_service_date}",
             service=service,
-            program=previous_program,
+            program=service.get_parent().specific.order_of_service_program_template,
             date=next_service_date,
             live=False,
-            # front_page=previous_order_of_service.front_page,
-            # back_page=previous_order_of_service.back_page,
         )
         service.add_child(instance=order_of_service)
         service.title = f"{str(order_of_service.get_readable_date())}: {service.title}"
