@@ -1,6 +1,6 @@
 from django.db import models
 
-from wagtail.admin.panels import FieldPanel, MultiFieldPanel
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel, TabbedInterface, ObjectList
 from wagtail.fields import StreamField
 from wagtail.blocks import RichTextBlock, StructBlock, CharBlock
 from wagtail.images.blocks import ImageChooserBlock
@@ -32,18 +32,34 @@ class SiteWideSettings(BaseGenericSetting):
         null=True,
     )
 
-    churchcenter_calendar_url = models.CharField(max_length=900, blank=True, null=True, help_text='Church Center Calendar URL')
+    churchcenter_calendar_url = models.CharField(
+        max_length=900,
+        blank=True,
+        null=True,
+        help_text='URL of full Church Center calendar page',
+        verbose_name='Church Center Calendar URL',
+    )
 
     max_fetched_planning_center_events = models.PositiveSmallIntegerField(
         default=200,
         blank=False,
         null=False,
-        help_text='Maximum number of calendar events to fetch from Planning Center at a time'
+        help_text='Maximum number of calendar events to fetch from Planning Center at a time',
     )
 
-    livestream_url = models.CharField(max_length=900, blank=True, null=True)
+    livestream_url = models.CharField(
+        max_length=900,
+        blank=True,
+        null=True,
+        verbose_name="Livestream URL",
+    )
 
-    emergency_alert = models.CharField(max_length=5000, blank=True, null=True)
+    emergency_alert = models.CharField(
+        max_length=5000,
+        blank=True,
+        null=True,
+        help_text='Shown in an eye-catching bright red box above the header. This should be used with caution to avoid it turning into wallpaper. Please add the date to your message if you choose to place it here.',
+    )
 
     internal_livestream_page = models.ForeignKey(
         to=Page,
@@ -55,37 +71,52 @@ class SiteWideSettings(BaseGenericSetting):
 
     refresh_from_planningcenter_every = models.IntegerField(default=5)
 
-    use_shynet = models.BooleanField(default=False)
-    shynet_ingress_url = models.CharField(max_length=900, blank=True, null=True, help_text='The first part of the shynet ingress URL - leave off the filename.')
+    use_shynet = models.BooleanField(
+        default=False,
+        verbose_name='Use Shynet',
+    )
+    shynet_ingress_url = models.CharField(
+        max_length=900,
+        blank=True,
+        null=True,
+        help_text='The first part of the shynet ingress URL - leave off the filename.',
+        verbose_name='Shynet Ingress URL',
+    )
 
-    panels = [
-        MultiFieldPanel([
-            FieldPanel('title'),
-            FieldPanel('subtitle'),
-            FieldPanel('tagline'),
-            FieldPanel('header_announcement'),
-            FieldPanel('emergency_alert'),
-        ], heading="Header Settings"),
-        MultiFieldPanel([
-            FieldPanel('churchcenter_calendar_url'),
-        ], heading="Church Center Integration Settings"),
-        MultiFieldPanel([
-            FieldPanel('livestream_url'),
-            FieldPanel('internal_livestream_page'),
-        ], heading="Livestream URL"),
+    header_panels = [
+        FieldPanel('title'),
+        FieldPanel('subtitle'),
+        FieldPanel('tagline'),
+        FieldPanel('header_announcement'),
+        FieldPanel('emergency_alert'),
         FieldPanel('header_links'),
-        MultiFieldPanel([
-            FieldPanel('refresh_from_planningcenter_every'),
-            FieldPanel('max_fetched_planning_center_events'),
-        ], heading="Planning Center Integration Settings"),
-        MultiFieldPanel(
-            children=[
-                FieldPanel('use_shynet'),
-                FieldPanel('shynet_ingress_url'),
-            ],
-            heading="Shynet Integration Settings",
-        )
     ]
+
+    planningcenter_panels = [
+        FieldPanel('refresh_from_planningcenter_every'),
+        FieldPanel('max_fetched_planning_center_events'),
+        FieldPanel('churchcenter_calendar_url'),
+    ]
+
+    analytics_panels = [
+        FieldPanel('use_shynet'),
+        FieldPanel('shynet_ingress_url'),
+    ]
+
+    livestream_panels = [
+        FieldPanel('livestream_url'),
+        FieldPanel('internal_livestream_page'),
+    ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(header_panels, heading='Header'),
+        ObjectList(planningcenter_panels, heading='Planning Center/Church Center Integration'),
+        ObjectList(analytics_panels, heading='Analytics'),
+        ObjectList(livestream_panels, heading='Livestream'),
+    ])
+
+    class Meta:
+        verbose_name = 'Site-Wide Settings'
 
 
 @register_setting
