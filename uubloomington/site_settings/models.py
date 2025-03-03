@@ -32,6 +32,25 @@ class SiteWideSettings(BaseGenericSetting):
         null=True,
     )
 
+    footer_content = StreamField(
+        [
+            ('footer_text', RichTextBlock()),
+        ],
+        use_json_field=True,
+        null=True,
+        blank=True,
+        help_text='Each of these blocks should ideally be quite short single lines. These are displayed in a row across the site footer.',
+        verbose_name='Footer Content',
+    )
+
+    copyright_notice = models.CharField(
+        max_length=70,
+        blank=True,
+        null=True,
+        help_text='Displayed below footer content.',
+        verbose_name='Copyright Notice',
+    )
+
     churchcenter_calendar_url = models.CharField(
         max_length=900,
         blank=True,
@@ -108,8 +127,14 @@ class SiteWideSettings(BaseGenericSetting):
         FieldPanel('internal_livestream_page'),
     ]
 
+    footer_panels = [
+        FieldPanel('footer_content'),
+        FieldPanel('copyright_notice'),
+    ]
+
     edit_handler = TabbedInterface([
         ObjectList(header_panels, heading='Header'),
+        ObjectList(footer_panels, heading='Footer'),
         ObjectList(planningcenter_panels, heading='Planning Center/Church Center Integration'),
         ObjectList(analytics_panels, heading='Analytics'),
         ObjectList(livestream_panels, heading='Livestream'),
