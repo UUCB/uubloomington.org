@@ -125,11 +125,11 @@
         </main>
         <footer>
             <span class="footer-content">
-                {% include_block settings.site_settings.FooterSettings.content %}
+                {% include_block settings.site_settings.SiteWideSettings.footer_content %}
             </span>
             <span class="footer-content">
-                {% if settings.site_settings.FooterSettings.copyright_notice  %}
-                    <span>{{ settings.site_settings.FooterSettings.copyright_notice }}</span>
+                {% if settings.site_settings.SiteWideSettings.copyright_notice  %}
+                    <span>{{ settings.site_settings.SiteWideSettings.copyright_notice }}</span>
                 {% endif %}
                 <span>Powered by <a href="https://wagtail.org">Wagtail</a></span>
             </span>
