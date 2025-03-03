@@ -1,6 +1,6 @@
 from django.db import models
 
-from wagtail.admin.panels import FieldPanel, MultiFieldPanel, TabbedInterface, ObjectList
+from wagtail.admin.panels import FieldPanel, TabbedInterface, ObjectList
 from wagtail.fields import StreamField
 from wagtail.blocks import RichTextBlock, StructBlock, CharBlock
 from wagtail.images.blocks import ImageChooserBlock
@@ -142,22 +142,3 @@ class SiteWideSettings(BaseGenericSetting):
 
     class Meta:
         verbose_name = 'Site-Wide Settings'
-
-
-@register_setting
-class FooterSettings(BaseGenericSetting):
-    """Footer Content Settings"""
-    copyright_notice = models.CharField(
-        max_length=70,
-        blank=True,
-        null=True,
-        help_text='Copyright Notice - displayed in footer'
-    )
-    content = StreamField(
-        [
-            ('footer_text', RichTextBlock()),
-        ],
-        use_json_field=True,
-        null=True,
-        blank=True,
-    )
