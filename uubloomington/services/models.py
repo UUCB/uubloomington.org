@@ -10,7 +10,7 @@ from django.utils import timezone
 from modelcluster.fields import ParentalKey
 from wagtail.models import Page, Orderable
 from wagtail.fields import RichTextField, StreamField
-from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel, TabbedInterface, ObjectList
 from wagtail.images.models import Image
 from wagtail.api import APIField
 from wagtail.search import index
@@ -36,7 +36,6 @@ class ServicesHomePage(Page):
         MultiFieldPanel(
             [
                 FieldPanel('service_schedule', heading="Services happen every:"),
-                FieldPanel('service_time', heading="At:"),
             ],
             heading="Service Schedule"
         )
@@ -168,7 +167,6 @@ class OrderOfService(Page):
     )
     cover_page = RichTextField(null=True, blank=True)
     date = models.DateField()
-    time = models.TimeField()
     program = StreamField(
         [
            ('element', OOSElementBlock()),
@@ -209,9 +207,6 @@ class OrderOfService(Page):
     def get_readable_date(self):
         return f'{self.date.strftime("%B %d, %Y")}'
 
-    def get_readable_time(self):
-        return f'{self.time.strftime("%I:%M %p")}'
-
     def get_template(self, request, *args, **kwargs):
         if request.GET.get("print") == 'true':
             return 'services/order_of_service_print.html'
@@ -246,7 +241,6 @@ def create_matching_order_of_service(sender, instance, **kwargs):
             title=f"Order of Service for {next_service_date}",
             service=service,
             program=previous_program,
-            time=service.get_parent().specific.service_time,
             date=next_service_date,
             live=False,
             # front_page=previous_order_of_service.front_page,

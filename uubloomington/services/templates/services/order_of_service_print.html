@@ -24,7 +24,7 @@
                 </span>
                 <img src="{% static 'chalice-logo-black.svg' %}" class="chalice-logo">
                 <span class='info-left'>{{ page.get_readable_date }}</span>
-                <span class="info-left">{{ page.get_readable_time }}</span>
+{#                <span class="info-left">{{ page.get_readable_time }}</span>#} {# This was the only place we used OrderOfService.time. It's very flawed. Getting rid of it. -HK 3/3/25 #}
             </div>
             {% include_block page.program %}
         </div>
