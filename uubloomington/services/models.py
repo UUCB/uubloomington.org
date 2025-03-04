@@ -228,7 +228,7 @@ class OrderOfService(Page):
             return False
 
     def get_readable_date(self):
-        return f'{self.date.strftime("%B %d, %Y")}'
+        return f'{self.date.strftime("%B %-d, %Y")}'
 
     def get_template(self, request, *args, **kwargs):
         if request.GET.get("print") == 'true':
