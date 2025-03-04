@@ -140,10 +140,15 @@ class ServicePage(Page):
     ]
 
     def service_in_future(self):
-        if timezone.now().date() <= self.get_children().first().specific.date:
-            return True
+        oos = self.get_children().first()
+        result = False
+        if not oos:
+            result = True
+        elif oos and timezone.now().date() <= oos.specific.date:
+            result = True
         else:
-            return False
+            result = False
+        return result
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request)
