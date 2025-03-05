@@ -85,7 +85,6 @@ class HomePageBadge(Orderable):
 
 class HomePage(Page):
     parent_page_types = []
-    display_next_events = models.IntegerField(default=10)
     services_home_page = models.OneToOneField(
         to='services.ServicesHomePage',
         null=True,
@@ -125,9 +124,7 @@ class HomePage(Page):
         ),
         FieldPanel("services_home_page"),
         FieldPanel("first_time_visitors_page"),
-        FieldPanel("display_next_events"),
         FieldPanel("live_stream_page"),
-        FieldPanel("show_upcoming_events"),
     ]
     body = StreamField(
         block_types=[
@@ -138,9 +135,6 @@ class HomePage(Page):
         use_json_field=True,
         null=True,
     )
-    upcoming_events_last_checked = models.DateTimeField(default=timezone.make_aware(timezone.datetime.min))
-    upcoming_events = models.BinaryField(null=True)  # Pickled Events
-    show_upcoming_events = models.BooleanField(default=True, null=False, help_text='Show "Upcoming Events" card using legacy hacks')
     live_stream_page = models.ForeignKey(
         to=Page,
         null=True,
@@ -151,7 +145,6 @@ class HomePage(Page):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        context['upcoming_events'] = pickle.loads(self.upcoming_events)
         next_oos = (
             OrderOfService.objects.filter(date__gte=timezone.now())
             .order_by('date')

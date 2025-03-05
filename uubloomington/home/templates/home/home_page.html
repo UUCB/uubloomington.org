@@ -73,11 +73,6 @@
             {% endfor %}
         </div>
     {% endif %}
-    {% if page.show_upcoming_events %}
-        <div class="card">
-            {% include "uubloomington/upcoming_events.html" with upcoming_events=upcoming_events %}
-        </div>
-    {% endif %}
     {% if page.badges.all %}
         <div class="card badges">
             {% include "home/badges.html" %}
