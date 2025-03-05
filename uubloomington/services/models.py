@@ -46,6 +46,8 @@ class ServicesHomePage(Page):
         FieldPanel('order_of_service_program_template'),
     ]
 
+    preview_modes = []  # Disable preview for this page type as there are no editing options
+
     content_panels = Page.content_panels + [
         FieldPanel('body'),
         MultiFieldPanel(
