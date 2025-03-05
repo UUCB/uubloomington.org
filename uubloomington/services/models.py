@@ -60,7 +60,8 @@ class ServicesHomePage(Page):
 
     edit_handler = TabbedInterface([
         ObjectList(content_panels, heading="Content"),
-        ObjectList(order_of_service_panels, heading="Order of Service Program Template")
+        ObjectList(order_of_service_panels, heading="Order of Service Program Template"),
+        ObjectList(Page.promote_panels, heading="Promote"),
     ])
 
     subpage_types = ['services.ServicePage']
@@ -206,13 +207,28 @@ class OrderOfService(Page):
     subpage_types = []
     max_count_per_parent = 1
 
-    content_panels = Page.content_panels + [
+    program_panels = Page.content_panels + [
         FieldPanel("program"),
-        FieldPanel("cover_page"),
-        FieldPanel("back_page"),
-        FieldPanel("back_page_title"),
         FieldPanel("date"),
     ]
+
+    cover_page_panels = [
+        FieldPanel("cover_page")
+    ]
+
+    back_page_panels = [
+        FieldPanel("back_page_title"),
+        FieldPanel("back_page"),
+    ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(program_panels, heading="Program"),
+        # ObjectList(cover_page_panels, heading="Cover Page"),
+        # We're not using this right now; it is only displayed in the (unfinished) print template.
+        # Uncomment this ObjectList if we ever decide to use that functionality.
+        ObjectList(back_page_panels, heading="Back Page"),
+        ObjectList(Page.promote_panels, heading="Promote"),
+    ])
 
     api_fields = [
         APIField('program'),
