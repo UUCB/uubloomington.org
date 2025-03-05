@@ -160,6 +160,7 @@ class ServicePage(Page):
     search_fields = Page.search_fields + [
         index.SearchField('body'),
         index.SearchField('one_sentence'),
+        index.SearchField('transcript'),
     ]
 
     def service_in_future(self):
