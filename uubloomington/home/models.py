@@ -6,7 +6,7 @@ from django.utils import timezone
 from modelcluster.fields import ParentalKey
 from wagtail.models import Page, Orderable
 from wagtail.fields import RichTextField, StreamField
-from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel, TabbedInterface, ObjectList
 
 from core.blocks import BadgeAreaBlock, BadgeBlock, CardContainerBlock
 from planningcenter_events.blocks import EventListingBlock
@@ -53,23 +53,37 @@ class HomePage(Page):
     )
     center_stage_header_text = models.CharField(max_length=100, null=True, blank=True)
     center_stage_body = RichTextField(null=True, blank=True)
+
     content_panels = Page.content_panels + [
+        FieldPanel("body"),
+    ]
+
+    carousel_panels = [
         MultiFieldPanel(
             [InlinePanel("carousel_images", min_num=1, label="Image")],
             heading="Carousel Images",
         ),
-        MultiFieldPanel(
-            [
-                FieldPanel("center_stage_header_text"),
-                FieldPanel("center_stage_body"),
-            ],
-            heading="Center Stage Section"
-        ),
-        FieldPanel("body"),
+    ]
+
+    center_stage_panels = [
+        FieldPanel("center_stage_header_text"),
+        FieldPanel("center_stage_body"),
+    ]
+
+    settings_panels = [
         FieldPanel("services_home_page"),
         FieldPanel("first_time_visitors_page"),
         FieldPanel("live_stream_page"),
     ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(content_panels, heading="Body"),
+        ObjectList(carousel_panels, heading="Carousel Images"),
+        ObjectList(center_stage_panels, heading="Center Stage"),
+        ObjectList(settings_panels, heading="Settings"),
+        ObjectList(Page.promote_panels, heading="Promote"),
+    ])
+
     body = StreamField(
         block_types=[
             ('card_container', CardContainerBlock()),
