@@ -78,5 +78,11 @@
                 </div>
             {% endif %}
         {% endif %}
+        {% if page.transcript %}
+            <div class="block-rich_text">
+                <h2>{{ page.transcript_heading }}</h2>
+                {{ page.transcript|richtext }}
+            </div>
+        {% endif %}
     </article>
 {% endblock %}

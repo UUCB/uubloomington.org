@@ -120,6 +120,8 @@ class ServicePage(Page):
     featured_image = models.ForeignKey(to=Image, on_delete=models.SET_NULL, null=True, blank=True)
     video_archive_link = models.CharField(max_length=400, blank=True, null=True)
     show_video_embed = models.BooleanField(default=True)
+    transcript_heading = models.CharField(max_length=200, default="Sermon Transcript")
+    transcript = RichTextField(blank=True, null=True)
 
     parent_page_types = ['ServicesHomePage']
 
@@ -141,11 +143,16 @@ class ServicePage(Page):
         ),
     ]
 
+    transcript_panels = [
+        FieldPanel('transcript'),
+    ]
+
     edit_handler = TabbedInterface(
         [
             ObjectList(content_panels, heading="Content"),
             ObjectList(participants_panels, heading="Participants"),
             ObjectList(archive_panels, heading="Archive"),
+            ObjectList(transcript_panels, heading="Transcript"),
             ObjectList(Page.promote_panels, heading="Promote"),
         ]
     )
