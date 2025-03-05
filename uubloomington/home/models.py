@@ -73,7 +73,6 @@ class HomePage(Page):
     settings_panels = [
         FieldPanel("services_home_page"),
         FieldPanel("first_time_visitors_page"),
-        FieldPanel("live_stream_page"),
     ]
 
     edit_handler = TabbedInterface([
@@ -92,13 +91,6 @@ class HomePage(Page):
         ],
         use_json_field=True,
         null=True,
-    )
-    live_stream_page = models.ForeignKey(
-        to=Page,
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
     )
 
     def get_context(self, request, *args, **kwargs):

@@ -24,7 +24,7 @@
                 {% if next_service.video_archive_link %}
                     <a href="{{ next_service.url }}">See Recording</a>
                 {% else %}
-                    <a href="{{ page.live_stream_page.url }}">Live Stream</a> or in person!
+                    <a href="{{ settings.site_settings.SiteWideSettings.internal_livestream_page.url }}">Live Stream</a> or in person!
                 {% endif %}
             </span>
 {#            {% image next_service.featured_image fill-200x200 %}#}
