@@ -124,16 +124,31 @@ class ServicePage(Page):
     parent_page_types = ['ServicesHomePage']
 
     content_panels = Page.content_panels + [
+        FieldPanel('featured_image'),
         FieldPanel('body'),
         FieldPanel('one_sentence', heading='One-Sentence Description'),
-        FieldPanel('featured_image'),
+    ]
+
+    archive_panels = [
+        FieldPanel('video_archive_link'),
+        FieldPanel('show_video_embed'),
+    ]
+
+    participants_panels = [
         MultiFieldPanel(
             [InlinePanel('participants', label="Participant")],
             heading="Participants"
         ),
-        FieldPanel('video_archive_link'),
-        FieldPanel('show_video_embed'),
     ]
+
+    edit_handler = TabbedInterface(
+        [
+            ObjectList(content_panels, heading="Content"),
+            ObjectList(participants_panels, heading="Participants"),
+            ObjectList(archive_panels, heading="Archive"),
+            ObjectList(Page.promote_panels, heading="Promote"),
+        ]
+    )
 
     search_fields = Page.search_fields + [
         index.SearchField('body'),
