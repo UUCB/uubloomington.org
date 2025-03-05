@@ -1,9 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.utils import timezone
-from django.http import HttpResponse
 from .models import HomePageCarouselImages
-from wagtail.models import Page
-from core import planningcenter_extras
 
 
 def next_carousel_image(request, current_image_pk, mode):
@@ -29,11 +25,3 @@ def next_carousel_image(request, current_image_pk, mode):
                                                    }[mode]
                                                    ],
             })
-
-
-def refresh_events(request, page_pk):
-    page = Page.objects.get(pk=page_pk).specific
-    page.upcoming_events = planningcenter_extras.get_upcoming_events(page.display_next_events)
-    page.upcoming_events_last_checked = timezone.now()
-    page.save()
-    return HttpResponse("Refresh Events OK")

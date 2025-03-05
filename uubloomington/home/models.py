@@ -1,5 +1,4 @@
 import random
-import pickle
 
 from django.db import models
 
@@ -13,8 +12,6 @@ from core.blocks import BadgeAreaBlock, BadgeBlock, CardContainerBlock
 from planningcenter_events.blocks import EventListingBlock
 from planningcenter_events.models import EventListing
 from services.models import OrderOfService
-
-from core.planningcenter_extras import Event  # Needed to un-pickle upcoming events
 
 
 class HomePageCarouselImages(Orderable):
