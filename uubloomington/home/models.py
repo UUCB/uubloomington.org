@@ -42,14 +42,18 @@ class HomePage(Page):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='+'
+        related_name='+',
+        verbose_name='Services home page',
+        help_text='Page to link to the "All Services" button below the upcoming service.'
     )
     first_time_visitors_page = models.ForeignKey(
         to=Page,
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='+'
+        related_name='+',
+        verbose_name='"First Time Visitors" page',
+        help_text='Page to link to the "First Time Visitor?" button below the upcoming service'
     )
     center_stage_header_text = models.CharField(max_length=100, null=True, blank=True)
     center_stage_body = RichTextField(null=True, blank=True)
