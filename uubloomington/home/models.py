@@ -38,33 +38,6 @@ class HomePageCarouselImages(Orderable):
         return self.pk - 1
 
 
-class HomePageCard(Orderable):
-    page = ParentalKey("home.HomePage", related_name="cards")
-    image = models.ForeignKey(
-        "wagtailimages.Image",
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name="+",
-    )
-    title = models.CharField(max_length=30)
-    body = RichTextField(max_length=400)
-    action_url = models.CharField(max_length=1000)
-    action_text = models.CharField(max_length=30)
-
-    panels = [
-        FieldPanel('image'),
-        FieldPanel('title'),
-        FieldPanel('body'),
-        MultiFieldPanel([
-            FieldPanel('action_text'),
-            FieldPanel('action_url'),
-        ],
-        heading="Action"
-        )
-    ]
-
-
 class HomePage(Page):
     parent_page_types = []
     services_home_page = models.OneToOneField(
@@ -96,10 +69,6 @@ class HomePage(Page):
             heading="Center Stage Section"
         ),
         FieldPanel("body"),
-        MultiFieldPanel(
-            [InlinePanel("cards", max_num=6, min_num=0, label="Card")],
-            heading="Cards"
-        ),
         FieldPanel("services_home_page"),
         FieldPanel("first_time_visitors_page"),
         FieldPanel("live_stream_page"),
@@ -130,8 +99,6 @@ class HomePage(Page):
         )
         if next_oos:
             context['next_service'] = next_oos.service.specific
-        if len(self.cards.all()) == 4:
-            context['has_4'] = 'has_4'
         return context
 
     def get_carousel_image(self):

@@ -61,17 +61,5 @@
     {% if page.body %}
         {% include_block page.body %}
     {% endif %}
-    {% if page.cards.first %}
-        <div class="card-container {{ has_4 }}">
-            {% for card in page.cards.all %}
-                <div class="card">
-                    {% image card.image fill-640x375 %}
-                    <h2>{{ card.title }}</h2>
-                    {{ card.body|richtext }}
-                    <a class="card-action" href="{{ card.action_url }}">{{ card.action_text }}</a>
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
     </article>
 {% endblock content %}
