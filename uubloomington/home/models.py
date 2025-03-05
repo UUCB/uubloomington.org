@@ -65,24 +65,6 @@ class HomePageCard(Orderable):
     ]
 
 
-class HomePageBadge(Orderable):
-    page = ParentalKey("home.HomePage", related_name="badges")
-    image = models.ForeignKey(
-        "wagtailimages.Image",
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name="+",
-    )
-    text = RichTextField(max_length=100, null=True)
-    url = models.URLField()
-    panels = [
-        FieldPanel('image'),
-        FieldPanel('url'),
-        FieldPanel('text', heading='Text to be displayed under the badge'),
-    ]
-
-
 class HomePage(Page):
     parent_page_types = []
     services_home_page = models.OneToOneField(
@@ -117,10 +99,6 @@ class HomePage(Page):
         MultiFieldPanel(
             [InlinePanel("cards", max_num=6, min_num=0, label="Card")],
             heading="Cards"
-        ),
-        MultiFieldPanel(
-            [InlinePanel("badges", max_num=6, label="Badge")],
-            heading="Badges"
         ),
         FieldPanel("services_home_page"),
         FieldPanel("first_time_visitors_page"),
