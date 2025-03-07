@@ -7,10 +7,9 @@ from django.db.models.signals import post_save
 
 from django.utils import timezone
 
-from modelcluster.fields import ParentalKey
-from wagtail.models import Page, Orderable
+from wagtail.models import Page
 from wagtail.fields import RichTextField, StreamField
-from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel, TabbedInterface, ObjectList
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel, TabbedInterface, ObjectList
 from wagtail.images.models import Image
 from wagtail.api import APIField
 from wagtail.search import index
@@ -135,13 +134,6 @@ class ServicePage(Page):
         FieldPanel('show_video_embed'),
     ]
 
-    participants_panels = [
-        MultiFieldPanel(
-            [InlinePanel('participants', label="Participant")],
-            heading="Participants"
-        ),
-    ]
-
     transcript_panels = [
         FieldPanel('transcript'),
     ]
@@ -149,7 +141,6 @@ class ServicePage(Page):
     edit_handler = TabbedInterface(
         [
             ObjectList(content_panels, heading="Content"),
-            ObjectList(participants_panels, heading="Participants"),
             ObjectList(archive_panels, heading="Archive"),
             ObjectList(transcript_panels, heading="Transcript"),
             ObjectList(Page.promote_panels, heading="Promote"),
@@ -183,18 +174,6 @@ class ServicePage(Page):
                 break
         context['next_services'] = next_services
         return context
-
-
-class Participant(Orderable):
-    # copy_from = models.ForeignKey(unique=False)
-    service = ParentalKey("services.ServicePage", related_name='participants')
-    name = models.CharField(max_length=100, blank=True, null=False)
-    bio = RichTextField(blank=True, null=True)
-
-    panels = [
-        FieldPanel('name'),
-        FieldPanel('bio'),
-    ]
 
 
 class OrderOfService(Page):
