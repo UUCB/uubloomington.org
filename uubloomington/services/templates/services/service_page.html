@@ -32,17 +32,6 @@
             <div class="block-rich_text"><p>To join this service over the internet, please see <a href="{{ settings.site_settings.SiteWideSettings.internal_livestream_page.url }}">our live stream page</a>.</p></div>
         {% endif %}
         {% if page.get_children.first.live %}
-    {#            <div class="block-page_feature order-of-service">#}
-    {#                <img src="{% static 'chalice-logo-black.svg' %}">#}
-    {#                <h2>Order of Service</h2>#}
-    {#                Our order of service is available both here on our website and in print.#}
-    {#                <div class="program">#}
-    {#                    {% include_block page.get_children.first.specific.program %}#}
-    {#                    <a href="" class="show" _="on click add .expand to closest <.order-of-service/> then halt">Show Order of Service</a>#}
-    {#                    <a href="" class="hide" _="on click remove .expand from closest <.order-of-service/> then halt">Hide Order of Service</a>#}
-    {#                    <a href="{{ page.get_children.first.url }}?print=true">View Printable Version</a>#}
-    {#                </div>#}
-    {#            </div>#}
             {% if page.get_children.specific.first.back_page %}
                 <div class="order-of-service-dual-page-feature">
                     <div class="tab">
