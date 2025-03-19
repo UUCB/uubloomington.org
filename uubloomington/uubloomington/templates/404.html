@@ -5,7 +5,12 @@
 {% block body_class %}template-404{% endblock %}
 
 {% block content %}
-<h1>Page not found</h1>
-
-<h2>Sorry, this page could not be found.</h2>
+<article class="content list-page">
+    <h1>Page not found</h1>
+    <div class="block-rich_text">
+        <p class="centered">
+            Sorry, this page could not be found. You may want to <a href="/search">search</a> for what you're looking for instead.
+        </p>
+    </div>
+</article>
 {% endblock %}
