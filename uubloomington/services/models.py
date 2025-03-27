@@ -135,6 +135,7 @@ class ServicePage(Page):
     ]
 
     transcript_panels = [
+        FieldPanel('transcript_heading'),
         FieldPanel('transcript'),
     ]
 
