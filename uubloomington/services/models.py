@@ -102,7 +102,7 @@ class ServicesHomePage(Page):
         for oos in previous_oos_list:
             if oos.service.live:
                 previous_services.append(oos.service)
-            if len(previous_services) > 5:
+            if len(previous_services) > 10:
                 break
         if previous_oos_list.count() > len(previous_services):
             context['show_expand_previous_services'] = True
