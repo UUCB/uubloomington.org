@@ -25,7 +25,7 @@ DATABASES = {
         'PASSWORD': os.environ['DB_PASSWORD'],
         'OPTIONS': {
             'ssl': {},
-            # 'charset': 'utf8mb4',
+            'charset': 'utf8mb4',
         },
     }
 }
