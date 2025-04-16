@@ -89,8 +89,13 @@
                 </a>
                 {% for page_num in previous_services_list.paginator.page_range %}
                     <a
+                            {% if not page_num == previous_services_list.number %}
                             href="?page={{ page_num }}"
                             hx-get="?page={{ page_num }}"
+                            {% else %}
+                            class="current"
+                            disabled
+                            {% endif %}
                     >
                         {{ page_num }}
                     </a>
