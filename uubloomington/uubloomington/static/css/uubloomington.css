@@ -1861,3 +1861,14 @@ button.card-action {
     color: white;
     transition: background var(--hover-transition-time), color var(--hover-transition-time);
 }
+
+.pagination-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.pagination-links a[disabled] {
+    pointer-events: none;
+    color: #505050;
+}

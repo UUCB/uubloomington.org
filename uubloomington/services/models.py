@@ -104,12 +104,20 @@ class ServicesHomePage(Page):
         ).order_by('order_of_service__date')
         context['next_service'] = next_services.first()
         context['next_services_list'] = next_services[1:8]
-        previous_services = ServicePage.objects.filter(
+        all_previous_services = ServicePage.objects.filter(
             order_of_service__date__gte=self.service_archive_start,
             order_of_service__date__lte=timezone.now(),
             live=True,
-        ).order_by('-order_of_service__date')[:self.services_per_page]
-        context['previous_services_list'] = previous_services
+        ).order_by('-order_of_service__date')
+        previous_services_paginator = Paginator(all_previous_services, self.services_per_page)
+        page = request.GET.get('page')
+        try:
+            displayed_previous_services = previous_services_paginator.page(page)
+        except PageNotAnInteger:
+            displayed_previous_services = previous_services_paginator.page(1)
+        except EmptyPage:
+            displayed_previous_services = previous_services_paginator.page(previous_services_paginator.num_pages)
+        context['previous_services_list'] = displayed_previous_services
         return context
 
 
