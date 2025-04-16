@@ -1866,6 +1866,7 @@ button.card-action {
     display: flex;
     justify-content: center;
     gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .pagination-links a[disabled] {
