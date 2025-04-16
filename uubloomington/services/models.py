@@ -6,6 +6,7 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 
 from django.utils import timezone
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 from wagtail.models import Page
 from wagtail.fields import RichTextField, StreamField
@@ -29,6 +30,16 @@ def get_default_stream_url():
 class ServicesHomePage(Page):
     body = RichTextField(blank=True, null=True)
     service_schedule = RecurrenceField(blank=False, null=True)
+    services_per_page = models.IntegerField(
+        default=15,
+        verbose_name="Services per Page",
+        help_text="Display this many archived services per page.",
+    )
+    service_archive_start = models.DateField(
+        default=datetime.date.min,
+        verbose_name="Service Archive Start Date",
+        help_text="Don't show any services older than this date in the paginated archive.",
+    )
     order_of_service_program_template = StreamField(
         [
            ('element', OOSElementBlock()),
@@ -57,9 +68,15 @@ class ServicesHomePage(Page):
         )
     ]
 
+    archive_panels = [
+        FieldPanel('services_per_page'),
+        FieldPanel('service_archive_start'),
+    ]
+
     edit_handler = TabbedInterface([
         ObjectList(content_panels, heading="Content"),
         ObjectList(order_of_service_panels, heading="Order of Service Program Template"),
+        ObjectList(archive_panels, heading="Archive"),
         ObjectList(Page.promote_panels, heading="Promote"),
     ])
 
@@ -81,34 +98,18 @@ class ServicesHomePage(Page):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request)
-        next_oos = (
-            OrderOfService.objects.filter(date__gte=timezone.now())
-            .order_by('date')
-            .first()
-        )
-        if next_oos:
-            context['next_service'] = next_oos.service.specific
-        next_services = []
-        for oos in OrderOfService.objects.filter(date__gte=timezone.now()).order_by('date'):
-            if oos.service.live:
-                next_services.append(oos.service)
-            if len(next_services) > 8:
-                break
-        if len(next_services) > 0:
-            next_services.pop(0)
-        context['next_services_list'] = next_services
-        previous_services = []
-        previous_oos_list = OrderOfService.objects.filter(date__lte=timezone.now()).order_by('-date')
-        for oos in previous_oos_list:
-            if oos.service.live:
-                previous_services.append(oos.service)
-            if len(previous_services) > 10:
-                break
-        if previous_oos_list.count() > len(previous_services):
-            context['show_expand_previous_services'] = True
+        next_services = ServicePage.objects.filter(
+            order_of_service__date__gte=timezone.now(),
+            live=True,
+        ).order_by('order_of_service__date')
+        context['next_service'] = next_services.first()
+        context['next_services_list'] = next_services[1:8]
+        previous_services = ServicePage.objects.filter(
+            order_of_service__date__gte=self.service_archive_start,
+            order_of_service__date__lte=timezone.now(),
+            live=True,
+        ).order_by('-order_of_service__date')[:self.services_per_page]
         context['previous_services_list'] = previous_services
-        if len(previous_services) > 0:
-            context['last_previous_service'] = previous_services[-1]
         return context
 
 
