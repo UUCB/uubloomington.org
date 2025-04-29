@@ -1,0 +1,34 @@
+# This action will be run on the `main` branch
+# or on any pull requests going into the `main` branch.
+on:
+  release:
+    types: [published]
+jobs:
+  # TODO: add a job here which runs checks and unit tests.
+  # test:
+  #   ...
+
+  deploy:
+    name: Deploy to CodeRed Cloud
+    # Only deploy if the `test` job succeeded (uncomment the line below).
+    # needs: test
+    # Only run in the `main` branch (i.e. not pull requests).
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      # If you need any build steps such as `npm run` or `yarn build`
+      # Add them here before the deployment.
+
+      # CodeRed Cloud command line tool.
+      # See: https://www.codered.cloud/docs/cli/
+      - name: Install cr tool
+        run: |
+          wget -nv -O /usr/local/bin/cr "https://www.codered.cloud/cli/cr-linux"
+          chmod +x /usr/local/bin/cr
+      # Run the deployment.
+      - name: Deploy
+        run: cr deploy uubloomingtonorg
+        env:
+          CR_TOKEN: ${{ secrets.cr_token }}
