@@ -50,7 +50,7 @@ class AdvancedFormResponseView(FormView):
                 )
         else:
             AdvancedFormResponse.objects.create(
-                response_json=json.dumps(form.cleaned_data['constant_values']),
+                response_json=json.dumps(constant_values),
                 form=form.cleaned_data['form'],
                 submitter_name=form.cleaned_data['submitter_name'],
                 submitter_email=form.cleaned_data['submitter_email'],
