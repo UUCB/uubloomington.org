@@ -28,6 +28,6 @@ jobs:
           chmod +x /usr/local/bin/cr
       # Run the deployment.
       - name: Deploy
-        run: cr deploy uubloomingtonorg
+        run: cr deploy uubloomingtonorg --path uubloomington/
         env:
           CR_TOKEN: ${{ secrets.cr_token }}
