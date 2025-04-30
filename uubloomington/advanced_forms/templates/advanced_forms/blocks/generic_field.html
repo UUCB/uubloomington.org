@@ -1,11 +1,12 @@
 <p>
     <label>
-        {{ self.label_text }}
+        {{ self.label_text }} {% if self.required %}<span class="required-asterisk">*</span>{% endif %}{% block extra_label %}{% endblock %}
         <input
                 type="{% block field_type %}text{% endblock %}"
                 name="{% block name %}{% if self.name_slug %}{{ self.name_slug }}{% else %}{{ self.label_text|slugify }}{% endif %}{% endblock %}"
                 class="{% block class %}dynamic-field{% endblock %}"
-                placeholder="{{ self.placeholder_text }}"
+                placeholder="{{ self.placeholder_text }}{% if self.required %} (Required){% endif %}{% block extra_placeholder %}{% endblock %}"
+                {% block extra_params %}{% endblock %}
         >
     </label>
 </p>

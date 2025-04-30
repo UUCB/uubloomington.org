@@ -1873,3 +1873,8 @@ button.card-action {
     pointer-events: none;
     color: #505050;
 }
+
+.required-asterisk {
+    color: red;
+    font-size: 2rem;
+}

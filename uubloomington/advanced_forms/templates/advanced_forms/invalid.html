@@ -4,6 +4,9 @@
         {% for problematic_field in problematic_fields %}
             then add .field-error to <input[name='{{ problematic_field }}'/>
         {% endfor %}
+        {% for missing_required in missing_required_fields_by_sequence %}
+            then add .field-error to <input[data-field-sequence='{{ missing_required }}']/>
+        {% endfor %}
         then wait 5s
         then remove me
 ">Please check your input and try again.</p>

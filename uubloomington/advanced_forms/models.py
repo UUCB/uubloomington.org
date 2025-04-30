@@ -62,6 +62,19 @@ class AdvancedForm(models.Model):
                         name_slugs.append(extract_field_slug(block))
         return name_slugs
 
+    def get_required_fields(self):
+        required_slugs = []
+        for block in self.form_fields:
+            if block.block_type in dict(FORM_FIELD_BLOCKS).keys():
+                if block.value['required']:
+                    required_slugs.append(extract_field_slug(block))
+            if block.block_type == 'repeating_fields':
+                for block in block.value['fields']:
+                    if block.block_type in dict(FORM_FIELD_BLOCKS).keys():
+                        if block.value['required']:
+                            required_slugs.append(extract_field_slug(block))
+        return required_slugs
+
     def get_current_field_labels(self):
         labels = []
         for block in self.form_fields:

@@ -33,8 +33,6 @@ class AdvancedFormResponseView(FormView):
         confirmation_email.send()
 
     def form_valid(self, form):
-        print(form.cleaned_data)
-        print('HELLO')
         dynamic_response = form.cleaned_data['response_json']
         repeated_values = dynamic_response.get('repeatedValues')
         constant_values = dynamic_response.get('constantValues')
@@ -64,6 +62,10 @@ class AdvancedFormResponseView(FormView):
         self.template_name = 'advanced_forms/invalid.html'
         self.extra_context['test'] = 'HI IMA TEST'
         self.extra_context['problematic_fields'] = list(form.errors.as_data().keys())
+        if form.errors.as_data().get('__all__'):
+            self.extra_context['missing_required_fields_by_sequence'] = [
+                error.message for error in form.errors.as_data().get('__all__')
+            ]
         return super(self.__class__, self).form_invalid(form)
 
 

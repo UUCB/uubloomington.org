@@ -6,6 +6,7 @@ class GenericFieldBlock(blocks.StructBlock):
     label_text = blocks.CharBlock()
     placeholder_text = blocks.CharBlock(required=False)
     name_slug = blocks.CharBlock(required=False)
+    required = blocks.BooleanBlock(required=False, default=False)
 
     def get_name_slug(self):
         if self.name_slug is not None:
