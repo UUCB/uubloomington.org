@@ -13,7 +13,7 @@
     <input type="hidden" name="response_json">
     <script type="text/hyperscript">
         on load
-            for field in <#advanced-form-{{ value.pk }} input/> index i
+            for field in <#advanced-form-{{ value.pk }} input:not([type=radio]):not([type=checkbox]):not([name=submitter_name]):not([name=submitter_email]), #advanced-form-{{ value.pk }} select, #advanced-form-{{ value.pk }} textarea, #advanced-form-{{ value.pk }} .multiple-choice/> index i
                 set field's @data-field-sequence to i
     </script>
     {% if value.send_confirmation %}
