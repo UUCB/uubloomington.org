@@ -41,6 +41,7 @@ class CheckboxesBlock(blocks.StructBlock):
     label_text = blocks.CharBlock()
     name_slug = blocks.CharBlock(required=False)
     options = blocks.ListBlock(blocks.CharBlock())
+    required = blocks.BooleanBlock(required=False, default=False)
 
     class Meta:
         template = 'advanced_forms/blocks/checkboxes_block.html'
@@ -50,6 +51,7 @@ class RadioButtonsBlock(blocks.StructBlock):
     label_text = blocks.CharBlock()
     name_slug = blocks.CharBlock(required=False)
     options = blocks.ListBlock(blocks.CharBlock())
+    required = blocks.BooleanBlock(required=False, default=False)
 
     class Meta:
         template = 'advanced_forms/blocks/radio_buttons_block.html'
@@ -59,6 +61,7 @@ class DropdownBlock(blocks.StructBlock):
     label_text = blocks.CharBlock()
     name_slug = blocks.CharBlock(required=False)
     options = blocks.ListBlock(blocks.CharBlock())
+    required = blocks.BooleanBlock(required=False, default=False)
 
     class Meta:
         template = 'advanced_forms/blocks/dropdown_block.html'
