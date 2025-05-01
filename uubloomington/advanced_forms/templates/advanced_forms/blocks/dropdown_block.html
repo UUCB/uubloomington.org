@@ -1,12 +1,13 @@
-<label>{{ self.label_text }}
+<label>{{ self.label_text }}{% if self.required %}<span class="required-asterisk">*</span>{% endif %}
     <select
             class="dynamic-field"
             name="{% block name %}{% if self.name_slug %}{{ self.name_slug }}{% else %}{{ self.label_text|slugify }}{% endif %}{% endblock %}"
+            _="on change remove .field-error from me"
     >
+        <option {% if self.required %}disabled{% endif %} selected value="">-- No option selected --</option>
         {% for option in self.options %}
-            <label>
-                <option value="{{ option }}">{{ option }}</option>
-            </label>
+            <option value="{{ option }}">{{ option }}</option>
         {% endfor %}
     </select>
 </label>
+{% if self.required %}<span class="form-required-error"><em>This field is required.</em></span>{% endif %}

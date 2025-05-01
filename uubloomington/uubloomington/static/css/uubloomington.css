@@ -1678,6 +1678,11 @@ ul.searchable_tree > li {
     background: var(--error-color);
 }
 
+.advanced-form .multiple-choice.field-error {
+    border: 0.5rem solid var(--error-color);
+    border-radius: 0.5rem;
+}
+
 .advanced-form .error {
     margin-inline: auto;
     margin-block: var(--standard-gap);
@@ -1720,6 +1725,22 @@ ul.searchable_tree > li {
 .advanced-form .block-checkboxes_field,
 .advanced-form .block-dropdown_field {
     margin-bottom: var(--standard-gap);
+}
+
+.required-asterisk {
+    color: red;
+    font-size: 2rem;
+}
+
+.block-radio_buttons_field:not(:has(.field-error)) .form-required-error,
+.block-checkboxes_field:not(:has(.field-error)) .form-required-error,
+.block-dropdown_field:not(:has(.field-error)) .form-required-error,
+.advanced-form-field:not(:has(.field-error)) .form-required-error {
+    display: none;
+}
+
+.form-required-error {
+    margin-top: 0.75rem;
 }
 /*End Advanced Forms Styling*/
 
@@ -1877,9 +1898,4 @@ button.card-action {
 .pagination-links a[disabled] {
     pointer-events: none;
     color: #505050;
-}
-
-.required-asterisk {
-    color: red;
-    font-size: 2rem;
 }

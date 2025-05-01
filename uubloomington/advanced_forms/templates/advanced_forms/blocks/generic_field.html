@@ -1,4 +1,4 @@
-<p>
+<p class="advanced-form-field">
     <label>
         {{ self.label_text }} {% if self.required %}<span class="required-asterisk">*</span>{% endif %}{% block extra_label %}{% endblock %}
         <input
@@ -9,4 +9,5 @@
                 {% block extra_params %}{% endblock %}
         >
     </label>
+    {% if self.required %}<span class="form-required-error"><em>This field is required.</em></span>{% endif %}
 </p>

@@ -1,5 +1,5 @@
 <p>
-    <label>{{ self.label_text }}</label>
+    <label>{{ self.label_text }}{% if self.required %}<span class="required-asterisk">*</span>{% endif %}</label>
 </p>
 <div class="multiple-choice dynamic-field">
     {% for option in self.options %}
@@ -13,3 +13,4 @@
         </label>
     {% endfor %}
 </div>
+{% if self.required %}<span class="form-required-error"><em>This field is required.</em></span>{% endif %}

@@ -1,6 +1,6 @@
-<p>
+<p class="advanced-form-field">
     <label>
-        {{ self.label_text }}
+        {{ self.label_text }}{% if self.required %}<span class="required-asterisk">*</span>{% endif %}
         <textarea
                 type="{% block field_type %}text{% endblock %}"
                 name="{% block name %}{% if self.name_slug %}{{ self.name_slug }}{% else %}{{ self.label_text|slugify }}{% endif %}{% endblock %}"
@@ -8,4 +8,5 @@
                 placeholder="{{ self.placeholder_text }}"
         ></textarea>
     </label>
+    {% if self.required %}<span class="form-required-error"><em>This field is required.</em></span>{% endif %}
 </p>
