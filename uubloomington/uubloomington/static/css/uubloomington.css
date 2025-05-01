@@ -1714,6 +1714,11 @@ ul.searchable_tree > li {
 
 .advanced-form select {
     display: block;
+}
+
+.advanced-form .block-radio_buttons_field,
+.advanced-form .block-checkboxes_field,
+.advanced-form .block-dropdown_field {
     margin-bottom: var(--standard-gap);
 }
 /*End Advanced Forms Styling*/
