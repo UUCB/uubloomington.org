@@ -1,5 +1,6 @@
 from django.db import models
-from wagtail.models import Page, StreamField
+from wagtail.models import Page
+from wagtail.fields import StreamField
 from wagtail.admin.panels import FieldPanel, HelpPanel
 from wagtail.admin.views.pages.create import CreateView
 from wagtail import hooks
