@@ -1,5 +1,5 @@
 <div class="sidebar">
-    <a class="visual-h4" href="{{ page.get_parent.url }}">{{ page.get_parent.title }}</a>
+    <a class="visual-h4" {% if not page.get_parent.get_parent.is_homepage %}href="{{ page.get_parent.url }}"{% endif %}>{{ page.get_parent.title }}</a>
     <ul>
         {% for sibling_page in page.get_parent.get_children.live %}
             <li>

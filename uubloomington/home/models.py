@@ -36,6 +36,7 @@ class HomePageCarouselImages(Orderable):
 
 
 class HomePage(Page):
+    is_homepage = True
     parent_page_types = []
     services_home_page = models.OneToOneField(
         to='services.ServicesHomePage',
