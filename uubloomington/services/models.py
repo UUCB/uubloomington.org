@@ -124,7 +124,6 @@ class ServicesHomePage(Page):
 class ServicePage(Page):
     body = RichTextField(blank=False, null=True)
     short_description = RichTextField(
-        max_length=300,
         blank=False,
         null=True,
         verbose_name="Short Description",
