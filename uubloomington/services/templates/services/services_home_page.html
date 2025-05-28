@@ -39,8 +39,8 @@
                             <a href="{{ service.url }}"><h3>{{ service.title }}</h3></a>
                         </span>
                         <span class="event-info">
-                            {% if service.one_sentence %}
-                                {{ service.one_sentence }}
+                            {% if service.short_description %}
+                                {{ service.short_description|richtext }}
                             {% endif %}
                         </span>
                     </li>
@@ -60,8 +60,8 @@
                             <a href="{{ service.url }}"><h3>{{ service.title }}</h3></a>
                         </span>
                         <span class="event-info">
-                            {% if service.one_sentence %}
-                                {{ service.one_sentence }}
+                            {% if service.short_description %}
+                                {{ service.short_description|richtext }}
                             {% endif %}
                         </span>
                     </li>

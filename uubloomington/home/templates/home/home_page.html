@@ -30,7 +30,7 @@
 {#            {% image next_service.featured_image fill-200x200 %}#}
             <span class="service-description">
                 {% image next_service.featured_image fill-150x150 class='right'%}
-                {{ next_service.one_sentence|richtext }}
+                {{ next_service.short_description|richtext }}
             </span>
             <span class="upcoming-service-buttons">
                 <a class="card-action" href="{{ page.first_time_visitors_page.url }}">

@@ -122,8 +122,8 @@ class ServicesHomePage(Page):
 
 
 class ServicePage(Page):
-    body = RichTextField(blank=True, null=True)
-    one_sentence = RichTextField(
+    body = RichTextField(blank=False, null=True)
+    short_description = RichTextField(
         max_length=300,
         blank=False,
         null=True,
@@ -142,7 +142,7 @@ class ServicePage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('featured_image'),
         FieldPanel('body'),
-        FieldPanel('one_sentence'),
+        FieldPanel('short_description'),
     ]
 
     archive_panels = [
@@ -166,7 +166,7 @@ class ServicePage(Page):
 
     search_fields = Page.search_fields + [
         index.SearchField('body'),
-        index.SearchField('one_sentence'),
+        index.SearchField('short_description'),
         index.SearchField('transcript'),
     ]
 
