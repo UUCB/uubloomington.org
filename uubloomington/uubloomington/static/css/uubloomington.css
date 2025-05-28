@@ -1745,7 +1745,7 @@ ul.searchable_tree > li {
     font-variation-settings: unset;
 }
 
-.advanced-form textarea {
+textarea {
     display: block;
     width: 20rem;
     height: 10rem;
