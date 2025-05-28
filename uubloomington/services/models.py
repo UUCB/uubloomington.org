@@ -123,7 +123,14 @@ class ServicesHomePage(Page):
 
 class ServicePage(Page):
     body = RichTextField(blank=True, null=True)
-    one_sentence = models.CharField(max_length=200, blank=False, null=True)
+    one_sentence = RichTextField(
+        max_length=300,
+        blank=False,
+        null=True,
+        verbose_name="Short Description",
+        help_text="A shortened description of the service, displayed on the home page. "
+                  "Needs to be extremely short when also using a featured image.",
+    )
     featured_image = models.ForeignKey(to=Image, on_delete=models.SET_NULL, null=True, blank=True)
     video_archive_link = models.CharField(max_length=400, blank=True, null=True)
     show_video_embed = models.BooleanField(default=True)
@@ -135,7 +142,7 @@ class ServicePage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('featured_image'),
         FieldPanel('body'),
-        FieldPanel('one_sentence', heading='One-Sentence Description'),
+        FieldPanel('one_sentence'),
     ]
 
     archive_panels = [
