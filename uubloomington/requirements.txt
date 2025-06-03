@@ -6,5 +6,5 @@ pypco
 django-feather==0.3.0
 django-recurrence
 sentry-sdk[django]
-django-anymail[sendgrid]
-openpyxl
+django-anymail[sendgrid]>=13.0,<=14.0
+openpyxl>=3.1.0,<3.2.0
