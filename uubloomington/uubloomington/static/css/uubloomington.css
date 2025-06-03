@@ -572,10 +572,25 @@ hr {
 }
 
 .card.upcoming-service h2,
-.card.upcoming-service h3,
-.service-description,
-.link-container {
+.service-description {
     margin-bottom: 1rem;
+}
+
+.card.upcoming-service .heading-container {
+    display: grid;
+    grid-template-columns: 1fr 10rem;
+    gap: 0 var(--standard-gap);
+    margin-bottom: 0.5rem;
+}
+
+.card.upcoming-service .heading-container .card-action {
+    grid-row: span 2;
+    margin-top: 0;
+    margin-bottom: auto;
+    text-align: center;
+    border-radius: calc(var(--standard-radius) - 0.5rem);
+    padding-bottom: 0.5rem;
+    padding-top: 0.75rem;
 }
 
 @media screen and (min-width: 60rem) {
@@ -600,9 +615,20 @@ hr {
             line-height: 1rem;
         }
         .card.upcoming-service h2,
-        .card.upcoming-service h3,
         .service-description {
             margin-bottom: 0.5rem;
+        }
+        .card.upcoming-service .heading-container {
+            grid-template-columns: 1fr 10rem;
+            gap: 0.25rem;
+        }
+        .card.upcoming-service .heading-container .card-action {
+            /*grid-template-rows: unset;*/
+            padding-bottom: 0.25rem;
+            padding-top: 0.5rem;
+            font-size: 1.1rem;
+            max-width: 15rem;
+            margin-inline: auto;
         }
     }
 }
@@ -744,6 +770,40 @@ hr {
         margin-bottom: 0.75rem;
     }
     /*End Move sidebar to bottom on mobile*/
+}
+
+@media screen and (max-width: 30rem) {
+        .card.upcoming-service .heading-container {
+            grid-template-columns: 1fr 10rem;
+            gap: 0.25rem;
+        }
+        .card.upcoming-service .heading-container .card-action {
+            padding-bottom: 0.25rem;
+            padding-top: 0.5rem;
+            font-size: 1.1rem;
+            /*max-width: 15rem;*/
+            margin-inline: auto;
+            grid-column: 2;
+            width: 100%;
+        }
+        .card.upcoming-service .heading-container h3 {
+            grid-column: span 2;
+        }
+        .card.upcoming-service .heading-container .link-container {
+            grid-row: 2;
+        }
+}
+
+@media screen and (max-width: 22rem) {
+        .card.upcoming-service .heading-container .card-action {
+            grid-column: span 2;
+        }
+        .card.upcoming-service .heading-container h3 {
+            grid-column: span 2;
+        }
+        .card.upcoming-service .heading-container .link-container {
+            grid-column: span 2;
+        }
 }
 
 .events-container li {
@@ -1145,10 +1205,6 @@ footer > .footer-content > * {
     height: auto;
 }
 
-.card.upcoming-service:has(img) .link-container {
-    margin-bottom: 0.25rem;
-}
-
 .card.upcoming-service:has(img) > h3 {
     margin-bottom: 0;
 }
@@ -1157,11 +1213,11 @@ footer > .footer-content > * {
     margin-bottom: 0;
     margin-top: auto;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     /*grid-auto-columns: 1fr;*/
     height: 6rem;
     gap: 1rem;
-    max-width: 40rem;
+    max-width: 30rem;
     width: 100%;
     align-self: center;
 }

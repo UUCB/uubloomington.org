@@ -100,13 +100,12 @@ class HomePage(Page):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        next_oos = (
-            OrderOfService.objects.filter(date__gte=timezone.now())
-            .order_by('date')
-            .first()
-        )
-        if next_oos:
-            context['next_service'] = next_oos.service.specific
+        next_services = [
+            oos.service.specific
+            for oos
+            in OrderOfService.objects.filter(date__gte=timezone.now()).order_by('date')[:2]
+        ]
+        context['next_services'] = next_services
         return context
 
     def get_carousel_image(self):

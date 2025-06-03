@@ -18,28 +18,29 @@
         {% include "home/carousel_image.html" with carousel_image=page.get_carousel_image %}
         {% endif %}
         <div class="card upcoming-service">
-            <h2>Upcoming Service</h2>
-            <h3>{{ next_service.title }}</h3>
-            <span class="link-container">
-                {% if next_service.video_archive_link %}
-                    <a href="{{ next_service.url }}">See Recording</a>
-                {% else %}
-                    <a href="{{ settings.site_settings.SiteWideSettings.internal_livestream_page.url }}">Live Stream</a> or in person!
-                {% endif %}
-            </span>
-{#            {% image next_service.featured_image fill-200x200 %}#}
-            <span class="service-description">
-                {% image next_service.featured_image fill-150x150 class='right'%}
-                {{ next_service.short_description|richtext }}
-            </span>
+            <h2>Upcoming Services</h2>
+            {% for service in next_services %}
+                <span class="heading-container">
+                    <h3 class="inline">{{ service.title }}</h3>
+                    <a class="card-action" href="{{ service.url }}">
+                        More Details
+                    </a>
+                    <span class="link-container">
+                        {% if service.video_archive_link %}
+                            <a href="{{ service.url }}">See Recording</a>
+                        {% else %}
+                            <a href="{{ settings.site_settings.SiteWideSettings.internal_livestream_page.url }}">Live Stream</a> or in person!
+                        {% endif %}
+                    </span>
+                </span>
+                <span class="service-description">
+                    {{ service.short_description|richtext }}
+                </span>
+            {% endfor %}
             <span class="upcoming-service-buttons">
                 <a class="card-action" href="{{ page.first_time_visitors_page.url }}">
                     {% icon "star" %}
                     First Time<br>Visitor?
-                </a>
-                <a class="card-action" href="{{ next_service.url }}">
-                    {% icon "plus" %}
-                    More<br>Details
                 </a>
                 <a class="card-action" href="{{ page.services_home_page.url }}">
                     {% icon "list" %}
