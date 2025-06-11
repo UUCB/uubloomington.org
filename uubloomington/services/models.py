@@ -133,7 +133,7 @@ class ServicePage(Page):
     featured_image = models.ForeignKey(to=Image, on_delete=models.SET_NULL, null=True, blank=True)
     video_archive_link = models.CharField(max_length=400, blank=True, null=True)
     show_video_embed = models.BooleanField(default=True)
-    transcript_heading = models.CharField(max_length=200, default="Sermon Transcript")
+    transcript_heading = models.CharField(max_length=200, default="Sermon Text")
     transcript = RichTextField(blank=True, null=True)
 
     parent_page_types = ['ServicesHomePage']
