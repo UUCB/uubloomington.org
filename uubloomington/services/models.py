@@ -206,6 +206,11 @@ class OrderOfService(Page):
         default="Other Sunday Information",
         help_text="This will be the title of the \"back page\" tab on the service page.",
     )
+    back_page_description = RichTextField(
+        default='Information about other happenings at UUCB each week is available here.',
+        help_text="This will be the short description of the \"back page\" tab on the service page, displayed just under the title.",
+        blank=False,
+    )
     cover_page = RichTextField(null=True, blank=True)
     date = models.DateField()
     program = StreamField(
@@ -233,6 +238,7 @@ class OrderOfService(Page):
 
     back_page_panels = [
         FieldPanel("back_page_title"),
+        FieldPanel("back_page_description"),
         FieldPanel("back_page"),
     ]
 
