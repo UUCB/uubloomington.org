@@ -12,6 +12,7 @@ import json
 
 import openpyxl
 import tempfile
+import csv
 
 
 class AdvancedFormResponseView(FormView):
@@ -106,3 +107,26 @@ class AdvancedFormResponseExportXlsxView(LoginRequiredMixin, DetailView):
             tmp.seek(0)
             response.write(tmp.read())
         return response
+
+
+class AdvancedFormResponseExportCsvView(LoginRequiredMixin, DetailView):
+    model = AdvancedForm
+
+    login_url = '/admin/login'
+
+    def get(self, request, *args, **kwargs):
+        advanced_form_object = self.get_object()
+        fieldnames = (['Submission Date/Time', 'Submitter Name', 'Submitter Email'] +
+                      [key for key in advanced_form_object.get_current_field_labels()])
+        http_response = HttpResponse(content_type='text/csv')
+        with tempfile.NamedTemporaryFile(mode='w+t') as tmp:
+            csvwriter = csv.writer(tmp)
+            csvwriter.writerow(fieldnames)
+            for response in advanced_form_object.responses.all():
+                csvwriter.writerow(
+                    [response.submission_datetime.replace(tzinfo=None), response.submitter_name, response.submitter_email] +
+                    [str(value[1]) for value in response.get_current_values()]
+                )
+            tmp.seek(0)
+            http_response.write(tmp.read())
+        return http_response
