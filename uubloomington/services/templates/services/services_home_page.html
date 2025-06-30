@@ -10,27 +10,16 @@
 {% endblock %}
 
 {% block content %}
-    <div class="card upcoming-service">
-        {% if next_service.get_children.first.specific.is_on_sunday %}
-            <h2>This Sunday's Service</h2>
-        {% else %}
-            <h2>Upcoming Service</h2>
-        {% endif %}
-        <span class="service-description">
-            {% image next_service.featured_image fill-200x200 class="right" %}
+    <div class="card">
+        <h2>Upcoming Services</h2>
+        <span>
+            {% image next_service.featured_image fill-200x200 class="right flush-bottom" %}
             <a href="{{ next_service.url }}"><h3>{{ next_service.title }}</h3></a>
             <div class="block-rich_text">
                 {{ next_service.body|richtext }}
             </div>
-            <a class="card-action" href="{{ next_service.url }}">
-{#                {% icon "plus" %}#}
-                More Details
-            </a>
         </span>
-    </div>
-    <div class="card">
-        <h2>Upcoming Services</h2>
-{#        Upcoming services list#}
+        <hr>
         <div class="events-container services">
             <ul>
                 {% for service in next_services_list %}
@@ -50,8 +39,6 @@
     </div>
     <div class="card archive" id="past-services">
         <h2>Past Services</h2>
-{#        Service Archive, show 5 and allow expansion#}
-{#    Make this an HX-Post which knows what the last-fetched service was, OOB swaps the form, and loads the next 10.#}
         <div class="events-container services">
             <ul>
                 {% for service in previous_services_list %}

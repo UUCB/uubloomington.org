@@ -218,6 +218,10 @@ iframe {
 .left {
     margin-bottom: 1rem;
 }
+
+.flush-bottom {
+    margin-bottom: 0;
+}
 /*End Wagtail Rich Text image classes*/
 
 strong,
@@ -564,6 +568,11 @@ hr {
     .header-links {
         align-self: center;
     }
+
+    .flush-bottom {
+        /*Return margin to bottom of images when on mobile*/
+        margin-bottom: 1rem;
+    }
     /*End Responsive Header*/
 }
 
@@ -875,7 +884,7 @@ hr {
 }
 
 .block-card:not(.upcoming-service):not(.badges) > :not(img),
-.card:not(.upcoming-service):not(.badges) > :not(img) {
+.card:not(.upcoming-service):not(.badges) > :not(img):not(hr) {
     margin-inline: 1rem;
 }
 
