@@ -8,8 +8,8 @@
 
 {% block main_content %}
     {% include "wagtailadmin/shared/header.html" with title=object.name icon="form" %}
-    <a href="{% url 'export_advanced_form_response_xlsx' pk=object.pk %}" download="{{ object.name|slugify }}_responses.xlsx">Export Responses to Excel File</a><br>
-    <a href="{% url 'export_advanced_form_response_csv' pk=object.pk %}" download="{{ object.name|slugify }}_responses.csv">Export Responses to CSV</a>
+    <a href="{% url 'export_advanced_form_response_xlsx' pk=object.pk %}" download="{{ object.name|slugify }}_responses_{% now "d-m-Y_H-i" %}.xlsx">Export Responses to Excel File</a><br>
+    <a href="{% url 'export_advanced_form_response_csv' pk=object.pk %}" download="{{ object.name|slugify }}_responses_{% now "d-m-Y_H-i" %}.csv">Export Responses to CSV</a>
     <table class="advanced-form-table">
         <tr>
             <th>Submission Date/Time</th>
