@@ -568,11 +568,6 @@ hr {
     .header-links {
         align-self: center;
     }
-
-    .flush-bottom {
-        /*Return margin to bottom of images when on mobile*/
-        margin-bottom: 1rem;
-    }
     /*End Responsive Header*/
 }
 

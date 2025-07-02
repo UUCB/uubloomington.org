@@ -10,15 +10,44 @@ main {
     margin-bottom: 1rem;
 }
 
-.service-description .card-action {
+.service-description-text .card-action {
     display: block;
-    margin-top: 0.75rem;
-    margin-inline: auto;
+    margin-top: auto;
+    margin-bottom: 0;
+    justify-self: center;
     width: fit-content;
+}
+
+:where(.homepage-upcoming-service:has(img)) .service-description-text .card-action {
+    margin-left: calc(200px + var(--standard-gap));
+}
+
+.homepage-upcoming-service {
+    display: flex;
+    gap: var(--standard-gap);
+    flex-direction: row-reverse;
+}
+
+.service-description-text {
+    margin-left: 0;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .card:has(.events-container) h2 {
     margin-bottom: 0;
+}
+
+@media screen and (max-width: 35rem) {
+    .homepage-upcoming-service {
+        flex-direction: column;
+    }
+
+    .service-description-text {
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 60rem) {
@@ -28,5 +57,9 @@ main {
 
     .archive {
         grid-column: unset;
+    }
+
+    .service-description-text .card-action {
+        margin-left: 0;
     }
 }

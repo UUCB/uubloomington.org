@@ -12,11 +12,16 @@
 {% block content %}
     <div class="card">
         <h2>Upcoming Services</h2>
-        <span>
+        <span class="homepage-upcoming-service">
             {% image next_service.featured_image fill-200x200 class="right flush-bottom" %}
-            <a href="{{ next_service.url }}"><h3>{{ next_service.title }}</h3></a>
-            <div class="block-rich_text">
-                {{ next_service.body|richtext }}
+            <div class="service-description-text">
+                <a href="{{ next_service.url }}"><h3>{{ next_service.title }}</h3></a>
+                <div class="block-rich_text">
+                    {{ next_service.body|richtext }}
+                </div>
+                <a class="card-action" href="{{ next_service.url }}">
+                    More Details
+                </a>
             </div>
         </span>
         <hr>
