@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load wagtailcore_tags %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'kiosk/kiosk.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="kiosk-outer">
+        <div class="kiosk-body">
+            {% include_block page.body %}
+        </div>
+    </div>
+{% endblock %}

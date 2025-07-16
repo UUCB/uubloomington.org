@@ -1,0 +1,7 @@
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+<i></i>
+{% image value.featured_image max-150x85 %}
+<div class="visual-h4">{{ value.title }}</div>
+{% include_block value.one_sentence %}

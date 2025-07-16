@@ -1,0 +1,101 @@
+#main:has(.kiosk-body) {
+    max-width: 100%;
+    --kiosk-content-total-width: 24rem;
+    --kiosk-content-gap: 1rem;
+    --kiosk-content-row-overlap-margin: -2rem;
+}
+
+.kiosk-outer {
+    container-type: inline-size;
+    width: 100%;
+}
+
+.kiosk-body {
+    display: flex;
+    flex-wrap: wrap;
+    margin-inline: auto;
+    margin-bottom: var(--standard-gap);
+}
+
+.block-kiosk_content {
+    --size: 22rem;
+    --padding: 0.25rem;
+    margin-inline: 1rem;
+    width: var(--size);
+    height: var(--size);
+    border: 3px solid var(--accent-color);
+    border-radius: 50%;
+    background: var(--card-background-color);
+    text-align: center;
+    overflow: clip;
+}
+
+.block-kiosk_content::before,
+.block-kiosk_content i {
+    content: '';
+    float: left;
+    height: 100%;
+    width: 50%;
+    shape-outside: radial-gradient(farthest-side at right, transparent calc(100% - var(--padding)), #fff 0);
+}
+
+.block-kiosk_content i {
+    float: right;
+    content: '';
+    shape-outside: radial-gradient(farthest-side at left, transparent calc(100% - var(--padding)), #fff 0);
+}
+
+.block-kiosk_content img {
+    border-radius: 0;
+}
+
+@container (width < calc(24rem * 3)) {
+    .kiosk-body {
+        width: 100%;
+        display: flex;
+        gap: var(--standard-gap);
+        justify-content: center;
+    }
+    .block-kiosk_content {
+        margin: 0;
+    }
+}
+
+@container (width > calc(24rem * 3)) and (width < calc(24rem * 4)) {
+    .kiosk-body {
+        width: calc(var(--kiosk-content-total-width) * 3);
+    }
+    .block-kiosk_content:nth-child(5n+4) {
+        background: red;
+        margin-left: calc(calc(var(--kiosk-content-total-width) / 2) + 1rem);
+    }
+    .block-kiosk_content:not(:last-child) {
+        margin-bottom: var(--kiosk-content-row-overlap-margin);
+    }
+}
+
+@container (width > calc(24rem * 4)) and (width < calc(24rem * 5)) {
+    .kiosk-body {
+        width: calc(var(--kiosk-content-total-width) * 4);
+    }
+    .block-kiosk_content:nth-child(7n+5) {
+        background: red;
+        margin-left: calc(calc(var(--kiosk-content-total-width) / 2) + 1rem);
+    }
+    .block-kiosk_content:not(:last-child) {
+        margin-bottom: var(--kiosk-content-row-overlap-margin);
+    }
+}
+
+@container (width > calc(24rem * 5)) {
+    .kiosk-body {
+        width: calc(var(--kiosk-content-total-width) * 5);
+    }
+    .block-kiosk_content:nth-child(9n+6) {
+        background: red;
+        margin-left: calc(calc(var(--kiosk-content-total-width) / 2) + 1rem);
+    }
+    .block-kiosk_content:not(:last-child) {
+        margin-bottom: var(--kiosk-content-row-overlap-margin);
+    }
+}

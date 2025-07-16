@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     "search",
     "advanced_forms",
     "planningcenter_events",
+    "kiosk",
     "django_feather",
     "recurrence",
     "wagtail.contrib.forms",
@@ -62,6 +63,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "wagtailaudioembed",
     "anymail",
+    "wagtail_color_panel",
 ]
 
 MIDDLEWARE = [

@@ -8,3 +8,4 @@ django-recurrence
 sentry-sdk[django]
 django-anymail[sendgrid]>=13.0,<=14.0
 openpyxl>=3.1.0,<3.2.0
+wagtail-color-panel==1.6.0
