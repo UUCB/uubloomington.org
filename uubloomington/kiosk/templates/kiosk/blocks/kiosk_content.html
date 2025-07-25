@@ -5,3 +5,31 @@
 {% image value.featured_image max-150x85 %}
 <div class="visual-h4">{{ value.title }}</div>
 {% include_block value.one_sentence %}
+<button class="card-action" _="on click add .shown to next <.kiosk-content-details/>">Details</button>
+<div class="kiosk-content-backdrop">
+    <div
+            class="kiosk-content-details"
+            _="on click from body if event.target is not in me and event.target does not match .card-action remove .shown from me"
+    >
+    {% if value.details %}
+        <article class="content list-page">
+            <h1>{{ value.title }}</h1>
+            {% include_block value.details %}
+        </article>
+    {% else %}
+        {% if value.details_page.specific.is_group %}
+            <article class="planningcenter-html">
+                <h1>{{ group_title }}</h1>
+                    <img src="{{ header_image }}" class="right">
+                    <a href="{{ churchcenter_group_url }}" class="right">View {% if group_is_open %}and join {% endif %}this group on Church Center</a>
+                {{ group_body|safe }}
+            </article>
+        {% elif value.details_page.specific.body_is_streamfield %}
+            <article class="content list-page">
+                <h1>{{ value.details_page.specific.title }}</h1>
+                {% include_block value.details_page.specific.body %}
+            </article>
+        {% endif %}
+    {% endif %}
+    </div>
+</div>
