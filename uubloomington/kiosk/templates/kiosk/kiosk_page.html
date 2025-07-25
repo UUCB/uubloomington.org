@@ -7,6 +7,7 @@
 {% endblock %}
 
 {% block content %}
+    <h2 id="kiosk-header">{{ page.title }}</h2>
     {% if page.sidebar %}
         <div class="kiosk-sidebar">
             {% for block in page.sidebar %}

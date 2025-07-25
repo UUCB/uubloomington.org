@@ -5,6 +5,19 @@
     --kiosk-content-row-overlap-margin: -2rem;
 }
 
+#main:has(.kiosk-body) h2 {
+    text-align: center;
+    scroll-margin: 1rem;
+}
+
+#main:has(.kiosk-sidebar) h2 {
+    grid-column: span 2;
+}
+
+#main:not(:has(.kiosk-sidebar)):has(.kiosk-body) {
+    display: block;
+}
+
 #main:has(.kiosk-sidebar) .kiosk-body {
     margin-inline: auto;
 }
@@ -71,13 +84,14 @@
         display: flex;
         gap: var(--standard-gap);
         justify-content: center;
+        max-width: calc(var(--kiosk-content-total-width) * 2);
     }
     .block-kiosk_content {
         margin: 0;
     }
 }
 
-@container (width > calc(24rem * 3)) and (width < calc(24rem * 4)) {
+@container (width >= calc(24rem * 3)) and (width < calc(24rem * 4)) {
     .kiosk-body {
         width: calc(var(--kiosk-content-total-width) * 3);
     }
@@ -89,7 +103,7 @@
     }
 }
 
-@container (width > calc(24rem * 4)) and (width < calc(24rem * 5)) {
+@container (width >= calc(24rem * 4)) and (width < calc(24rem * 5)) {
     .kiosk-body {
         width: calc(var(--kiosk-content-total-width) * 4);
     }
@@ -101,7 +115,7 @@
     }
 }
 
-@container (width > calc(24rem * 5)) {
+@container (width >= calc(24rem * 5)) {
     .kiosk-body {
         width: calc(var(--kiosk-content-total-width) * 5);
     }

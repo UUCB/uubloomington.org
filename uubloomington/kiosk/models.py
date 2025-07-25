@@ -17,7 +17,9 @@ class KioskPage(Page):
     sidebar = StreamField(
         [
             ("kiosk_sidebar", KioskSidebarContentBlock()),
-        ]
+        ],
+        null=True,
+        blank=True,
     )
     content_panels = Page.content_panels + [
         FieldPanel("body"),
