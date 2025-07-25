@@ -169,3 +169,15 @@
 .kiosk-content-details article .right {
     max-width: 30%;
 }
+
+.kiosk-details-action-bar {
+    display: flex;
+    margin-top: var(--standard-gap);
+    margin-inline: var(--standard-gap);
+    gap: var(--standard-gap);
+}
+
+.kiosk-details-action-bar .card-action svg {
+    vertical-align: middle;
+    margin-bottom: 0.25rem;
+}

@@ -2,7 +2,7 @@ import pickle
 
 from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
-from wagtail.blocks import StructBlock
+from wagtail.blocks import StructBlock, StreamBlock
 from wagtail_color_panel.blocks import NativeColorBlock
 from core.blocks import *
 from planningcenter_events.blocks import EventListingBlock
@@ -21,6 +21,13 @@ class KioskSidebarContentBlock(StructBlock):
 
     def get_template(self, value=None, context=None):
         return "kiosk/blocks/kiosk_sidebar_content.html"
+
+class KioskDetailsActionBlock(StructBlock):
+    title = blocks.CharBlock()
+    url = blocks.URLBlock()
+    icon = blocks.CharBlock(
+        help_text="Name of an icon to accompany this action link. Valid icon names can be found at feathericons.com."
+    )
 
 class KioskContentBlock(StructBlock):
     title = blocks.CharBlock()
@@ -62,6 +69,13 @@ class KioskContentBlock(StructBlock):
     accent_color = NativeColorBlock(
         help_text="Accent color for this content. Primarily used for borders.",
         default="#006b1b",
+    )
+    actions = StreamBlock(
+        [
+            ('details_action', KioskDetailsActionBlock()),
+        ],
+        help_text="Action links shown at the top of the details modal.",
+        required=False,
     )
 
     def get_template(self, value=None, context=None):

@@ -1,5 +1,6 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
+{% load icon %}
 
 <i></i>
 {% image value.featured_image max-150x85 %}
@@ -11,6 +12,12 @@
             class="kiosk-content-details"
             _="on click from body if event.target is not in me and event.target does not match .card-action remove .shown from me"
     >
+    <div class="kiosk-details-action-bar">
+        <a class="card-action" _="on click remove .shown from <.kiosk-content-details/>">{% icon 'arrow-left' %} Back</a>
+        {% for action in value.actions %}
+            <a class="card-action" href="{{ action.value.url }}">{% icon action.value.icon %} {{ action.value.title }}</a>
+        {% endfor %}
+    </div>
     {% if value.details %}
         <article class="content list-page">
             <h1>{{ value.title }}</h1>
