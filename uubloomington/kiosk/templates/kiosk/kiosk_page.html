@@ -7,6 +7,15 @@
 {% endblock %}
 
 {% block content %}
+    {% if page.sidebar %}
+        <div class="kiosk-sidebar">
+            {% for block in page.sidebar %}
+                <div class="block-kiosk_sidebar_content">
+                    {% include_block block %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
     <div class="kiosk-outer">
         <div class="kiosk-body">
             {% for block in page.body %}
