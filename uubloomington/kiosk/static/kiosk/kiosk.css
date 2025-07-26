@@ -3,6 +3,7 @@
     --kiosk-content-total-width: 24rem;
     --kiosk-content-gap: 1rem;
     --kiosk-content-row-overlap-margin: -2rem;
+    --animation-duration: 0.2s;
 }
 
 #main:has(.kiosk-body) h2 {
@@ -127,15 +128,54 @@
     }
 }
 
-.kiosk-content-details:not(.shown) {
-    display: none;
+@keyframes kiosk_details_show {
+    from {
+        opacity: 0;
+        transform: scale(0)
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
-.kiosk-content-backdrop:not(:has(.kiosk-content-details.shown)) {
-    display: none;
+@keyframes kiosk_details_backdrop_show {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes kiosk_details_hide {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+@keyframes kiosk_details_backdrop_hide {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
 }
 
 .kiosk-content-details {
+    animation-name: kiosk_details_show;
+    animation-duration: var(--animation-duration);
+    animation-direction: normal;
     position: fixed;
     background: var(--background-color);
     width: 90dvw;
@@ -147,9 +187,14 @@
     overflow: scroll;
     backdrop-filter: none;
     border-radius: var(--standard-radius);
+    opacity: 1;
 }
 
 .kiosk-content-backdrop {
+    animation-name: kiosk_details_backdrop_show;
+    animation-duration: var(--animation-duration);
+    animation-direction: normal;
+    opacity: 1;
     position: fixed;
     width: 100dvw;
     height: 100dvh;
@@ -180,4 +225,23 @@
 .kiosk-details-action-bar .card-action svg {
     vertical-align: middle;
     margin-bottom: 0.25rem;
+}
+
+.kiosk-content-details:not(.shown) {
+    animation-name: kiosk_details_hide;
+    animation-duration: var(--animation-duration);
+    animation-direction: forward;
+    opacity: 0;
+}
+
+.kiosk-content-backdrop:not(:has(.kiosk-content-details.shown)) {
+    animation-name: kiosk_details_backdrop_hide;
+    animation-duration: var(--animation-duration);
+    animation-direction: forward;
+    opacity: 0;
+}
+
+.kiosk-content-backdrop:has(.kiosk-content-details:not(.shown):not(.animating)),
+.kiosk-content-details:not(.shown):not(.animating) {
+    display: none;
 }

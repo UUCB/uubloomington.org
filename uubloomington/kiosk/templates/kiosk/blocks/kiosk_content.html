@@ -10,10 +10,10 @@
 <div class="kiosk-content-backdrop">
     <div
             class="kiosk-content-details"
-            _="on click from body if event.target is not in me and event.target does not match .card-action remove .shown from me"
+            _="on click from body if .shown is empty halt else if event.target is not in me and event.target does not match .card-action add .animating to <.kiosk-content-details.shown/> then remove .shown from me then go to top of #kiosk-header then wait 0.3s then remove .animating from me"
     >
     <div class="kiosk-details-action-bar">
-        <a class="card-action" _="on click remove .shown from <.kiosk-content-details/>">{% icon 'arrow-left' %} Back</a>
+        <a class="card-action" _="on click add .animating to closest <.kiosk-content-details/> then remove .shown from <.kiosk-content-details/> then go to top of #kiosk-header then wait 0.3s then remove .animating from <.kiosk-content-details/>">{% icon 'arrow-left' %} Back</a>
         {% for action in value.actions %}
             <a class="card-action" href="{{ action.value.url }}">{% icon action.value.icon %} {{ action.value.title }}</a>
         {% endfor %}
