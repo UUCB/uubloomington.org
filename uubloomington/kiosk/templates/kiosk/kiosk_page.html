@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load wagtailcore_tags %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'kiosk/kiosk.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h2 id="kiosk-header">{{ page.title }}</h2>
+    {% if page.sidebar %}
+        <div class="kiosk-sidebar">
+            {% for block in page.sidebar %}
+                <div class="block-kiosk_sidebar_content">
+                    {% include_block block %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="kiosk-outer">
+        <div class="kiosk-body">
+            {% for block in page.body %}
+                <div class="block-kiosk_content" style="--accent-color: {{ block.value.accent_color }}">
+                    {% include_block block %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

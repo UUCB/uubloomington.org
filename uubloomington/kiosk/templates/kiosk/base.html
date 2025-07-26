@@ -1,0 +1,58 @@
+{% load static wagtailcore_tags wagtailuserbar menu_tags wagtailimages_tags %}
+{% wagtail_site as current_site %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>
+            {% block title %}
+            {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
+            {% endblock %}
+            {% block title_suffix %}
+            {% wagtail_site as current_site %}
+            {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
+            {% endblock %}
+        </title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        {# Force all links in the live preview panel to be opened in a new tab #}
+        {% if request.in_preview_panel %}
+        <base target="_blank">
+        {% endif %}
+
+        {# Global stylesheets #}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/uubloomington.css' %}">
+        <link rel="icon" href="{% static 'chalice-logo-favicon.svg' %}">
+        <script src="{% static 'js/htmx.min.js' %}"></script>
+        <script src="{% static 'js/_hyperscript.min.js' %}"></script>
+        <style>
+
+        </style>
+
+        {% block extra_css %}
+        {# Override this in templates to add extra stylesheets #}
+        {% endblock %}
+    </head>
+
+    <body class="{% block body_class %}{% endblock %}">
+    {% wagtailuserbar %}
+    <a href="#main" class="skiplink">Skip to main content</a>
+
+        <main id="main">
+            {% block content %}{% endblock %}
+        </main>
+        {% block extra_js %}
+        {# Override this in templates to add extra javascript #}
+        {% endblock %}
+    {% if not request.is_preview %}
+        {% if settings.site_settings.SiteWideSettings.use_shynet %}
+            <noscript>
+                <img src="{{ settings.site_settings.SiteWideSettings.shynet_ingress_url }}/pixel.gif">
+            </noscript>
+            <script src="{{ settings.site_settings.SiteWideSettings.shynet_ingress_url }}/script.js"></script>
+        {% endif %}
+    {% endif %}
+    </body>
+</html>

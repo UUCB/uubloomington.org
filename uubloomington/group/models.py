@@ -111,3 +111,6 @@ class GroupPage(Page):
 
     def get_posts(self):
         return self.get_children().type(Post)
+
+    def is_group(self):
+        return True
