@@ -60,6 +60,22 @@
     overflow: clip;
 }
 
+.block-kiosk_content p {
+    line-height: 1.3rem;
+}
+
+.kiosk-content-details p {
+    line-height: 1.5rem;
+}
+
+.block-kiosk_content .visual-h4 {
+    margin-top: 0;
+}
+
+.kiosk-content-details .visual-h4 {
+    margin-top: 1rem;
+}
+
 .block-kiosk_content::before,
 .block-kiosk_content i {
     content: '';
