@@ -1495,10 +1495,46 @@ article.list-page > p {
 }
 
 /*Search styling*/
+article.search-page h1 {
+    margin-bottom: 0;
+}
+
+article.search-page .available-filters {
+    margin-inline: auto;
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+}
+
+article.search-page .available-filters .visual-h4 {
+    margin-block: 0;
+}
+
+article.search-page .available-filters .filter-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-buttons button {
+    border-radius: 1rem;
+    padding-inline: 0.7rem;
+    border: 2px solid var(--accent-color);
+    background: var(--background-color);
+    color: var(--text-color);
+    transition: var(--hover-transition-time) background, var(--hover-transition-time) color;
+    height: 1.7rem;
+}
+
+.filter-buttons button:hover {
+    background: var(--accent-color);
+    color: var(--inverse-text-color)
+}
+
 article.search-page > form {
     display: flex;
     text-align: center;
-    margin-bottom: 2rem;
     justify-content: center;
     gap: 1rem;
 }
@@ -1508,12 +1544,14 @@ article.search-page > form > label {
     border: var(--standard-border-thickness) solid var(--accent-color);
     border-radius: var(--standard-radius);
     display: inline-block;
+    max-width: 100%;
 }
 
 article.search-page > form > label > input {
     border: none;
     border-bottom: var(--standard-border-thickness) solid var(--accent-color);
     font-size: 1.2rem;
+    max-width: 100%;
 }
 
 article.search-page .card-action {
@@ -1523,6 +1561,8 @@ article.search-page .card-action {
 article.search-page .page-buttons {
     text-align: center;
 }
+
+
 /*End search styling*/
 
 .block-anchor {
@@ -2000,4 +2040,45 @@ button.card-action {
 .pagination-links a[disabled] {
     pointer-events: none;
     color: #505050;
+}
+
+/* Spinner from https://loading.io/css/ */
+.lds-dual-ring {
+    /* change color here */
+    color: var(--accent-color)
+}
+.lds-dual-ring,
+.lds-dual-ring:after {
+    box-sizing: border-box;
+}
+.lds-dual-ring {
+    display: inline-block;
+    width: 66px;
+    height: 66px;
+    overflow: clip;
+    transition: height 200ms;
+    margin-inline: auto;
+}
+.lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 50px;
+    height: 50px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6.4px solid currentColor;
+    border-color: currentColor transparent currentColor transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.lds-dual-ring:not(.htmx-request) {
+    height: 0;
 }

@@ -7,16 +7,25 @@
 {% block title %}Search{% endblock %}
 
 {% block content %}
-<article class="search-page">
+<article class="search-page list-page" id="search-article">
     <h1>Search</h1>
 
-    <form action="{% url 'search' %}" method="get">
+    <form action="{% url 'search' %}" method="get" hx-get="{% url 'search' %}" hx-params="*" hx-select="#search-article" hx-swap="outerHTML" hx-target="#search-article" hx-trigger="sendform, submit" hx-indicator="#spinner" id="search-form">
         <label>
-            <input placeholder="Enter Search Keywords" type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
+            <input placeholder="Enter Search Keywords" type="text" id="query" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
         </label>
-        <button class="card-action" aria-label="Search">{% icon 'search' %}</button>
+        <button class="card-action" aria-label="Search" id="search-button">{% icon 'search' %}</button>
     </form>
-
+    <div class="available-filters">
+        <span class="visual-h4 centered">Available Search Filters:</span>
+        <div class="filter-buttons">
+            <button class="search-filter" _="on click if value of #query is not empty then set send to true end then append ' services:yes' to value of #query then if send is true trigger sendform on #search-form then halt">Search only services</button>
+            <button class="search-filter" _="on click if value of #query is not empty then set send to true end then append ' services:no' to value of #query then if send is true trigger sendform on #search-form then halt">Do not search services</button>
+            <button class="search-filter" _="on click if value of #query is not empty then set send to true end then append ' newsletter:yes' to value of #query then if send is true trigger sendform on #search-form then halt">Search only Perspectives</button>
+            <button class="search-filter" _="on click if value of #query is not empty then set send to true end then append ' newsletter:no' to value of #query then if send is true trigger sendform on #search-form then halt">Do not search Perspectives</button>
+        </div>
+    </div>
+    <div class="lds-dual-ring" id="spinner"></div>
     {% if search_results %}
     <ul class="index-list">
         {% for result in search_results %}
