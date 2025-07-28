@@ -233,7 +233,7 @@ b {
 }
 
 /*Support custom text-align Rich Text blocks*/
-p.centered {
+.centered {
     text-align: center;
 }
 
