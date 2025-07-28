@@ -52,3 +52,16 @@ SERVER_EMAIL = os.environ['SERVER_FROM_EMAIL']
 ANYMAIL = {
     "SENDGRID_API_KEY": os.environ['SENDGRID_API_KEY']
 }
+
+# Search
+# https://docs.wagtail.org/en/stable/topics/search/backends.html
+WAGTAILSEARCH_BACKENDS = {
+    "default": {
+        "BACKEND": "wagtail.search.backends.elasticsearch7",
+        "URLS": [os.environ["OPENSEARCH_URL"]],
+        "INDEX": os.environ["OPENSEARCH_INDEX"],
+        "TIMEOUT": 5,
+        "OPTIONS": {},
+        "INDEX_SETTINGS": {},
+    }
+}
