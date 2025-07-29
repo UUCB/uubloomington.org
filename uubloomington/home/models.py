@@ -97,6 +97,7 @@ class HomePage(Page):
         use_json_field=True,
         null=True,
     )
+    search_fields = []
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)

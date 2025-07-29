@@ -4,6 +4,7 @@ from django.db import models
 
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from django.shortcuts import redirect
 
 from django.utils import timezone
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
@@ -287,6 +288,12 @@ class OrderOfService(Page):
                 if self.service.live:
                     self.service.publish(service)
         return super(OrderOfService, self).save_revision(*args, **kwargs)
+
+    def serve(self, request, *args, **kwargs):
+        if request.GET.get("print") == 'true':
+            return super(OrderOfService, self).serve(request, *args, **kwargs)
+        else:
+            return redirect(self.get_parent().url, permanent=False)
 
 
 @receiver(post_save, sender=ServicePage)
