@@ -20,7 +20,7 @@
             hx-swap="outerHTML"
             hx-target="#search-article"
             hx-trigger="sendform, submit"
-            hx-indicator="#spinner"
+            hx-indicator=".lds-dual-ring"
             hx-push-url="true"
     >
         <label>
@@ -92,6 +92,7 @@
             </a>
         </span>
     </div>
+    <div class="lds-dual-ring" id="spinner"></div>
     {% elif search_query %}
     <h2>{{ num_search_results }} Results.</h2>
     {% endif %}
