@@ -10,7 +10,19 @@
 <article class="search-page list-page" id="search-article">
     <h1>Search</h1>
 
-    <form action="{% url 'search' %}" method="get" hx-get="{% url 'search' %}" hx-params="*" hx-select="#search-article" hx-swap="outerHTML" hx-target="#search-article" hx-trigger="sendform, submit" hx-indicator="#spinner" id="search-form">
+    <form
+            action="{% url 'search' %}"
+            method="get"
+            id="search-form"
+            hx-get="{% url 'search' %}"
+            hx-params="*"
+            hx-select="#search-article"
+            hx-swap="outerHTML"
+            hx-target="#search-article"
+            hx-trigger="sendform, submit"
+            hx-indicator="#spinner"
+            hx-push-url="true"
+    >
         <label>
             <input placeholder="Enter Search Keywords" type="text" id="query" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
         </label>
@@ -41,7 +53,7 @@
                 hx-select="#search-article"
                 hx-target="#search-article"
                 hx-swap="outerHTML show:top"
-                hx-replace-url="true"
+                hx-push-url="true"
         >
             <a
                 {% if search_results.has_previous %}
