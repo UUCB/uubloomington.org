@@ -35,14 +35,50 @@
         </li>
         {% endfor %}
     </ul>
-    <div class="page-buttons">
-        {% if search_results.has_previous %}
-        <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
-        {% endif %}
-
-        {% if search_results.has_next %}
-        <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
-        {% endif %}
+    <div class="block-rich_text">
+        <span
+                class="pagination-links"
+                hx-select="#search-article"
+                hx-target="#search-article"
+                hx-swap="outerHTML show:top"
+                hx-replace-url="true"
+        >
+            <a
+                {% if search_results.has_previous %}
+                    href="?query={{ search_query|urlencode }}&page={{ search_results.previous_page_number }}"
+                    hx-get="?query={{ search_query|urlencode }}&page={{ search_results.previous_page_number }}"
+                {% else %}
+                    href=""
+                    disabled
+                {% endif %}
+            >
+                Previous Page
+            </a>
+            {% for page_num in search_results.paginator.page_range %}
+                <a
+                        {% if not page_num == search_results.number %}
+                        href="?query={{ search_query|urlencode }}&page={{ page_num }}"
+                        hx-get="?query={{ search_query|urlencode }}&page={{ page_num }}"
+                        {% else %}
+                        class="current"
+                        disabled
+                        {% endif %}
+                >
+                    {{ page_num }}
+                </a>
+            {% endfor %}
+            <a
+                {% if search_results.has_next %}
+                    href="?query={{ search_query|urlencode }}&page={{ search_results.next_page_number }}"
+                    hx-get="?query={{ search_query|urlencode }}&page={{ search_results.next_page_number }}"
+                {% else %}
+                    href=""
+                    disabled
+                {% endif %}
+            >
+                Next Page
+            </a>
+        </span>
     </div>
     {% elif search_query %}
     <h2>{{ num_search_results }} Results.</h2>
