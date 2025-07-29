@@ -42,17 +42,18 @@ def search(request):
     # Pagination
     paginator = Paginator(search_results, 10)
     try:
-        search_results = paginator.page(page)
+        paginated_search_results = paginator.page(page)
     except PageNotAnInteger:
-        search_results = paginator.page(1)
+        paginated_search_results = paginator.page(1)
     except EmptyPage:
-        search_results = paginator.page(paginator.num_pages)
+        paginated_search_results = paginator.page(paginator.num_pages)
 
     return TemplateResponse(
         request,
         "search/search.html",
         {
             "search_query": search_query,
-            "search_results": search_results,
+            "search_results": paginated_search_results,
+            "num_search_results": len(search_results),
         },
     )

@@ -27,6 +27,7 @@
     </div>
     <div class="lds-dual-ring" id="spinner"></div>
     {% if search_results %}
+    <h2>{{ num_search_results }} Results:</h2>
     <ul class="index-list">
         {% for result in search_results %}
         <li>
@@ -44,7 +45,7 @@
         {% endif %}
     </div>
     {% elif search_query %}
-    No results found
+    <h2>{{ num_search_results }} Results.</h2>
     {% endif %}
 </article>
 {% endblock %}
