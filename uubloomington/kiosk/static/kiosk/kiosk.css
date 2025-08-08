@@ -36,7 +36,8 @@
 }
 
 .kiosk-outer {
-    container-type: inline-size;
+    /* Can't use container queries because we're using Firefox 128.x ESR. Revert this once we get on FF >133. https://bugzilla.mozilla.org/show_bug.cgi?id=1922900 */
+    /*container-type: inline-size;*/
     width: 100%;
 }
 
@@ -80,6 +81,7 @@
 .block-kiosk_content i {
     content: '';
     float: left;
+    float: left;
     height: 100%;
     width: 50%;
     shape-outside: radial-gradient(farthest-side at right, transparent calc(100% - var(--padding)), #fff 0);
@@ -95,54 +97,155 @@
     border-radius: 0;
 }
 
-@container (width < calc(24rem * 3)) {
-    .kiosk-body {
+/* Uncomment this once we can use container queries again (when OpenKiosk rebases on FF >133) https://bugzilla.mozilla.org/show_bug.cgi?id=1922900 */
+/*@container (width < calc(24rem * 3)) {*/
+/*    .kiosk-body {*/
+/*        width: 100%;*/
+/*        display: flex;*/
+/*        gap: var(--standard-gap);*/
+/*        justify-content: center;*/
+/*        max-width: calc(var(--kiosk-content-total-width) * 2);*/
+/*    }*/
+/*    .block-kiosk_content {*/
+/*        margin: 0;*/
+/*    }*/
+/*}*/
+
+/*@container (width >= calc(24rem * 3)) and (width < calc(24rem * 4)) {*/
+/*    .kiosk-body {*/
+/*        width: calc(var(--kiosk-content-total-width) * 3);*/
+/*    }*/
+/*    .block-kiosk_content:nth-child(5n+4) {*/
+/*        margin-left: calc(calc(var(--kiosk-content-total-width) / 2) + 1rem);*/
+/*    }*/
+/*    .block-kiosk_content:not(:last-child) {*/
+/*        margin-bottom: var(--kiosk-content-row-overlap-margin);*/
+/*    }*/
+/*}*/
+
+/*@container (width >= calc(24rem * 4)) and (width < calc(24rem * 5)) {*/
+/*    .kiosk-body {*/
+/*        width: calc(var(--kiosk-content-total-width) * 4);*/
+/*    }*/
+/*    .block-kiosk_content:nth-child(7n+5) {*/
+/*        margin-left: calc(calc(var(--kiosk-content-total-width) / 2) + 1rem);*/
+/*    }*/
+/*    .block-kiosk_content:not(:last-child) {*/
+/*        margin-bottom: var(--kiosk-content-row-overlap-margin);*/
+/*    }*/
+/*}*/
+
+/*@container (width >= calc(24rem * 5)) {*/
+/*    .kiosk-body {*/
+/*        width: calc(var(--kiosk-content-total-width) * 5);*/
+/*    }*/
+/*    .block-kiosk_content:nth-child(9n+6) {*/
+/*        margin-left: calc(calc(var(--kiosk-content-total-width) / 2) + 1rem);*/
+/*    }*/
+/*    .block-kiosk_content:not(:last-child) {*/
+/*        margin-bottom: var(--kiosk-content-row-overlap-margin);*/
+/*    }*/
+/*}*/
+
+/* Begin nonsensical media queries, remove this and switch back to container queries when possible */
+@media (max-width: calc(24rem * 3)) {
+    main:not(:has(.kiosk-sidebar)) .kiosk-body {
         width: 100%;
         display: flex;
         gap: var(--standard-gap);
         justify-content: center;
         max-width: calc(var(--kiosk-content-total-width) * 2);
     }
-    .block-kiosk_content {
+    main:not(:has(.kiosk-sidebar)) .block-kiosk_content {
         margin: 0;
     }
 }
 
-@container (width >= calc(24rem * 3)) and (width < calc(24rem * 4)) {
-    .kiosk-body {
+@media (min-width: calc(24rem * 3)) and (max-width: calc(24rem * 4)) {
+    main:not(:has(.kiosk-sidebar)) .kiosk-body {
         width: calc(var(--kiosk-content-total-width) * 3);
     }
-    .block-kiosk_content:nth-child(5n+4) {
+    main:not(:has(.kiosk-sidebar)) .block-kiosk_content:nth-child(5n+4) {
         margin-left: calc(calc(var(--kiosk-content-total-width) / 2) + 1rem);
     }
-    .block-kiosk_content:not(:last-child) {
+    main:not(:has(.kiosk-sidebar)) .block-kiosk_content:not(:last-child) {
         margin-bottom: var(--kiosk-content-row-overlap-margin);
     }
 }
 
-@container (width >= calc(24rem * 4)) and (width < calc(24rem * 5)) {
-    .kiosk-body {
+@media (min-width: calc(24rem * 4)) and (max-width: calc(24rem * 5)) {
+    main:not(:has(.kiosk-sidebar)) .kiosk-body {
         width: calc(var(--kiosk-content-total-width) * 4);
     }
-    .block-kiosk_content:nth-child(7n+5) {
+    main:not(:has(.kiosk-sidebar)) .block-kiosk_content:nth-child(7n+5) {
         margin-left: calc(calc(var(--kiosk-content-total-width) / 2) + 1rem);
     }
-    .block-kiosk_content:not(:last-child) {
+    main:not(:has(.kiosk-sidebar)) .block-kiosk_content:not(:last-child) {
         margin-bottom: var(--kiosk-content-row-overlap-margin);
     }
 }
 
-@container (width >= calc(24rem * 5)) {
-    .kiosk-body {
+@media (min-width: calc(24rem * 5)) {
+    main:not(:has(.kiosk-sidebar)) .kiosk-body {
         width: calc(var(--kiosk-content-total-width) * 5);
     }
-    .block-kiosk_content:nth-child(9n+6) {
+    main:not(:has(.kiosk-sidebar)) .block-kiosk_content:nth-child(9n+6) {
         margin-left: calc(calc(var(--kiosk-content-total-width) / 2) + 1rem);
     }
-    .block-kiosk_content:not(:last-child) {
+    main:not(:has(.kiosk-sidebar)) .block-kiosk_content:not(:last-child) {
         margin-bottom: var(--kiosk-content-row-overlap-margin);
     }
 }
+/* End non-sidebar media queries */
+@media (max-width: calc(calc(calc(24rem * 3) + 3in) + 4rem)) {
+    main:has(.kiosk-sidebar) .kiosk-body {
+        width: 100%;
+        display: flex;
+        gap: var(--standard-gap);
+        justify-content: center;
+        max-width: calc(var(--kiosk-content-total-width) * 2);
+    }
+    main:has(.kiosk-sidebar) .block-kiosk_content {
+        margin: 0;
+    }
+}
+
+@media (min-width: calc(calc(calc(24rem * 3) + 3in) + 4rem)) and (max-width: calc(calc(calc(24rem * 4) + 3in) + 4rem)) {
+    main:has(.kiosk-sidebar) .kiosk-body {
+        width: calc(var(--kiosk-content-total-width) * 3);
+    }
+    main:has(.kiosk-sidebar) .block-kiosk_content:nth-child(5n+4) {
+        margin-left: calc(calc(var(--kiosk-content-total-width) / 2) + 1rem);
+    }
+    main:has(.kiosk-sidebar) .block-kiosk_content:not(:last-child) {
+        margin-bottom: var(--kiosk-content-row-overlap-margin);
+    }
+}
+
+@media (min-width: calc(calc(calc(24rem * 4) + 3in) + 4rem)) and (max-width: calc(calc(calc(24rem * 5) + 3in) + 4rem)) {
+    main:has(.kiosk-sidebar) .kiosk-body {
+        width: calc(var(--kiosk-content-total-width) * 4);
+    }
+    main:has(.kiosk-sidebar) .block-kiosk_content:nth-child(7n+5) {
+        margin-left: calc(calc(var(--kiosk-content-total-width) / 2) + 1rem);
+    }
+    main:has(.kiosk-sidebar) .block-kiosk_content:not(:last-child) {
+        margin-bottom: var(--kiosk-content-row-overlap-margin);
+    }
+}
+
+@media (min-width: calc(calc(calc(24rem * 5) + 3in) + 4rem)) {
+    main:has(.kiosk-sidebar) .kiosk-body {
+        width: calc(var(--kiosk-content-total-width) * 5);
+    }
+    main:has(.kiosk-sidebar) .block-kiosk_content:nth-child(9n+6) {
+        margin-left: calc(calc(var(--kiosk-content-total-width) / 2) + 1rem);
+    }
+    main:has(.kiosk-sidebar) .block-kiosk_content:not(:last-child) {
+        margin-bottom: var(--kiosk-content-row-overlap-margin);
+    }
+}
+/* End with-sidebar media queries */
 
 @keyframes kiosk_details_show {
     from {
