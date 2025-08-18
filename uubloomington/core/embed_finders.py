@@ -24,7 +24,6 @@ class VimeoChatEmbedFinder(EmbedFinder):
 
         This is the part that may make requests to external APIs.
         """
-        print(url)
         try:
             options = url.split('||')[1]
         except IndexError:
