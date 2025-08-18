@@ -8,7 +8,9 @@
 {% endblock %}
 
 {% block content %}
-    {% include 'core/sidebar_snippet.html' %}
+    {% if page.show_sidebar %}
+        {% include 'core/sidebar_snippet.html' %}
+    {% endif %}
     <div class="content">
         <article>
         <h1>{{ page.title }}</h1>

@@ -229,10 +229,17 @@ class FormPage(AbstractEmailForm):
         on_delete=models.SET_NULL,
         related_name="+",
     )
+    show_sidebar = models.BooleanField(
+        default=False,
+        help_text="""
+        If checked, the standard sibling page listing sidebar will be shown on this page.
+        """
+    )
     content_panels = AbstractEmailForm.content_panels + [
         FormSubmissionsPanel(),
         FieldPanel('featured_image'),
         FieldPanel('intro'),
+        FieldPanel('show_sidebar'),
         FieldPanel('summary', help_text="Shown when this page is featured, or in a searchable index"),
         InlinePanel('form_fields', label="Form fields"),
         FieldPanel('thank_you_text'),
