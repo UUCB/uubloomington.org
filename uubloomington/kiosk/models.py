@@ -12,7 +12,8 @@ class KioskPage(Page):
     body = StreamField(
         [
             ("kiosk_content", KioskContentBlock()),
-        ]
+        ],
+        collapsed=True,
     )
     sidebar = StreamField(
         [

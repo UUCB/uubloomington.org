@@ -94,6 +94,3 @@ class KioskContentBlock(StructBlock):
             group_slug = cc_slugify(context['group_title'])
             context['churchcenter_group_url'] = f'https://uucb.churchcenter.com/groups/{group_type_slug}/{group_slug}/'
         return context
-
-    class Meta:
-        collapsed = True
