@@ -1,0 +1,11 @@
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+{% image value.image fill-640x375 %}
+<h2>{{ value.title }}</h2>
+{{ value.body|richtext }}
+<a class="card-action" _="on click add .expand to closest .block-expandable_card then go to top of closest .block-expandable_card">{{ value.expand_action_text }}</a>
+<a class="card-action contract" _="on click remove .expand from closest .block-expandable_card">{{ value.contract_action_text }}</a>
+<div class="expanded-content">
+    {% include_block value.expanded_content %}
+</div>
+<a class="card-action contract" _="on click remove .expand from closest .block-expandable_card">{{ value.contract_action_text }}</a>

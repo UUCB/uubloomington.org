@@ -841,6 +841,7 @@ hr {
     justify-content: center;
 }
 
+.block-expandable_card,
 .block-card,
 .card {
     font-family: "League Spartan Variable";
@@ -856,11 +857,31 @@ hr {
     flex-grow: 1;
 }
 
+.block-expandable_card:not(.expand) .expanded-content {
+    display: none;
+}
+
+.block-expandable_card.expand {
+    width: 100%;
+    max-width: 100%;
+    flex-basis: 100%;
+}
+
+.block-expandable_card:not(.expand) .card-action.contract {
+    display: none;
+}
+
+.block-expandable_card.expand .card-action:not(.contract) {
+    display: none;
+}
+
+.block-expandable_card:not(:has(> .card-action)),
 .block-card:not(:has(> .card-action)),
 .card:not(:has(> .card-action)) {
     padding-bottom: 1rem;
 }
 
+.block-card_container > .block-expandable_card:not(.expand),
 .block-card_container > .block-card {
     max-width: 41rem;
     /*This is a weird value. Keeps cards from being full-width if they are alone on a row,*/
@@ -868,6 +889,7 @@ hr {
 }
 
 @media screen and (max-width: 60rem) {
+    .block-expandable_card:not(#specificity-hack),
     .block-card:not(#specificity-hack),
     .card {
         flex-basis: 40%; !important;
@@ -875,17 +897,20 @@ hr {
 }
 
 @media screen and (max-width: 40rem) {
+    .block-expandable_card:not(#specificity-hack),
     .block-card:not(#specificity-hack),
     .card {
         flex-basis: 100%; !important;
     }
 }
 
+.block-expandable_card:not(.upcoming-service):not(.badges) > :not(img),
 .block-card:not(.upcoming-service):not(.badges) > :not(img),
 .card:not(.upcoming-service):not(.badges) > :not(img):not(hr) {
     margin-inline: 1rem;
 }
 
+.block-expandable_card > img,
 .block-card > img,
 .card > img {
     /*margin: -1rem -1rem -1rem -1rem;*/
@@ -893,6 +918,7 @@ hr {
     height: auto;
 }
 
+.block-expandable_card > h2,
 .block-card > h2,
 .card h2 {
     text-align: center;
@@ -901,11 +927,13 @@ hr {
     font-size: 1.8rem;
 }
 
+.block-expandable_card h2:first-child,
 .block-card h2:first-child,
 .card h2:first-child {
     margin-top: var(--standard-gap);
 }
 
+.block-expandable_card h3,
 .block-card h3,
 .card h3 {
     font-size: 1.4rem;
@@ -913,6 +941,7 @@ hr {
     margin-bottom: initial;
 }
 
+.block-expandable_card h4,
 .block-card h4,
 .card h4 {
     font-size: initial;

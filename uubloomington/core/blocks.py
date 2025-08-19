@@ -185,9 +185,38 @@ class CardBlock(blocks.StructBlock):
     class Meta:
         template = 'core/card_block.html'
 
+class ExpandableCardBlock(blocks.StructBlock):
+    title = blocks.CharBlock()
+    body = blocks.RichTextBlock()
+    image = ImageChooserBlock()
+    expand_action_text = blocks.CharBlock(default='Show More')
+    contract_action_text = blocks.CharBlock(default='Show Less')
+    expanded_content = blocks.StreamBlock(
+        [
+            ('rich_text', blocks.RichTextBlock()),
+            ('page_feature', PageFeatureBlock()),
+            ('embed', EmbedBlock(max_height=900)),
+            ('auto_index', AutoIndexBlock()),
+            ('selectable_index', IndexBlock()),
+            ('document_list', DocumentListBlock()),
+            ('badge_area', BadgeAreaBlock(BadgeBlock())),
+            ('anchor', AnchorBlock()),
+            ('upcoming_service', UpcomingServiceBlock()),
+            ('upcoming_oos', UpcomingOrderOfServiceBlock()),
+            ('multi_column', MultiColumnBlock()),
+            ('directions', DirectionsBlock()),
+            ('page_tree_index', SearchableTreeIndexBlock()),
+            ('advanced_form', AdvancedFormBlock(AdvancedForm)),
+        ]
+    )
+
+    class Meta:
+        template = 'core/expandable_card_block.html'
+
 
 class CardContainerBlock(blocks.StreamBlock):
     card = CardBlock()
+    expandable_card = ExpandableCardBlock()
 
 
 class BaseSectionBlock(blocks.StructBlock):
