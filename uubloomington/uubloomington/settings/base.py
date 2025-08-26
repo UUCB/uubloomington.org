@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     "wagtailaudioembed",
     "anymail",
     "wagtail_color_panel",
+    "wagtail_link_block",
 ]
 
 MIDDLEWARE = [

@@ -5,6 +5,7 @@ from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtail.documents.models import Document
+from wagtail_link_block.blocks import LinkBlock
 
 from advanced_forms.models import AdvancedForm
 from services.models import OrderOfService
@@ -17,6 +18,14 @@ class ReadMoreTagBlock(blocks.StaticBlock):
         label = '"Read More" tag'
         admin_text = f'{label}: Anything after this tag will be hidden behind a "Read More" button.'
         template = 'core/read_more_snippet.html'
+
+
+class ButtonBlock(blocks.StructBlock):
+    link = LinkBlock()
+    link_text = blocks.CharBlock()
+
+    class Meta:
+        template = 'core/button_block.html'
 
 
 class DocumentListBlock(blocks.CharBlock):
@@ -207,6 +216,7 @@ class ExpandableCardBlock(blocks.StructBlock):
             ('directions', DirectionsBlock()),
             ('page_tree_index', SearchableTreeIndexBlock()),
             ('advanced_form', AdvancedFormBlock(AdvancedForm)),
+            ('button_block', ButtonBlock()),
         ]
     )
 
@@ -241,6 +251,7 @@ class BaseSectionBlock(blocks.StructBlock):
         ('page_tree_index', SearchableTreeIndexBlock()),
         ('advanced_form', AdvancedFormBlock(AdvancedForm)),
         ('card_container', CardContainerBlock()),
+        ('button_block', ButtonBlock()),
     ]
 
 

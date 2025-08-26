@@ -972,6 +972,15 @@ hr {
     transition: background var(--hover-transition-time), color var(--hover-transition-time);
 }
 
+.block-button_block {
+    display: flex;
+}
+
+.block-button_block .card-action {
+    margin-inline: auto;
+    margin-bottom: 0;
+}
+
 .card > .events-container ul {
     display: flex;
     flex-direction: column;
