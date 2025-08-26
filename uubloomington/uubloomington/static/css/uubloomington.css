@@ -855,6 +855,7 @@ hr {
     overflow: clip;
     flex-basis: 30%;
     flex-grow: 1;
+    scroll-margin: 1rem;
 }
 
 .block-expandable_card:not(.expand) .expanded-content {
