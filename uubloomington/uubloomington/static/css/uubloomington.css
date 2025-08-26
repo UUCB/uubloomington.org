@@ -862,7 +862,7 @@ hr {
     display: none;
 }
 
-.block-expandable_card.expand {
+.block-expandable_card.expand:not(#specificity-hack) {
     width: 100%;
     max-width: 100%;
     flex-basis: 100%;
