@@ -8,7 +8,8 @@
 
 #main:has(.kiosk-body) h2 {
     text-align: center;
-    scroll-margin: 1rem;
+    scroll-margin: 0.3rem;
+    margin-bottom: 0.3rem;
 }
 
 #main:has(.kiosk-sidebar) h2 {
@@ -363,4 +364,7 @@
 .kiosk-content-backdrop:has(.kiosk-content-details:not(.shown):not(.animating)),
 .kiosk-content-details:not(.shown):not(.animating) {
     display: none;
+}
+
+#kiosk-header
 }
