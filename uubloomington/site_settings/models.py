@@ -1,7 +1,7 @@
 from django.db import models
 
 from wagtail.admin.panels import FieldPanel, TabbedInterface, ObjectList
-from wagtail.fields import StreamField
+from wagtail.fields import StreamField, RichTextField
 from wagtail.blocks import RichTextBlock, StructBlock, CharBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.contrib.settings.models import BaseGenericSetting, register_setting
@@ -102,6 +102,21 @@ class SiteWideSettings(BaseGenericSetting):
         verbose_name='Shynet Ingress URL',
     )
 
+    search_maintenance_mode = models.BooleanField(
+        default=False,
+        null=False,
+        help_text='When checked, disables the search page and shows a maintenance message in its place.',
+        verbose_name='Search Maintenance Mode',
+    )
+
+    search_maintenance_message = RichTextField(
+        default='The search function is currently down for routine server maintenance. Please come back later.',
+        null=False,
+        blank=False,
+        help_text='Message to be displayed in place of the usual search page',
+        verbose_name='Search Maintenance Message',
+    )
+
     header_panels = [
         FieldPanel('title'),
         FieldPanel('subtitle'),
@@ -132,12 +147,18 @@ class SiteWideSettings(BaseGenericSetting):
         FieldPanel('copyright_notice'),
     ]
 
+    maintenance_panels = [
+        FieldPanel('search_maintenance_mode'),
+        FieldPanel('search_maintenance_message'),
+    ]
+
     edit_handler = TabbedInterface([
         ObjectList(header_panels, heading='Header'),
         ObjectList(footer_panels, heading='Footer'),
         ObjectList(planningcenter_panels, heading='Planning Center/Church Center Integration'),
         ObjectList(analytics_panels, heading='Analytics'),
         ObjectList(livestream_panels, heading='Livestream'),
+        ObjectList(maintenance_panels, heading='Maintenance'),
     ])
 
     class Meta:
