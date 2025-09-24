@@ -20,7 +20,6 @@ def search(request):
         # search_results = Page.objects.live().search(search_query)
         # query = Query.get(search_query)
         filters, query = fuzzy_parse_query_string(search_query)
-        print(query)
         # Add filters here, pages=pages.filter(...)
         newsletter = filters.get('newsletter')
         if newsletter in ['yes', 'true']:
