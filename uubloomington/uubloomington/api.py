@@ -23,19 +23,17 @@ class ServicesAPIViewSet(PagesAPIViewSet):
             'meta': {
                 "total_count": available_services.count(),
             },
-            "items": {
-                (
-                    {
-                        "id": service_page.pk,
-                        "meta": {
-                            "name": service_page.title,
-                            "date": service_page.order_of_service.first().date,
-                            "url": f"{request.build_absolute_uri()}{service_page.pk}/",
-                        }
+            "items": [
+                {
+                    "id": service_page.pk,
+                    "meta": {
+                        "name": service_page.title,
+                        "date": service_page.order_of_service.first().date,
+                        "url": f"{request.build_absolute_uri()}{service_page.pk}/",
                     }
-                    for service_page in available_services
-                ),
-            }
+                }
+                for service_page in available_services
+            ]
         }
         return Response(output)
 
