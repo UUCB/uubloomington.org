@@ -1,6 +1,3 @@
-import json
-
-from bs4 import element
 from wagtail.api.v2.views import PagesAPIViewSet
 from wagtail.api.v2.router import WagtailAPIRouter
 from wagtail.images.api.v2.views import ImagesAPIViewSet
@@ -9,7 +6,6 @@ from rest_framework.response import Response
 from rest_framework import serializers
 
 from services.models import ServicePage
-from services.blocks import OOSElementBlock
 
 # Create the router. "wagtailapi" is the URL namespace
 api_router = WagtailAPIRouter('wagtailapi')
@@ -30,12 +26,14 @@ class ServicesAPIViewSet(PagesAPIViewSet):
             "items": {
                 (
                     {
-                        "id": servicepage.pk,
+                        "id": service_page.pk,
                         "meta": {
-                            "detail_url": f"{}"
+                            "name": service_page.title,
+                            "date": service_page.order_of_service.first().date,
+                            "url": f"{request.build_absolute_uri()}{service_page.pk}/",
                         }
                     }
-                    for servicepage in available_services
+                    for service_page in available_services
                 ),
             }
         }
