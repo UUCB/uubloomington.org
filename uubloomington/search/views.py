@@ -9,18 +9,27 @@ from .utils import fuzzy_parse_query_string
 
 from newsletter.models import Article, Newsletter, Issue
 
+from site_settings.models import SiteWideSettings
 
 def search(request):
+    site_wide_settings = SiteWideSettings.load()
     search_query = request.GET.get("query", None)
     page = request.GET.get("page", 1)
     pages = Page.objects.live()
 
     # Search
-    if search_query:
+    if site_wide_settings.search_maintenance_mode:
+        return TemplateResponse(
+            request,
+            'search/search_maintenance.html',
+            {
+                'maintenance_message': site_wide_settings.search_maintenance_message,
+            }
+        )
+    elif search_query:
         # search_results = Page.objects.live().search(search_query)
         # query = Query.get(search_query)
         filters, query = fuzzy_parse_query_string(search_query)
-        print(query)
         # Add filters here, pages=pages.filter(...)
         newsletter = filters.get('newsletter')
         if newsletter in ['yes', 'true']:

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags feature_page %}
+{% load icon %}
+
+{% block body_class %}template-searchresults{% endblock %}
+
+{% block title %}Search{% endblock %}
+
+{% block content %}
+<article class="search-page list-page" id="search-article">
+    <div class="block-rich_text">
+        {{ maintenance_message|richtext }}
+    </div>
+</article>
+{% endblock %}
