@@ -44,7 +44,7 @@ class ServicesAPIViewSet(PagesAPIViewSet):
         segments = [
             {
                 "name": element.value['header'],
-                "body": str(element.value['info']),
+                "details": str(element.value['info']),
             }
             for element in program
             if element.block_type == 'element'
