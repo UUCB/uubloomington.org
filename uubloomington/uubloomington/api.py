@@ -18,7 +18,7 @@ class ServicesAPIViewSet(PagesAPIViewSet):
     model = ServicePage
 
     def listing_view(self, request):
-        available_services = ServicePage.objects.all().order_by('-title')
+        available_services = ServicePage.objects.all().order_by('-order_of_service__date')
         output = {
             'meta': {
                 "total_count": available_services.count(),
