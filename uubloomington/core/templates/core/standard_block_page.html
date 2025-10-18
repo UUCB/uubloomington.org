@@ -9,7 +9,9 @@
 {% endblock %}
 
 {% block content %}
-    {% include 'core/sidebar_snippet.html' %}
+    {% if page.show_sidebar %}
+        {% include 'core/sidebar_snippet.html' %}
+    {% endif %}
     <article class="content list-page">
         <h1>{{ page.title }}</h1>
         {% block pre_body %}{% endblock %}

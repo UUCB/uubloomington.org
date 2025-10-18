@@ -133,12 +133,15 @@ class StandardBlockPage(Page):
 
     summary = RichTextField(null=True, blank=True)
 
+    show_sidebar = models.BooleanField(default=True)
+
     body_is_streamfield = True
 
     content_panels = Page.content_panels + [
         FieldPanel('featured_image'),
         FieldPanel('body'),
         FieldPanel('summary'),
+        FieldPanel('show_sidebar'),
     ]
 
     search_fields = Page.search_fields + [
