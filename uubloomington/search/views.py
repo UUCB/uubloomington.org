@@ -57,10 +57,18 @@ def search(request):
     except EmptyPage:
         paginated_search_results = paginator.page(paginator.num_pages)
 
+    if search_query:
+        promotions = Query.get(search_query).editors_picks.all(),
+        if promotions[0].count() == 0:
+            promotions = None
+    else:
+        promotions = None
+
     return TemplateResponse(
         request,
         "search/search.html",
         {
+            "promotions": promotions,
             "search_query": search_query,
             "search_results": paginated_search_results,
             "num_search_results": len(search_results),

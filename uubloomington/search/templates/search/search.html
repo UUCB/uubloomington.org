@@ -38,6 +38,16 @@
         </div>
     </div>
     <div class="lds-dual-ring" id="spinner"></div>
+    {% if promotions %}
+        <h2>Promoted results based on your query:</h2>
+            <ul class="index-list">
+                {% for promotion in promotions %}
+                <li>
+                    {% feature_page promotion.page %}
+                </li>
+                {% endfor %}
+            </ul>
+    {% endif %}
     {% if search_results %}
     <h2>{{ num_search_results }} Results:</h2>
     <div class="block-rich_text">
