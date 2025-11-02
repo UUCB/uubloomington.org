@@ -50,7 +50,7 @@ class ServicesAPIViewSet(PagesAPIViewSet):
             if element.block_type == 'element'
         ]
         show_dict = {
-            'name': service_page.title,
+            'name': f'{service_page.order_of_service.first().date} -{service_page.title.split(":", maxsplit=1)[1]}',
             'description': service_page.body,
             'date': service_page.order_of_service.first().date,
             'id': service_page.pk,
