@@ -24,10 +24,10 @@ class AdvancedFormResponseView(FormView):
         return HttpResponseBadRequest()
 
     def send_confirmation_email(self, form):
-        message_text = f'{form.cleaned_data["submitter_name"]},\n\n{form.cleaned_data["form"].confirmation_text}'
+        message_text = f'{form.cleaned_data.get("submitter_name")},\n\n{form.cleaned_data.get("form").confirmation_text}'
         confirmation_email = EmailMessage(
-            to=[form.cleaned_data['submitter_email'],],
-            subject=f'Thank you for your submission to "{form.cleaned_data["form"].name}"!',
+            to=[form.cleaned_data.get('submitter_email'),],
+            subject=f'Thank you for your submission to "{form.cleaned_data.get("form").name}"!',
             body=message_text,
             from_email='noreply@website.uubloomington.org'
         )
@@ -44,19 +44,20 @@ class AdvancedFormResponseView(FormView):
                 AdvancedFormResponse.objects.create(
                     response_json=json.dumps(response_out),
                     form=form.cleaned_data['form'],
-                    submitter_name=form.cleaned_data['submitter_name'],
-                    submitter_email=form.cleaned_data['submitter_email'],
+                    submitter_name=form.cleaned_data.get('submitter_name'),
+                    submitter_email=form.cleaned_data.get('submitter_email'),
                 )
         else:
             AdvancedFormResponse.objects.create(
                 response_json=json.dumps(constant_values),
                 form=form.cleaned_data['form'],
-                submitter_name=form.cleaned_data['submitter_name'],
-                submitter_email=form.cleaned_data['submitter_email'],
+                submitter_name=form.cleaned_data.get('submitter_name'),
+                submitter_email=form.cleaned_data.get('submitter_email'),
             )
         self.template_name = 'advanced_forms/valid.html'
         if form.cleaned_data['form'].send_confirmation:
-            self.send_confirmation_email(form)
+            if form.cleaned_data.get("submitter_name") and form.cleaned_data.get("submitter_email"):
+                self.send_confirmation_email(form)
         return self.render_to_response(self.get_context_data(form=form))
 
     def form_invalid(self, form):
@@ -67,6 +68,7 @@ class AdvancedFormResponseView(FormView):
             self.extra_context['missing_required_fields_by_sequence'] = [
                 error.message for error in form.errors.as_data().get('__all__')
             ]
+        print(form.errors)
         return super(self.__class__, self).form_invalid(form)
 
 

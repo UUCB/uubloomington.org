@@ -43,8 +43,8 @@ class AdvancedForm(models.Model):
             ('submitter_email_field', advanced_forms_blocks.SubmitterEmailBlock()),
         ],
         block_counts = {
-            'submitter_name_field': {'min_num': 1, 'max_num': 1},
-            'submitter_email_field': {'min_num': 1, 'max_num': 1},
+            # 'submitter_name_field': {'min_num': 1, 'max_num': 1},
+            # 'submitter_email_field': {'min_num': 1, 'max_num': 1},
             'repeating_fields': {'max_num': 1},
         }
     )
@@ -91,8 +91,8 @@ class AdvancedForm(models.Model):
 
 
 class AdvancedFormResponse(models.Model):
-    submitter_name = models.CharField(max_length=500)
-    submitter_email = models.EmailField()
+    submitter_name = models.CharField(max_length=500, null=True)
+    submitter_email = models.EmailField(null=True)
     response_json = models.JSONField()
     submission_datetime = models.DateTimeField(default=timezone.now)
     form = models.ForeignKey(AdvancedForm, on_delete=models.CASCADE, related_name='responses')
