@@ -1,5 +1,5 @@
 Django>=5.0,<6.0
-wagtail>=7.1,<7.2
+wagtail>=7.2,<7.3
 wagtailmenus>=4.0.4,<4.1.0
 wagtail_modeladmin==v2.2.0
 pypco
@@ -10,4 +10,4 @@ django-anymail[sendgrid]>=13.0,<=14.0
 openpyxl>=3.1.0,<3.2.0
 wagtail-color-panel>=1.6.0,<1.7.0
 wagtail-link-block==0.1.6
-elasticsearch==7.13.4  # Must remain this version or OpenSearch breaks.
+opensearch-py>=3,<4
