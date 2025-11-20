@@ -57,9 +57,9 @@ ANYMAIL = {
 # https://docs.wagtail.org/en/stable/topics/search/backends.html
 WAGTAILSEARCH_BACKENDS = {
     "default": {
-        "BACKEND": "wagtail.search.backends.elasticsearch7",
+        "BACKEND": "wagtail.search.backends.opensearch3",
         "URLS": [os.environ["OPENSEARCH_URL"]],
-        "INDEX": os.environ["OPENSEARCH_INDEX"],
+        "INDEX_PREFIX": os.environ["OPENSEARCH_INDEX"],
         "TIMEOUT": 5,
         "OPTIONS": {},
         "INDEX_SETTINGS": {},
