@@ -58,8 +58,8 @@ def search(request):
         paginated_search_results = paginator.page(paginator.num_pages)
 
     if search_query:
-        promotions = Query.get(search_query).editors_picks.all(),
-        if promotions[0].count() == 0:
+        promotions = Query.get(search_query).editors_picks.all()
+        if promotions.count() == 0:
             promotions = None
     else:
         promotions = None
