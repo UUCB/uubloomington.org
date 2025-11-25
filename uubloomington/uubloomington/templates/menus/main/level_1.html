@@ -1,7 +1,7 @@
 {% load menu_tags %}
 {% load icon %}
 
-<ul class="nav closed">
+<ul class="nav closed" _="on click from body if .expand is not empty and event.target is not in me then remove .expand from <li/>">
     <li class="menu-toggle">
         <a href="/" role="button" _="on click toggle .closed on closest <.nav/> then halt" aria-label="Expand Navigation">
             {% icon "menu" class="icon-white" height='20' width='20' %}
