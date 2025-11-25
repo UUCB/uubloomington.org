@@ -59,7 +59,7 @@ WAGTAILSEARCH_BACKENDS = {
     "default": {
         "BACKEND": "wagtail.search.backends.opensearch3",
         "URLS": [os.environ["OPENSEARCH_URL"]],
-        "INDEX_PREFIX": os.environ["OPENSEARCH_INDEX"],
+        "INDEX_PREFIX": f'{os.environ["OPENSEARCH_INDEX"]}_',
         "TIMEOUT": 5,
         "OPTIONS": {},
         "INDEX_SETTINGS": {},
