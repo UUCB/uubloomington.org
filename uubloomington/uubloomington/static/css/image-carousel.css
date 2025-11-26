@@ -129,3 +129,18 @@
     }
 }
 
+/*Work around mobile safari being garbage. If this ever breaks, check https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariCSSRef/Articles/StandardCSSProperties.html */
+/*for another property labeled "Safari on iOS only", and stick that in in place of "webkit-touch-callout".*/
+@supports (-webkit-touch-callout: none) {
+    @media screen and (max-width: 63rem) {
+        .carousel-container {
+            max-height: 52dvw;
+            border-radius: var(--standard-radius);
+        }
+
+        .carousel-buttons {
+            max-height: 52dvw;
+        }
+    }
+}
+

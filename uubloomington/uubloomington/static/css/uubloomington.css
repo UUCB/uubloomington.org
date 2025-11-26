@@ -1318,6 +1318,14 @@ footer > .footer-content > * {
         height: auto;
     }
 
+    /*Work around mobile safari being garbage. If this ever breaks, check https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariCSSRef/Articles/StandardCSSProperties.html */
+    /*for another property labeled "Safari on iOS only", and stick that in in place of "webkit-touch-callout".*/
+    @supports (-webkit-touch-callout: none) {
+        .upcoming-service-buttons {
+            height: 5rem;
+        }
+    }
+
     .link-container {
         margin-bottom: 0.25rem;
     }
