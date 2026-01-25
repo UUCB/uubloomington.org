@@ -136,6 +136,7 @@ class ServicePage(Page):
     show_video_embed = models.BooleanField(default=True)
     transcript_heading = models.CharField(max_length=200, default="Sermon Text")
     transcript = RichTextField(blank=True, null=True)
+    homepage_location_text = models.CharField(max_length=200, blank=False, null=False, default='or in person!')
 
     parent_page_types = ['ServicesHomePage']
 
@@ -143,6 +144,7 @@ class ServicePage(Page):
         FieldPanel('featured_image'),
         FieldPanel('body'),
         FieldPanel('short_description'),
+        FieldPanel('homepage_location_text'),
     ]
 
     archive_panels = [

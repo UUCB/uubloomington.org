@@ -29,7 +29,7 @@
                         {% if service.video_archive_link %}
                             <a href="{{ service.url }}">See Recording</a>
                         {% else %}
-                            <a href="{{ settings.site_settings.SiteWideSettings.internal_livestream_page.url }}">Live Stream</a> or in person!
+                            <a href="{{ settings.site_settings.SiteWideSettings.internal_livestream_page.url }}">Live Stream</a> {{ service.homepage_location_text }}
                         {% endif %}
                     </span>
                 </span>
