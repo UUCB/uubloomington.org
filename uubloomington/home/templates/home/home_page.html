@@ -28,8 +28,10 @@
                     <span class="link-container">
                         {% if service.video_archive_link %}
                             <a href="{{ service.url }}">See Recording</a>
-                        {% else %}
+                        {% elif service.livestream_available %}
                             <a href="{{ settings.site_settings.SiteWideSettings.internal_livestream_page.url }}">Live Stream</a> {{ service.homepage_location_text }}
+                        {% else %}
+                            {{ service.homepage_location_text }}
                         {% endif %}
                     </span>
                 </span>

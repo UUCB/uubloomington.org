@@ -137,6 +137,7 @@ class ServicePage(Page):
     transcript_heading = models.CharField(max_length=200, default="Sermon Text")
     transcript = RichTextField(blank=True, null=True)
     homepage_location_text = models.CharField(max_length=200, blank=False, null=False, default='or in person!')
+    livestream_available = models.BooleanField(default=True, help_text="If you uncheck this, be sure to also change the homepage location text.")
 
     parent_page_types = ['ServicesHomePage']
 
@@ -150,6 +151,7 @@ class ServicePage(Page):
     archive_panels = [
         FieldPanel('video_archive_link'),
         FieldPanel('show_video_embed'),
+        FieldPanel('livestream_available'),
     ]
 
     transcript_panels = [
@@ -160,7 +162,7 @@ class ServicePage(Page):
     edit_handler = TabbedInterface(
         [
             ObjectList(content_panels, heading="Content"),
-            ObjectList(archive_panels, heading="Archive"),
+            ObjectList(archive_panels, heading="Stream & Archive"),
             ObjectList(transcript_panels, heading="Transcript"),
             ObjectList(Page.promote_panels, heading="Promote"),
         ]
