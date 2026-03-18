@@ -11,6 +11,9 @@ from django.utils.text import slugify
 from django.utils import timezone
 from wagtail.search import index
 
+from wagtail_color_panel.fields import ColorField
+from wagtail_color_panel.edit_handlers import NativeColorPanel
+
 from site_settings.models import SiteWideSettings
 
 from core.models import Post
@@ -40,10 +43,12 @@ class GroupsHomePage(Page):
         on_delete=models.SET_NULL,
         related_name="+",
     )
+    accent_color = ColorField(default=None, null=True, blank=True, help_text='Accent color for this page. If set, overrides the global accent color for this page.')
     # parent_page_types = ['home.HomePage']
     content_panels = Page.content_panels + [
         FieldPanel('body'),
         FieldPanel('featured_image'),
+        NativeColorPanel('accent_color'),
     ]
 
 
@@ -62,11 +67,13 @@ class GroupPage(Page):
     group_type = models.BinaryField(null=True)  # Pickled Group Type
     group_is_open = models.BooleanField(default=True)
     last_fetched = models.DateTimeField(default=timezone.make_aware(datetime.datetime.min))
+    accent_color = ColorField(default=None, null=True, blank=True, help_text='Accent color for this page. If set, overrides the global accent color for this page.')
     content_panels = Page.content_panels + [
         FieldPanel('planning_center_group_id'),
         FieldPanel('summary'),
         FieldPanel('featured_image'),
         FieldPanel('show_posts'),
+        NativeColorPanel('accent_color'),
     ]
 
     search_fields = Page.search_fields + [

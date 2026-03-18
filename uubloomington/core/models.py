@@ -24,6 +24,8 @@ from wagtail.admin.mail import send_mail
 from advanced_forms.models import AdvancedForm
 from planningcenter_events.blocks import EventListingBlock
 from planningcenter_events.models import EventListing
+from wagtail_color_panel.fields import ColorField
+from wagtail_color_panel.edit_handlers import NativeColorPanel
 
 
 class Post(Page):
@@ -135,6 +137,8 @@ class StandardBlockPage(Page):
 
     show_sidebar = models.BooleanField(default=True)
 
+    accent_color = ColorField(default=None, null=True, blank=True, help_text='Accent color for this page. If set, overrides the global accent color for this page.')
+
     body_is_streamfield = True
 
     content_panels = Page.content_panels + [
@@ -142,6 +146,7 @@ class StandardBlockPage(Page):
         FieldPanel('body'),
         FieldPanel('summary'),
         FieldPanel('show_sidebar'),
+        NativeColorPanel('accent_color'),
     ]
 
     search_fields = Page.search_fields + [
@@ -186,6 +191,7 @@ class FormPage(AbstractEmailForm):
     summary = RichTextField(blank=True)
     thank_you_text = RichTextField(blank=True)
     subject = models.CharField(verbose_name="Subject", max_length=255, blank=False)
+    accent_color = ColorField(default=None, null=True, blank=True, help_text='Accent color for this page. If set, overrides the global accent color for this page.')
     send_confirmation_email = models.BooleanField(
         default=False,
         help_text="""
@@ -247,6 +253,7 @@ class FormPage(AbstractEmailForm):
         FieldPanel('summary', help_text="Shown when this page is featured, or in a searchable index"),
         InlinePanel('form_fields', label="Form fields"),
         FieldPanel('thank_you_text'),
+        NativeColorPanel('accent_color'),
         MultiFieldPanel([
             FieldRowPanel([
                 FieldPanel('from_address', classname="col6"),

@@ -11,6 +11,9 @@ from core.blocks import ReadMoreTagBlock, ShowFeaturedImageBlock, PageFeatureBlo
 from core.models import StandardBlockPage
 from .blocks import ArticleBlock, TableOfContentsBlock
 
+from wagtail_color_panel.fields import ColorField
+from wagtail_color_panel.edit_handlers import NativeColorPanel
+
 import datetime
 
 from recurrence.fields import RecurrenceField
@@ -31,9 +34,11 @@ class Newsletter(Page):
         ('anchor', AnchorBlock()),
     ], use_json_field=True, null=True)
     publication_schedule = RecurrenceField()
+    accent_color = ColorField(default=None, null=True, blank=True, help_text='Accent color for this page. If set, overrides the global accent color for this page.')
     content_panels = Page.content_panels + [
         FieldPanel('body'),
         FieldPanel('publication_schedule'),
+        NativeColorPanel('accent_color'),
     ]
     subpage_types = [
         'newsletter.Issue'
@@ -85,13 +90,15 @@ class Issue(Page):
         null=True,
         blank=True,
     )
+    accent_color = ColorField(default=None, null=True, blank=True, help_text='Accent color for this page. If set, overrides the global accent color for this page.')
     content_panels = Page.content_panels + [
         HelpPanel(
             template='newsletter/admin/mailchimp_export.html'
         ),
         FieldPanel('featured_image'),
         FieldPanel('body'),
-        FieldPanel('publication_date', help_text='This should never be changed unless there is a problem and you know what you are doing.')
+        FieldPanel('publication_date', help_text='This should never be changed unless there is a problem and you know what you are doing.'),
+        NativeColorPanel('accent_color'),
     ]
     parent_page_types = [
         'newsletter.Newsletter',

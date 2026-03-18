@@ -16,6 +16,9 @@ from wagtail.images.models import Image
 from wagtail.api import APIField
 from wagtail.search import index
 
+from wagtail_color_panel.fields import ColorField
+from wagtail_color_panel.edit_handlers import NativeColorPanel
+
 from site_settings.models import SiteWideSettings
 
 from recurrence.fields import RecurrenceField
@@ -53,6 +56,8 @@ class ServicesHomePage(Page):
         help_text="Newly-created Order of Service pages will contain this in their Program field."
     )
 
+    accent_color = ColorField(default=None, null=True, blank=True, help_text='Accent color for this page. If set, overrides the global accent color for this page.')
+
     order_of_service_panels = [
         FieldPanel('order_of_service_program_template'),
     ]
@@ -66,7 +71,8 @@ class ServicesHomePage(Page):
                 FieldPanel('service_schedule', heading="Services happen every:"),
             ],
             heading="Service Schedule"
-        )
+        ),
+        NativeColorPanel('accent_color'),
     ]
 
     archive_panels = [
@@ -138,6 +144,7 @@ class ServicePage(Page):
     transcript = RichTextField(blank=True, null=True)
     homepage_location_text = models.CharField(max_length=200, blank=False, null=False, default='or in person!')
     livestream_available = models.BooleanField(default=True, help_text="If you uncheck this, be sure to also change the homepage location text.")
+    accent_color = ColorField(default=None, null=True, blank=True, help_text='Accent color for this page. If set, overrides the global accent color for this page.')
 
     parent_page_types = ['ServicesHomePage']
 
@@ -146,6 +153,7 @@ class ServicePage(Page):
         FieldPanel('body'),
         FieldPanel('short_description'),
         FieldPanel('homepage_location_text'),
+        NativeColorPanel('accent_color'),
     ]
 
     archive_panels = [

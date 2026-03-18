@@ -31,6 +31,13 @@
         <style>
 
         </style>
+        {% if page.accent_color %}
+            <style>
+                #main {
+                    --accent-color: {{ page.accent_color }};
+                }
+            </style>
+        {% endif %}
 
         {% block extra_css %}
         {# Override this in templates to add extra stylesheets #}
