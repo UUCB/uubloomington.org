@@ -232,7 +232,7 @@ b {
     font-variation-settings: "wght" 550;
 }
 
-/*Support custom text-align Rich Text blocks*/
+/*Support custom text-align Rich Text blocks (no longer available in the editor, but pages may still use this styling)*/
 .centered {
     text-align: center;
 }
@@ -241,6 +241,18 @@ p.right-aligned {
     text-align: right;
 }
 /*End custom text-align blocks*/
+
+/*Support wagtail_text_alignment*/
+.text-left {
+    text-align: left;
+}
+.text-center{
+    text-align: center;
+}
+.text-right {
+    text-align: right;
+}
+/*End support wagtail_text_alignment*/
 
 main {
     max-width: var(--page-width);

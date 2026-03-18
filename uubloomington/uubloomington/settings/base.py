@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     "anymail",
     "wagtail_color_panel",
     "wagtail_link_block",
+    "wagtail_text_alignment",
 ]
 
 MIDDLEWARE = [
@@ -157,8 +158,6 @@ WAGTAILADMIN_RICH_TEXT_EDITORS = {
                 'ul',
                 'ol',
                 'hr',
-                'centered',
-                'right-aligned',
                 'image',
                 'bold',
                 'italic',
@@ -166,6 +165,7 @@ WAGTAILADMIN_RICH_TEXT_EDITORS = {
                 'document-link',
                 'hr',
                 'blockquote',
+                'text-alignment'
             ]
         }
     },

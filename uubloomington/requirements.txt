@@ -10,4 +10,5 @@ django-anymail[sendgrid]>=14.0,<=15.0
 openpyxl>=3.1.0,<3.2.0
 wagtail-color-panel>=1.7.0,<1.8.0
 wagtail-link-block==0.1.6
+wagtail_text_alignment==v1.0.2
 opensearch-py>=3,<4
